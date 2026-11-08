@@ -63,8 +63,6 @@ def main():
         reload=False,
         log_level="info"
     )
-        log_level="info"
-    )
 
 if __name__ == "__main__":
     main()
