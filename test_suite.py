@@ -99,15 +99,37 @@ async def run_tests():
         print("      [PASS] Self-Gateway Tunnel active: Sub-manifests rewritten and streamed through local proxy.")
 
         # 10. Test Anti-SSRF Protection on Gateway
-        print("  --> [10/10] Testing Anti-SSRF gateway security protection...")
+        print("  --> [10/11] Testing Anti-SSRF gateway security protection...")
         ssrf_resp = await client.get("/api/live/gateway", params={"url": "http://127.0.0.1:8000/admin"})
         assert ssrf_resp.status_code == 400, f"Expected 400 Bad Request, got {ssrf_resp.status_code}"
         print("      [PASS] Anti-SSRF successfully blocked internal target probe.")
 
+        # 11. Test AMLVE Multi-Language Architecture (VDT, EAB, 5ms Cross-Fade, Telemetry)
+        print("  --> [11/11] Testing Antigravity Multi-Language Video Engine (AMLVE)...")
+        amlve_lang_resp = await client.get("/api/amlve/languages")
+        assert amlve_lang_resp.status_code == 200, f"Expected 200, got {amlve_lang_resp.status_code}"
+        amlve_data = amlve_lang_resp.json()
+        assert amlve_data.get("crossfade_buffer_ms") == 5.0, "Expected 5.0ms crossfade buffer"
+        assert len(amlve_data.get("languages", [])) >= 40, "Expected at least 40 documented world languages"
+        
+        telemetry_resp = await client.get("/api/amlve/telemetry")
+        assert telemetry_resp.status_code == 200
+        telem = telemetry_resp.json()
+        assert telem["architecture"]["vdt_layer"]["status"] == "ISOLATED_DECOUPLED"
+        assert telem["playback_integrity"]["crossfade_buffer_ms"] == 5.0
+        assert telem["floating_cache"]["status"] == "ACTIVE_HOT_RAM"
+
+        stream_desc_resp = await client.get("/api/amlve/stream/vid-01/ja-JP")
+        assert stream_desc_resp.status_code == 200
+        desc = stream_desc_resp.json()
+        assert desc["language_code"] == "ja-JP"
+        assert desc["crossfade_ms"] == 5.0
+        print("      [PASS] AMLVE Engine verified: Decoupled VDT, 5ms cross-fade, and RAM floating cache active.")
+
         # Clean up localhost ban for local user testing
         ip_manager.unban_ip("127.0.0.1")
         ip_manager.unban_ip("testclient")
-    print("\n[TEST SUITE] ALL 10 INTEGRATION, LIVE TV & SECURITY TESTS PASSED PERFECTLY!\n")
+    print("\n[TEST SUITE] ALL 11 INTEGRATION, LIVE TV, SECURITY & AMLVE TESTS PASSED PERFECTLY!\n")
 
 if __name__ == "__main__":
     asyncio.run(run_tests())

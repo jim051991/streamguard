@@ -32,6 +32,7 @@ from app.security import (
 )
 from app.honeypots import honeypot_router
 from app.live_tv import live_router
+from app.amlve import amlve_router
 from app.data import (
     get_all_videos,
     get_video_by_id,
@@ -166,10 +167,11 @@ async def security_waf_middleware(request: Request, call_next):
     return await call_next(request)
 
 # -----------------------------------------------------------------------------
-# Include Honeypot Decoys & Live TV Gateway Routers
+# Include Honeypot Decoys, Live TV Gateway & AMLVE Routers
 # -----------------------------------------------------------------------------
 app.include_router(honeypot_router)
 app.include_router(live_router)
+app.include_router(amlve_router)
 
 # -----------------------------------------------------------------------------
 # Video Streaming Application APIs
