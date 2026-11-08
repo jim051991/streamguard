@@ -572,10 +572,8 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
     updateWatchlistButtonState();
     renderComments(state.currentVideo.comments || []);
 
-    // Play Pre-Roll Advertisement with 5-second skip option before the movie starts!
-    startPrerollAd(() => {
-      loadActiveStream(autoPlay);
-    });
+    // Directly open and stream the chosen movie on first click!
+    loadActiveStream(autoPlay);
   } catch (err) {
     console.error("Error playing video:", err);
   }
@@ -862,9 +860,8 @@ function selectEpisode(idx) {
     activePlayerTitle.textContent = `${state.currentVideo.title} - S1:E${ep.episode_number} "${ep.title}"`;
   }
 
-  startPrerollAd(() => {
-    loadActiveStream(true);
-  });
+  // Directly stream the chosen episode on click!
+  loadActiveStream(true);
 }
 
 function renderEpisodesDrawer(season, activeIdx = 0) {
