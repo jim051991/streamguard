@@ -243,6 +243,7 @@ async function selectVideo(videoId, shouldPlay = false) {
       videoEl.removeChild(videoEl.firstChild);
     }
     videoEl.removeAttribute("src");
+    videoEl.removeAttribute("crossorigin");
     videoEl.src = state.currentVideo.video_url;
     videoEl.load();
 
@@ -515,7 +516,12 @@ function renderComments(comments) {
 // ----------------------------------------------------------------------------
 function togglePlay() {
   if (videoEl.paused || videoEl.ended) {
-    videoEl.play();
+    const playPromise = videoEl.play();
+    if (playPromise !== undefined) {
+      playPromise.catch((err) => {
+        console.warn("Playback error / autoplay interrupted:", err);
+      });
+    }
   } else {
     videoEl.pause();
   }

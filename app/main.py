@@ -214,6 +214,11 @@ async def post_comment(video_id: str, payload: CommentRequest):
         raise HTTPException(status_code=404, detail="Video not found")
     return {"status": "success", "comment": comment}
 
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    """Return 204 No Content for favicon requests to prevent 404 logs."""
+    return Response(content=b"", status_code=204)
+
 # -----------------------------------------------------------------------------
 # Security & Audit Dashboard APIs
 # -----------------------------------------------------------------------------
