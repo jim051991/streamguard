@@ -1,250 +1,412 @@
 /**
- * StreamGuard Application Logic
- * Integrates:
- * 1. On-Demand Cinema Video Player (YouTube + Netflix + Twitch features)
- * 2. 24/7 Global Live TV Broadcasting via Built-in Self-Gateway Proxy (In-App Tunnel)
- * 3. Autonomous Multi-Layer Security WAF Telemetry
+ * StreamGuard 2.0 - OTT Cinema, TV Series, Anime & Global Live TV Controller
+ * Incorporates Movibox & CineHD UI/UX Patterns with Autonomous Security Shield
  */
 
-// Application State
+// ----------------------------------------------------------------------------
+// Global Application State
+// ----------------------------------------------------------------------------
 const state = {
-  viewMode: "videos", // "videos" | "livetv"
-  videos: [],
-  currentVideo: null,
-  currentIndex: 0,
-  
-  // Live TV State
+  viewMode: "all", // all | movie | series | anime | livetv | watchlist
+  allVideos: [],
   channels: [],
+  currentVideo: null,
   currentChannel: null,
-  channelIndex: 0,
+  currentServerIndex: 0,
+  featuredItem: null,
   hlsInstance: null,
-
-  isPlaying: false,
-  isMuted: false,
-  volume: 1.0,
-  playbackSpeed: 1.0,
-  isTheater: false,
-  autoplayNext: true,
-  activeCategory: "All",
-  searchQuery: ""
+  subtitlesActive: true,
+  searchQuery: "",
+  partyRoomCode: null,
+  history: JSON.parse(localStorage.getItem("streamguard_history") || "{}"),
+  watchlist: JSON.parse(localStorage.getItem("streamguard_watchlist") || "[]")
 };
 
+// ----------------------------------------------------------------------------
 // DOM Elements
-const videoEl = document.getElementById("videoElement");
+// ----------------------------------------------------------------------------
+const heroBillboard = document.getElementById("heroBillboard");
+const heroTitle = document.getElementById("heroTitle");
+const heroSubtitle = document.getElementById("heroSubtitle");
+const heroDesc = document.getElementById("heroDesc");
+const heroBackdrop = document.getElementById("heroBackdrop");
+const heroQuality = document.getElementById("heroQuality");
+const heroRating = document.getElementById("heroRating");
+const heroYear = document.getElementById("heroYear");
+const heroAge = document.getElementById("heroAge");
+const heroPlayBtn = document.getElementById("heroPlayBtn");
+const heroWatchlistBtn = document.getElementById("heroWatchlistBtn");
+const heroWatchlistText = document.getElementById("heroWatchlistText");
+const heroPartyBtn = document.getElementById("heroPartyBtn");
+
+const theaterSection = document.getElementById("theaterSection");
+const activePlayerTitle = document.getElementById("activePlayerTitle");
+const channelFlagBadge = document.getElementById("channelFlagBadge");
+const closePlayerBtn = document.getElementById("closePlayerBtn");
+const serverSelectBtn = document.getElementById("serverSelectBtn");
+const currentServerLabel = document.getElementById("currentServerLabel");
+const serverMenu = document.getElementById("serverMenu");
+
 const playerContainer = document.getElementById("playerContainer");
-const mainLayout = document.getElementById("mainLayout");
+const videoEl = document.getElementById("videoElement");
+const subtitleTrack = document.getElementById("subtitleTrack");
+const liveIndicatorTag = document.getElementById("liveIndicatorTag");
+const centerPlayOverlay = document.getElementById("centerPlayOverlay");
+
 const playBtn = document.getElementById("playBtn");
+const skipBack10 = document.getElementById("skipBack10");
+const skipForward10 = document.getElementById("skipForward10");
 const prevBtn = document.getElementById("prevBtn");
 const nextBtn = document.getElementById("nextBtn");
-const centerPlayOverlay = document.getElementById("centerPlayOverlay");
 const muteBtn = document.getElementById("muteBtn");
 const volumeSlider = document.getElementById("volumeSlider");
 const currentTimeEl = document.getElementById("currentTime");
 const totalDurationEl = document.getElementById("totalDuration");
 const scrubberWrapper = document.getElementById("scrubberWrapper");
-const scrubberProgress = document.getElementById("scrubberProgress");
+const scrubberBar = document.getElementById("scrubberBar");
 const bufferProgress = document.getElementById("bufferProgress");
+const scrubberProgress = document.getElementById("scrubberProgress");
 const scrubberThumb = document.getElementById("scrubberThumb");
 const scrubberPreview = document.getElementById("scrubberPreview");
 const previewTimeEl = document.getElementById("previewTime");
+
+const ccToggleBtn = document.getElementById("ccToggleBtn");
+const ccStatusText = document.getElementById("ccStatusText");
 const speedBtn = document.getElementById("speedBtn");
 const speedLabel = document.getElementById("speedLabel");
 const speedMenu = document.getElementById("speedMenu");
-const speedWrapper = document.getElementById("speedWrapper");
+const qualityText = document.getElementById("qualityText");
 const theaterBtn = document.getElementById("theaterBtn");
 const pipBtn = document.getElementById("pipBtn");
 const fullscreenBtn = document.getElementById("fullscreenBtn");
-const autoplayCheck = document.getElementById("autoplayCheck");
-const autoplayToggleWrap = document.getElementById("autoplayToggleWrap");
-const liveIndicatorTag = document.getElementById("liveIndicatorTag");
-const qualityBadge = document.getElementById("qualityBadge");
-const qualityText = document.getElementById("qualityText");
 
-// Mode Tabs
-const tabVideosMode = document.getElementById("tabVideosMode");
-const tabLiveTvMode = document.getElementById("tabLiveTvMode");
-const categoryBar = document.getElementById("categoryBar");
-const sidebarTitle = document.getElementById("sidebarTitle");
-
-// Metadata elements
-const videoTitleEl = document.getElementById("videoTitle");
-const videoDescEl = document.getElementById("videoDescription");
-const channelAvatarEl = document.getElementById("channelAvatar");
-const channelNameEl = document.getElementById("channelName");
-const channelSubsEl = document.getElementById("channelSubs");
-const channelFlagBadge = document.getElementById("channelFlagBadge");
+const channelAvatar = document.getElementById("channelAvatar");
+const channelName = document.getElementById("channelName");
+const channelSubs = document.getElementById("channelSubs");
+const tagsRow = document.getElementById("tagsRow");
 const likeBtn = document.getElementById("likeBtn");
 const likeCountEl = document.getElementById("likeCount");
+const watchlistToggleBtn = document.getElementById("watchlistToggleBtn");
+const watchlistBtnLabel = document.getElementById("watchlistBtnLabel");
 const shareBtn = document.getElementById("shareBtn");
 const downloadBtn = document.getElementById("downloadBtn");
 const downloadBtnLabel = document.getElementById("downloadBtnLabel");
-const viewCountEl = document.getElementById("viewCount");
-const publishDateEl = document.getElementById("publishDate");
-const tagsRowEl = document.getElementById("tagsRow");
-const queueListEl = document.getElementById("queueList");
-const commentsSection = document.getElementById("commentsSection");
-const commentsListEl = document.getElementById("commentsList");
-const commentsCountEl = document.getElementById("commentsCount");
-const submitCommentBtn = document.getElementById("submitCommentBtn");
-const commentAuthorInput = document.getElementById("commentAuthor");
-const commentTextInput = document.getElementById("commentText");
+const videoDescription = document.getElementById("videoDescription");
 
-// Search
+const episodesDrawer = document.getElementById("episodesDrawer");
+const episodesGrid = document.getElementById("episodesGrid");
+const liveScheduleDrawer = document.getElementById("liveScheduleDrawer");
+const scheduleTimeline = document.getElementById("scheduleTimeline");
+
+const commentsCount = document.getElementById("commentsCount");
+const commentAuthor = document.getElementById("commentAuthor");
+const commentText = document.getElementById("commentText");
+const submitCommentBtn = document.getElementById("submitCommentBtn");
+const commentsList = document.getElementById("commentsList");
+
 const searchInput = document.getElementById("searchInput");
 const clearSearchBtn = document.getElementById("clearSearchBtn");
-
-// Security indicators
+const searchSuggestions = document.getElementById("searchSuggestions");
+const headerPartyBtn = document.getElementById("headerPartyBtn");
 const headerThreatCount = document.getElementById("headerThreatCount");
-const sbHits = document.getElementById("sbHits");
-const sbThreats = document.getElementById("sbThreats");
+const watchlistCountBadge = document.getElementById("watchlistCountBadge");
+
+// Rails
+const railContinueWatchingWrap = document.getElementById("railContinueWatchingWrap");
+const railContinueWatching = document.getElementById("railContinueWatching");
+const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+
+const railWatchlistWrap = document.getElementById("railWatchlistWrap");
+const railWatchlist = document.getElementById("railWatchlist");
+const railWatchlistBadge = document.getElementById("railWatchlistBadge");
+
+const railTrendingWrap = document.getElementById("railTrendingWrap");
+const railTrending = document.getElementById("railTrending");
+
+const railMoviesWrap = document.getElementById("railMoviesWrap");
+const railMovies = document.getElementById("railMovies");
+
+const railSeriesWrap = document.getElementById("railSeriesWrap");
+const railSeries = document.getElementById("railSeries");
+
+const railAnimeWrap = document.getElementById("railAnimeWrap");
+const railAnime = document.getElementById("railAnime");
+
+const railLiveTvWrap = document.getElementById("railLiveTvWrap");
+const railLiveTv = document.getElementById("railLiveTv");
 
 // Modals
+const partyModal = document.getElementById("partyModal");
+const closePartyModalBtn = document.getElementById("closePartyModalBtn");
+const partyLinkInput = document.getElementById("partyLinkInput");
+const copyPartyBtn = document.getElementById("copyPartyBtn");
+
 const shortcutsModal = document.getElementById("shortcutsModal");
 const shortcutsBtn = document.getElementById("shortcutsBtn");
 const closeModalBtn = document.getElementById("closeModalBtn");
+
+const legalModal = document.getElementById("legalModal");
+const closeLegalModalBtn = document.getElementById("closeLegalModalBtn");
 
 // ----------------------------------------------------------------------------
 // Initialization
 // ----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", async () => {
   setupEventListeners();
-  renderCategoryBar();
-  await loadVideoCatalog();
-  await updateSecurityTelemetry();
+  updateWatchlistBadge();
+  checkPartyRoomUrl();
+
+  // Load initial data
+  await Promise.all([
+    loadCatalogData(),
+    loadLiveChannels(),
+    updateSecurityTelemetry()
+  ]);
+
+  renderAllRails();
   setInterval(updateSecurityTelemetry, 5000);
 });
 
-function formatTime(seconds) {
-  if (isNaN(seconds) || seconds < 0) return "00:00";
-  const s = Math.floor(seconds % 60);
-  const m = Math.floor((seconds / 60) % 60);
-  const h = Math.floor(seconds / 3600);
-  const pad = (n) => String(n).padStart(2, "0");
-  return h > 0 ? `${h}:${pad(m)}:${pad(s)}` : `${pad(m)}:${pad(s)}`;
-}
-
 // ----------------------------------------------------------------------------
-// Mode Switching: Cinema Videos vs Global Live TV
+// Data Loading & API Calls
 // ----------------------------------------------------------------------------
-function setViewMode(mode) {
-  if (state.viewMode === mode) return;
-  state.viewMode = mode;
-  state.activeCategory = "All";
-  state.searchQuery = "";
-  searchInput.value = "";
-  clearSearchBtn.style.display = "none";
-
-  tabVideosMode.classList.toggle("active", mode === "videos");
-  tabLiveTvMode.classList.toggle("active", mode === "livetv");
-
-  renderCategoryBar();
-
-  if (mode === "videos") {
-    sidebarTitle.innerHTML = '<i class="fa-solid fa-layer-group"></i> Up Next & Recommendations';
-    liveIndicatorTag.style.display = "none";
-    channelFlagBadge.style.display = "none";
-    scrubberWrapper.style.display = "flex";
-    speedWrapper.style.display = "block";
-    autoplayToggleWrap.style.display = "flex";
-    downloadBtnLabel.textContent = "Download";
-    commentsSection.style.display = "block";
-    destroyHls();
-    loadVideoCatalog(true, false);
-    showToast("Switched to Cinema & On-Demand Library");
-  } else {
-    sidebarTitle.innerHTML = '<i class="fa-solid fa-satellite-dish" style="color:#ef4444;"></i> Global Live TV Broadcasts';
-    liveIndicatorTag.style.display = "flex";
-    channelFlagBadge.style.display = "inline-block";
-    scrubberWrapper.style.display = "none"; // Live streams use DVR/live indicator
-    speedWrapper.style.display = "none";
-    autoplayToggleWrap.style.display = "none";
-    downloadBtnLabel.textContent = "Raw Stream";
-    commentsSection.style.display = "block";
-    loadLiveChannels(true, true);
-    showToast("🔴 Live TV Global activated via Built-in Self-Gateway Tunnel");
-  }
-}
-
-function renderCategoryBar() {
-  categoryBar.innerHTML = "";
-  let categories = [];
-
-  if (state.viewMode === "videos") {
-    categories = ["All", "Sci-Fi", "Animation", "Nature", "Trending"];
-  } else {
-    categories = [
-      "All",
-      "World News",
-      "Science & Space",
-      "Sports & Adventure",
-      "Finance & Business",
-      "Entertainment & Cinema",
-      "United States",
-      "Germany",
-      "Turkey",
-      "China"
-    ];
-  }
-
-  categories.forEach((cat) => {
-    const btn = document.createElement("button");
-    btn.className = `category-pill ${state.activeCategory === cat ? "active" : ""}`;
-    btn.textContent = cat;
-    btn.addEventListener("click", () => {
-      document.querySelectorAll(".category-pill").forEach((b) => b.classList.remove("active"));
-      btn.classList.add("active");
-      state.activeCategory = cat;
-      if (state.viewMode === "videos") {
-        loadVideoCatalog(false, false);
-      } else {
-        loadLiveChannels();
-      }
-    });
-    categoryBar.appendChild(btn);
-  });
-}
-
-// ----------------------------------------------------------------------------
-// Video Catalog API (On-Demand Mode)
-// ----------------------------------------------------------------------------
-async function loadVideoCatalog(forceSelectFirst = false, autoPlay = false) {
+async function loadCatalogData() {
   try {
-    let url = `/api/videos?category=${encodeURIComponent(state.activeCategory)}`;
-    if (state.searchQuery) {
-      url += `&search=${encodeURIComponent(state.searchQuery)}`;
-    }
-    const res = await fetch(url);
+    const res = await fetch("/api/videos");
     const data = await res.json();
-    state.videos = data.videos || [];
+    state.allVideos = data.videos || [];
 
-    if (state.videos.length > 0) {
-      renderQueueList();
-      if (forceSelectFirst || !state.currentVideo || !videoEl.src || videoEl.src.includes(".m3u8")) {
-        selectVideo(state.videos[0].id, autoPlay);
-      }
-    } else {
-      queueListEl.innerHTML = '<div style="color:#64748b; padding:20px; text-align:center;">No videos match your filter.</div>';
-    }
+    // Set Hero Billboard
+    const featRes = await fetch("/api/videos/featured");
+    const featData = await featRes.json();
+    state.featuredItem = featData.featured || state.allVideos[0];
+    renderHeroBillboard(state.featuredItem);
   } catch (err) {
     console.error("Error loading video catalog:", err);
   }
 }
 
-async function selectVideo(videoId, shouldPlay = false) {
+async function loadLiveChannels() {
+  try {
+    const res = await fetch("/api/live/channels");
+    const data = await res.json();
+    state.channels = data.channels || [];
+  } catch (err) {
+    console.error("Error loading live TV channels:", err);
+  }
+}
+
+async function updateSecurityTelemetry() {
+  try {
+    const res = await fetch("/api/security/stats");
+    const data = await res.json();
+    if (data && data.metrics) {
+      headerThreatCount.textContent = data.metrics.attacks_blocked || 0;
+    }
+  } catch (err) {
+    // Offline resilience
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Hero Billboard Rendering (Movibox & Netflix Model)
+// ----------------------------------------------------------------------------
+function renderHeroBillboard(item) {
+  if (!item) return;
+  state.featuredItem = item;
+
+  heroTitle.textContent = item.title;
+  heroSubtitle.textContent = item.subtitle || item.category || "Cinema Feature";
+  heroDesc.textContent = item.description;
+  heroBackdrop.src = item.backdrop_url || item.thumbnail_url;
+  heroQuality.textContent = item.quality || "4K ULTRA HD";
+  heroRating.innerHTML = `<i class="fa-solid fa-star"></i> ${item.imdb_rating || "8.8"} IMDb`;
+  heroYear.textContent = item.release_year || "2024";
+  heroAge.textContent = item.age_rating || "PG-13";
+
+  const isInWatchlist = state.watchlist.includes(item.id);
+  heroWatchlistText.textContent = isInWatchlist ? "✓ In Watchlist" : "Add to Watchlist";
+  heroWatchlistBtn.classList.toggle("active", isInWatchlist);
+}
+
+// ----------------------------------------------------------------------------
+// Horizontal OTT Rails Rendering
+// ----------------------------------------------------------------------------
+function renderAllRails() {
+  renderContinueWatchingRail();
+  renderWatchlistRail();
+  renderTrendingRail();
+  renderMoviesRail();
+  renderSeriesRail();
+  renderAnimeRail();
+  renderLiveTvRail();
+}
+
+function renderCard(item, isChannel = false) {
+  const isVideo = !isChannel;
+  const id = item.id;
+  const title = item.title || item.name;
+  const poster = isVideo ? (item.poster_url || item.thumbnail_url) : item.logo;
+  const quality = isVideo ? (item.quality || "1080p HD") : (item.resolution || "1080p");
+  const rating = item.imdb_rating ? `⭐ ${item.imdb_rating}` : (item.flag ? `${item.flag} ${item.country}` : "⭐ 8.5");
+  const subMeta = isVideo ? `${item.release_year || "2024"} • ${item.duration_formatted || "HD"}` : `${item.category}`;
+
+  const inWatchlist = state.watchlist.includes(id);
+
+  // Check progress
+  const hist = state.history[id];
+  const progressHtml = hist && hist.pct > 0 ? `
+    <div class="card-progress-bar">
+      <div class="card-progress-fill" style="width: ${Math.min(100, hist.pct)}%;"></div>
+    </div>
+  ` : "";
+
+  return `
+    <div class="ott-card ${isChannel ? "live-channel-card" : ""}" data-id="${id}" onclick="${isChannel ? `selectLiveChannel('${id}')` : `playVideoById('${id}')`}">
+      <div class="card-poster-wrap">
+        <img src="${poster}" alt="${title}" class="card-poster-img" loading="lazy">
+        <span class="card-quality-tag">${quality}</span>
+        <span class="card-rating-tag">${rating}</span>
+        ${isVideo ? `
+          <button class="card-watchlist-quick-btn ${inWatchlist ? "active" : ""}" onclick="event.stopPropagation(); toggleWatchlist('${id}');" title="${inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}">
+            <i class="fa-${inWatchlist ? "solid" : "regular"} fa-bookmark"></i>
+          </button>
+        ` : ""}
+        <div class="card-hover-overlay">
+          <div class="card-hover-play-icon">
+            <i class="fa-solid fa-play"></i>
+          </div>
+        </div>
+        ${progressHtml}
+      </div>
+      <div class="card-info">
+        <h4 class="card-title">${title}</h4>
+        <div class="card-meta-row">
+          <span>${subMeta}</span>
+          ${isChannel ? '<span style="color:#ef4444; font-weight:bold;">● LIVE</span>' : `<span>${item.category || ""}</span>`}
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function renderContinueWatchingRail() {
+  const historyKeys = Object.keys(state.history);
+  if (historyKeys.length === 0) {
+    railContinueWatchingWrap.style.display = "none";
+    return;
+  }
+
+  railContinueWatchingWrap.style.display = "block";
+  const items = historyKeys
+    .map((k) => state.allVideos.find((v) => v.id === k))
+    .filter(Boolean);
+
+  railContinueWatching.innerHTML = items.map((item) => renderCard(item)).join("");
+}
+
+function renderWatchlistRail() {
+  if (state.watchlist.length === 0) {
+    railWatchlistWrap.style.display = "none";
+    railWatchlistBadge.textContent = "0 titles";
+    return;
+  }
+
+  railWatchlistWrap.style.display = "block";
+  railWatchlistBadge.textContent = `${state.watchlist.length} titles`;
+  const items = state.watchlist
+    .map((id) => state.allVideos.find((v) => v.id === id))
+    .filter(Boolean);
+
+  railWatchlist.innerHTML = items.map((item) => renderCard(item)).join("");
+}
+
+function renderTrendingRail() {
+  const trending = state.allVideos.filter((v) => v.is_trending);
+  railTrending.innerHTML = (trending.length ? trending : state.allVideos).map((item) => renderCard(item)).join("");
+}
+
+function renderMoviesRail() {
+  const movies = state.allVideos.filter((v) => v.content_type === "movie");
+  railMovies.innerHTML = (movies.length ? movies : state.allVideos).map((item) => renderCard(item)).join("");
+}
+
+function renderSeriesRail() {
+  const series = state.allVideos.filter((v) => v.content_type === "series");
+  railSeries.innerHTML = (series.length ? series : state.allVideos).map((item) => renderCard(item)).join("");
+}
+
+function renderAnimeRail() {
+  const anime = state.allVideos.filter((v) => v.content_type === "anime");
+  railAnime.innerHTML = (anime.length ? anime : state.allVideos).map((item) => renderCard(item)).join("");
+}
+
+function renderLiveTvRail() {
+  railLiveTv.innerHTML = state.channels.map((ch) => renderCard(ch, true)).join("");
+}
+
+// ----------------------------------------------------------------------------
+// Video Playback Engine (Cinema & On-Demand)
+// ----------------------------------------------------------------------------
+async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
   try {
     destroyHls();
     const res = await fetch(`/api/videos/${videoId}`);
     const data = await res.json();
     state.currentVideo = data.video;
-    state.currentIndex = state.videos.findIndex((v) => v.id === videoId);
+    state.currentChannel = null;
+    state.currentServerIndex = 0;
 
-    // Ensure clean HTML5 video element source
+    // Show theater container
+    theaterSection.style.display = "block";
+    theaterSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    liveIndicatorTag.style.display = "none";
+    channelFlagBadge.style.display = "none";
+
+    // Update Player Top Bar
+    activePlayerTitle.textContent = state.currentVideo.title;
+    qualityText.textContent = state.currentVideo.quality || "1080p HD";
+
+    // Setup Multi-Server options
+    renderServerOptions(state.currentVideo.servers || [
+      { id: "srv-1", name: "Server 1 (Cloud HD)", url: state.currentVideo.video_url }
+    ]);
+
+    // Handle Episode Playback if TV series
+    let targetStreamUrl = state.currentVideo.video_url;
+    if (state.currentVideo.seasons && state.currentVideo.seasons.length > 0) {
+      episodesDrawer.style.display = "block";
+      renderEpisodesDrawer(state.currentVideo.seasons[0], episodeIndex || 0);
+      if (episodeIndex !== null && state.currentVideo.seasons[0].episodes[episodeIndex]) {
+        targetStreamUrl = state.currentVideo.seasons[0].episodes[episodeIndex].video_url;
+        activePlayerTitle.textContent = `${state.currentVideo.title} - Ep ${episodeIndex + 1}`;
+      }
+    } else {
+      episodesDrawer.style.display = "none";
+    }
+
+    liveScheduleDrawer.style.display = "none";
+
+    // Ensure clean HTML5 video element source (No CORS restriction!)
     while (videoEl.firstChild) {
       videoEl.removeChild(videoEl.firstChild);
     }
     videoEl.removeAttribute("src");
     videoEl.removeAttribute("crossorigin");
-    videoEl.src = state.currentVideo.video_url;
+
+    // Add subtitle track
+    if (state.currentVideo.subtitles && state.currentVideo.subtitles.length > 0) {
+      const sub = state.currentVideo.subtitles[0];
+      const track = document.createElement("track");
+      track.kind = "subtitles";
+      track.label = sub.label;
+      track.srclang = sub.srclang;
+      track.src = sub.src;
+      track.default = true;
+      videoEl.appendChild(track);
+    }
+
+    videoEl.src = targetStreamUrl;
     videoEl.load();
 
     // Reset scrubber timeline
@@ -253,205 +415,123 @@ async function selectVideo(videoId, shouldPlay = false) {
     currentTimeEl.textContent = "00:00";
     totalDurationEl.textContent = state.currentVideo.duration_formatted || "12:14";
 
-    // Update Metadata
-    videoTitleEl.innerHTML = `<i class="fa-solid fa-film" style="color:var(--accent-cyan); margin-right:8px;"></i> ${state.currentVideo.title}`;
-    videoDescEl.textContent = state.currentVideo.description;
-    channelAvatarEl.src = state.currentVideo.channel.avatar;
-    channelNameEl.textContent = state.currentVideo.channel.name;
-    channelSubsEl.textContent = `${state.currentVideo.channel.subscribers} subscribers`;
-    channelFlagBadge.style.display = "none";
-    likeCountEl.textContent = state.currentVideo.likes.toLocaleString();
-    viewCountEl.textContent = `${state.currentVideo.views.toLocaleString()} views`;
-    publishDateEl.textContent = state.currentVideo.published_at;
-    qualityText.textContent = "1080p HD";
+    // Resume from history if available
+    const savedHist = state.history[state.currentVideo.id];
+    if (savedHist && savedHist.timestamp > 5 && savedHist.pct < 95) {
+      videoEl.currentTime = savedHist.timestamp;
+      showToast(`Resumed from ${formatTime(savedHist.timestamp)}`);
+    }
 
-    // Render tags
-    tagsRowEl.innerHTML = (state.currentVideo.tags || [])
-      .map((t) => `<span class="video-tag">#${t}</span>`)
+    // Meta details
+    channelAvatar.src = state.currentVideo.channel.avatar;
+    channelName.textContent = state.currentVideo.channel.name;
+    channelSubs.textContent = `${state.currentVideo.channel.subscribers} subscribers`;
+    likeCountEl.textContent = state.currentVideo.likes.toLocaleString();
+    downloadBtnLabel.textContent = "Source";
+    videoDescription.textContent = state.currentVideo.description;
+
+    tagsRow.innerHTML = (state.currentVideo.tags || [])
+      .map((t) => `<span class="meta-tag">#${t}</span>`)
       .join(" ");
 
-    // Render comments
+    updateWatchlistButtonState();
     renderComments(state.currentVideo.comments || []);
-    renderQueueList();
 
-    if (shouldPlay) {
-      videoEl.play().catch((e) => {
-        console.log("Autoplay was prevented by browser:", e);
-      });
+    if (autoPlay) {
+      const p = videoEl.play();
+      if (p !== undefined) {
+        p.catch((err) => {
+          console.warn("Autoplay was held by browser policy. Click play to begin audio.", err);
+        });
+      }
     }
   } catch (err) {
-    console.error("Error selecting video:", err);
+    console.error("Error playing video:", err);
   }
 }
 
-function renderQueueList() {
-  if (!state.videos || state.videos.length === 0) return;
-
-  queueListEl.innerHTML = state.videos
-    .map((vid) => {
-      const isCurrent = state.currentVideo && state.currentVideo.id === vid.id;
-      return `
-        <div class="queue-card ${isCurrent ? "active" : ""}" onclick="selectVideo('${vid.id}', true)">
-          <div class="thumb-wrap">
-            <img src="${vid.thumbnail_url}" alt="${vid.title}">
-            <span class="duration-tag">${vid.duration_formatted}</span>
-          </div>
-          <div class="queue-info">
-            <h4 class="queue-title">${vid.title}</h4>
-            <span class="queue-channel">${vid.channel.name}</span>
-            <span class="queue-stats">${vid.views.toLocaleString()} views • ${vid.category}</span>
-          </div>
-        </div>
-      `;
-    })
-    .join("");
-}
-
 // ----------------------------------------------------------------------------
-// Global Live TV API & HLS Streaming (Live TV Mode via Self-Gateway)
+// Live TV Streaming Engine (Via Built-in Self-Gateway Tunnel)
 // ----------------------------------------------------------------------------
-async function loadLiveChannels(forceSelectFirst = false, autoPlay = true) {
+async function selectLiveChannel(channelId, autoPlay = true) {
   try {
-    let url = "/api/live/channels";
-    const params = new URLSearchParams();
-
-    if (state.activeCategory !== "All") {
-      // Check if active category is a country or category
-      if (["United States", "Germany", "Turkey", "China"].includes(state.activeCategory)) {
-        params.append("country", state.activeCategory);
-      } else {
-        params.append("category", state.activeCategory);
-      }
-    }
-    if (state.searchQuery) {
-      params.append("search", state.searchQuery);
-    }
-
-    if (params.toString()) {
-      url += `?${params.toString()}`;
-    }
-
-    const res = await fetch(url);
-    const data = await res.json();
-    state.channels = data.channels || [];
-
-    if (state.channels.length > 0) {
-      renderLiveChannelList();
-      if (forceSelectFirst || !state.currentChannel || state.viewMode !== "livetv") {
-        selectLiveChannel(state.channels[0].id, autoPlay);
-      }
-    } else {
-      queueListEl.innerHTML = '<div style="color:#64748b; padding:20px; text-align:center;">No live TV channels match your filter.</div>';
-    }
-  } catch (err) {
-    console.error("Error loading live channels:", err);
-  }
-}
-
-async function selectLiveChannel(channelId, shouldPlay = true) {
-  try {
+    destroyHls();
     const res = await fetch(`/api/live/channels/${channelId}`);
     const data = await res.json();
     state.currentChannel = data.channel;
-    state.channelIndex = state.channels.findIndex((c) => c.id === channelId);
+    state.currentVideo = null;
 
-    // Update Channel UI Metadata
-    videoTitleEl.innerHTML = `<span style="color:#ef4444; margin-right:8px;"><i class="fa-solid fa-satellite-dish"></i></span> ${state.currentChannel.name}`;
-    videoDescEl.textContent = state.currentChannel.description;
-    channelAvatarEl.src = state.currentChannel.logo;
-    channelNameEl.textContent = state.currentChannel.name;
-    channelSubsEl.textContent = `${state.currentChannel.category} • ${state.currentChannel.country}`;
+    // Show theater container
+    theaterSection.style.display = "block";
+    theaterSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    liveIndicatorTag.style.display = "flex";
     channelFlagBadge.textContent = state.currentChannel.flag;
     channelFlagBadge.style.display = "inline-block";
-    viewCountEl.innerHTML = `<span style="color:#ef4444; font-weight:bold;">● LIVE</span> ${state.currentChannel.views}`;
-    publishDateEl.textContent = "Broadcasting Now";
+
+    activePlayerTitle.textContent = state.currentChannel.name;
     qualityText.textContent = state.currentChannel.resolution || "1080p HD";
 
-    tagsRowEl.innerHTML = `
-      <span class="video-tag">${state.currentChannel.flag} ${state.currentChannel.country}</span>
-      <span class="video-tag">#${state.currentChannel.category}</span>
-      <span class="video-tag" style="color:#38bdf8;"><i class="fa-solid fa-shield"></i> Self-Gateway Relayed</span>
+    // Setup Server Options
+    renderServerOptions([
+      { id: "srv-gw", name: "Self-Gateway Tunnel (Proxy Relay)", url: state.currentChannel.gateway_url },
+      { id: "srv-raw", name: "Direct Akamai CDN", url: state.currentChannel.stream_url }
+    ]);
+
+    episodesDrawer.style.display = "none";
+
+    // CineHD-style Live Schedule Timetable
+    if (state.currentChannel.schedule && state.currentChannel.schedule.length > 0) {
+      liveScheduleDrawer.style.display = "block";
+      renderLiveSchedule(state.currentChannel.schedule);
+    } else {
+      liveScheduleDrawer.style.display = "none";
+    }
+
+    // Meta details
+    channelAvatar.src = state.currentChannel.logo;
+    channelName.textContent = state.currentChannel.name;
+    channelSubs.textContent = `${state.currentChannel.category} • ${state.currentChannel.country}`;
+    likeCountEl.textContent = state.currentChannel.views || "1.2M";
+    downloadBtnLabel.textContent = "Raw Stream";
+    videoDescription.textContent = state.currentChannel.description;
+
+    tagsRow.innerHTML = `
+      <span class="meta-tag">#LiveTV</span>
+      <span class="meta-tag">#${state.currentChannel.country}</span>
+      <span class="meta-tag">#${state.currentChannel.category}</span>
     `;
 
-    renderLiveComments();
-    renderLiveChannelList();
-
-    // Stream via In-App Self-Gateway Proxy
-    playLiveStreamHls(state.currentChannel.gateway_url, shouldPlay);
+    // Stream via In-App Gateway
+    playHlsStream(state.currentChannel.gateway_url, autoPlay);
     showToast(`Streaming ${state.currentChannel.name} via Self-Gateway Tunnel`);
   } catch (err) {
-    console.error("Error playing live channel:", err);
+    console.error("Error selecting live channel:", err);
   }
 }
 
-function renderLiveChannelList() {
-  if (!state.channels || state.channels.length === 0) return;
-
-  queueListEl.innerHTML = state.channels
-    .map((ch) => {
-      const isCurrent = state.currentChannel && state.currentChannel.id === ch.id;
-      return `
-        <div class="channel-card ${isCurrent ? "active" : ""}" onclick="selectLiveChannel('${ch.id}', true)">
-          <div class="channel-thumb">
-            <img src="${ch.logo}" alt="${ch.name}">
-            <span class="channel-live-dot"></span>
-          </div>
-          <div class="channel-meta">
-            <div class="channel-title-row">
-              <span class="channel-name">${ch.flag} ${ch.name}</span>
-            </div>
-            <span class="channel-country-badge">${ch.country} • ${ch.category}</span>
-            <div class="channel-cat-row">
-              <span>${ch.views}</span>
-              <span class="gateway-secured-icon"><i class="fa-solid fa-shield-halved"></i> Self-Proxy</span>
-            </div>
-          </div>
-        </div>
-      `;
-    })
-    .join("");
-}
-
-function playLiveStreamHls(streamUrl, shouldPlay = true) {
+function playHlsStream(streamUrl, autoPlay = true) {
   destroyHls();
+  while (videoEl.firstChild) {
+    videoEl.removeChild(videoEl.firstChild);
+  }
+  videoEl.removeAttribute("src");
 
   if (Hls.isSupported()) {
     state.hlsInstance = new Hls({
       enableWorker: true,
       lowLatencyMode: true,
-      backBufferLength: 90
+      backBufferLength: 60
     });
-
     state.hlsInstance.loadSource(streamUrl);
     state.hlsInstance.attachMedia(videoEl);
-
     state.hlsInstance.on(Hls.Events.MANIFEST_PARSED, () => {
-      currentTimeEl.textContent = "LIVE";
-      totalDurationEl.textContent = "LIVE";
-      if (shouldPlay) {
+      if (autoPlay) {
         videoEl.play().catch(() => {});
       }
     });
-
-    state.hlsInstance.on(Hls.Events.ERROR, (event, data) => {
-      if (data.fatal) {
-        switch (data.type) {
-          case Hls.ErrorTypes.NETWORK_ERROR:
-            state.hlsInstance.startLoad();
-            break;
-          case Hls.ErrorTypes.MEDIA_ERROR:
-            state.hlsInstance.recoverMediaError();
-            break;
-          default:
-            destroyHls();
-            break;
-        }
-      }
-    });
   } else if (videoEl.canPlayType("application/vnd.apple.mpegurl")) {
-    // Native HLS for Safari/iOS
     videoEl.src = streamUrl;
-    if (shouldPlay) {
+    if (autoPlay) {
       videoEl.play().catch(() => {});
     }
   }
@@ -464,55 +544,133 @@ function destroyHls() {
   }
 }
 
-function renderLiveComments() {
-  commentsCountEl.textContent = "2.4K";
-  const liveMockReactions = [
-    { author: "GlobalViewer_99", text: "The stream resolution through the self-gateway proxy is razor sharp!", time: "Just now" },
-    { author: "OrbitWatch", text: "Watching the live feed from Sydney! Zero buffering.", time: "1 min ago" },
-    { author: "EurasiaStream", text: "Incredible broadcast stability. No external VPN required.", time: "3 mins ago" }
-  ];
+// ----------------------------------------------------------------------------
+// Multi-Server Streaming Switcher (Movibox Style)
+// ----------------------------------------------------------------------------
+function renderServerOptions(servers) {
+  if (!servers || servers.length === 0) return;
+  currentServerLabel.textContent = servers[0].name;
 
-  commentsListEl.innerHTML = liveMockReactions
-    .map((c) => `
-      <div class="comment-item">
-        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80" alt="${c.author}" class="comment-avatar">
-        <div class="comment-body">
-          <div class="comment-meta">
-            <span class="comment-author">${c.author}</span>
-            <span class="comment-time">${c.time}</span>
-          </div>
-          <div class="comment-content">${c.text}</div>
-        </div>
-      </div>
-    `)
+  serverMenu.innerHTML = servers
+    .map(
+      (srv, idx) => `
+      <button class="server-option ${idx === 0 ? "active" : ""}" onclick="switchServer(${idx})">
+        <span>${srv.name}</span>
+        <i class="fa-solid fa-check" style="${idx === 0 ? "" : "display:none;"}"></i>
+      </button>
+    `
+    )
     .join("");
 }
 
-function renderComments(comments) {
-  commentsCountEl.textContent = comments.length;
-  if (comments.length === 0) {
-    commentsListEl.innerHTML = '<div style="color:#64748b; font-size:13px;">No comments yet. Start the conversation!</div>';
-    return;
+function switchServer(serverIndex) {
+  state.currentServerIndex = serverIndex;
+  const servers = (state.currentVideo && state.currentVideo.servers) || [];
+  if (servers[serverIndex]) {
+    const srv = servers[serverIndex];
+    currentServerLabel.textContent = srv.name;
+    const curTime = videoEl.currentTime || 0;
+    videoEl.src = srv.url;
+    videoEl.currentTime = curTime;
+    videoEl.play().catch(() => {});
+    serverMenu.classList.remove("show");
+    showToast(`Switched to ${srv.name}`);
   }
+}
 
-  commentsListEl.innerHTML = comments
-    .map((c) => `
-      <div class="comment-item">
-        <img src="${c.avatar}" alt="${c.author}" class="comment-avatar">
-        <div class="comment-body">
-          <div class="comment-meta">
-            <span class="comment-author">${c.author}</span>
-            <span class="comment-time">${c.timestamp}</span>
-          </div>
-          <div class="comment-content">${c.text}</div>
+// ----------------------------------------------------------------------------
+// Episodes Drawer & Live Schedule Rendering (CineHD Style)
+// ----------------------------------------------------------------------------
+function renderEpisodesDrawer(season, activeIdx = 0) {
+  episodesGrid.innerHTML = season.episodes
+    .map(
+      (ep, idx) => `
+      <div class="episode-card ${idx === activeIdx ? "active" : ""}" onclick="playVideoById('${state.currentVideo.id}', true, ${idx})">
+        <div class="episode-thumb-wrap">
+          <img src="${ep.thumbnail}" alt="${ep.title}">
+        </div>
+        <div class="episode-card-info">
+          <h4>${ep.episode_number}. ${ep.title}</h4>
+          <span>${ep.duration}</span>
         </div>
       </div>
-    `)
+    `
+    )
+    .join("");
+}
+
+function renderLiveSchedule(schedule) {
+  scheduleTimeline.innerHTML = schedule
+    .map(
+      (item) => `
+      <div class="schedule-item ${item.status === "LIVE NOW" ? "live-now" : ""}">
+        <div class="schedule-time">
+          <span>${item.time}</span>
+          <span class="schedule-badge ${item.status === "LIVE NOW" ? "live" : "upcoming"}">${item.status}</span>
+        </div>
+        <div class="schedule-title">${item.title}</div>
+      </div>
+    `
+    )
     .join("");
 }
 
 // ----------------------------------------------------------------------------
-// Custom Video Player Controls
+// Watchlist & Personalization (LocalStorage Engine)
+// ----------------------------------------------------------------------------
+function toggleWatchlist(videoId) {
+  const idx = state.watchlist.indexOf(videoId);
+  if (idx === -1) {
+    state.watchlist.push(videoId);
+    showToast("Added to My Watchlist");
+  } else {
+    state.watchlist.splice(idx, 1);
+    showToast("Removed from My Watchlist");
+  }
+
+  localStorage.setItem("streamguard_watchlist", JSON.stringify(state.watchlist));
+  updateWatchlistBadge();
+  updateWatchlistButtonState();
+  renderWatchlistRail();
+
+  // Re-render hero if it matches
+  if (state.featuredItem && state.featuredItem.id === videoId) {
+    renderHeroBillboard(state.featuredItem);
+  }
+}
+
+function updateWatchlistBadge() {
+  watchlistCountBadge.textContent = state.watchlist.length;
+}
+
+function updateWatchlistButtonState() {
+  if (!state.currentVideo) return;
+  const inList = state.watchlist.includes(state.currentVideo.id);
+  watchlistBtnLabel.textContent = inList ? "✓ In Watchlist" : "Add to Watchlist";
+  watchlistToggleBtn.classList.toggle("active", inList);
+}
+
+// ----------------------------------------------------------------------------
+// Continue Watching Engine
+// ----------------------------------------------------------------------------
+function savePlayProgress() {
+  if (!state.currentVideo || !videoEl.duration) return;
+  const current = videoEl.currentTime;
+  const total = videoEl.duration;
+  const pct = Math.round((current / total) * 100);
+
+  state.history[state.currentVideo.id] = {
+    timestamp: current,
+    total: total,
+    pct: pct,
+    date: Date.now()
+  };
+
+  localStorage.setItem("streamguard_history", JSON.stringify(state.history));
+}
+
+// ----------------------------------------------------------------------------
+// Player Controls Logic
 // ----------------------------------------------------------------------------
 function togglePlay() {
   if (videoEl.paused || videoEl.ended) {
@@ -544,7 +702,7 @@ function flashCenterOverlay(iconClass) {
 }
 
 function updateTimeline() {
-  if (state.viewMode === "livetv") {
+  if (state.currentChannel) {
     currentTimeEl.textContent = "LIVE";
     totalDurationEl.textContent = "LIVE";
     return;
@@ -565,10 +723,12 @@ function updateTimeline() {
     const bufPct = (bufferedEnd / total) * 100;
     bufferProgress.style.width = `${bufPct}%`;
   }
+
+  savePlayProgress();
 }
 
 function seekTimeline(e) {
-  if (state.viewMode === "livetv") return;
+  if (state.currentChannel || !videoEl.duration) return;
   const rect = scrubberWrapper.getBoundingClientRect();
   const clickX = e.clientX - rect.left;
   const pct = Math.max(0, Math.min(1, clickX / rect.width));
@@ -576,11 +736,11 @@ function seekTimeline(e) {
 }
 
 function updateHoverPreview(e) {
-  if (state.viewMode === "livetv") return;
+  if (state.currentChannel || !videoEl.duration) return;
   const rect = scrubberWrapper.getBoundingClientRect();
   const hoverX = e.clientX - rect.left;
   const pct = Math.max(0, Math.min(1, hoverX / rect.width));
-  const hoverTime = pct * (videoEl.duration || 0);
+  const hoverTime = pct * videoEl.duration;
 
   scrubberPreview.style.left = `${hoverX}px`;
   scrubberPreview.style.opacity = "1";
@@ -592,9 +752,9 @@ function hideHoverPreview() {
 }
 
 function setVolume(val) {
-  state.volume = parseFloat(val);
-  videoEl.volume = state.volume;
-  videoEl.muted = state.volume === 0;
+  const vol = parseFloat(val);
+  videoEl.volume = vol;
+  videoEl.muted = vol === 0;
   updateVolumeIcon();
 }
 
@@ -606,93 +766,190 @@ function toggleMute() {
 function updateVolumeIcon() {
   if (videoEl.muted || videoEl.volume === 0) {
     muteBtn.innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
-    volumeSlider.value = 0;
-  } else if (videoEl.volume > 0.5) {
-    muteBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
-    volumeSlider.value = videoEl.volume;
-  } else {
+  } else if (videoEl.volume < 0.5) {
     muteBtn.innerHTML = '<i class="fa-solid fa-volume-low"></i>';
-    volumeSlider.value = videoEl.volume;
+  } else {
+    muteBtn.innerHTML = '<i class="fa-solid fa-volume-high"></i>';
   }
 }
 
+function toggleSubtitles() {
+  state.subtitlesActive = !state.subtitlesActive;
+  if (videoEl.textTracks && videoEl.textTracks.length > 0) {
+    videoEl.textTracks[0].mode = state.subtitlesActive ? "showing" : "hidden";
+  }
+  ccToggleBtn.classList.toggle("active", state.subtitlesActive);
+  showToast(state.subtitlesActive ? "Subtitles [CC] Enabled" : "Subtitles Disabled");
+}
+
 function setPlaybackSpeed(speed) {
-  state.playbackSpeed = speed;
   videoEl.playbackRate = speed;
-  speedLabel.textContent = speed === 1.0 ? "1x" : `${speed}x`;
+  speedLabel.textContent = `${speed}x`;
   document.querySelectorAll(".speed-opt").forEach((btn) => {
     btn.classList.toggle("active", parseFloat(btn.dataset.speed) === speed);
   });
   speedMenu.classList.remove("show");
-  showToast(`Playback speed set to ${speed}x`);
+  showToast(`Speed: ${speed}x`);
 }
 
 function toggleTheaterMode() {
-  state.isTheater = !state.isTheater;
-  mainLayout.classList.toggle("theater-active", state.isTheater);
-  theaterBtn.style.color = state.isTheater ? "var(--accent-cyan)" : "#fff";
-  showToast(state.isTheater ? "Theater Mode: Enabled" : "Theater Mode: Normal");
+  theaterSection.classList.toggle("expanded");
+  showToast("Toggled Theater Mode");
 }
 
 async function togglePiP() {
   try {
     if (document.pictureInPictureElement) {
       await document.exitPictureInPicture();
-    } else if (videoEl !== document.pictureInPictureElement) {
+    } else if (document.pictureInPictureEnabled) {
       await videoEl.requestPictureInPicture();
     }
   } catch (err) {
-    showToast("Picture-in-Picture not supported in this view.");
+    console.error("PiP error:", err);
   }
 }
 
 function toggleFullscreen() {
   if (!document.fullscreenElement) {
-    if (playerContainer.requestFullscreen) {
-      playerContainer.requestFullscreen();
-    }
+    playerContainer.requestFullscreen().catch(() => {});
   } else {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    }
+    document.exitFullscreen();
   }
 }
 
-function playNextItem() {
-  if (state.viewMode === "videos") {
-    if (state.videos.length === 0) return;
-    const nextIdx = (state.currentIndex + 1) % state.videos.length;
-    selectVideo(state.videos[nextIdx].id, true);
-    showToast(`Playing next: ${state.videos[nextIdx].title}`);
-  } else {
-    if (state.channels.length === 0) return;
-    const nextCh = (state.channelIndex + 1) % state.channels.length;
-    selectLiveChannel(state.channels[nextCh].id, true);
-  }
+function formatTime(seconds) {
+  if (isNaN(seconds) || seconds < 0) return "00:00";
+  const s = Math.floor(seconds % 60);
+  const m = Math.floor((seconds / 60) % 60);
+  const h = Math.floor(seconds / 3600);
+  const pad = (n) => String(n).padStart(2, "0");
+  return h > 0 ? `${h}:${pad(m)}:${pad(s)}` : `${pad(m)}:${pad(s)}`;
 }
 
-function playPrevItem() {
-  if (state.viewMode === "videos") {
-    if (state.videos.length === 0) return;
-    const prevIdx = (state.currentIndex - 1 + state.videos.length) % state.videos.length;
-    selectVideo(state.videos[prevIdx].id, true);
-  } else {
-    if (state.channels.length === 0) return;
-    const prevCh = (state.channelIndex - 1 + state.channels.length) % state.channels.length;
-    selectLiveChannel(state.channels[prevCh].id, true);
+// ----------------------------------------------------------------------------
+// CineHD-style Watch Party Room Engine
+// ----------------------------------------------------------------------------
+function openPartyModal() {
+  const roomCode = state.partyRoomCode || `SG-${Math.floor(1000 + Math.random() * 9000)}`;
+  state.partyRoomCode = roomCode;
+  const currentId = state.currentVideo ? state.currentVideo.id : (state.currentChannel ? state.currentChannel.id : "vid-01");
+  const url = `${window.location.origin}/?party=${roomCode}&media=${currentId}`;
+  partyLinkInput.value = url;
+  partyModal.style.display = "flex";
+}
+
+function closePartyModal() {
+  partyModal.style.display = "none";
+}
+
+function copyPartyLink() {
+  navigator.clipboard.writeText(partyLinkInput.value);
+  showToast("Party Room Link copied to clipboard!");
+}
+
+function checkPartyRoomUrl() {
+  const params = new URLSearchParams(window.location.search);
+  const party = params.get("party");
+  const media = params.get("media");
+  if (party) {
+    state.partyRoomCode = party;
+    showToast(`Joined Watch Party: Room ${party}`);
+    if (media) {
+      setTimeout(() => {
+        if (media.startsWith("live-")) {
+          selectLiveChannel(media);
+        } else {
+          playVideoById(media);
+        }
+      }, 600);
+    }
   }
 }
 
 // ----------------------------------------------------------------------------
-// Comment Submission with Defensive Security
+// Live Instant Search Dropdown
 // ----------------------------------------------------------------------------
+function handleSearchInput(e) {
+  const query = e.target.value.trim().toLowerCase();
+  state.searchQuery = query;
+  clearSearchBtn.style.display = query ? "block" : "none";
+
+  if (!query) {
+    searchSuggestions.style.display = "none";
+    return;
+  }
+
+  const matchedVideos = state.allVideos.filter(
+    (v) =>
+      v.title.toLowerCase().includes(query) ||
+      (v.subtitle && v.subtitle.toLowerCase().includes(query)) ||
+      (v.tags && v.tags.some((t) => t.toLowerCase().includes(query)))
+  );
+
+  const matchedChannels = state.channels.filter(
+    (c) =>
+      c.name.toLowerCase().includes(query) ||
+      c.category.toLowerCase().includes(query) ||
+      c.country.toLowerCase().includes(query)
+  );
+
+  const allMatches = [
+    ...matchedVideos.map((v) => ({ ...v, type: "video" })),
+    ...matchedChannels.map((c) => ({ ...c, type: "channel" }))
+  ].slice(0, 5);
+
+  if (allMatches.length === 0) {
+    searchSuggestions.innerHTML = '<div style="padding:10px; color:#64748b; font-size:12px; text-align:center;">No matching titles found.</div>';
+    searchSuggestions.style.display = "block";
+    return;
+  }
+
+  searchSuggestions.innerHTML = allMatches
+    .map((m) => {
+      const isVid = m.type === "video";
+      const thumb = isVid ? (m.poster_url || m.thumbnail_url) : m.logo;
+      const title = m.title || m.name;
+      const sub = isVid ? `${m.release_year || "2024"} • ${m.category}` : `🔴 Live TV • ${m.country}`;
+      const clickAction = isVid ? `playVideoById('${m.id}')` : `selectLiveChannel('${m.id}')`;
+
+      return `
+        <div class="suggestion-item" onclick="${clickAction}; searchSuggestions.style.display='none';">
+          <img src="${thumb}" alt="${title}" class="suggestion-thumb">
+          <div class="suggestion-info">
+            <h4>${title}</h4>
+            <span>${sub}</span>
+          </div>
+        </div>
+      `;
+    })
+    .join("");
+
+  searchSuggestions.style.display = "block";
+}
+
+// ----------------------------------------------------------------------------
+// Comments System with Defensive Shield
+// ----------------------------------------------------------------------------
+function renderComments(comments) {
+  commentsCount.textContent = comments.length;
+  commentsList.innerHTML = comments
+    .map(
+      (c) => `
+      <div class="comment-item">
+        <span class="comment-author">${c.author}:</span>
+        <span class="comment-text">${c.text}</span>
+      </div>
+    `
+    )
+    .join("");
+}
+
 async function submitComment() {
-  const author = commentAuthorInput.value.trim() || "Viewer";
-  const text = commentTextInput.value.trim();
+  const author = commentAuthor.value.trim() || "Viewer";
+  const text = commentText.value.trim();
   if (!text) return;
 
-  if (state.viewMode === "videos") {
-    if (!state.currentVideo) return;
+  if (state.currentVideo) {
     try {
       const res = await fetch(`/api/videos/${state.currentVideo.id}/comment`, {
         method: "POST",
@@ -702,7 +959,7 @@ async function submitComment() {
 
       if (res.status === 403) {
         const err = await res.json();
-        alert(`🛡️ StreamGuard Autonomous Shield Intercepted Threat!\nType: ${err.threat_classification}\nLogged to threat_locations.log`);
+        alert(`🛡️ StreamGuard Autonomous Shield Intercepted Threat!\nType: ${err.threat_classification}\nForensic logged to threat_locations.log`);
         return;
       }
 
@@ -710,86 +967,39 @@ async function submitComment() {
       if (data.status === "success") {
         state.currentVideo.comments.unshift(data.comment);
         renderComments(state.currentVideo.comments);
-        commentTextInput.value = "";
+        commentText.value = "";
         showToast("Comment published securely.");
       }
     } catch (err) {
       console.error("Error submitting comment:", err);
     }
   } else {
-    // Live stream reaction
-    const newComment = {
-      author,
-      text,
-      timestamp: "Just now",
-      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80"
-    };
+    // Live TV comment reaction
+    const newComment = { author, text };
     const div = document.createElement("div");
     div.className = "comment-item";
-    div.innerHTML = `
-      <img src="${newComment.avatar}" class="comment-avatar">
-      <div class="comment-body">
-        <div class="comment-meta">
-          <span class="comment-author">${newComment.author}</span>
-          <span class="comment-time">${newComment.timestamp}</span>
-        </div>
-        <div class="comment-content">${newComment.text}</div>
-      </div>
-    `;
-    commentsListEl.prepend(div);
-    commentTextInput.value = "";
-    showToast("Live reaction sent.");
+    div.innerHTML = `<span class="comment-author">${author}:</span> <span class="comment-text">${text}</span>`;
+    commentsList.prepend(div);
+    commentText.value = "";
+    showToast("Live reaction posted.");
   }
 }
 
 // ----------------------------------------------------------------------------
-// Like, Share & Download
+// Modals & Legal Disclaimers
 // ----------------------------------------------------------------------------
-async function likeVideo() {
-  if (state.viewMode === "videos" && state.currentVideo) {
-    try {
-      const res = await fetch(`/api/videos/${state.currentVideo.id}/like`, { method: "POST" });
-      const data = await res.json();
-      likeCountEl.textContent = data.likes.toLocaleString();
-      likeBtn.style.color = "var(--accent-cyan)";
-      showToast("Liked video!");
-    } catch (err) {
-      console.error("Error liking video:", err);
-    }
-  } else {
-    showToast("Liked live channel stream!");
-    likeBtn.style.color = "#ef4444";
-  }
+function openLegalModal(tabId = "legal-global-safe-harbor") {
+  legalModal.style.display = "flex";
+  document.querySelectorAll(".legal-tab-btn").forEach((btn) => {
+    btn.classList.toggle("active", btn.dataset.tab === tabId);
+  });
+  document.querySelectorAll(".legal-panel").forEach((panel) => {
+    panel.classList.toggle("active", panel.id === tabId);
+  });
 }
 
-function shareVideo() {
-  navigator.clipboard.writeText(window.location.href);
-  showToast("Stream link copied to clipboard!");
-}
-
-function downloadOrSource() {
-  if (state.viewMode === "videos" && state.currentVideo) {
-    window.open(state.currentVideo.video_url, "_blank");
-  } else if (state.currentChannel) {
-    window.open(state.currentChannel.stream_url, "_blank");
-  }
-}
-
-// ----------------------------------------------------------------------------
-// Telemetry & Defense Poller
-// ----------------------------------------------------------------------------
-async function updateSecurityTelemetry() {
-  try {
-    const res = await fetch("/api/security/stats");
-    const data = await res.json();
-    if (data && data.metrics) {
-      headerThreatCount.textContent = data.metrics.attacks_blocked;
-      sbHits.textContent = data.metrics.total_hits;
-      sbThreats.textContent = data.metrics.attacks_blocked;
-    }
-  } catch (err) {
-    // Graceful offline fallback
-  }
+function closeLegalModal() {
+  legalModal.style.display = "none";
 }
 
 function showToast(msg) {
@@ -805,14 +1015,67 @@ function showToast(msg) {
 }
 
 // ----------------------------------------------------------------------------
-// Event Listeners
+// Event Listeners Setup
 // ----------------------------------------------------------------------------
 function setupEventListeners() {
-  // Mode switcher tabs
-  tabVideosMode.addEventListener("click", () => setViewMode("videos"));
-  tabLiveTvMode.addEventListener("click", () => setViewMode("livetv"));
+  // Navigation Tabs (All, Movies, TV Series, Anime, Live TV, Watchlist)
+  document.querySelectorAll(".nav-tab").forEach((tab) => {
+    tab.addEventListener("click", () => {
+      document.querySelectorAll(".nav-tab").forEach((t) => t.classList.remove("active"));
+      tab.classList.add("active");
+      const type = tab.dataset.type;
+      state.viewMode = type;
 
-  // Video playback
+      if (type === "all") {
+        document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "block"));
+        if (!state.watchlist.length) railWatchlistWrap.style.display = "none";
+        if (!Object.keys(state.history).length) railContinueWatchingWrap.style.display = "none";
+      } else if (type === "livetv") {
+        document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "none"));
+        railLiveTvWrap.style.display = "block";
+      } else if (type === "watchlist") {
+        document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "none"));
+        railWatchlistWrap.style.display = "block";
+      } else {
+        document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "none"));
+        if (type === "movie") railMoviesWrap.style.display = "block";
+        if (type === "series") railSeriesWrap.style.display = "block";
+        if (type === "anime") railAnimeWrap.style.display = "block";
+      }
+    });
+  });
+
+  // Hero Actions
+  heroPlayBtn.addEventListener("click", () => {
+    if (state.featuredItem) {
+      playVideoById(state.featuredItem.id);
+    }
+  });
+
+  heroWatchlistBtn.addEventListener("click", () => {
+    if (state.featuredItem) {
+      toggleWatchlist(state.featuredItem.id);
+    }
+  });
+
+  heroPartyBtn.addEventListener("click", openPartyModal);
+  headerPartyBtn.addEventListener("click", openPartyModal);
+
+  // Close Player
+  closePlayerBtn.addEventListener("click", () => {
+    theaterSection.style.display = "none";
+    videoEl.pause();
+    destroyHls();
+  });
+
+  // Server Switcher Dropdown
+  serverSelectBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    serverMenu.classList.toggle("show");
+  });
+  document.addEventListener("click", () => serverMenu.classList.remove("show"));
+
+  // Video Events
   videoEl.addEventListener("click", () => {
     togglePlay();
     flashCenterOverlay(videoEl.paused ? "fa-pause" : "fa-play");
@@ -820,26 +1083,26 @@ function setupEventListeners() {
   videoEl.addEventListener("play", updatePlayButton);
   videoEl.addEventListener("pause", updatePlayButton);
   videoEl.addEventListener("timeupdate", updateTimeline);
-  videoEl.addEventListener("ended", () => {
-    if (autoplayCheck.checked && state.viewMode === "videos") {
-      playNextItem();
-    }
+
+  // Controls
+  playBtn.addEventListener("click", togglePlay);
+  skipBack10.addEventListener("click", () => {
+    videoEl.currentTime = Math.max(0, videoEl.currentTime - 10);
+    flashCenterOverlay("fa-rotate-left");
+  });
+  skipForward10.addEventListener("click", () => {
+    videoEl.currentTime = Math.min(videoEl.duration || 0, videoEl.currentTime + 10);
+    flashCenterOverlay("fa-rotate-right");
   });
 
-  playBtn.addEventListener("click", togglePlay);
-  prevBtn.addEventListener("click", playPrevItem);
-  nextBtn.addEventListener("click", playNextItem);
-
-  // Scrubber events
   scrubberWrapper.addEventListener("click", seekTimeline);
   scrubberWrapper.addEventListener("mousemove", updateHoverPreview);
   scrubberWrapper.addEventListener("mouseleave", hideHoverPreview);
 
-  // Volume
   muteBtn.addEventListener("click", toggleMute);
   volumeSlider.addEventListener("input", (e) => setVolume(e.target.value));
+  ccToggleBtn.addEventListener("click", toggleSubtitles);
 
-  // Speed dropdown
   speedBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     speedMenu.classList.toggle("show");
@@ -849,130 +1112,102 @@ function setupEventListeners() {
     btn.addEventListener("click", () => setPlaybackSpeed(parseFloat(btn.dataset.speed)));
   });
 
-  // Display toggles
   theaterBtn.addEventListener("click", toggleTheaterMode);
   pipBtn.addEventListener("click", togglePiP);
   fullscreenBtn.addEventListener("click", toggleFullscreen);
 
-  // Meta actions
-  likeBtn.addEventListener("click", likeVideo);
-  shareBtn.addEventListener("click", shareVideo);
-  downloadBtn.addEventListener("click", downloadOrSource);
-  submitCommentBtn.addEventListener("click", submitComment);
+  // Clear History
+  clearHistoryBtn.addEventListener("click", () => {
+    state.history = {};
+    localStorage.removeItem("streamguard_history");
+    renderContinueWatchingRail();
+    showToast("Playback history cleared.");
+  });
 
-  // Search input
-  searchInput.addEventListener("input", (e) => {
-    state.searchQuery = e.target.value;
-    clearSearchBtn.style.display = state.searchQuery ? "block" : "none";
-    if (state.viewMode === "videos") {
-      loadVideoCatalog();
-    } else {
-      loadLiveChannels();
+  // Player Meta Actions
+  watchlistToggleBtn.addEventListener("click", () => {
+    if (state.currentVideo) {
+      toggleWatchlist(state.currentVideo.id);
     }
   });
 
+  shareBtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(window.location.href);
+    showToast("Stream link copied to clipboard!");
+  });
+
+  downloadBtn.addEventListener("click", () => {
+    if (state.currentVideo) {
+      window.open(state.currentVideo.video_url, "_blank");
+    } else if (state.currentChannel) {
+      window.open(state.currentChannel.stream_url, "_blank");
+    }
+  });
+
+  submitCommentBtn.addEventListener("click", submitComment);
+
+  // Search input
+  searchInput.addEventListener("input", handleSearchInput);
   clearSearchBtn.addEventListener("click", () => {
     searchInput.value = "";
     state.searchQuery = "";
     clearSearchBtn.style.display = "none";
-    if (state.viewMode === "videos") {
-      loadVideoCatalog();
-    } else {
-      loadLiveChannels();
+    searchSuggestions.style.display = "none";
+  });
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".search-container")) {
+      searchSuggestions.style.display = "none";
     }
   });
 
-  // Shortcuts modal
+  // Rail Horizontal Scroll Arrows
+  document.querySelectorAll(".rail-arrow").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const railId = btn.dataset.rail;
+      const track = document.getElementById(railId);
+      if (track) {
+        const scrollAmount = track.clientWidth * 0.75;
+        track.scrollBy({
+          left: btn.classList.contains("prev") ? -scrollAmount : scrollAmount,
+          behavior: "smooth"
+        });
+      }
+    });
+  });
+
+  // Watch Party Modal
+  closePartyModalBtn.addEventListener("click", closePartyModal);
+  copyPartyBtn.addEventListener("click", copyPartyLink);
+
+  // Shortcuts & Legal Modals
   shortcutsBtn.addEventListener("click", () => (shortcutsModal.style.display = "flex"));
   closeModalBtn.addEventListener("click", () => (shortcutsModal.style.display = "none"));
-  shortcutsModal.addEventListener("click", (e) => {
-    if (e.target === shortcutsModal) shortcutsModal.style.display = "none";
+  closeLegalModalBtn.addEventListener("click", closeLegalModal);
+
+  document.querySelectorAll(".legal-tab-btn").forEach((btn) => {
+    btn.addEventListener("click", () => openLegalModal(btn.dataset.tab));
   });
 
-  // Hotkeys
+  // Keyboard Hotkeys
   document.addEventListener("keydown", (e) => {
     if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) return;
-
-    switch (e.key.toLowerCase()) {
-      case " ":
-      case "k":
-        e.preventDefault();
-        togglePlay();
-        flashCenterOverlay(videoEl.paused ? "fa-pause" : "fa-play");
-        break;
-      case "j":
-        if (state.viewMode === "videos") {
-          e.preventDefault();
-          videoEl.currentTime = Math.max(0, videoEl.currentTime - 10);
-          showToast("Seek -10s");
-        }
-        break;
-      case "l":
-        if (state.viewMode === "videos") {
-          e.preventDefault();
-          videoEl.currentTime = Math.min(videoEl.duration, videoEl.currentTime + 10);
-          showToast("Seek +10s");
-        }
-        break;
-      case "m":
-        e.preventDefault();
-        toggleMute();
-        break;
-      case "f":
-        e.preventDefault();
-        toggleFullscreen();
-        break;
-      case "t":
-        e.preventDefault();
-        toggleTheaterMode();
-        break;
-      case "?":
-        e.preventDefault();
-        shortcutsModal.style.display = shortcutsModal.style.display === "none" ? "flex" : "none";
-        break;
-      default:
-        if (state.viewMode === "videos" && e.key >= "0" && e.key <= "9" && videoEl.duration) {
-          const pct = parseInt(e.key, 10) / 10;
-          videoEl.currentTime = pct * videoEl.duration;
-          showToast(`Jumped to ${pct * 100}%`);
-        }
-        break;
+    if (e.code === "Space" || e.key === "k" || e.key === "K") {
+      e.preventDefault();
+      togglePlay();
+    } else if (e.key === "j" || e.key === "J") {
+      videoEl.currentTime = Math.max(0, videoEl.currentTime - 10);
+    } else if (e.key === "l" || e.key === "L") {
+      videoEl.currentTime = Math.min(videoEl.duration || 0, videoEl.currentTime + 10);
+    } else if (e.key === "m" || e.key === "M") {
+      toggleMute();
+    } else if (e.key === "c" || e.key === "C") {
+      toggleSubtitles();
+    } else if (e.key === "f" || e.key === "F") {
+      toggleFullscreen();
+    } else if (e.key === "t" || e.key === "T") {
+      toggleTheaterMode();
+    } else if (e.key === "?") {
+      shortcutsModal.style.display = shortcutsModal.style.display === "none" ? "flex" : "none";
     }
-  });
-}
-
-// ----------------------------------------------------------------------------
-// Legal Disclaimers Modal Logic
-// ----------------------------------------------------------------------------
-const legalModal = document.getElementById("legalModal");
-const closeLegalModalBtn = document.getElementById("closeLegalModalBtn");
-
-function openLegalModal(tabId = "legal-dmca") {
-  if (!legalModal) return;
-  legalModal.style.display = "flex";
-  switchLegalTab(tabId);
-}
-
-function switchLegalTab(tabId) {
-  document.querySelectorAll(".legal-tab-btn").forEach((b) => {
-    b.classList.toggle("active", b.dataset.tab === tabId);
-  });
-  document.querySelectorAll(".legal-panel").forEach((p) => {
-    p.classList.toggle("active", p.id === tabId);
-  });
-}
-
-if (closeLegalModalBtn) {
-  closeLegalModalBtn.addEventListener("click", () => {
-    legalModal.style.display = "none";
-  });
-}
-
-if (legalModal) {
-  legalModal.addEventListener("click", (e) => {
-    if (e.target === legalModal) legalModal.style.display = "none";
-  });
-  document.querySelectorAll(".legal-tab-btn").forEach((btn) => {
-    btn.addEventListener("click", () => switchLegalTab(btn.dataset.tab));
   });
 }

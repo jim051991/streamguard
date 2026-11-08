@@ -36,7 +36,9 @@ from app.data import (
     get_all_videos,
     get_video_by_id,
     toggle_like_video,
-    add_video_comment
+    add_video_comment,
+    get_hero_featured,
+    get_content_rails
 )
 
 STATIC_DIR = Path(__file__).resolve().parent.parent / "static"
@@ -178,10 +180,20 @@ class CommentRequest(BaseModel):
     text: str
 
 @app.get("/api/videos")
-async def list_videos(category: Optional[str] = None, search: Optional[str] = None):
-    """Retrieve all video media catalog with optional category and search filters."""
-    videos = get_all_videos(category=category, search=search)
+async def list_videos(category: Optional[str] = None, search: Optional[str] = None, content_type: Optional[str] = None):
+    """Retrieve all video media catalog with optional category, content_type, and search filters."""
+    videos = get_all_videos(category=category, search=search, content_type=content_type)
     return {"videos": videos, "total": len(videos)}
+
+@app.get("/api/videos/featured")
+async def get_featured_hero():
+    """Returns top featured title for the Hero Billboard banner."""
+    return {"featured": get_hero_featured()}
+
+@app.get("/api/videos/rails")
+async def get_rails():
+    """Returns categorized horizontal rails (Trending, Movies, Series, Anime)."""
+    return {"rails": get_content_rails()}
 
 @app.get("/api/videos/{video_id}")
 async def get_video(video_id: str):

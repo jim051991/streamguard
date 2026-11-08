@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StreamGuard | Next-Gen Video Streaming, Global Live TV & Autonomous Security</title>
+  <title>StreamGuard | Next-Gen Cinema, TV Series, Global Live TV & Autonomous Security</title>
   <link rel="stylesheet" href="/static/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,13 +12,10 @@
   <!-- HLS.js for Live Television Streaming -->
   <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"></script>
 </head>
-<body>
-  <!-- Header / Navigation -->
+<body class="ott-theme">
+  <!-- Header / Navigation Bar -->
   <header class="app-header">
     <div class="header-left">
-      <button class="icon-btn mobile-toggle" id="sidebarToggle" title="Toggle Navigation">
-        <i class="fa-solid fa-bars"></i>
-      </button>
       <a href="/" class="brand-logo">
         <div class="logo-icon">
           <i class="fa-solid fa-play"></i>
@@ -26,38 +23,48 @@
         <span class="logo-text">Stream<span class="highlight">Guard</span></span>
       </a>
 
-      <!-- Primary Mode Switcher (On-Demand Movies vs Global Live TV) -->
-      <div class="mode-switcher-bar">
-        <button class="mode-tab active" id="tabVideosMode">
-          <i class="fa-solid fa-film"></i>
-          <span>Cinema & Videos</span>
-        </button>
-        <button class="mode-tab" id="tabLiveTvMode">
+      <!-- Primary OTT Category Nav (Movibox & CineHD style) -->
+      <nav class="ott-nav-links">
+        <button class="nav-tab active" data-type="all">Home</button>
+        <button class="nav-tab" data-type="movie">Movies</button>
+        <button class="nav-tab" data-type="series">TV Series</button>
+        <button class="nav-tab" data-type="anime">Anime</button>
+        <button class="nav-tab live-tab" data-type="livetv">
           <span class="live-dot-beacon"></span>
-          <i class="fa-solid fa-tv"></i>
-          <span>Live TV Global</span>
-          <span class="gateway-pill" title="Protected by Built-in Streaming Proxy Gateway">
-            <i class="fa-solid fa-shield-halved"></i> Self-Gateway
-          </span>
+          <span>Live TV</span>
+          <span class="tunnel-pill" title="Protected by Built-in Tunnel Relay"><i class="fa-solid fa-shield"></i> Tunnel</span>
         </button>
-      </div>
+        <button class="nav-tab" data-type="watchlist">
+          <i class="fa-regular fa-bookmark"></i>
+          <span>My List</span>
+          <span class="counter-badge" id="watchlistCountBadge">0</span>
+        </button>
+      </nav>
     </div>
 
     <div class="header-center">
       <div class="search-container">
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text" id="searchInput" placeholder="Search videos, live channels (NASA, DW, Bloomberg)..." autocomplete="off">
+        <input type="text" id="searchInput" placeholder="Search 4K movies, series, anime, live TV..." autocomplete="off">
         <button class="clear-search-btn" id="clearSearchBtn" style="display:none;">
           <i class="fa-solid fa-xmark"></i>
         </button>
+        <!-- Live Instant Suggestions Dropdown -->
+        <div class="search-suggestions" id="searchSuggestions" style="display:none;"></div>
       </div>
     </div>
 
     <div class="header-right">
-      <!-- Live Multi-Layer Defense Status Pill -->
-      <a href="/security-dashboard" class="defense-pill" title="View Security Intelligence & Threat Locations">
+      <!-- CineHD-style Watch Together / Party Button -->
+      <button class="watch-party-btn" id="headerPartyBtn" title="Watch Together with Friends">
+        <i class="fa-solid fa-users"></i>
+        <span>Watch Party</span>
+      </button>
+
+      <!-- Live Defense Status Pill -->
+      <a href="/security-dashboard" class="defense-pill" title="View Autonomous Security & Hacker Geolocation">
         <span class="pulse-dot"></span>
-        <span class="pill-label">Shield: <strong>ACTIVE</strong></span>
+        <span class="pill-label">WAF: <strong>ACTIVE</strong></span>
         <span class="badge" id="headerThreatCount">0</span>
       </a>
 
@@ -65,38 +72,98 @@
         <i class="fa-regular fa-keyboard"></i>
       </button>
 
-      <a href="/security-dashboard" class="dashboard-btn" title="Open Security & Daily Report Center">
+      <a href="/security-dashboard" class="dashboard-btn" title="Security Command Center">
         <i class="fa-solid fa-shield-halved"></i>
         <span>Security Center</span>
       </a>
 
       <div class="user-profile">
-        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="User avatar">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar">
       </div>
     </div>
   </header>
 
-  <!-- Category & Regional Filter Bar -->
-  <nav class="category-bar" id="categoryBar">
-    <!-- Populated dynamically based on Cinema vs Live TV mode -->
-  </nav>
+  <!-- Main Hero Billboard Section (Netflix / Movibox Style) -->
+  <section class="hero-billboard" id="heroBillboard">
+    <div class="hero-backdrop-container">
+      <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1600&auto=format&fit=crop&q=80" alt="Hero Backdrop" id="heroBackdrop" class="hero-backdrop-img">
+      <div class="hero-gradient-overlay"></div>
+    </div>
 
-  <!-- Main Content Layout -->
-  <main class="main-layout" id="mainLayout">
-    <!-- Left Column: Video Player & Meta -->
-    <section class="player-column">
-      <!-- Player Container -->
+    <div class="hero-content">
+      <div class="hero-badges-row">
+        <span class="hero-trend-badge"><i class="fa-solid fa-fire"></i> #1 TRENDING SPOTLIGHT</span>
+        <span class="hero-badge quality" id="heroQuality">4K ULTRA HD</span>
+        <span class="hero-badge rating" id="heroRating"><i class="fa-solid fa-star"></i> 8.9 IMDb</span>
+        <span class="hero-badge age" id="heroAge">PG-13</span>
+        <span class="hero-badge year" id="heroYear">2024</span>
+      </div>
+
+      <h1 class="hero-title" id="heroTitle">Tears of Steel</h1>
+      <p class="hero-subtitle" id="heroSubtitle">Cyberpunk Sci-Fi VFX Showcase</p>
+      <p class="hero-description" id="heroDesc">
+        Set in a dystopian future Amsterdam, a squad of resistance scientists and combat specialists attempt to stage a crucial historical event in order to rescue the world from destructive robotic sentinels.
+      </p>
+
+      <div class="hero-actions">
+        <button class="hero-btn primary" id="heroPlayBtn">
+          <i class="fa-solid fa-play"></i>
+          <span>Play Now</span>
+        </button>
+        <button class="hero-btn secondary" id="heroWatchlistBtn">
+          <i class="fa-regular fa-bookmark"></i>
+          <span id="heroWatchlistText">Add to Watchlist</span>
+        </button>
+        <button class="hero-btn outline" id="heroPartyBtn">
+          <i class="fa-solid fa-users"></i>
+          <span>Watch Together</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cinema Player Container (Appears when playing or toggled) -->
+  <section class="theater-section" id="theaterSection" style="display:none;">
+    <div class="theater-inner">
+      <!-- Player Header Bar -->
+      <div class="player-top-bar">
+        <div class="now-playing-info">
+          <span class="now-playing-tag"><i class="fa-solid fa-circle-play"></i> NOW STREAMING:</span>
+          <h2 id="activePlayerTitle">Tears of Steel</h2>
+          <span class="channel-flag-badge" id="channelFlagBadge" style="display:none;">🇺🇸</span>
+        </div>
+        <div class="player-top-actions">
+          <!-- Server Switcher Pill -->
+          <div class="server-dropdown-wrap" id="serverDropdownWrap">
+            <button class="server-pill-btn" id="serverSelectBtn">
+              <i class="fa-solid fa-server"></i>
+              <span id="currentServerLabel">Server 1 (Cloud HD)</span>
+              <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+            </button>
+            <div class="server-menu" id="serverMenu">
+              <!-- Dynamically populated servers -->
+            </div>
+          </div>
+
+          <button class="close-player-btn" id="closePlayerBtn" title="Minimize Player to Theater Banner">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Video Player Frame -->
       <div class="player-container" id="playerContainer">
-        <!-- HTML5 Video Element -->
+        <!-- HTML5 Video Element (CORS-free for direct native streaming) -->
         <video id="videoElement" preload="metadata" playsinline>
+          <track id="subtitleTrack" kind="subtitles" srclang="en" label="English [CC]" src="/static/subtitles/english.vtt" default>
           Your browser does not support HTML5 video playback.
         </video>
 
-        <!-- Live Stream Overlay Badge -->
+        <!-- Live Stream Overlay Tag -->
         <div class="live-indicator-tag" id="liveIndicatorTag" style="display:none;">
           <span class="live-blink-circle"></span>
           <span class="live-text-label">LIVE BROADCAST</span>
-          <span class="live-gateway-tag"><i class="fa-solid fa-bolt"></i> SELF-GATEWAY TUNNEL</span>
+          <span class="live-gateway-tag"><i class="fa-solid fa-bolt"></i> SELF-GATEWAY TUNNEL ACTIVE</span>
         </div>
 
         <!-- Center Click Overlay for Play/Pause Animation -->
@@ -106,7 +173,7 @@
 
         <!-- Custom Controls Overlay -->
         <div class="player-controls-overlay" id="playerControls">
-          <!-- Timeline / Scrubber (hidden or live DVR mode for live streams) -->
+          <!-- Scrubber Timeline -->
           <div class="scrubber-wrapper" id="scrubberWrapper">
             <div class="scrubber-hover-preview" id="scrubberPreview">
               <span id="previewTime">00:00</span>
@@ -118,20 +185,31 @@
             </div>
           </div>
 
-          <!-- Controls Bottom Bar -->
+          <!-- Bottom Controls Bar -->
           <div class="controls-bottom">
             <div class="controls-left">
               <button class="ctrl-btn" id="playBtn" title="Play/Pause (Space/K)">
                 <i class="fa-solid fa-play"></i>
               </button>
-              <button class="ctrl-btn" id="prevBtn" title="Previous Video / Channel">
+              
+              <!-- 10s Rewind & Fast-Forward (Movibox/Netflix Style) -->
+              <button class="ctrl-btn" id="skipBack10" title="Rewind 10 Seconds (J)">
+                <i class="fa-solid fa-rotate-left"></i>
+                <span class="skip-sec-label">10</span>
+              </button>
+              <button class="ctrl-btn" id="skipForward10" title="Fast-Forward 10 Seconds (L)">
+                <i class="fa-solid fa-rotate-right"></i>
+                <span class="skip-sec-label">10</span>
+              </button>
+
+              <button class="ctrl-btn" id="prevBtn" title="Previous Item">
                 <i class="fa-solid fa-backward-step"></i>
               </button>
-              <button class="ctrl-btn" id="nextBtn" title="Next Video / Channel">
+              <button class="ctrl-btn" id="nextBtn" title="Next Item">
                 <i class="fa-solid fa-forward-step"></i>
               </button>
-              
-              <!-- Volume Group -->
+
+              <!-- Volume Control -->
               <div class="volume-group">
                 <button class="ctrl-btn" id="muteBtn" title="Mute/Unmute (M)">
                   <i class="fa-solid fa-volume-high"></i>
@@ -141,21 +219,18 @@
                 </div>
               </div>
 
-              <!-- Time / Live display -->
+              <!-- Time / Duration -->
               <div class="time-display" id="timeDisplayWrap">
                 <span id="currentTime">00:00</span> / <span id="totalDuration">00:00</span>
               </div>
             </div>
 
             <div class="controls-right">
-              <!-- Autoplay Switch -->
-              <div class="autoplay-toggle" id="autoplayToggleWrap" title="Autoplay next video">
-                <label class="switch">
-                  <input type="checkbox" id="autoplayCheck" checked>
-                  <span class="slider round"></span>
-                </label>
-                <span class="switch-label">Autoplay</span>
-              </div>
+              <!-- Subtitle CC Toggle -->
+              <button class="ctrl-btn text-badge" id="ccToggleBtn" title="Toggle Subtitles [CC]">
+                <i class="fa-regular fa-closed-captioning"></i>
+                <span id="ccStatusText">CC</span>
+              </button>
 
               <!-- Playback Speed -->
               <div class="dropdown-wrapper" id="speedWrapper">
@@ -172,23 +247,23 @@
                 </div>
               </div>
 
-              <!-- Quality Badge -->
-              <div class="quality-badge" id="qualityBadge" title="Streaming Quality">
+              <!-- Quality Tag -->
+              <div class="quality-badge" id="qualityBadge" title="Stream Resolution">
                 <i class="fa-solid fa-sliders"></i>
                 <span id="qualityText">1080p HD</span>
               </div>
 
-              <!-- Theater Mode Toggle -->
+              <!-- Theater Mode -->
               <button class="ctrl-btn" id="theaterBtn" title="Theater Mode (T)">
                 <i class="fa-solid fa-tablet-screen-button"></i>
               </button>
 
-              <!-- Picture in Picture (PiP) -->
+              <!-- PiP -->
               <button class="ctrl-btn" id="pipBtn" title="Picture in Picture">
                 <i class="fa-solid fa-clone"></i>
               </button>
 
-              <!-- Fullscreen Toggle -->
+              <!-- Fullscreen -->
               <button class="ctrl-btn" id="fullscreenBtn" title="Fullscreen (F)">
                 <i class="fa-solid fa-expand"></i>
               </button>
@@ -197,111 +272,237 @@
         </div>
       </div>
 
-      <!-- Video / Channel Details Section -->
-      <div class="video-meta-section">
-        <h1 class="video-title" id="videoTitle">Loading Media Stream...</h1>
+      <!-- Series Episode Grid (CineHD / Movibox TV Series Drawer) -->
+      <div class="episodes-drawer" id="episodesDrawer" style="display:none;">
+        <div class="drawer-header">
+          <div class="drawer-title-row">
+            <i class="fa-solid fa-layer-group" style="color:var(--accent-cyan);"></i>
+            <h3>Seasons & Episodes</h3>
+          </div>
+          <div class="season-select-pills" id="seasonSelectPills">
+            <button class="season-pill active">Season 1</button>
+          </div>
+        </div>
+        <div class="episodes-grid" id="episodesGrid">
+          <!-- Populated dynamically when viewing TV series -->
+        </div>
+      </div>
+
+      <!-- CineHD-style Live TV Schedule Timetable (EPG) -->
+      <div class="live-schedule-drawer" id="liveScheduleDrawer" style="display:none;">
+        <div class="drawer-header">
+          <div class="drawer-title-row">
+            <i class="fa-solid fa-calendar-days" style="color:#ef4444;"></i>
+            <h3>Live Broadcast Schedule & EPG Guide</h3>
+          </div>
+          <span class="live-now-sync-badge"><i class="fa-solid fa-satellite"></i> Real-Time Satellite Feed</span>
+        </div>
+        <div class="schedule-timeline" id="scheduleTimeline">
+          <!-- Populated dynamically with current & upcoming broadcasts -->
+        </div>
+      </div>
+
+      <!-- Video Meta Details Bar -->
+      <div class="player-meta-bar">
+        <div class="meta-left">
+          <div class="meta-creator">
+            <img src="" id="channelAvatar" class="meta-avatar" alt="Channel avatar">
+            <div class="meta-channel-text">
+              <span class="channel-name" id="channelName">Blender VFX Studio</span>
+              <span class="channel-sub-info" id="channelSubs">1.4M subscribers</span>
+            </div>
+          </div>
+          <div class="meta-tags-row" id="tagsRow"></div>
+        </div>
+        <div class="meta-actions-right">
+          <button class="meta-btn" id="likeBtn">
+            <i class="fa-regular fa-thumbs-up"></i>
+            <span id="likeCount">0</span>
+          </button>
+          <button class="meta-btn" id="watchlistToggleBtn">
+            <i class="fa-regular fa-bookmark"></i>
+            <span id="watchlistBtnLabel">Add to Watchlist</span>
+          </button>
+          <button class="meta-btn" id="shareBtn">
+            <i class="fa-solid fa-share-nodes"></i>
+            <span>Share</span>
+          </button>
+          <button class="meta-btn" id="downloadBtn">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i>
+            <span id="downloadBtnLabel">Raw Source</span>
+          </button>
+          <a href="/security-dashboard" class="meta-btn shield-btn" title="View Hacker Location Radar">
+            <i class="fa-solid fa-user-shield"></i>
+            <span>Threat Radar</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Description & Comments Container -->
+      <div class="player-details-grid">
+        <div class="desc-card">
+          <p id="videoDescription" class="desc-content">Loading media description...</p>
+        </div>
         
-        <div class="video-action-bar">
-          <div class="creator-info">
-            <img src="" alt="Creator avatar" id="channelAvatar" class="creator-avatar">
-            <div class="creator-meta">
-              <div class="creator-name-row">
-                <span class="creator-name" id="channelName">Channel</span>
-                <i class="fa-solid fa-circle-check verified-icon" title="Verified Broadcast"></i>
-                <span class="origin-flag-badge" id="channelFlagBadge" style="display:none;">🇺🇸</span>
-              </div>
-              <span class="sub-count" id="channelSubs">0 subscribers</span>
-            </div>
-            <button class="subscribe-btn" id="subBtn">Follow Broadcast</button>
+        <div class="comments-card" id="commentsSection">
+          <div class="comments-card-header">
+            <h4><i class="fa-regular fa-comments"></i> Live Viewer Discussion (<span id="commentsCount">0</span>)</h4>
           </div>
-
-          <div class="action-buttons">
-            <button class="action-btn" id="likeBtn">
-              <i class="fa-regular fa-thumbs-up"></i>
-              <span id="likeCount">0</span>
-            </button>
-            <button class="action-btn" id="shareBtn" title="Copy Stream Link">
-              <i class="fa-solid fa-share-nodes"></i>
-              <span>Share</span>
-            </button>
-            <button class="action-btn" id="downloadBtn" title="Direct Stream Source">
-              <i class="fa-solid fa-arrow-up-right-from-square"></i>
-              <span id="downloadBtnLabel">Source</span>
-            </button>
-            <a href="/security-dashboard" class="action-btn shield-pill" title="Security & Hacker Location Monitor">
-              <i class="fa-solid fa-user-shield"></i>
-              <span>Threat Radar</span>
-            </a>
+          <div class="comment-add-box">
+            <input type="text" id="commentAuthor" placeholder="Name..." value="Viewer">
+            <textarea id="commentText" placeholder="Post a live reaction note..." rows="2"></textarea>
+            <button class="comment-send-btn" id="submitCommentBtn"><i class="fa-solid fa-paper-plane"></i> Send</button>
           </div>
+          <div class="comments-list" id="commentsList"></div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Description Box -->
-        <div class="description-card">
-          <div class="desc-stats">
-            <span id="viewCount">0 views</span> • <span id="publishDate">Recently</span>
-            <div class="tags-row" id="tagsRow"></div>
-          </div>
-          <p class="desc-text" id="videoDescription">Loading broadcast description...</p>
+  <!-- Horizontal OTT Discovery Rails Section (Netflix / Movibox Style) -->
+  <main class="ott-catalog-section" id="ottCatalogSection">
+    
+    <!-- Rail: Continue Watching (Stores playback state in localStorage) -->
+    <section class="ott-rail" id="railContinueWatchingWrap" style="display:none;">
+      <div class="rail-header">
+        <div class="rail-title-group">
+          <i class="fa-solid fa-clock-rotate-left" style="color:var(--accent-cyan);"></i>
+          <h2 class="rail-title">Continue Watching</h2>
         </div>
-
-        <!-- Comments & Discussion Area -->
-        <div class="comments-section" id="commentsSection">
-          <div class="comments-header">
-            <h3>Live Discussion (<span id="commentsCount">0</span>)</h3>
-          </div>
-
-          <!-- Comment Input Box -->
-          <div class="add-comment-form">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="my-avatar">
-            <div class="comment-input-wrap">
-              <input type="text" id="commentAuthor" placeholder="Your display name..." value="Viewer">
-              <textarea id="commentText" placeholder="Post a live reaction or discussion note..." rows="2"></textarea>
-              <div class="comment-actions">
-                <span class="security-note"><i class="fa-solid fa-shield"></i> Live comments protected by Autonomous XSS Shield</span>
-                <button class="comment-submit-btn" id="submitCommentBtn">Send</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Comments List -->
-          <div class="comments-list" id="commentsList">
-            <!-- Dynamically populated -->
-          </div>
-        </div>
+        <button class="rail-clear-btn" id="clearHistoryBtn" title="Clear History">Clear</button>
+      </div>
+      <div class="rail-track-container">
+        <button class="rail-arrow prev" data-rail="railContinueWatching"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="rail-track" id="railContinueWatching"></div>
+        <button class="rail-arrow next" data-rail="railContinueWatching"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
     </section>
 
-    <!-- Right Column: Up Next Playlist / Live Channels Directory -->
-    <aside class="sidebar-column">
-      <div class="sidebar-header">
-        <h3 id="sidebarTitle"><i class="fa-solid fa-layer-group"></i> Up Next & Recommendations</h3>
+    <!-- Rail: My Watchlist (Saved locally) -->
+    <section class="ott-rail" id="railWatchlistWrap" style="display:none;">
+      <div class="rail-header">
+        <div class="rail-title-group">
+          <i class="fa-solid fa-bookmark" style="color:#f59e0b;"></i>
+          <h2 class="rail-title">My Watchlist</h2>
+        </div>
+        <span class="rail-badge" id="railWatchlistBadge">0 titles</span>
       </div>
-      
-      <div class="queue-list" id="queueList">
-        <!-- Dynamically populated video cards or live channels -->
+      <div class="rail-track-container">
+        <button class="rail-arrow prev" data-rail="railWatchlist"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="rail-track" id="railWatchlist"></div>
+        <button class="rail-arrow next" data-rail="railWatchlist"><i class="fa-solid fa-chevron-right"></i></button>
       </div>
+    </section>
 
-      <!-- Quick Security Status Card in Sidebar -->
-      <div class="security-card-sidebar">
-        <div class="card-title">
-          <i class="fa-solid fa-shield-virus"></i>
-          <span>Defense System Status</span>
+    <!-- Rail 1: Trending Now -->
+    <section class="ott-rail" id="railTrendingWrap">
+      <div class="rail-header">
+        <div class="rail-title-group">
+          <i class="fa-solid fa-fire" style="color:#ef4444;"></i>
+          <h2 class="rail-title">Trending Blockbusters & Releases</h2>
         </div>
-        <p class="card-desc">All streaming traffic, comments, and requests are scrutinized by Autonomous WAF & Geolocation tracking.</p>
-        <div class="defense-stats-grid">
-          <div class="stat-mini">
-            <span class="stat-val" id="sbHits">0</span>
-            <span class="stat-lbl">Hits Logged</span>
-          </div>
-          <div class="stat-mini">
-            <span class="stat-val" id="sbThreats">0</span>
-            <span class="stat-lbl">Attacks Thwarted</span>
-          </div>
-        </div>
-        <a href="/security-dashboard" class="sidebar-sec-link">Open Intruder Location Radar &rarr;</a>
+        <span class="rail-badge">Top Picks</span>
       </div>
-    </aside>
+      <div class="rail-track-container">
+        <button class="rail-arrow prev" data-rail="railTrending"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="rail-track" id="railTrending"></div>
+        <button class="rail-arrow next" data-rail="railTrending"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Rail 2: Feature Cinema & Movies -->
+    <section class="ott-rail" id="railMoviesWrap">
+      <div class="rail-header">
+        <div class="rail-title-group">
+          <i class="fa-solid fa-film" style="color:var(--accent-cyan);"></i>
+          <h2 class="rail-title">Feature Cinema & Full-Length Films</h2>
+        </div>
+        <span class="rail-badge">4K Ultra HD</span>
+      </div>
+      <div class="rail-track-container">
+        <button class="rail-arrow prev" data-rail="railMovies"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="rail-track" id="railMovies"></div>
+        <button class="rail-arrow next" data-rail="railMovies"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Rail 3: TV Series & Episodic Shows -->
+    <section class="ott-rail" id="railSeriesWrap">
+      <div class="rail-header">
+        <div class="rail-title-group">
+          <i class="fa-solid fa-tv" style="color:#8b5cf6;"></i>
+          <h2 class="rail-title">Television Series & Episodic Adventures</h2>
+        </div>
+        <span class="rail-badge">Multi-Episode</span>
+      </div>
+      <div class="rail-track-container">
+        <button class="rail-arrow prev" data-rail="railSeries"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="rail-track" id="railSeries"></div>
+        <button class="rail-arrow next" data-rail="railSeries"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Rail 4: Popular Anime & 3D Animation -->
+    <section class="ott-rail" id="railAnimeWrap">
+      <div class="rail-header">
+        <div class="rail-title-group">
+          <i class="fa-solid fa-dragon" style="color:#ec4899;"></i>
+          <h2 class="rail-title">Anime & Legendary 3D Animation</h2>
+        </div>
+        <span class="rail-badge">Open Source Gold</span>
+      </div>
+      <div class="rail-track-container">
+        <button class="rail-arrow prev" data-rail="railAnime"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="rail-track" id="railAnime"></div>
+        <button class="rail-arrow next" data-rail="railAnime"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </section>
+
+    <!-- Rail 5: Global Live TV Broadcasts (Self-VPN Gateway) -->
+    <section class="ott-rail" id="railLiveTvWrap">
+      <div class="rail-header">
+        <div class="rail-title-group">
+          <span class="live-dot-beacon"></span>
+          <i class="fa-solid fa-satellite-dish" style="color:#ef4444;"></i>
+          <h2 class="rail-title">Global Live TV Broadcasts (No VPN Required)</h2>
+        </div>
+        <span class="rail-badge live-badge">Protected by Built-in Tunnel Relay</span>
+      </div>
+      <div class="rail-track-container">
+        <button class="rail-arrow prev" data-rail="railLiveTv"><i class="fa-solid fa-chevron-left"></i></button>
+        <div class="rail-track" id="railLiveTv"></div>
+        <button class="rail-arrow next" data-rail="railLiveTv"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </section>
+
   </main>
+
+  <!-- CineHD-style Watch Together / Share Party Modal -->
+  <div class="modal-backdrop" id="partyModal" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-users" style="color:var(--accent-cyan);"></i> Watch Together Party Room</h3>
+        <button class="modal-close-btn" id="closePartyModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="party-modal-body">
+        <p>Invite friends to stream this movie or broadcast in sync. Anyone opening your party link will start playback at the same timestamp.</p>
+        
+        <div class="room-code-box">
+          <label>Your Synced Party Link:</label>
+          <div class="copy-input-row">
+            <input type="text" id="partyLinkInput" readonly value="https://streamguard-tsa9.onrender.com/?party=SG-9041">
+            <button class="copy-btn" id="copyPartyBtn"><i class="fa-regular fa-copy"></i> Copy</button>
+          </div>
+        </div>
+
+        <div class="party-features-grid">
+          <div class="party-feat"><i class="fa-solid fa-arrows-rotate"></i> Synchronized Play/Pause</div>
+          <div class="party-feat"><i class="fa-solid fa-shield-halved"></i> WAF Encrypted Stream</div>
+          <div class="party-feat"><i class="fa-solid fa-tv"></i> Works on Mobile & PC</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Keyboard Shortcuts Modal -->
   <div class="modal-backdrop" id="shortcutsModal" style="display:none;">
@@ -315,6 +516,7 @@
         <div class="shortcut-row"><kbd>J</kbd> <span>Seek Backward 10 Seconds</span></div>
         <div class="shortcut-row"><kbd>L</kbd> <span>Seek Forward 10 Seconds</span></div>
         <div class="shortcut-row"><kbd>M</kbd> <span>Mute / Unmute Audio</span></div>
+        <div class="shortcut-row"><kbd>C</kbd> <span>Toggle Closed Captions [CC]</span></div>
         <div class="shortcut-row"><kbd>F</kbd> <span>Toggle Fullscreen</span></div>
         <div class="shortcut-row"><kbd>T</kbd> <span>Toggle Theater Mode</span></div>
         <div class="shortcut-row"><kbd>0</kbd> - <kbd>9</kbd> <span>Seek to 0% - 90%</span></div>
@@ -323,24 +525,7 @@
     </div>
   </div>
 
-  <!-- Website Footer with Worldwide Legal Disclaimers & Policies -->
-  <footer class="app-footer">
-    <div class="footer-inner">
-      <div class="footer-left">
-        <span class="footer-brand">StreamGuard Global Media Platform</span>
-        <span class="footer-copy">© 2026 StreamGuard. Worldwide Open-Source Streaming & Autonomous Security Grid.</span>
-      </div>
-      <div class="footer-links">
-        <button class="footer-link-btn" onclick="openLegalModal('legal-global-safe-harbor')">Global Safe Harbor (US/EU/Asia)</button>
-        <button class="footer-link-btn" onclick="openLegalModal('legal-non-hosting')">Worldwide Non-Hosting & Berne Conv.</button>
-        <button class="footer-link-btn" onclick="openLegalModal('legal-cross-border')">Cross-Border & Geoblocking Policy</button>
-        <button class="footer-link-btn" onclick="openLegalModal('legal-security-gdpr')">Cybersecurity & GDPR Recital 49</button>
-        <button class="footer-link-btn" onclick="openLegalModal('legal-takedown')">Universal Takedown / Grievance Contact</button>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Worldwide Legal Disclaimers & Multi-Jurisdictional Modal -->
+  <!-- Worldwide Legal Disclaimers Modal -->
   <div class="modal-backdrop" id="legalModal" style="display:none;">
     <div class="modal-card legal-modal-card">
       <div class="modal-header">
@@ -348,7 +533,6 @@
         <button class="modal-close-btn" id="closeLegalModalBtn"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-      <!-- Legal Tabs -->
       <div class="legal-nav-tabs">
         <button class="legal-tab-btn active" data-tab="legal-global-safe-harbor">Global Safe Harbor</button>
         <button class="legal-tab-btn" data-tab="legal-non-hosting">Non-Hosting & Berne</button>
@@ -358,56 +542,36 @@
       </div>
 
       <div class="legal-content-body">
-        <!-- Tab 1: Global Safe Harbor -->
         <div class="legal-panel active" id="legal-global-safe-harbor">
           <h4>1. Multi-Jurisdictional Safe Harbor & Intermediary Immunity</h4>
           <p>StreamGuard operates globally as an intermediary media player and indexing directory under international safe harbor doctrines:</p>
           <ul>
             <li><strong>United States:</strong> Title II of the Digital Millennium Copyright Act (<strong>17 U.S.C. § 512</strong>) and Section 230 of the Communications Decency Act (<strong>47 U.S.C. § 230</strong>).</li>
             <li><strong>European Union & UK:</strong> The <strong>EU Digital Services Act (DSA - Regulation (EU) 2022/2065)</strong>, Articles 4-6, Directive 2000/31/EC ("Mere Conduit" and "Hosting" liability exemptions), and the UK Electronic Commerce Regulations 2002.</li>
-            <li><strong>India:</strong> Section 79 of the <strong>Information Technology Act, 2000</strong> read with the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021.</li>
+            <li><strong>India:</strong> Section 79 of the <strong>Information Technology Act, 2000</strong> read with the IT Intermediary Rules, 2021.</li>
             <li><strong>Canada:</strong> Sections 41.25 and 41.26 of the <strong>Copyright Act</strong> (Notice-and-Notice Regime).</li>
-            <li><strong>Australia:</strong> Part V, Division 2AA of the <strong>Copyright Act 1968</strong> (Safe Harbour Scheme).</li>
-            <li><strong>Singapore:</strong> Part 6, Division 2 of the <strong>Singapore Copyright Act 2021</strong> (Network Service Provider Safe Harbours).</li>
           </ul>
-          <p>StreamGuard maintains an active, universal notice-and-takedown mechanism across all international jurisdictions.</p>
         </div>
 
-        <!-- Tab 2: Non-Hosting & Berne Convention -->
         <div class="legal-panel" id="legal-non-hosting">
           <h4>2. Content Non-Hosting & Berne Convention Compliance</h4>
-          <p><strong>Zero Media Hosting:</strong> StreamGuard does NOT host, upload, record, capture, or store any proprietary video or television files on its servers. All live television channels indexed on this site are unencrypted <strong>Free-to-Air (FTA)</strong> web broadcasts distributed openly by their respective networks over the public Internet.</p>
-          <p><strong>International Copyright Treaties:</strong> StreamGuard respects the <strong>Berne Convention for the Protection of Literary and Artistic Works</strong> and the <strong>WIPO Copyright Treaty (WCT)</strong>. This platform functions strictly as an interactive playback client and indexing gateway.</p>
-          <p><strong>Trademarks & Logos:</strong> All network names, logos, and trademarks (e.g., NASA, Deutsche Welle, Bloomberg, Red Bull, TRT World, CGTN) are the exclusive property of their respective trademark holders. Reference to any commercial entity does not imply affiliation, sponsorship, or endorsement.</p>
-          <p><strong>Creative Commons:</strong> All on-demand open movies are officially licensed under Creative Commons Attribution (CC-BY) courtesy of the Blender Foundation.</p>
+          <p><strong>Zero Media Hosting:</strong> StreamGuard does NOT host, upload, record, capture, or store proprietary video files on its servers. All live television channels indexed on this site are unencrypted <strong>Free-to-Air (FTA)</strong> web broadcasts distributed openly by their respective networks over the public Internet.</p>
+          <p><strong>International Copyright Treaties:</strong> StreamGuard complies with the <strong>Berne Convention for the Protection of Literary and Artistic Works</strong> and the <strong>WIPO Copyright Treaty (WCT)</strong>.</p>
         </div>
 
-        <!-- Tab 3: Cross-Border Broadcasts & Geoblocking -->
         <div class="legal-panel" id="legal-cross-border">
           <h4>3. Cross-Border Streaming & Geoblocking Policy</h4>
-          <p><strong>Territorial Licensing Acknowledgment:</strong> Broadcasters distribute content subject to territorial broadcast licenses and international spectrum allocations governed by the International Telecommunication Union (ITU).</p>
-          <p><strong>No DRM Circumvention:</strong> StreamGuard complies with Section 1201 of the US DMCA, Article 6 of the EU Copyright Directive 2001/29/EC, and international anti-circumvention treaties. This platform <strong>DOES NOT</strong> decrypt, crack, or bypass Digital Rights Management (Widevine, PlayReady, FairPlay) or paywalled subscription streams.</p>
-          <p><strong>End-User Responsibility:</strong> Users accessing broadcast streams across international borders are solely responsible for ensuring that viewing complies with local laws, regional broadcast regulations, and television reception licensing laws in their jurisdiction.</p>
+          <p><strong>No DRM Circumvention:</strong> StreamGuard complies with Section 1201 of the US DMCA and Article 6 of the EU Copyright Directive 2001/29/EC. This platform <strong>DOES NOT</strong> decrypt, crack, or bypass Digital Rights Management (Widevine, PlayReady, FairPlay) or paywalled subscription streams.</p>
         </div>
 
-        <!-- Tab 4: Security & GDPR -->
         <div class="legal-panel" id="legal-security-gdpr">
           <h4>4. Cybersecurity Telemetry & GDPR Recital 49 Notice</h4>
-          <p><strong>Worldwide Cybersecurity Monitoring:</strong> To ensure platform availability, prevent cyber warfare attacks, and defend infrastructure from automated exploitation, this platform deploys autonomous threat detection, honeypot canary traps, and IP geolocation telemetry.</p>
-          <p><strong>GDPR / European Privacy Compliance:</strong> In full compliance with <strong>Article 6(1)(f) and Recital 49 of the EU General Data Protection Regulation (GDPR)</strong>, the processing of visitor IP addresses and threat signatures is legally recognized as a <em>"Legitimate Interest of the controller in network and information security"</em> for preventing unauthorized access, malicious bot floods, and denial of service.</p>
-          <p><strong>Honeypot Warning:</strong> Any automated or manual attempt to exploit SQL injection, XSS, directory traversal, or access honeypot canary files (such as <code>/.env</code>, <code>/admin</code>, <code>/backup.sql</code>) triggers autonomous IP blacklisting, forensic capture, and geolocation logging into <code>threat_locations.log</code>.</p>
+          <p><strong>GDPR Compliance:</strong> In full compliance with <strong>Article 6(1)(f) and Recital 49 of the EU GDPR</strong>, the processing of visitor IP addresses and threat signatures is legally recognized as a <em>"Legitimate Interest of the controller in network and information security"</em> for preventing cyber attacks.</p>
         </div>
 
-        <!-- Tab 5: Takedown & Grievance Contact -->
         <div class="legal-panel" id="legal-takedown">
-          <h4>5. Universal Takedown Procedure & Grievance Officer</h4>
-          <p>Rightsholders from any country can request the expeditious removal of any indexed stream link by submitting an official notice containing:</p>
-          <ul>
-            <li>Title and description of the copyrighted broadcast.</li>
-            <li>The exact stream URL or channel indexed on this website to be delinked.</li>
-            <li>Your physical or electronic signature and contact information.</li>
-            <li>A good faith statement that the disputed use is unauthorized by the copyright owner.</li>
-          </ul>
+          <h4>5. Universal Takedown Procedure & Grievance Contact</h4>
+          <p>To request the delinking of any stream, contact our compliance office:</p>
           <div class="contact-box">
             <div><i class="fa-solid fa-building-shield"></i> <strong>Designated Global Compliance & DMCA Agent:</strong></div>
             <div style="margin-top:6px;">Email: <code>dmca@streamguard.io</code> • <code>legal-compliance@streamguard.internal</code></div>
@@ -419,9 +583,27 @@
     </div>
   </div>
 
-  <!-- Notification Toast -->
+  <!-- Website Footer -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-brand">StreamGuard Global Cinema & Live TV Platform</span>
+        <span class="footer-copy">© 2026 StreamGuard. Worldwide Open-Access Streaming, OTT Architecture & Autonomous Security Grid.</span>
+      </div>
+      <div class="footer-links">
+        <button class="footer-link-btn" onclick="openLegalModal('legal-global-safe-harbor')">Global Safe Harbor</button>
+        <button class="footer-link-btn" onclick="openLegalModal('legal-non-hosting')">Non-Hosting & Berne</button>
+        <button class="footer-link-btn" onclick="openLegalModal('legal-cross-border')">Cross-Border Policy</button>
+        <button class="footer-link-btn" onclick="openLegalModal('legal-security-gdpr')">Security & GDPR</button>
+        <button class="footer-link-btn" onclick="openLegalModal('legal-takedown')">Takedown Contact</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast Container -->
   <div class="toast-container" id="toastContainer"></div>
 
+  <!-- Application Script -->
   <script src="/static/app.js"></script>
 </body>
 </html>

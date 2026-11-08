@@ -31,7 +31,13 @@ GLOBAL_LIVE_CHANNELS: List[Dict[str, Any]] = [
         "logo": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&auto=format&fit=crop&q=80",
         "description": "Official 24/7 live television broadcast from NASA showcasing real-time spacewalks, rocket launches, and International Space Station research.",
         "views": "1.2M watching",
-        "resolution": "1080p 60fps"
+        "resolution": "1080p 60fps",
+        "schedule": [
+            {"time": "14:00 - 16:30", "title": "ISS Live Earth Stream & Astronaut Research", "status": "LIVE NOW"},
+            {"time": "16:30 - 18:00", "title": "Artemis II Lunar Orbital Briefing", "status": "UPCOMING"},
+            {"time": "18:00 - 20:00", "title": "James Webb Deep Field Discoveries", "status": "UPCOMING"},
+            {"time": "20:00 - 22:00", "title": "Mars Rover Perseverance Science Log", "status": "UPCOMING"}
+        ]
     },
     {
         "id": "live-dw",
@@ -45,7 +51,12 @@ GLOBAL_LIVE_CHANNELS: List[Dict[str, Any]] = [
         "logo": "https://images.unsplash.com/photo-1585829365295-ab7cd400c167?w=300&auto=format&fit=crop&q=80",
         "description": "Deutsche Welle's flagship international news broadcast offering global investigative journalism, documentaries, and European headlines.",
         "views": "840K watching",
-        "resolution": "720p HD"
+        "resolution": "720p HD",
+        "schedule": [
+            {"time": "14:00 - 15:00", "title": "DW News Global Round-Up", "status": "LIVE NOW"},
+            {"time": "15:00 - 16:00", "title": "Eco Africa: Climate & Innovation", "status": "UPCOMING"},
+            {"time": "16:00 - 17:00", "title": "Business Beyond: European Markets", "status": "UPCOMING"}
+        ]
     },
     {
         "id": "live-bloomberg",
@@ -59,7 +70,12 @@ GLOBAL_LIVE_CHANNELS: List[Dict[str, Any]] = [
         "logo": "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=300&auto=format&fit=crop&q=80",
         "description": "Global financial intelligence, live Wall Street market analysis, macroeconomic reporting, and technology sector interviews.",
         "views": "920K watching",
-        "resolution": "1080p HD"
+        "resolution": "1080p HD",
+        "schedule": [
+            {"time": "14:00 - 16:00", "title": "Bloomberg Markets: The Close", "status": "LIVE NOW"},
+            {"time": "16:00 - 17:00", "title": "Technology & AI Venture Spotlight", "status": "UPCOMING"},
+            {"time": "17:00 - 19:00", "title": "Global Macro Surveillance", "status": "UPCOMING"}
+        ]
     },
     {
         "id": "live-redbull",
@@ -73,7 +89,12 @@ GLOBAL_LIVE_CHANNELS: List[Dict[str, Any]] = [
         "logo": "https://images.unsplash.com/photo-1517649763962-0c623266ddc0?w=300&auto=format&fit=crop&q=80",
         "description": "World-class extreme action sports, motorsport championships, mountain biking, downhill skiing, and live cultural events.",
         "views": "670K watching",
-        "resolution": "1080p HD"
+        "resolution": "1080p HD",
+        "schedule": [
+            {"time": "13:30 - 15:30", "title": "Red Bull Rampage: Utah Cliffs Championship", "status": "LIVE NOW"},
+            {"time": "15:30 - 17:00", "title": "WRC Rally Masters Stage 4", "status": "UPCOMING"},
+            {"time": "17:00 - 19:00", "title": "Cliff Diving World Series Finale", "status": "UPCOMING"}
+        ]
     },
     {
         "id": "live-trt",
@@ -87,7 +108,11 @@ GLOBAL_LIVE_CHANNELS: List[Dict[str, Any]] = [
         "logo": "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=300&auto=format&fit=crop&q=80",
         "description": "24/7 international English news network offering in-depth coverage across Eurasia, Middle East, and worldwide geopolitical developments.",
         "views": "410K watching",
-        "resolution": "720p HD"
+        "resolution": "720p HD",
+        "schedule": [
+            {"time": "14:00 - 15:00", "title": "The Newsmakers: Diplomatic Forum", "status": "LIVE NOW"},
+            {"time": "15:00 - 16:30", "title": "Across The Balkans Documentary", "status": "UPCOMING"}
+        ]
     },
     {
         "id": "live-cgtn",
@@ -101,7 +126,11 @@ GLOBAL_LIVE_CHANNELS: List[Dict[str, Any]] = [
         "logo": "https://images.unsplash.com/photo-1495020689067-958852a7765e?w=300&auto=format&fit=crop&q=80",
         "description": "Global multilingual television broadcaster offering comprehensive news coverage, Asian business analysis, and cultural documentaries.",
         "views": "530K watching",
-        "resolution": "1080p HD"
+        "resolution": "1080p HD",
+        "schedule": [
+            {"time": "14:00 - 15:00", "title": "Global Watch & Asian Markets", "status": "LIVE NOW"},
+            {"time": "15:00 - 16:00", "title": "The Point with Liu Xin", "status": "UPCOMING"}
+        ]
     },
     {
         "id": "live-pluto",
@@ -115,7 +144,11 @@ GLOBAL_LIVE_CHANNELS: List[Dict[str, Any]] = [
         "logo": "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=300&auto=format&fit=crop&q=80",
         "description": "Curated 24/7 movie marathon broadcasting top blockbuster features, classic cinema, and award-winning motion pictures.",
         "views": "1.5M watching",
-        "resolution": "1080p HD"
+        "resolution": "1080p HD",
+        "schedule": [
+            {"time": "13:30 - 15:45", "title": "Classic Sci-Fi Spotlight: Solaris Reborn", "status": "LIVE NOW"},
+            {"time": "15:45 - 18:00", "title": "Indie Director Showcase", "status": "UPCOMING"}
+        ]
     }
 ]
 
