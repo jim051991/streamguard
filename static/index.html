@@ -43,11 +43,16 @@
     </div>
 
     <div class="header-center">
-      <div class="search-container">
+      <div class="search-container" id="headerSearchContainer">
         <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text" id="searchInput" placeholder="Search 4K movies, series, anime, live TV..." autocomplete="off">
-        <button class="clear-search-btn" id="clearSearchBtn" style="display:none;">
+        <input type="text" id="searchInput" placeholder="Search 850,000+ movies & worldwide cinema..." autocomplete="off" aria-label="Search movies and shows">
+        <kbd class="search-kbd-pill" title="Press / to focus search">/</kbd>
+        <button class="clear-search-btn" id="clearSearchBtn" style="display:none;" title="Clear search">
           <i class="fa-solid fa-xmark"></i>
+        </button>
+        <button class="search-action-btn" id="searchSubmitBtn" title="Search Worldwide Cinema">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <span>Search</span>
         </button>
         <!-- Live Instant Suggestions Dropdown -->
         <div class="search-suggestions" id="searchSuggestions" style="display:none;"></div>
@@ -412,6 +417,39 @@
   <!-- Horizontal OTT Discovery Rails Section (Netflix / Movibox Style) -->
   <main class="ott-catalog-section" id="ottCatalogSection">
     
+    <!-- Dedicated Hero Search Showcase Banner -->
+    <section class="global-search-showcase" id="globalSearchShowcase">
+      <div class="search-showcase-inner">
+        <div class="search-showcase-badge">
+          <i class="fa-solid fa-earth-americas"></i>
+          <span>GLOBAL CINEMA DISCOVERY ENGINE</span>
+        </div>
+        <h2 class="search-showcase-title">Search & Stream Any Movie in the World</h2>
+        <p class="search-showcase-sub">Access over 850,000+ global movies, series, anime, and live satellite broadcasts</p>
+        
+        <div class="hero-search-bar-wrap">
+          <i class="fa-solid fa-magnifying-glass hero-search-icon"></i>
+          <input type="text" id="heroSearchInput" placeholder="Enter movie or show name (e.g. Deadpool, Dune, Gladiator, Inception, Titanic)..." autocomplete="off">
+          <button class="hero-search-btn" id="heroSearchBtn">
+            <i class="fa-solid fa-bolt"></i>
+            <span>Search Worldwide</span>
+          </button>
+        </div>
+
+        <div class="search-quick-chips">
+          <span class="chips-label"><i class="fa-solid fa-fire"></i> Trending Searches:</span>
+          <button class="quick-chip" data-query="Deadpool & Wolverine">Deadpool & Wolverine</button>
+          <button class="quick-chip" data-query="Gladiator II">Gladiator II</button>
+          <button class="quick-chip" data-query="Dune: Part Two">Dune: Part Two</button>
+          <button class="quick-chip" data-query="Inception">Inception</button>
+          <button class="quick-chip" data-query="Parasite">Parasite</button>
+          <button class="quick-chip" data-query="RRR">RRR</button>
+          <button class="quick-chip" data-query="Interstellar">Interstellar</button>
+          <button class="quick-chip" data-query="The Dark Knight">The Dark Knight</button>
+        </div>
+      </div>
+    </section>
+
     <!-- Rail: Continue Watching (Stores playback state in localStorage) -->
     <section class="ott-rail" id="railContinueWatchingWrap" style="display:none;">
       <div class="rail-header">

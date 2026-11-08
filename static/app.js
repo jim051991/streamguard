@@ -149,6 +149,9 @@ const commentsList = document.getElementById("commentsList");
 const searchInput = document.getElementById("searchInput");
 const clearSearchBtn = document.getElementById("clearSearchBtn");
 const searchSuggestions = document.getElementById("searchSuggestions");
+const searchSubmitBtn = document.getElementById("searchSubmitBtn");
+const heroSearchInput = document.getElementById("heroSearchInput");
+const heroSearchBtn = document.getElementById("heroSearchBtn");
 const headerPartyBtn = document.getElementById("headerPartyBtn");
 const headerThreatCount = document.getElementById("headerThreatCount");
 const watchlistCountBadge = document.getElementById("watchlistCountBadge");
@@ -1568,7 +1571,7 @@ function setupEventListeners() {
 
   submitCommentBtn.addEventListener("click", submitComment);
 
-  // Search input
+  // Search input & Submit Button
   searchInput.addEventListener("input", handleSearchInput);
   searchInput.addEventListener("keydown", async (e) => {
     if (e.key === "Enter") {
@@ -1577,14 +1580,78 @@ function setupEventListeners() {
       if (!q) return;
       searchSuggestions.style.display = "none";
       await executeGlobalSearch(q);
+    } else if (e.key === "Escape") {
+      searchSuggestions.style.display = "none";
+      searchInput.blur();
     }
   });
+
+  if (searchSubmitBtn) {
+    searchSubmitBtn.addEventListener("click", async () => {
+      const q = searchInput.value.trim();
+      if (q) {
+        searchSuggestions.style.display = "none";
+        await executeGlobalSearch(q);
+      } else {
+        searchInput.focus();
+      }
+    });
+  }
+
+  // Hero Discovery Showcase Search
+  if (heroSearchBtn && heroSearchInput) {
+    heroSearchBtn.addEventListener("click", async () => {
+      const q = heroSearchInput.value.trim();
+      if (q) {
+        searchInput.value = q;
+        await executeGlobalSearch(q);
+      } else {
+        heroSearchInput.focus();
+      }
+    });
+
+    heroSearchInput.addEventListener("keydown", async (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const q = heroSearchInput.value.trim();
+        if (q) {
+          searchInput.value = q;
+          await executeGlobalSearch(q);
+        }
+      }
+    });
+  }
+
+  // Quick Search Chips
+  document.querySelectorAll(".quick-chip").forEach((chip) => {
+    chip.addEventListener("click", async () => {
+      const q = chip.dataset.query || chip.textContent.trim();
+      if (q) {
+        searchInput.value = q;
+        if (heroSearchInput) heroSearchInput.value = q;
+        await executeGlobalSearch(q);
+      }
+    });
+  });
+
+  // Global Hotkey: Press '/' anywhere to focus search
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "/" && !["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {
+      e.preventDefault();
+      searchInput.focus();
+      searchInput.select();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  });
+
   clearSearchBtn.addEventListener("click", () => {
     searchInput.value = "";
+    if (heroSearchInput) heroSearchInput.value = "";
     state.searchQuery = "";
     clearSearchBtn.style.display = "none";
     searchSuggestions.style.display = "none";
   });
+
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".search-container")) {
       searchSuggestions.style.display = "none";
