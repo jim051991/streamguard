@@ -14,13 +14,21 @@ window.open = function(url, target, features) {
 
 document.addEventListener("click", function(e) {
   const anchor = e.target.closest("a");
-  if (anchor && anchor.target === "_blank") {
-    const href = anchor.getAttribute("href") || "";
-    const isSafe = href.includes("github.com") || href.includes("twitter.com") || href.includes("whatsapp.com") || href.includes("render.com");
-    if (!isSafe && (href.startsWith("javascript:") || href === "#" || href.includes("http"))) {
+  if (anchor) {
+    if (anchor.hasAttribute("download")) {
       e.preventDefault();
       e.stopPropagation();
-      console.warn("[StreamGuard AdBlock Shield] Blocked unauthorized new tab clickjack:", href);
+      console.warn("[StreamGuard AdBlock Shield] Blocked unapproved automatic download link.");
+      return;
+    }
+    if (anchor.target === "_blank") {
+      const href = anchor.getAttribute("href") || "";
+      const isSafe = href.includes("github.com") || href.includes("twitter.com") || href.includes("whatsapp.com") || href.includes("render.com");
+      if (!isSafe && (href.startsWith("javascript:") || href === "#" || href.includes("http"))) {
+        e.preventDefault();
+        e.stopPropagation();
+        console.warn("[StreamGuard AdBlock Shield] Blocked unauthorized new tab clickjack:", href);
+      }
     }
   }
 }, true);
