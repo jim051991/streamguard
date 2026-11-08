@@ -44,16 +44,14 @@
 
     <div class="header-center">
       <div class="search-container" id="headerSearchContainer">
-        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-        <input type="text" id="searchInput" placeholder="Search 850,000+ movies & worldwide cinema..." autocomplete="off" aria-label="Search movies and shows">
-        <kbd class="search-kbd-pill" title="Press / to focus search">/</kbd>
+        <button class="search-icon-btn" id="searchSubmitBtn" title="Search Worldwide Cinema">
+          <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        </button>
+        <input type="text" id="searchInput" placeholder="Search movies, series, live TV..." autocomplete="off" aria-label="Search movies and shows">
         <button class="clear-search-btn" id="clearSearchBtn" style="display:none;" title="Clear search">
           <i class="fa-solid fa-xmark"></i>
         </button>
-        <button class="search-action-btn" id="searchSubmitBtn" title="Search Worldwide Cinema">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <span>Search</span>
-        </button>
+        <kbd class="search-kbd-pill" title="Press / to focus search">/</kbd>
         <!-- Live Instant Suggestions Dropdown -->
         <div class="search-suggestions" id="searchSuggestions" style="display:none;"></div>
       </div>
