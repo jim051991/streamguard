@@ -1,6 +1,7 @@
 """
 Video Catalog & Streaming Data Store
 Maintains video library, view counters, user comments, and metadata.
+All video URLs use verified, permanent open-access MP4 sources.
 """
 
 from typing import List, Dict, Any, Optional
@@ -12,7 +13,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "description": "Set in a dystopian future Amsterdam, a group of scientists and warriors attempt to stage a crucial historical event in order to rescue the world from destructive robotic sentinels.",
         "duration_seconds": 734,
         "duration_formatted": "12:14",
-        "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "views": 482190,
         "likes": 32800,
@@ -50,7 +51,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "description": "A large and lovable rabbit deals with bullying forest creatures in this legendary open-source computer animated comedy film by the Blender Institute.",
         "duration_seconds": 596,
         "duration_formatted": "09:56",
-        "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         "thumbnail_url": "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&auto=format&fit=crop&q=80",
         "views": 1289400,
         "likes": 98200,
@@ -80,7 +81,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "description": "The poignant journey of a lonely girl named Sintel who rescues a wounded baby dragon, forming an unbreakable bond across a treacherous desert realm.",
         "duration_seconds": 888,
         "duration_formatted": "14:48",
-        "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+        "video_url": "https://archive.org/download/Sintel/sintel-2048-stereo.mp4",
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "views": 750100,
         "likes": 56000,
@@ -110,7 +111,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "description": "Proog and Emo guide you through the infinite mechanical labyrinths of a giant surreal organic machine, where human thoughts shape steel gears.",
         "duration_seconds": 653,
         "duration_formatted": "10:53",
-        "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "views": 320400,
         "likes": 18400,
@@ -127,11 +128,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
     },
     {
         "id": "vid-05",
-        "title": "For Bigger Escape - Extreme Wilderness Landscapes",
-        "description": "Experience breathtaking high-definition aerial views of jagged mountain ridges, hidden mountain lakes, and extreme backcountry mountain biking.",
+        "title": "Ocean Wilderness & Jellyfish 4K Showcase",
+        "description": "Experience breathtaking high-definition underwater bioluminescent marine life, drifting jellyfish, and deep reef ecosystems.",
         "duration_seconds": 15,
         "duration_formatted": "00:15",
-        "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+        "video_url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4",
         "thumbnail_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&auto=format&fit=crop&q=80",
         "views": 915200,
         "likes": 74300,
@@ -142,17 +143,17 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             "verified": True
         },
         "category": "Nature",
-        "tags": ["nature", "travel", "drone", "4k", "adventure"],
+        "tags": ["nature", "travel", "ocean", "4k", "adventure"],
         "published_at": "1 month ago",
         "comments": []
     },
     {
         "id": "vid-06",
-        "title": "For Bigger Blazes - Urban Night Racing & Drifting",
-        "description": "High-octane city night showcase featuring precision drift vehicles, neon asphalt reflections, and pulse-pounding street dynamics.",
-        "duration_seconds": 15,
-        "duration_formatted": "00:15",
-        "video_url": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+        "title": "Big Buck Bunny - Forest Meadow Showcase",
+        "description": "High-octane comedic forest animation featuring classic open-source 3D character animation and meadow wildlife.",
+        "duration_seconds": 12,
+        "duration_formatted": "00:12",
+        "video_url": "https://www.w3schools.com/html/mov_bbb.mp4",
         "thumbnail_url": "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=80",
         "views": 540800,
         "likes": 42100,
@@ -163,7 +164,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             "verified": True
         },
         "category": "Trending",
-        "tags": ["cars", "speed", "night", "drift", "cinematic"],
+        "tags": ["cartoon", "funny", "classic", "animation"],
         "published_at": "1 month ago",
         "comments": []
     }

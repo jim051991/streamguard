@@ -149,7 +149,7 @@ function setViewMode(mode) {
     downloadBtnLabel.textContent = "Download";
     commentsSection.style.display = "block";
     destroyHls();
-    loadVideoCatalog();
+    loadVideoCatalog(true, false);
     showToast("Switched to Cinema & On-Demand Library");
   } else {
     sidebarTitle.innerHTML = '<i class="fa-solid fa-satellite-dish" style="color:#ef4444;"></i> Global Live TV Broadcasts';
@@ -160,7 +160,7 @@ function setViewMode(mode) {
     autoplayToggleWrap.style.display = "none";
     downloadBtnLabel.textContent = "Raw Stream";
     commentsSection.style.display = "block";
-    loadLiveChannels();
+    loadLiveChannels(true, true);
     showToast("🔴 Live TV Global activated via Built-in Self-Gateway Tunnel");
   }
 }
@@ -195,7 +195,7 @@ function renderCategoryBar() {
       btn.classList.add("active");
       state.activeCategory = cat;
       if (state.viewMode === "videos") {
-        loadVideoCatalog();
+        loadVideoCatalog(false, false);
       } else {
         loadLiveChannels();
       }
@@ -207,7 +207,7 @@ function renderCategoryBar() {
 // ----------------------------------------------------------------------------
 // Video Catalog API (On-Demand Mode)
 // ----------------------------------------------------------------------------
-async function loadVideoCatalog() {
+async function loadVideoCatalog(forceSelectFirst = false, autoPlay = false) {
   try {
     let url = `/api/videos?category=${encodeURIComponent(state.activeCategory)}`;
     if (state.searchQuery) {
@@ -219,8 +219,8 @@ async function loadVideoCatalog() {
 
     if (state.videos.length > 0) {
       renderQueueList();
-      if (!state.currentVideo || state.viewMode !== "videos") {
-        selectVideo(state.videos[0].id);
+      if (forceSelectFirst || !state.currentVideo || !videoEl.src || videoEl.src.includes(".m3u8")) {
+        selectVideo(state.videos[0].id, autoPlay);
       }
     } else {
       queueListEl.innerHTML = '<div style="color:#64748b; padding:20px; text-align:center;">No videos match your filter.</div>';
@@ -238,16 +238,27 @@ async function selectVideo(videoId, shouldPlay = false) {
     state.currentVideo = data.video;
     state.currentIndex = state.videos.findIndex((v) => v.id === videoId);
 
-    // Update HTML5 Video element
+    // Ensure clean HTML5 video element source
+    while (videoEl.firstChild) {
+      videoEl.removeChild(videoEl.firstChild);
+    }
+    videoEl.removeAttribute("src");
     videoEl.src = state.currentVideo.video_url;
     videoEl.load();
 
+    // Reset scrubber timeline
+    scrubberProgress.style.width = "0%";
+    scrubberThumb.style.left = "0%";
+    currentTimeEl.textContent = "00:00";
+    totalDurationEl.textContent = state.currentVideo.duration_formatted || "12:14";
+
     // Update Metadata
-    videoTitleEl.textContent = state.currentVideo.title;
+    videoTitleEl.innerHTML = `<i class="fa-solid fa-film" style="color:var(--accent-cyan); margin-right:8px;"></i> ${state.currentVideo.title}`;
     videoDescEl.textContent = state.currentVideo.description;
     channelAvatarEl.src = state.currentVideo.channel.avatar;
     channelNameEl.textContent = state.currentVideo.channel.name;
     channelSubsEl.textContent = `${state.currentVideo.channel.subscribers} subscribers`;
+    channelFlagBadge.style.display = "none";
     likeCountEl.textContent = state.currentVideo.likes.toLocaleString();
     viewCountEl.textContent = `${state.currentVideo.views.toLocaleString()} views`;
     publishDateEl.textContent = state.currentVideo.published_at;
@@ -263,7 +274,9 @@ async function selectVideo(videoId, shouldPlay = false) {
     renderQueueList();
 
     if (shouldPlay) {
-      videoEl.play().catch(() => {});
+      videoEl.play().catch((e) => {
+        console.log("Autoplay was prevented by browser:", e);
+      });
     }
   } catch (err) {
     console.error("Error selecting video:", err);
@@ -296,7 +309,7 @@ function renderQueueList() {
 // ----------------------------------------------------------------------------
 // Global Live TV API & HLS Streaming (Live TV Mode via Self-Gateway)
 // ----------------------------------------------------------------------------
-async function loadLiveChannels() {
+async function loadLiveChannels(forceSelectFirst = false, autoPlay = true) {
   try {
     let url = "/api/live/channels";
     const params = new URLSearchParams();
@@ -323,8 +336,8 @@ async function loadLiveChannels() {
 
     if (state.channels.length > 0) {
       renderLiveChannelList();
-      if (!state.currentChannel || state.viewMode !== "livetv") {
-        selectLiveChannel(state.channels[0].id, false);
+      if (forceSelectFirst || !state.currentChannel || state.viewMode !== "livetv") {
+        selectLiveChannel(state.channels[0].id, autoPlay);
       }
     } else {
       queueListEl.innerHTML = '<div style="color:#64748b; padding:20px; text-align:center;">No live TV channels match your filter.</div>';
