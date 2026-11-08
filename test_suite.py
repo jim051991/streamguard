@@ -126,10 +126,26 @@ async def run_tests():
         assert desc["crossfade_ms"] == 5.0
         print("      [PASS] AMLVE Engine verified: Decoupled VDT, 5ms cross-fade, and RAM floating cache active.")
 
+        # 12. Test Global Cinema Discovery Engine (OMDb + Dynamic Cloud Resolvers)
+        print("  --> [12/12] Testing Global Cinema Discovery Engine (/api/global/search)...")
+        global_search_resp = await client.get("/api/global/search", params={"query": "Inception"})
+        assert global_search_resp.status_code == 200, f"Expected 200, got {global_search_resp.status_code}"
+        g_data = global_search_resp.json()
+        assert g_data.get("total", 0) > 0, "Expected at least 1 global search result"
+        first_result = g_data["results"][0]
+        assert "Inception" in first_result["title"]
+        assert first_result["servers"][0]["url"].startswith("https://vidsrc.pm/embed/movie/tt")
+        
+        # Test On-Demand Video Retrieval for Global Discovered Movie
+        global_vid_resp = await client.get(f"/api/videos/{first_result['id']}")
+        assert global_vid_resp.status_code == 200
+        assert global_vid_resp.json()["video"]["title"] == first_result["title"]
+        print("      [PASS] Global Cinema Discovery active: Dynamic 4K resolvers generated for worldwide titles.")
+
         # Clean up localhost ban for local user testing
         ip_manager.unban_ip("127.0.0.1")
         ip_manager.unban_ip("testclient")
-    print("\n[TEST SUITE] ALL 11 INTEGRATION, LIVE TV, SECURITY & AMLVE TESTS PASSED PERFECTLY!\n")
+    print("\n[TEST SUITE] ALL 12 INTEGRATION, LIVE TV, SECURITY, AMLVE & GLOBAL CINEMA TESTS PASSED PERFECTLY!\n")
 
 if __name__ == "__main__":
     asyncio.run(run_tests())

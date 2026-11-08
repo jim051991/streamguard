@@ -33,6 +33,7 @@ from app.security import (
 from app.honeypots import honeypot_router
 from app.live_tv import live_router
 from app.amlve import amlve_router
+from app.global_cinema import global_router, get_cached_global_video, get_global_video_details
 from app.data import (
     get_all_videos,
     get_video_by_id,
@@ -172,6 +173,7 @@ async def security_waf_middleware(request: Request, call_next):
 app.include_router(honeypot_router)
 app.include_router(live_router)
 app.include_router(amlve_router)
+app.include_router(global_router)
 
 # -----------------------------------------------------------------------------
 # Video Streaming Application APIs
@@ -201,6 +203,15 @@ async def get_rails():
 async def get_video(video_id: str):
     """Get single video details and increment stream view counter."""
     video = get_video_by_id(video_id)
+    if not video:
+        video = get_cached_global_video(video_id)
+        if not video:
+            try:
+                g_res = await get_global_video_details(video_id)
+                video = g_res.get("video")
+            except Exception:
+                video = None
+
     if not video:
         raise HTTPException(status_code=404, detail="Video not found")
     

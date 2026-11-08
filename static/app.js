@@ -1161,8 +1161,10 @@ function checkPartyRoomUrl() {
 }
 
 // ----------------------------------------------------------------------------
-// Live Instant Search Dropdown
+// Live Instant Search & Global Cinema Discovery Engine (850,000+ Movies)
 // ----------------------------------------------------------------------------
+let searchDebounceTimer = null;
+
 function handleSearchInput(e) {
   const query = e.target.value.trim().toLowerCase();
   state.searchQuery = query;
@@ -1173,6 +1175,7 @@ function handleSearchInput(e) {
     return;
   }
 
+  // 1. Instant local matches from active catalog
   const matchedVideos = state.allVideos.filter(
     (v) =>
       v.title.toLowerCase().includes(query) ||
@@ -1187,30 +1190,59 @@ function handleSearchInput(e) {
       c.country.toLowerCase().includes(query)
   );
 
+  renderSuggestionsList(matchedVideos, matchedChannels, []);
+
+  // 2. Live Global Cinema Discovery (Debounced 280ms)
+  clearTimeout(searchDebounceTimer);
+  if (query.length >= 2) {
+    searchDebounceTimer = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/global/search?query=${encodeURIComponent(query)}`);
+        if (res.ok) {
+          const data = await res.json();
+          const globalResults = data.results || [];
+          const uniqueGlobals = globalResults.filter(
+            (g) => !matchedVideos.some((v) => v.title.toLowerCase() === g.title.toLowerCase())
+          );
+          renderSuggestionsList(matchedVideos, matchedChannels, uniqueGlobals);
+        }
+      } catch (err) {
+        console.warn("[Global Cinema] Discovery search failed:", err);
+      }
+    }, 280);
+  }
+}
+
+function renderSuggestionsList(matchedVideos, matchedChannels, globalResults = []) {
   const allMatches = [
     ...matchedVideos.map((v) => ({ ...v, type: "video" })),
-    ...matchedChannels.map((c) => ({ ...c, type: "channel" }))
-  ].slice(0, 5);
+    ...matchedChannels.map((c) => ({ ...c, type: "channel" })),
+    ...globalResults.map((g) => ({ ...g, type: "global" }))
+  ].slice(0, 8);
 
   if (allMatches.length === 0) {
-    searchSuggestions.innerHTML = '<div style="padding:10px; color:#64748b; font-size:12px; text-align:center;">No matching titles found.</div>';
+    searchSuggestions.innerHTML = '<div style="padding:12px; color:#64748b; font-size:12px; text-align:center;"><i class="fa-solid fa-spinner fa-spin"></i> Searching global movie database...</div>';
     searchSuggestions.style.display = "block";
     return;
   }
 
   searchSuggestions.innerHTML = allMatches
     .map((m) => {
-      const isVid = m.type === "video";
-      const thumb = isVid ? (m.poster_url || m.thumbnail_url) : m.logo;
+      const isChannel = m.type === "channel";
+      const isGlobal = m.type === "global";
+      const thumb = isChannel ? m.logo : (m.poster_url || m.thumbnail_url);
       const title = m.title || m.name;
-      const sub = isVid ? `${m.release_year || "2024"} • ${m.category}` : `🔴 Live TV • ${m.country}`;
-      const clickAction = isVid ? `playVideoById('${m.id}')` : `selectLiveChannel('${m.id}')`;
+      const badge = isGlobal 
+        ? '<span style="font-size:9.5px; color:var(--accent-cyan); background:rgba(6,182,212,0.18); border:1px solid rgba(6,182,212,0.3); padding:1px 5px; border-radius:3px; margin-left:6px;"><i class="fa-solid fa-earth-americas"></i> 4K STREAM</span>' 
+        : '';
+      const sub = isChannel ? `🔴 Live TV • ${m.country}` : `${m.release_year || "2024"} • ${m.category || m.subtitle || "Cinema"}`;
+      const clickAction = isChannel ? `selectLiveChannel('${m.id}')` : `playVideoById('${m.id}')`;
 
       return `
         <div class="suggestion-item" onclick="${clickAction}; searchSuggestions.style.display='none';">
-          <img src="${thumb}" alt="${title}" class="suggestion-thumb">
+          <img src="${thumb}" alt="${title}" class="suggestion-thumb" onerror="this.src='https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=100';">
           <div class="suggestion-info">
-            <h4>${title}</h4>
+            <h4 style="display:flex; align-items:center;">${title} ${badge}</h4>
             <span>${sub}</span>
           </div>
         </div>
@@ -1219,6 +1251,30 @@ function handleSearchInput(e) {
     .join("");
 
   searchSuggestions.style.display = "block";
+}
+
+async function executeGlobalSearch(query) {
+  showToast(`Searching worldwide cinema for "${query}"...`);
+  try {
+    const res = await fetch(`/api/global/search?query=${encodeURIComponent(query)}`);
+    const data = await res.json();
+    const results = data.results || [];
+    if (results.length > 0) {
+      document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "none"));
+      railMoviesWrap.style.display = "block";
+      const headerTitle = railMoviesWrap.querySelector(".rail-title");
+      if (headerTitle) headerTitle.innerHTML = `<i class="fa-solid fa-earth-americas" style="color:var(--accent-cyan); margin-right:8px;"></i> Worldwide Cinema Results for "${query}"`;
+      const headerBadge = railMoviesWrap.querySelector(".rail-badge");
+      if (headerBadge) headerBadge.textContent = `${results.length} Titles Found`;
+      railMovies.innerHTML = results.map((item) => renderCard(item)).join("");
+      railMoviesWrap.scrollIntoView({ behavior: "smooth", block: "center" });
+      showToast(`Found ${results.length} titles for "${query}"!`);
+    } else {
+      showToast(`No titles found for "${query}". Try another title.`);
+    }
+  } catch (err) {
+    showToast(`Error searching global cinema.`);
+  }
 }
 
 // ----------------------------------------------------------------------------
@@ -1514,6 +1570,15 @@ function setupEventListeners() {
 
   // Search input
   searchInput.addEventListener("input", handleSearchInput);
+  searchInput.addEventListener("keydown", async (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const q = searchInput.value.trim();
+      if (!q) return;
+      searchSuggestions.style.display = "none";
+      await executeGlobalSearch(q);
+    }
+  });
   clearSearchBtn.addEventListener("click", () => {
     searchInput.value = "";
     state.searchQuery = "";

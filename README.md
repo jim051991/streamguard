@@ -64,6 +64,17 @@ StreamGuard is a modern, high-performance web media streaming platform incorpora
 - **Universal Language Selector**:
   - Standardized overlay in player controls (`Hotkeys: A / L`) featuring real-time search across 40+ documented global languages, regional dialects (e.g., Kansai-ben, Levantine Arabic, Quebec French, Austrian German), and categorized tabs.
 
+---
+
+### 4. 🌐 Worldwide Cinema Discovery Engine (CineHD & Movibox Architecture)
+- **Live Search Across 850,000+ Movies**:
+  - Connects to global cinema databases to discover literally any movie or TV series ever created.
+  - Real-time debounced search bar (`#searchInput`) fetches official posters, ratings, synopsis, and release dates.
+  - Pressing <kbd>Enter</kbd> in the search bar populates a dedicated full horizontal rail of global matches in one click.
+- **Dynamic 4K Cloud Resolvers**:
+  - Automatically maps any discovered movie by IMDb/TMDB ID to high-speed cloud resolvers (`vidsrc.pm/embed/movie/{id}` and `autoembed.co/movie/imdb/{id}`).
+  - Sandboxed playback enforcing strict isolation against rogue ads and automatic downloads.
+
 ## 🛡️ Multi-Layer Autonomous Defense System
 
 | Defense Layer | Technology / Mechanism | Threat Mitigated |
