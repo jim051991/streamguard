@@ -727,6 +727,186 @@ body.ott-theme {
   display: block;
 }
 
+/* Pre-Roll Video Advertisement Overlay (YouTube / OTT Style) */
+.preroll-ad-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 40;
+  overflow: hidden;
+}
+
+#adVideoElement {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #000;
+  display: block;
+}
+
+/* Ad Top Bar */
+.ad-top-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.85) 0%, transparent 100%);
+  z-index: 42;
+  pointer-events: none;
+}
+
+.ad-badge-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ad-tag-pill {
+  background: #f59e0b;
+  color: #000;
+  font-size: 11px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ad-sponsor-name {
+  color: #e2e8f0;
+  font-size: 13px;
+  font-weight: 600;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.ad-time-badge {
+  background: rgba(0, 0, 0, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  backdrop-filter: blur(6px);
+}
+
+/* Ad Bottom Bar */
+.ad-bottom-bar {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  right: 0;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 42;
+}
+
+.ad-sponsor-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 14px;
+  border-radius: 8px;
+  backdrop-filter: blur(8px);
+}
+
+.ad-sponsor-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(6, 182, 212, 0.2);
+  color: var(--accent-cyan, #06b6d4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+
+.ad-sponsor-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ad-headline {
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.ad-subtext {
+  color: #94a3b8;
+  font-size: 11px;
+}
+
+/* Skip Ad Button (5s Countdown -> Active Skip) */
+.skip-btn-container {
+  display: flex;
+  align-items: center;
+}
+
+.skip-ad-btn {
+  background: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #cbd5e1;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: not-allowed;
+  backdrop-filter: blur(10px);
+  transition: all 0.25s ease;
+  user-select: none;
+}
+
+.skip-ad-btn.can-skip {
+  background: var(--accent-cyan, #06b6d4);
+  border-color: #22d3ee;
+  color: #050b14;
+  cursor: pointer;
+  box-shadow: 0 0 16px rgba(6, 182, 212, 0.5);
+  transform: scale(1.03);
+}
+
+.skip-ad-btn.can-skip:hover {
+  background: #22d3ee;
+  box-shadow: 0 0 24px rgba(6, 182, 212, 0.7);
+  transform: scale(1.06);
+}
+
+/* Ad Progress Bar */
+.ad-progress-bar-wrap {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  z-index: 43;
+}
+
+.ad-progress-fill {
+  width: 0%;
+  height: 100%;
+  background: #f59e0b;
+  transition: width 0.15s linear;
+}
+
 /* Live Stream Badge */
 .live-indicator-tag {
   position: absolute;

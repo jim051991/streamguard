@@ -159,8 +159,50 @@
           Your browser does not support HTML5 video playback.
         </video>
 
-        <!-- 2. Full Original Movie Cloud Embed Player (VidLink / VidSrc Engine) -->
-        <iframe id="embedPlayerFrame" src="" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture; fullscreen" style="width:100%; height:100%; border:none; display:none; background:#000;"></iframe>
+        <!-- 2. Full Original Movie Cloud Embed Player (VidLink / VidSrc Engine - AdBlock Sandboxed) -->
+        <iframe id="embedPlayerFrame" src="" 
+          sandbox="allow-forms allow-scripts allow-same-origin allow-presentation" 
+          allow="autoplay; encrypted-media; picture-in-picture; fullscreen" 
+          allowfullscreen 
+          style="width:100%; height:100%; border:none; display:none; background:#000;">
+        </iframe>
+
+        <!-- 3. Pre-Roll Video Advertisement Overlay (Plays Before Movie with 5s Skip) -->
+        <div class="preroll-ad-overlay" id="prerollAdOverlay" style="display:none;">
+          <video id="adVideoElement" preload="auto" playsinline></video>
+          
+          <div class="ad-top-bar">
+            <div class="ad-badge-group">
+              <span class="ad-tag-pill"><i class="fa-solid fa-rectangle-ad"></i> AD</span>
+              <span class="ad-sponsor-name" id="adSponsorName">StreamGuard Pro Cinema</span>
+            </div>
+            <div class="ad-time-badge" id="adTimeBadge">Ad • 0:10</div>
+          </div>
+
+          <div class="ad-bottom-bar">
+            <div class="ad-sponsor-info">
+              <div class="ad-sponsor-icon">
+                <i class="fa-solid fa-shield-halved"></i>
+              </div>
+              <div class="ad-sponsor-text">
+                <div class="ad-headline" id="adHeadline">Ultra-Fast 4K Buffering & Cinema Audio</div>
+                <div class="ad-subtext">Verified Partner Ad • streamguard.pro</div>
+              </div>
+            </div>
+
+            <!-- YouTube-style Skip Ad Button -->
+            <div class="skip-btn-container">
+              <button class="skip-ad-btn" id="skipAdBtn" disabled>
+                <span id="skipBtnText">Skip in 5s</span>
+                <i class="fa-solid fa-forward-step"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="ad-progress-bar-wrap">
+            <div class="ad-progress-fill" id="adProgressFill"></div>
+          </div>
+        </div>
 
         <!-- Live Stream Overlay Tag -->
         <div class="live-indicator-tag" id="liveIndicatorTag" style="display:none;">

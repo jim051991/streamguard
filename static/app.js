@@ -4,6 +4,28 @@
  */
 
 // ----------------------------------------------------------------------------
+// StreamGuard Anti-Popup & Anti-Clickjack Shield
+// Neutralizes rogue window.open and clickjack redirects from third-party embeds
+// ----------------------------------------------------------------------------
+window.open = function(url, target, features) {
+  console.warn("[StreamGuard AdBlock Shield] Intercepted and blocked rogue popup attempt:", url);
+  return null;
+};
+
+document.addEventListener("click", function(e) {
+  const anchor = e.target.closest("a");
+  if (anchor && anchor.target === "_blank") {
+    const href = anchor.getAttribute("href") || "";
+    const isSafe = href.includes("github.com") || href.includes("twitter.com") || href.includes("whatsapp.com") || href.includes("render.com");
+    if (!isSafe && (href.startsWith("javascript:") || href === "#" || href.includes("http"))) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.warn("[StreamGuard AdBlock Shield] Blocked unauthorized new tab clickjack:", href);
+    }
+  }
+}, true);
+
+// ----------------------------------------------------------------------------
 // Global Application State
 // ----------------------------------------------------------------------------
 const state = {
@@ -54,6 +76,16 @@ const playerControls = document.getElementById("playerControls");
 const subtitleTrack = document.getElementById("subtitleTrack");
 const liveIndicatorTag = document.getElementById("liveIndicatorTag");
 const centerPlayOverlay = document.getElementById("centerPlayOverlay");
+
+// Pre-Roll Video Advertisement Overlay Elements
+const prerollAdOverlay = document.getElementById("prerollAdOverlay");
+const adVideoElement = document.getElementById("adVideoElement");
+const adSponsorName = document.getElementById("adSponsorName");
+const adTimeBadge = document.getElementById("adTimeBadge");
+const adHeadline = document.getElementById("adHeadline");
+const skipAdBtn = document.getElementById("skipAdBtn");
+const skipBtnText = document.getElementById("skipBtnText");
+const adProgressFill = document.getElementById("adProgressFill");
 
 const playBtn = document.getElementById("playBtn");
 const skipBack10 = document.getElementById("skipBack10");
@@ -348,6 +380,134 @@ function renderLiveTvRail() {
 }
 
 // ----------------------------------------------------------------------------
+// OTT Pre-Roll Video Advertisement Engine (YouTube / Hulu Model)
+// Plays before movie/episode starts with a 5-second countdown to Skip Ad
+// ----------------------------------------------------------------------------
+const AD_CAMPAIGNS = [
+  {
+    title: "StreamGuard Pro • Dolby 4K Cinema",
+    headline: "Zero-Lag Hollywood Streaming & Cinema Sound",
+    sponsor: "StreamGuard Network",
+    video_url: "https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4",
+    duration: 10
+  },
+  {
+    title: "CyberShield Security • Real-Time Protection",
+    headline: "Autonomous Threat Defense for Ultra-HD Streams",
+    sponsor: "CyberShield Global Security",
+    video_url: "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
+    duration: 12
+  }
+];
+
+let adState = {
+  isPlaying: false,
+  countdownInterval: null,
+  secondsRemaining: 5,
+  currentCampaign: null,
+  onFinishedCallback: null
+};
+
+function startPrerollAd(onFinished) {
+  if (!prerollAdOverlay || !adVideoElement) {
+    if (onFinished) onFinished();
+    return;
+  }
+
+  // Clear any existing ad intervals/playback
+  finishPrerollAd(false);
+
+  adState.isPlaying = true;
+  adState.onFinishedCallback = onFinished;
+  adState.secondsRemaining = 5;
+
+  // Pick ad campaign
+  const campaign = AD_CAMPAIGNS[Math.floor(Math.random() * AD_CAMPAIGNS.length)];
+  adState.currentCampaign = campaign;
+
+  // Update Ad UI
+  if (adSponsorName) adSponsorName.textContent = campaign.title;
+  if (adHeadline) adHeadline.textContent = campaign.headline;
+  if (adTimeBadge) adTimeBadge.textContent = "Ad • 0:10";
+  if (skipBtnText) skipBtnText.textContent = "Skip in 5s";
+  if (skipAdBtn) {
+    skipAdBtn.setAttribute("disabled", "true");
+    skipAdBtn.classList.remove("can-skip");
+  }
+  if (adProgressFill) adProgressFill.style.width = "0%";
+
+  // Hide main video player & controls, show ad overlay
+  videoEl.pause();
+  destroyHls();
+  if (embedPlayerFrame) {
+    embedPlayerFrame.src = "about:blank";
+    embedPlayerFrame.style.display = "none";
+  }
+  videoEl.style.display = "none";
+  if (playerControls) playerControls.style.display = "none";
+  if (centerPlayOverlay) centerPlayOverlay.style.display = "none";
+
+  prerollAdOverlay.style.display = "block";
+
+  // Load and play ad video
+  adVideoElement.src = campaign.video_url;
+  adVideoElement.currentTime = 0;
+  
+  const playPromise = adVideoElement.play();
+  if (playPromise !== undefined) {
+    playPromise.catch((err) => {
+      console.warn("Autoplay held, trying muted ad playback:", err);
+      adVideoElement.muted = true;
+      adVideoElement.play().catch(() => {
+        // If ad playback blocked, immediately proceed to movie
+        finishPrerollAd(true);
+      });
+    });
+  }
+
+  // Countdown for Skip Button (5 seconds)
+  adState.countdownInterval = setInterval(() => {
+    adState.secondsRemaining--;
+    if (adState.secondsRemaining > 0) {
+      if (skipBtnText) skipBtnText.textContent = `Skip in ${adState.secondsRemaining}s`;
+    } else {
+      clearInterval(adState.countdownInterval);
+      adState.countdownInterval = null;
+      if (skipAdBtn) {
+        skipAdBtn.removeAttribute("disabled");
+        skipAdBtn.classList.add("can-skip");
+      }
+      if (skipBtnText) skipBtnText.textContent = "Skip Ad";
+      showToast("You can now skip the advertisement");
+    }
+  }, 1000);
+}
+
+function finishPrerollAd(triggerCallback = true) {
+  if (adState.countdownInterval) {
+    clearInterval(adState.countdownInterval);
+    adState.countdownInterval = null;
+  }
+
+  if (adVideoElement) {
+    adVideoElement.pause();
+    adVideoElement.removeAttribute("src");
+  }
+
+  if (prerollAdOverlay) {
+    prerollAdOverlay.style.display = "none";
+  }
+
+  const cb = adState.onFinishedCallback;
+  adState.isPlaying = false;
+  adState.onFinishedCallback = null;
+
+  if (triggerCallback && typeof cb === "function") {
+    cb();
+  }
+}
+
+// ----------------------------------------------------------------------------
 // Video Playback Engine (Cinema & On-Demand)
 // ----------------------------------------------------------------------------
 async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
@@ -404,8 +564,10 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
     updateWatchlistButtonState();
     renderComments(state.currentVideo.comments || []);
 
-    // Load active stream (VidLink/VidSrc Embed or Direct Native)
-    loadActiveStream(autoPlay);
+    // Play Pre-Roll Advertisement with 5-second skip option before the movie starts!
+    startPrerollAd(() => {
+      loadActiveStream(autoPlay);
+    });
   } catch (err) {
     console.error("Error playing video:", err);
   }
@@ -520,6 +682,7 @@ function loadActiveStream(autoPlay = true) {
 async function selectLiveChannel(channelId, autoPlay = true) {
   try {
     destroyHls();
+    finishPrerollAd(false);
     const res = await fetch(`/api/live/channels/${channelId}`);
     const data = await res.json();
     state.currentChannel = data.channel;
@@ -691,7 +854,9 @@ function selectEpisode(idx) {
     activePlayerTitle.textContent = `${state.currentVideo.title} - S1:E${ep.episode_number} "${ep.title}"`;
   }
 
-  loadActiveStream(true);
+  startPrerollAd(() => {
+    loadActiveStream(true);
+  });
 }
 
 function renderEpisodesDrawer(season, activeIdx = 0) {
@@ -1179,11 +1344,41 @@ function setupEventListeners() {
     theaterSection.style.display = "none";
     videoEl.pause();
     destroyHls();
+    finishPrerollAd(false);
     if (embedPlayerFrame) {
       embedPlayerFrame.src = "about:blank";
       embedPlayerFrame.style.display = "none";
     }
   });
+
+  // Pre-Roll Video Advertisement Listeners
+  if (skipAdBtn) {
+    skipAdBtn.addEventListener("click", () => {
+      if (!skipAdBtn.hasAttribute("disabled") && skipAdBtn.classList.contains("can-skip")) {
+        finishPrerollAd(true);
+      }
+    });
+  }
+
+  if (adVideoElement) {
+    adVideoElement.addEventListener("timeupdate", () => {
+      if (adVideoElement.duration) {
+        const pct = (adVideoElement.currentTime / adVideoElement.duration) * 100;
+        if (adProgressFill) adProgressFill.style.width = `${pct}%`;
+        const remainingSec = Math.max(0, Math.ceil(adVideoElement.duration - adVideoElement.currentTime));
+        if (adTimeBadge) adTimeBadge.textContent = `Ad • 0:${remainingSec < 10 ? '0' : ''}${remainingSec}`;
+      }
+    });
+
+    adVideoElement.addEventListener("ended", () => {
+      finishPrerollAd(true);
+    });
+
+    adVideoElement.addEventListener("error", (e) => {
+      console.warn("Pre-roll ad video error, immediately proceeding to feature film:", e);
+      finishPrerollAd(true);
+    });
+  }
 
   // Server Switcher Dropdown
   serverSelectBtn.addEventListener("click", (e) => {
