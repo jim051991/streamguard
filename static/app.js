@@ -356,6 +356,7 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
     state.currentVideo = data.video;
     state.currentChannel = null;
     state.currentServerIndex = 0;
+    state.currentEpisodeIndex = episodeIndex !== null ? episodeIndex : 0;
 
     // Show theater container
     theaterSection.style.display = "block";
@@ -1083,9 +1084,47 @@ function setupEventListeners() {
   videoEl.addEventListener("play", updatePlayButton);
   videoEl.addEventListener("pause", updatePlayButton);
   videoEl.addEventListener("timeupdate", updateTimeline);
+  videoEl.addEventListener("ended", () => {
+    if (state.currentVideo) {
+      const episodes = state.currentVideo.seasons?.[0]?.episodes || [];
+      if (episodes.length > 0 && state.currentEpisodeIndex + 1 < episodes.length) {
+        playVideoById(state.currentVideo.id, true, state.currentEpisodeIndex + 1);
+        showToast(`Auto-playing Episode ${state.currentEpisodeIndex + 2}`);
+      } else {
+        const curIdx = state.allVideos.findIndex((v) => v.id === state.currentVideo.id);
+        const nextIdx = (curIdx + 1) % state.allVideos.length;
+        playVideoById(state.allVideos[nextIdx].id, true);
+        showToast(`Auto-playing Next: ${state.allVideos[nextIdx].title}`);
+      }
+    }
+  });
 
   // Controls
   playBtn.addEventListener("click", togglePlay);
+  prevBtn.addEventListener("click", () => {
+    if (state.currentVideo) {
+      const episodes = state.currentVideo.seasons?.[0]?.episodes || [];
+      if (episodes.length > 0 && state.currentEpisodeIndex > 0) {
+        playVideoById(state.currentVideo.id, true, state.currentEpisodeIndex - 1);
+      } else {
+        const curIdx = state.allVideos.findIndex((v) => v.id === state.currentVideo.id);
+        const prevIdx = (curIdx - 1 + state.allVideos.length) % state.allVideos.length;
+        playVideoById(state.allVideos[prevIdx].id, true);
+      }
+    }
+  });
+  nextBtn.addEventListener("click", () => {
+    if (state.currentVideo) {
+      const episodes = state.currentVideo.seasons?.[0]?.episodes || [];
+      if (episodes.length > 0 && state.currentEpisodeIndex + 1 < episodes.length) {
+        playVideoById(state.currentVideo.id, true, state.currentEpisodeIndex + 1);
+      } else {
+        const curIdx = state.allVideos.findIndex((v) => v.id === state.currentVideo.id);
+        const nextIdx = (curIdx + 1) % state.allVideos.length;
+        playVideoById(state.allVideos[nextIdx].id, true);
+      }
+    }
+  });
   skipBack10.addEventListener("click", () => {
     videoEl.currentTime = Math.max(0, videoEl.currentTime - 10);
     flashCenterOverlay("fa-rotate-left");
