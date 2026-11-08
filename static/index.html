@@ -153,11 +153,14 @@
 
       <!-- Video Player Frame -->
       <div class="player-container" id="playerContainer">
-        <!-- HTML5 Video Element (CORS-free for direct native streaming) -->
+        <!-- 1. HTML5 Video Element (CORS-free for direct native streaming & Live TV) -->
         <video id="videoElement" preload="metadata" playsinline>
           <track id="subtitleTrack" kind="subtitles" srclang="en" label="English [CC]" src="/static/subtitles/english.vtt" default>
           Your browser does not support HTML5 video playback.
         </video>
+
+        <!-- 2. Full Original Movie Cloud Embed Player (VidLink / VidSrc Engine) -->
+        <iframe id="embedPlayerFrame" src="" allowfullscreen allow="autoplay; encrypted-media; picture-in-picture; fullscreen" style="width:100%; height:100%; border:none; display:none; background:#000;"></iframe>
 
         <!-- Live Stream Overlay Tag -->
         <div class="live-indicator-tag" id="liveIndicatorTag" style="display:none;">

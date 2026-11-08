@@ -1,8 +1,7 @@
 """
 StreamGuard 2.0 OTT Entertainment Catalog & Streaming Data Store
-Houses Hollywood Blockbusters, Hit TV Series, and Top Anime inspired by Movibox.net and CineHD.dev.
-Includes multi-server fallback, multi-episode seasons, IMDb ratings, and high-definition posters.
-All stream sources use verified, permanent open-access video streams.
+Houses Hollywood Blockbusters, Hit TV Series, and Top Anime with Full Original Movie Streaming.
+Provides multi-server streaming with Cloud 4K Embeds (VidLink/VidSrc) and Direct Native streams.
 """
 
 from typing import List, Dict, Any, Optional
@@ -20,14 +19,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2024,
         "age_rating": "PG-13",
         "imdb_rating": 8.6,
+        "tmdb_id": 693134,
+        "imdb_id": "tt15239678",
         "quality": "4K ULTRA HD",
         "duration_seconds": 9960,
         "duration_formatted": "2h 46m",
         "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud 4K)", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"},
-            {"id": "srv-2", "name": "Server 2 (Fast Mirror)", "url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4"},
-            {"id": "srv-3", "name": "Server 3 (StreamGuard Relay)", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/693134?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: Full Original Movie (VidSrc Mirror)", "type": "embed", "url": "https://vidsrc.cc/v2/embed/movie/tt15239678"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
@@ -35,15 +36,13 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "subtitles": [{"label": "English [CC]", "srclang": "en", "src": "/static/subtitles/english.vtt"}],
         "views": 2480000,
         "likes": 182000,
-        "channel": {"name": "Warner Bros. Pictures", "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100&auto=format&fit=crop&q=80", "subscribers": "11.2M", "verified": True},
+        "channel": {"name": "Warner Bros. Pictures", "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100", "subscribers": "11.2M", "verified": True},
         "category": "Sci-Fi",
         "tags": ["dune", "sci-fi", "timothee-chalamet", "zendaya", "4k"],
         "published_at": "2024",
         "is_trending": True,
         "is_featured": True,
-        "comments": [
-            {"id": "c101", "author": "ArrakisWatcher", "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100", "text": "Denis Villeneuve created an absolute cinematic triumph. The sandworm ride sequence was breathtaking!", "timestamp": "1 hour ago", "likes": 542}
-        ]
+        "comments": []
     },
     {
         "id": "mov-oppenheimer",
@@ -54,13 +53,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2023,
         "age_rating": "R",
         "imdb_rating": 8.9,
+        "tmdb_id": 872585,
+        "imdb_id": "tt15398776",
         "quality": "4K ULTRA HD",
         "duration_seconds": 10800,
         "duration_formatted": "3h 00m",
         "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud 4K)", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"},
-            {"id": "srv-2", "name": "Server 2 (Fast Mirror)", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/872585?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: Full Original Movie (VidSrc Mirror)", "type": "embed", "url": "https://vidsrc.cc/v2/embed/movie/tt15398776"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=80",
@@ -85,13 +87,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2023,
         "age_rating": "PG",
         "imdb_rating": 8.7,
+        "tmdb_id": 569094,
+        "imdb_id": "tt9362722",
         "quality": "4K ULTRA HD",
         "duration_seconds": 8400,
         "duration_formatted": "2h 20m",
         "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud 4K)", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"},
-            {"id": "srv-2", "name": "Server 2 (Fast Mirror)", "url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/569094?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: Full Original Movie (VidSrc Mirror)", "type": "embed", "url": "https://vidsrc.cc/v2/embed/movie/tt9362722"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500&auto=format&fit=crop&q=80",
@@ -116,13 +121,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2014,
         "age_rating": "PG-13",
         "imdb_rating": 8.7,
+        "tmdb_id": 157336,
+        "imdb_id": "tt0816692",
         "quality": "4K ULTRA HD",
         "duration_seconds": 10140,
         "duration_formatted": "2h 49m",
         "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud 4K)", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"},
-            {"id": "srv-2", "name": "Server 2 (Fast Mirror)", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/157336?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: Full Original Movie (VidSrc Mirror)", "type": "embed", "url": "https://vidsrc.cc/v2/embed/movie/tt0816692"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?w=500&auto=format&fit=crop&q=80",
@@ -147,12 +155,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2022,
         "age_rating": "PG-13",
         "imdb_rating": 7.8,
+        "tmdb_id": 414906,
+        "imdb_id": "tt1877830",
         "quality": "4K ULTRA HD",
         "duration_seconds": 10560,
         "duration_formatted": "2h 56m",
         "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud 4K)", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/414906?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: Full Original Movie (VidSrc Mirror)", "type": "embed", "url": "https://vidsrc.cc/v2/embed/movie/tt1877830"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -177,12 +189,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2022,
         "age_rating": "PG-13",
         "imdb_rating": 7.6,
+        "tmdb_id": 76600,
+        "imdb_id": "tt1630029",
         "quality": "4K ULTRA HD",
         "duration_seconds": 11520,
         "duration_formatted": "3h 12m",
         "video_url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud 4K)", "url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/76600?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: Full Original Movie (VidSrc Mirror)", "type": "embed", "url": "https://vidsrc.cc/v2/embed/movie/tt1630029"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://test-videos.co.uk/vids/jellyfish/mp4/h264/720/Jellyfish_720_10s_5MB.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=500&auto=format&fit=crop&q=80",
@@ -211,13 +227,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2024,
         "age_rating": "TV-14",
         "imdb_rating": 8.7,
+        "tmdb_id": 66732,
+        "imdb_id": "tt4574334",
         "quality": "4K ULTRA HD",
         "duration_seconds": 3200,
         "duration_formatted": "4 Seasons",
         "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud HD)", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"},
-            {"id": "srv-2", "name": "Server 2 (Fast Mirror)", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/66732"},
+            {"id": "srv-2", "name": "Server 2: Full Original Series (VidSrc Mirror)", "type": "embed_tv", "url": "https://vidsrc.cc/v2/embed/tv/tt4574334"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -254,13 +273,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2024,
         "age_rating": "TV-MA",
         "imdb_rating": 8.5,
+        "tmdb_id": 94997,
+        "imdb_id": "tt11198330",
         "quality": "4K ULTRA HD",
         "duration_seconds": 3600,
         "duration_formatted": "2 Seasons",
         "video_url": "https://archive.org/download/Sintel/sintel-2048-stereo.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud 4K)", "url": "https://archive.org/download/Sintel/sintel-2048-stereo.mp4"},
-            {"id": "srv-2", "name": "Server 2 (Fast Mirror)", "url": "https://archive.org/download/Sintel/sintel-2048-stereo.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/94997"},
+            {"id": "srv-2", "name": "Server 2: Full Original Series (VidSrc Mirror)", "type": "embed_tv", "url": "https://vidsrc.cc/v2/embed/tv/tt11198330"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Sintel/sintel-2048-stereo.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1514539079130-25950c84af65?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1514539079130-25950c84af65?w=500&auto=format&fit=crop&q=80",
@@ -296,23 +318,27 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2024,
         "age_rating": "TV-MA",
         "imdb_rating": 8.8,
+        "tmdb_id": 126308,
+        "imdb_id": "tt2788316",
         "quality": "4K ULTRA HD",
         "duration_seconds": 3600,
         "duration_formatted": "10 Episodes",
         "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud HD)", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/126308"},
+            {"id": "srv-2", "name": "Server 2: Full Original Series (VidSrc Mirror)", "type": "embed_tv", "url": "https://vidsrc.cc/v2/embed/tv/tt2788316"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
         ],
-        "thumbnail_url": "https://images.unsplash.com/photo-1528164344705-475426879c0d?w=800&auto=format&fit=crop&q=80",
-        "poster_url": "https://images.unsplash.com/photo-1528164344705-475426879c0d?w=500&auto=format&fit=crop&q=80",
-        "backdrop_url": "https://images.unsplash.com/photo-1528164344705-475426879c0d?w=1600&auto=format&fit=crop&q=80",
+        "thumbnail_url": "https://images.unsplash.com/photo-1528164344705-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1528164344705-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1528164344705-475647b2a1e5?w=1600&auto=format&fit=crop&q=80",
         "subtitles": [{"label": "English [CC]", "srclang": "en", "src": "/static/subtitles/english.vtt"}],
         "seasons": [
             {
                 "season_number": 1,
                 "season_title": "Season 1",
                 "episodes": [
-                    {"episode_number": 1, "title": "Chapter One: Anjin", "duration": "1h 10m", "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4", "thumbnail": "https://images.unsplash.com/photo-1528164344705-475426879c0d?w=400"},
+                    {"episode_number": 1, "title": "Chapter One: Anjin", "duration": "1h 10m", "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4", "thumbnail": "https://images.unsplash.com/photo-1528164344705-475647b2a1e5?w=400"},
                     {"episode_number": 2, "title": "Chapter Two: Servants of Two Masters", "duration": "58m", "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4", "thumbnail": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400"},
                     {"episode_number": 3, "title": "Chapter Three: Tomorrow is Tomorrow", "duration": "56m", "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4", "thumbnail": "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=400"}
                 ]
@@ -337,12 +363,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2023,
         "age_rating": "TV-MA",
         "imdb_rating": 8.8,
+        "tmdb_id": 100088,
+        "imdb_id": "tt3581920",
         "quality": "4K ULTRA HD",
         "duration_seconds": 3600,
         "duration_formatted": "9 Episodes",
         "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud HD)", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/100088"},
+            {"id": "srv-2", "name": "Server 2: Full Original Series (VidSrc Mirror)", "type": "embed_tv", "url": "https://vidsrc.cc/v2/embed/tv/tt3581920"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -371,7 +401,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
     },
 
     # =========================================================================
-    # 3. HIT ANIME & 3D ANIMATION (Movibox & CineHD Top Anime Section)
+    # 3. HIT ANIME & 3D ANIMATION
     # =========================================================================
     {
         "id": "ani-solo-leveling",
@@ -382,13 +412,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2024,
         "age_rating": "TV-14",
         "imdb_rating": 8.5,
+        "tmdb_id": 209867,
+        "imdb_id": "tt21209876",
         "quality": "1080p HD",
         "duration_seconds": 1440,
         "duration_formatted": "12 Episodes",
         "video_url": "https://archive.org/download/Sintel/sintel-2048-stereo.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud HD)", "url": "https://archive.org/download/Sintel/sintel-2048-stereo.mp4"},
-            {"id": "srv-2", "name": "Server 2 (Fast Mirror)", "url": "https://archive.org/download/Sintel/sintel-2048-stereo.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Anime (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/209867"},
+            {"id": "srv-2", "name": "Server 2: Full Original Anime (VidSrc Mirror)", "type": "embed_tv", "url": "https://vidsrc.cc/v2/embed/tv/tt21209876"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Sintel/sintel-2048-stereo.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1578632767115-351597cf2477?w=500&auto=format&fit=crop&q=80",
@@ -424,12 +457,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2024,
         "age_rating": "TV-14",
         "imdb_rating": 8.7,
+        "tmdb_id": 85937,
+        "imdb_id": "tt9335498",
         "quality": "1080p HD",
         "duration_seconds": 1500,
         "duration_formatted": "4 Seasons",
         "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud HD)", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Anime (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/85937"},
+            {"id": "srv-2", "name": "Server 2: Full Original Anime (VidSrc Mirror)", "type": "embed_tv", "url": "https://vidsrc.cc/v2/embed/tv/tt9335498"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
@@ -464,12 +501,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2023,
         "age_rating": "TV-MA",
         "imdb_rating": 9.1,
+        "tmdb_id": 1429,
+        "imdb_id": "tt2560140",
         "quality": "1080p HD",
         "duration_seconds": 1500,
         "duration_formatted": "4 Seasons",
         "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud HD)", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Anime (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/1429"},
+            {"id": "srv-2", "name": "Server 2: Full Original Anime (VidSrc Mirror)", "type": "embed_tv", "url": "https://vidsrc.cc/v2/embed/tv/tt2560140"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -504,12 +545,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2023,
         "age_rating": "TV-MA",
         "imdb_rating": 8.3,
+        "tmdb_id": 105248,
+        "imdb_id": "tt12590266",
         "quality": "1080p HD",
         "duration_seconds": 1500,
         "duration_formatted": "10 Episodes",
         "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
         "servers": [
-            {"id": "srv-1", "name": "Server 1 (Cloud HD)", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+            {"id": "srv-1", "name": "Server 1: Full Original Anime (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/105248"},
+            {"id": "srv-2", "name": "Server 2: Full Original Anime (VidSrc Mirror)", "type": "embed_tv", "url": "https://vidsrc.cc/v2/embed/tv/tt12590266"},
+            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",

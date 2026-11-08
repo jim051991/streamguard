@@ -49,6 +49,8 @@ const serverMenu = document.getElementById("serverMenu");
 
 const playerContainer = document.getElementById("playerContainer");
 const videoEl = document.getElementById("videoElement");
+const embedPlayerFrame = document.getElementById("embedPlayerFrame");
+const playerControls = document.getElementById("playerControls");
 const subtitleTrack = document.getElementById("subtitleTrack");
 const liveIndicatorTag = document.getElementById("liveIndicatorTag");
 const centerPlayOverlay = document.getElementById("centerPlayOverlay");
@@ -366,21 +368,20 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
 
     // Update Player Top Bar
     activePlayerTitle.textContent = state.currentVideo.title;
-    qualityText.textContent = state.currentVideo.quality || "1080p HD";
+    qualityText.textContent = state.currentVideo.quality || "4K ULTRA HD";
 
     // Setup Multi-Server options
     renderServerOptions(state.currentVideo.servers || [
-      { id: "srv-1", name: "Server 1 (Cloud HD)", url: state.currentVideo.video_url }
+      { id: "srv-1", name: "Server 1: Full Original Movie (Cloud 4K)", type: "embed", url: state.currentVideo.video_url }
     ]);
 
-    // Handle Episode Playback if TV series
-    let targetStreamUrl = state.currentVideo.video_url;
+    // Handle Episode Playback if TV series or Anime
     if (state.currentVideo.seasons && state.currentVideo.seasons.length > 0) {
       episodesDrawer.style.display = "block";
-      renderEpisodesDrawer(state.currentVideo.seasons[0], episodeIndex || 0);
-      if (episodeIndex !== null && state.currentVideo.seasons[0].episodes[episodeIndex]) {
-        targetStreamUrl = state.currentVideo.seasons[0].episodes[episodeIndex].video_url;
-        activePlayerTitle.textContent = `${state.currentVideo.title} - Ep ${episodeIndex + 1}`;
+      renderEpisodesDrawer(state.currentVideo.seasons[0], state.currentEpisodeIndex);
+      const activeEp = state.currentVideo.seasons[0].episodes[state.currentEpisodeIndex];
+      if (activeEp) {
+        activePlayerTitle.textContent = `${state.currentVideo.title} - S1:E${activeEp.episode_number} "${activeEp.title}"`;
       }
     } else {
       episodesDrawer.style.display = "none";
@@ -388,14 +389,97 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
 
     liveScheduleDrawer.style.display = "none";
 
-    // Ensure clean HTML5 video element source (No CORS restriction!)
+    // Meta details
+    channelAvatar.src = state.currentVideo.channel?.avatar || "";
+    channelName.textContent = state.currentVideo.channel?.name || "Cinema";
+    channelSubs.textContent = `${state.currentVideo.channel?.subscribers || "10M"} subscribers`;
+    likeCountEl.textContent = (state.currentVideo.likes || 12000).toLocaleString();
+    downloadBtnLabel.textContent = "Source";
+    videoDescription.textContent = state.currentVideo.description;
+
+    tagsRow.innerHTML = (state.currentVideo.tags || [])
+      .map((t) => `<span class="meta-tag">#${t}</span>`)
+      .join(" ");
+
+    updateWatchlistButtonState();
+    renderComments(state.currentVideo.comments || []);
+
+    // Load active stream (VidLink/VidSrc Embed or Direct Native)
+    loadActiveStream(autoPlay);
+  } catch (err) {
+    console.error("Error playing video:", err);
+  }
+}
+
+// ----------------------------------------------------------------------------
+// Stream Dispatcher: Cloud 4K Embed (VidLink / VidSrc) vs Native HTML5 Player
+// ----------------------------------------------------------------------------
+function loadActiveStream(autoPlay = true) {
+  if (!state.currentVideo) return;
+  const servers = state.currentVideo.servers || [
+    { id: "srv-1", name: "Server 1: Full Original Movie (Cloud 4K)", type: "embed", url: state.currentVideo.video_url }
+  ];
+  const srv = servers[state.currentServerIndex] || servers[0];
+
+  if (srv.type === "embed" || srv.type === "embed_tv") {
+    // 1. Pause & clear native HTML5 video
+    videoEl.pause();
+    destroyHls();
+    while (videoEl.firstChild) {
+      videoEl.removeChild(videoEl.firstChild);
+    }
+    videoEl.removeAttribute("src");
+    videoEl.style.display = "none";
+    if (playerControls) playerControls.style.display = "none";
+    if (centerPlayOverlay) centerPlayOverlay.style.display = "none";
+
+    // 2. Build Embed URL
+    let embedUrl = srv.url;
+    if (srv.type === "embed_tv") {
+      const epNum = (state.currentEpisodeIndex || 0) + 1;
+      const seasonNum = 1;
+      if (embedUrl.includes("vidlink.pro")) {
+        const cleanBase = embedUrl.split("?")[0].replace(/\/+$/, "");
+        embedUrl = `${cleanBase}/${seasonNum}/${epNum}?primaryColor=06b6d4`;
+      } else if (embedUrl.includes("vidsrc")) {
+        const cleanBase = embedUrl.replace(/\/+$/, "");
+        embedUrl = `${cleanBase}/${seasonNum}/${epNum}`;
+      } else {
+        const cleanBase = embedUrl.replace(/\/+$/, "");
+        embedUrl = `${cleanBase}/${seasonNum}/${epNum}`;
+      }
+    }
+
+    // 3. Mount in iframe
+    if (embedPlayerFrame) {
+      embedPlayerFrame.style.display = "block";
+      embedPlayerFrame.src = embedUrl;
+    }
+    showToast(`Streaming ${state.currentVideo.title} via ${srv.name}`);
+  } else {
+    // Native HTML5 Video Stream (Direct / Fallback)
+    if (embedPlayerFrame) {
+      embedPlayerFrame.src = "about:blank";
+      embedPlayerFrame.style.display = "none";
+    }
+    videoEl.style.display = "block";
+    if (playerControls) playerControls.style.display = "flex";
+    if (centerPlayOverlay) centerPlayOverlay.style.display = "flex";
+
+    let nativeUrl = srv.url;
+    if (state.currentVideo.seasons && state.currentVideo.seasons.length > 0) {
+      const ep = state.currentVideo.seasons[0].episodes[state.currentEpisodeIndex || 0];
+      if (ep && ep.video_url) {
+        nativeUrl = ep.video_url;
+      }
+    }
+
     while (videoEl.firstChild) {
       videoEl.removeChild(videoEl.firstChild);
     }
     videoEl.removeAttribute("src");
     videoEl.removeAttribute("crossorigin");
 
-    // Add subtitle track
     if (state.currentVideo.subtitles && state.currentVideo.subtitles.length > 0) {
       const sub = state.currentVideo.subtitles[0];
       const track = document.createElement("track");
@@ -407,47 +491,26 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
       videoEl.appendChild(track);
     }
 
-    videoEl.src = targetStreamUrl;
+    videoEl.src = nativeUrl;
     videoEl.load();
 
-    // Reset scrubber timeline
     scrubberProgress.style.width = "0%";
     scrubberThumb.style.left = "0%";
     currentTimeEl.textContent = "00:00";
     totalDurationEl.textContent = state.currentVideo.duration_formatted || "12:14";
 
-    // Resume from history if available
     const savedHist = state.history[state.currentVideo.id];
     if (savedHist && savedHist.timestamp > 5 && savedHist.pct < 95) {
       videoEl.currentTime = savedHist.timestamp;
       showToast(`Resumed from ${formatTime(savedHist.timestamp)}`);
     }
 
-    // Meta details
-    channelAvatar.src = state.currentVideo.channel.avatar;
-    channelName.textContent = state.currentVideo.channel.name;
-    channelSubs.textContent = `${state.currentVideo.channel.subscribers} subscribers`;
-    likeCountEl.textContent = state.currentVideo.likes.toLocaleString();
-    downloadBtnLabel.textContent = "Source";
-    videoDescription.textContent = state.currentVideo.description;
-
-    tagsRow.innerHTML = (state.currentVideo.tags || [])
-      .map((t) => `<span class="meta-tag">#${t}</span>`)
-      .join(" ");
-
-    updateWatchlistButtonState();
-    renderComments(state.currentVideo.comments || []);
-
     if (autoPlay) {
-      const p = videoEl.play();
-      if (p !== undefined) {
-        p.catch((err) => {
-          console.warn("Autoplay was held by browser policy. Click play to begin audio.", err);
-        });
-      }
+      videoEl.play().catch((err) => {
+        console.warn("Autoplay held by browser policy.", err);
+      });
     }
-  } catch (err) {
-    console.error("Error playing video:", err);
+    showToast(`Streaming ${state.currentVideo.title} via ${srv.name}`);
   }
 }
 
@@ -461,6 +524,7 @@ async function selectLiveChannel(channelId, autoPlay = true) {
     const data = await res.json();
     state.currentChannel = data.channel;
     state.currentVideo = null;
+    state.currentServerIndex = 0;
 
     // Show theater container
     theaterSection.style.display = "block";
@@ -474,8 +538,8 @@ async function selectLiveChannel(channelId, autoPlay = true) {
 
     // Setup Server Options
     renderServerOptions([
-      { id: "srv-gw", name: "Self-Gateway Tunnel (Proxy Relay)", url: state.currentChannel.gateway_url },
-      { id: "srv-raw", name: "Direct Akamai CDN", url: state.currentChannel.stream_url }
+      { id: "srv-gw", name: "Self-Gateway Tunnel (Proxy Relay)", type: "native", url: state.currentChannel.gateway_url },
+      { id: "srv-raw", name: "Direct Akamai CDN", type: "native", url: state.currentChannel.stream_url }
     ]);
 
     episodesDrawer.style.display = "none";
@@ -501,6 +565,15 @@ async function selectLiveChannel(channelId, autoPlay = true) {
       <span class="meta-tag">#${state.currentChannel.country}</span>
       <span class="meta-tag">#${state.currentChannel.category}</span>
     `;
+
+    // Ensure embed player is stopped and hidden
+    if (embedPlayerFrame) {
+      embedPlayerFrame.src = "about:blank";
+      embedPlayerFrame.style.display = "none";
+    }
+    videoEl.style.display = "block";
+    if (playerControls) playerControls.style.display = "flex";
+    if (centerPlayOverlay) centerPlayOverlay.style.display = "flex";
 
     // Stream via In-App Gateway
     playHlsStream(state.currentChannel.gateway_url, autoPlay);
@@ -548,6 +621,18 @@ function destroyHls() {
 // ----------------------------------------------------------------------------
 // Multi-Server Streaming Switcher (Movibox Style)
 // ----------------------------------------------------------------------------
+function updateServerMenuUI(activeIndex) {
+  if (!serverMenu) return;
+  const buttons = serverMenu.querySelectorAll(".server-option");
+  buttons.forEach((btn, idx) => {
+    btn.classList.toggle("active", idx === activeIndex);
+    const check = btn.querySelector("i");
+    if (check) {
+      check.style.display = idx === activeIndex ? "inline-block" : "none";
+    }
+  });
+}
+
 function renderServerOptions(servers) {
   if (!servers || servers.length === 0) return;
   currentServerLabel.textContent = servers[0].name;
@@ -566,27 +651,54 @@ function renderServerOptions(servers) {
 
 function switchServer(serverIndex) {
   state.currentServerIndex = serverIndex;
-  const servers = (state.currentVideo && state.currentVideo.servers) || [];
-  if (servers[serverIndex]) {
+  updateServerMenuUI(serverIndex);
+  serverMenu.classList.remove("show");
+
+  if (state.currentChannel) {
+    const servers = [
+      { id: "srv-gw", name: "Self-Gateway Tunnel (Proxy Relay)", type: "native", url: state.currentChannel.gateway_url },
+      { id: "srv-raw", name: "Direct Akamai CDN", type: "native", url: state.currentChannel.stream_url }
+    ];
     const srv = servers[serverIndex];
-    currentServerLabel.textContent = srv.name;
-    const curTime = videoEl.currentTime || 0;
-    videoEl.src = srv.url;
-    videoEl.currentTime = curTime;
-    videoEl.play().catch(() => {});
-    serverMenu.classList.remove("show");
-    showToast(`Switched to ${srv.name}`);
+    if (srv) {
+      currentServerLabel.textContent = srv.name;
+      playHlsStream(srv.url, true);
+      showToast(`Switched to ${srv.name}`);
+    }
+  } else if (state.currentVideo) {
+    const servers = state.currentVideo.servers || [];
+    const srv = servers[serverIndex];
+    if (srv) {
+      currentServerLabel.textContent = srv.name;
+      loadActiveStream(true);
+    }
   }
 }
 
 // ----------------------------------------------------------------------------
 // Episodes Drawer & Live Schedule Rendering (CineHD Style)
 // ----------------------------------------------------------------------------
+function selectEpisode(idx) {
+  if (!state.currentVideo) return;
+  state.currentEpisodeIndex = idx;
+
+  const cards = episodesGrid.querySelectorAll(".episode-card");
+  cards.forEach((c, i) => c.classList.toggle("active", i === idx));
+
+  const season = state.currentVideo.seasons && state.currentVideo.seasons[0];
+  const ep = season && season.episodes[idx];
+  if (ep) {
+    activePlayerTitle.textContent = `${state.currentVideo.title} - S1:E${ep.episode_number} "${ep.title}"`;
+  }
+
+  loadActiveStream(true);
+}
+
 function renderEpisodesDrawer(season, activeIdx = 0) {
   episodesGrid.innerHTML = season.episodes
     .map(
       (ep, idx) => `
-      <div class="episode-card ${idx === activeIdx ? "active" : ""}" onclick="playVideoById('${state.currentVideo.id}', true, ${idx})">
+      <div class="episode-card ${idx === activeIdx ? "active" : ""}" onclick="selectEpisode(${idx})">
         <div class="episode-thumb-wrap">
           <img src="${ep.thumbnail}" alt="${ep.title}">
         </div>
@@ -1067,6 +1179,10 @@ function setupEventListeners() {
     theaterSection.style.display = "none";
     videoEl.pause();
     destroyHls();
+    if (embedPlayerFrame) {
+      embedPlayerFrame.src = "about:blank";
+      embedPlayerFrame.style.display = "none";
+    }
   });
 
   // Server Switcher Dropdown
