@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  streamguard:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: streamguard:latest
+    container_name: streamguard_app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - APP_ENV=production
+    volumes:
+      # Persist access logs, threat locations, and daily reports on host
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/videos"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

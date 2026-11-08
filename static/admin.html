@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamGuard | Autonomous Security & Hacker Location Intelligence</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    /* Admin Dashboard Specific Styles */
+    body { background: #080c14; }
+    .admin-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 30px 24px;
+    }
+    .admin-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .admin-title-wrap h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 6px 0;
+    }
+    .admin-title-wrap p {
+      color: #94a3b8;
+      margin: 0;
+      font-size: 14px;
+    }
+    .admin-top-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .kpi-card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .kpi-card.danger { border-top: 3px solid #ef4444; }
+    .kpi-card.warning { border-top: 3px solid #f59e0b; }
+    .kpi-card.success { border-top: 3px solid #10b981; }
+    .kpi-card.info { border-top: 3px solid #3b82f6; }
+    .kpi-icon {
+      position: absolute;
+      right: 18px;
+      top: 20px;
+      font-size: 24px;
+      opacity: 0.2;
+    }
+    .kpi-label {
+      font-size: 13px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .kpi-value {
+      font-size: 32px;
+      font-weight: 800;
+      color: #fff;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .kpi-sub {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 6px;
+    }
+
+    /* Tabs Navigation */
+    .admin-nav-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid #1e293b;
+      margin-bottom: 24px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      padding: 10px 18px;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 8px 8px 0 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: #fff; background: rgba(255,255,255,0.03); }
+    .tab-btn.active {
+      color: #38bdf8;
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-bottom: 2px solid #38bdf8;
+    }
+
+    /* Section Panels */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .panel-card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      margin-bottom: 24px;
+    }
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .panel-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0;
+    }
+
+    /* Threat Location Table */
+    .threat-table-wrapper {
+      overflow-x: auto;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      text-align: left;
+    }
+    .data-table th {
+      background: #1e293b;
+      color: #cbd5e1;
+      padding: 12px 14px;
+      font-weight: 600;
+      border-bottom: 1px solid #334155;
+      white-space: nowrap;
+    }
+    .data-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid #1e293b;
+      color: #e2e8f0;
+      vertical-align: middle;
+    }
+    .data-table tr:hover { background: rgba(255,255,255,0.02); }
+    .threat-badge {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .badge-sqli { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; }
+    .badge-xss { background: rgba(245, 158, 11, 0.2); color: #fbbf24; border: 1px solid #f59e0b; }
+    .badge-traversal { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid #a855f7; }
+    .badge-honeypot { background: rgba(236, 72, 153, 0.2); color: #f472b6; border: 1px solid #ec4899; }
+    .badge-bot { background: rgba(59, 130, 246, 0.2); color: #60a5fa; border: 1px solid #3b82f6; }
+    .badge-banned { background: rgba(220, 38, 38, 0.3); color: #fca5a5; font-weight: bold; }
+
+    .location-cell {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .loc-main { font-weight: 600; color: #38bdf8; }
+    .loc-sub { font-size: 11px; color: #64748b; font-family: 'JetBrains Mono', monospace; }
+
+    /* Honeypots list */
+    .honeypot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .honeypot-item {
+      background: #131d33;
+      border: 1px solid #1e293b;
+      border-left: 4px solid #ec4899;
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .honeypot-name {
+      font-weight: 700;
+      color: #f472b6;
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 6px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .honeypot-desc {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-bottom: 10px;
+    }
+    .honeypot-test-btn {
+      background: rgba(236, 72, 153, 0.15);
+      border: 1px solid #ec4899;
+      color: #f472b6;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-block;
+      text-decoration: none;
+    }
+    .honeypot-test-btn:hover { background: #ec4899; color: #fff; }
+
+    /* Report Console */
+    .log-terminal {
+      background: #020617;
+      border: 1px solid #1e293b;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #38bdf8;
+      white-space: pre-wrap;
+      max-height: 480px;
+      overflow-y: auto;
+      line-height: 1.5;
+    }
+
+    /* Attack simulator controls */
+    .sim-buttons-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .sim-btn {
+      padding: 14px 18px;
+      background: #1e293b;
+      border: 1px solid #334155;
+      color: #fff;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.2s ease;
+      text-align: left;
+    }
+    .sim-btn:hover {
+      background: #334155;
+      border-color: #38bdf8;
+      transform: translateY(-2px);
+    }
+    .sim-btn i { font-size: 16px; }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-left">
+      <a href="/" class="brand-logo">
+        <div class="logo-icon"><i class="fa-solid fa-play"></i></div>
+        <span class="logo-text">Stream<span class="highlight">Guard</span></span>
+      </a>
+      <span class="badge" style="background:#1e293b; color:#38bdf8; margin-left:14px; padding:4px 10px; border-radius:6px; font-size:12px;">Security Command Center</span>
+    </div>
+
+    <div class="header-right">
+      <a href="/" class="action-btn" title="Back to Video Streaming Player">
+        <i class="fa-solid fa-film"></i>
+        <span>Return to Video Player</span>
+      </a>
+      <button class="action-btn" id="refreshAllBtn" title="Refresh Telemetry">
+        <i class="fa-solid fa-arrows-rotate"></i>
+        <span>Refresh</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="admin-container">
+    <!-- Header Title -->
+    <div class="admin-header">
+      <div class="admin-title-wrap">
+        <h1><i class="fa-solid fa-shield-halved" style="color:#38bdf8;"></i> Autonomous Defense & Threat Location Center</h1>
+        <p>Continuous threat detection, autonomous IP quarantining, canary honeypots, and real-time intruder geolocation.</p>
+      </div>
+      <div class="admin-top-actions">
+        <a href="/api/security/download-report" class="action-btn" target="_blank">
+          <i class="fa-solid fa-file-arrow-down"></i>
+          <span>Download Daily Report (.log)</span>
+        </a>
+        <a href="/api/security/threat-locations-file" class="action-btn" target="_blank">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <span>Raw threat_locations.log</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- KPI Metric Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card info">
+        <i class="fa-solid fa-satellite-dish kpi-icon"></i>
+        <div class="kpi-label">Total Hits Logged</div>
+        <div class="kpi-value" id="kpiTotalHits">0</div>
+        <div class="kpi-sub">Written to <code>access_hits.log</code></div>
+      </div>
+      <div class="kpi-card success">
+        <i class="fa-solid fa-users kpi-icon"></i>
+        <div class="kpi-label">Unique Visitors</div>
+        <div class="kpi-value" id="kpiUniqueVisitors">0</div>
+        <div class="kpi-sub">Distinct client IP addresses</div>
+      </div>
+      <div class="kpi-card danger">
+        <i class="fa-solid fa-shield-virus kpi-icon"></i>
+        <div class="kpi-label">Attacks Thwarted</div>
+        <div class="kpi-value" id="kpiAttacksBlocked">0</div>
+        <div class="kpi-sub">Neutralized by Multi-Layer WAF</div>
+      </div>
+      <div class="kpi-card warning">
+        <i class="fa-solid fa-spider kpi-icon"></i>
+        <div class="kpi-label">Honeypot Traps Sprung</div>
+        <div class="kpi-value" id="kpiHoneypotHits">0</div>
+        <div class="kpi-sub">Intruders trapped in false files</div>
+      </div>
+      <div class="kpi-card danger">
+        <i class="fa-solid fa-ban kpi-icon"></i>
+        <div class="kpi-label">Quarantined IPs</div>
+        <div class="kpi-value" id="kpiQuarantinedIps">0</div>
+        <div class="kpi-sub">Active autonomous edge blocks</div>
+      </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="admin-nav-tabs">
+      <button class="tab-btn active" data-tab="tabThreats">
+        <i class="fa-solid fa-location-crosshairs"></i>
+        <span>Attacker Geolocation Radar</span>
+      </button>
+      <button class="tab-btn" data-tab="tabHoneypots">
+        <i class="fa-solid fa-box-tissue"></i>
+        <span>False Files & Honeypots</span>
+      </button>
+      <button class="tab-btn" data-tab="tabDailyReport">
+        <i class="fa-solid fa-file-invoice"></i>
+        <span>Daily Usage & Security Report</span>
+      </button>
+      <button class="tab-btn" data-tab="tabSimulator">
+        <i class="fa-solid fa-vial-virus"></i>
+        <span>Self-Protection Attack Simulator</span>
+      </button>
+      <button class="tab-btn" data-tab="tabHits">
+        <i class="fa-solid fa-list-check"></i>
+        <span>Access Hits Stream</span>
+      </button>
+    </div>
+
+    <!-- TAB 1: Attacker Geolocation Radar -->
+    <div class="tab-panel active" id="tabThreats">
+      <div class="panel-card">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <i class="fa-solid fa-map-location-dot" style="color:#ef4444;"></i>
+            <span>Identified Hacker Locations (threat_locations.log)</span>
+          </h2>
+          <span style="font-size:12px; color:#94a3b8;">Recorded in dedicated file requested: <code>logs/threat_locations.log</code></span>
+        </div>
+        
+        <div class="threat-table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Threat Category</th>
+                <th>Attacker IP</th>
+                <th>Geographic Origin</th>
+                <th>Target Endpoint</th>
+                <th>Detected Payload</th>
+                <th>Defense Action</th>
+              </tr>
+            </thead>
+            <tbody id="threatTableBody">
+              <tr>
+                <td colspan="7" style="text-align:center; color:#64748b; padding:24px;">
+                  No hostile attacks detected yet. The perimeter is secure.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: False Files & Honeypots -->
+    <div class="tab-panel" id="tabHoneypots">
+      <div class="panel-card">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <i class="fa-solid fa-masks-theater" style="color:#ec4899;"></i>
+            <span>Active Honeypot Decoys ("False Files to Hack")</span>
+          </h2>
+          <span style="font-size:12px; color:#94a3b8;">Decoys lure malicious bots & hackers into exposing their location</span>
+        </div>
+
+        <div class="honeypot-grid">
+          <div class="honeypot-item">
+            <div class="honeypot-name">
+              <span>/.env</span>
+              <span class="threat-badge badge-honeypot">CANARY SECRETS</span>
+            </div>
+            <div class="honeypot-desc">Fake environment configuration file containing dummy database passwords and AWS honeytokens.</div>
+            <a href="/.env" target="_blank" class="honeypot-test-btn">Inspect Decoy Output &rarr;</a>
+          </div>
+
+          <div class="honeypot-item">
+            <div class="honeypot-name">
+              <span>/admin & /wp-admin</span>
+              <span class="threat-badge badge-honeypot">DECOY PORTAL</span>
+            </div>
+            <div class="honeypot-desc">Simulated admin login portal that logs attacker login brute-force attempts and resolves their GPS coordinates.</div>
+            <a href="/admin" target="_blank" class="honeypot-test-btn">Inspect Decoy Portal &rarr;</a>
+          </div>
+
+          <div class="honeypot-item">
+            <div class="honeypot-name">
+              <span>/backup.sql</span>
+              <span class="threat-badge badge-honeypot">DECOY DB DUMP</span>
+            </div>
+            <div class="honeypot-desc">Canary database dump with fake user tables and fake bcrypt password hashes.</div>
+            <a href="/backup.sql" target="_blank" class="honeypot-test-btn">Inspect Decoy SQL &rarr;</a>
+          </div>
+
+          <div class="honeypot-item">
+            <div class="honeypot-name">
+              <span>/config.json</span>
+              <span class="threat-badge badge-honeypot">CLUSTER CANARY</span>
+            </div>
+            <div class="honeypot-desc">Simulated server infrastructure config file designed to attract automated configuration harvesters.</div>
+            <a href="/config.json" target="_blank" class="honeypot-test-btn">Inspect Decoy JSON &rarr;</a>
+          </div>
+        </div>
+
+        <h3 style="font-size:15px; color:#cbd5e1; margin-bottom:12px;">Honeypot Intrusion Audit Log (<code>logs/honeypot_traps.log</code>)</h3>
+        <div class="log-terminal" id="honeypotLogTerminal">Loading honeypot trap logs...</div>
+      </div>
+    </div>
+
+    <!-- TAB 3: Daily Report -->
+    <div class="tab-panel" id="tabDailyReport">
+      <div class="panel-card">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <i class="fa-solid fa-file-invoice" style="color:#10b981;"></i>
+            <span>Daily Site Usage & Security Audit Report</span>
+          </h2>
+          <div>
+            <button class="action-btn" id="generateReportBtn">
+              <i class="fa-solid fa-rotate"></i>
+              <span>Regenerate Report</span>
+            </button>
+            <a href="/api/security/download-report" class="action-btn" target="_blank">
+              <i class="fa-solid fa-download"></i>
+              <span>Download File</span>
+            </a>
+          </div>
+        </div>
+        <p style="font-size:13px; color:#94a3b8; margin-top:-10px; margin-bottom:15px;">
+          Automatically recorded and aggregated every 24 hours into <code>logs/daily_report_YYYY-MM-DD.log</code>.
+        </p>
+        <div class="log-terminal" id="dailyReportTerminal">Loading daily report...</div>
+      </div>
+    </div>
+
+    <!-- TAB 4: Attack Simulator -->
+    <div class="tab-panel" id="tabSimulator">
+      <div class="panel-card">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <i class="fa-solid fa-shield-virus" style="color:#f59e0b;"></i>
+            <span>Autonomous Self-Protection & Threat Simulation</span>
+          </h2>
+          <button class="action-btn" id="unbanSelfBtn" title="Clear your IP from quarantine">
+            <i class="fa-solid fa-key"></i>
+            <span>Unban My IP</span>
+          </button>
+        </div>
+        <p style="font-size:13px; color:#94a3b8; margin-bottom:20px;">
+          Click any attack vector below to test the Multi-Layer Security Shield. You will observe immediate threat detection, autonomous IP quarantining, and geographic logging into <code>threat_locations.log</code>.
+        </p>
+
+        <div class="sim-buttons-grid">
+          <button class="sim-btn" onclick="runAttackSimulation('sqli')">
+            <i class="fa-solid fa-database" style="color:#ef4444;"></i>
+            <div>
+              <div>Simulate SQL Injection (SQLi)</div>
+              <small style="color:#64748b;">UNION SELECT / OR 1=1</small>
+            </div>
+          </button>
+
+          <button class="sim-btn" onclick="runAttackSimulation('xss')">
+            <i class="fa-solid fa-code" style="color:#f59e0b;"></i>
+            <div>
+              <div>Simulate Cross-Site Scripting (XSS)</div>
+              <small style="color:#64748b;">&lt;script&gt;alert(1)&lt;/script&gt;</small>
+            </div>
+          </button>
+
+          <button class="sim-btn" onclick="runAttackSimulation('traversal')">
+            <i class="fa-solid fa-folder-tree" style="color:#a855f7;"></i>
+            <div>
+              <div>Simulate Path Traversal</div>
+              <small style="color:#64748b;">../../../../etc/passwd</small>
+            </div>
+          </button>
+
+          <button class="sim-btn" onclick="runAttackSimulation('rce')">
+            <i class="fa-solid fa-terminal" style="color:#ef4444;"></i>
+            <div>
+              <div>Simulate Command Injection (RCE)</div>
+              <small style="color:#64748b;">; cat /etc/passwd | nc</small>
+            </div>
+          </button>
+
+          <button class="sim-btn" onclick="runAttackSimulation('scanner')">
+            <i class="fa-solid fa-robot" style="color:#3b82f6;"></i>
+            <div>
+              <div>Simulate Automated Malicious Scanner</div>
+              <small style="color:#64748b;">sqlmap / nikto UA Probe</small>
+            </div>
+          </button>
+
+          <button class="sim-btn" onclick="runAttackSimulation('honeypot')">
+            <i class="fa-solid fa-spider" style="color:#ec4899;"></i>
+            <div>
+              <div>Simulate Honeypot Decoy Intrusion</div>
+              <small style="color:#64748b;">Canary access to /.env</small>
+            </div>
+          </button>
+        </div>
+
+        <h3 style="font-size:15px; color:#cbd5e1; margin-bottom:12px;">Simulation Interception Response</h3>
+        <div class="log-terminal" id="simOutputTerminal">Click any simulation button above to trigger an autonomous interception event.</div>
+      </div>
+    </div>
+
+    <!-- TAB 5: Access Hits Stream -->
+    <div class="tab-panel" id="tabHits">
+      <div class="panel-card">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <i class="fa-solid fa-satellite-dish" style="color:#38bdf8;"></i>
+            <span>Live Access Hits Stream (logs/access_hits.log)</span>
+          </h2>
+          <span style="font-size:12px; color:#94a3b8;">Every single request hit is cataloged with latency and status</span>
+        </div>
+        
+        <div class="threat-table-wrapper">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Timestamp</th>
+                <th>Client IP</th>
+                <th>Method</th>
+                <th>Endpoint Path</th>
+                <th>HTTP Status</th>
+                <th>Execution Latency</th>
+                <th>User-Agent</th>
+              </tr>
+            </thead>
+            <tbody id="hitsTableBody">
+              <tr>
+                <td colspan="7" style="text-align:center; color:#64748b; padding:24px;">Loading access hits...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const tabId = btn.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+        if (tabId === 'tabDailyReport') loadDailyReport();
+      });
+    });
+
+    // Refresh telemetry
+    async function loadTelemetry() {
+      try {
+        const res = await fetch('/api/security/stats');
+        const data = await res.json();
+
+        // Update KPIs
+        document.getElementById('kpiTotalHits').textContent = data.metrics.total_hits;
+        document.getElementById('kpiUniqueVisitors').textContent = data.metrics.unique_visitors;
+        document.getElementById('kpiAttacksBlocked').textContent = data.metrics.attacks_blocked;
+        document.getElementById('kpiHoneypotHits').textContent = data.metrics.honeypots_triggered;
+        document.getElementById('kpiQuarantinedIps').textContent = data.active_quarantined_ips;
+
+        // Render Threats Table
+        const threatTbody = document.getElementById('threatTableBody');
+        if (data.recent_threats && data.recent_threats.length > 0) {
+          threatTbody.innerHTML = data.recent_threats.map(t => {
+            const geo = t.geo || {};
+            const city = geo.city || 'Unknown';
+            const country = geo.country || 'Unknown';
+            const isp = geo.isp || 'N/A';
+            const lat = geo.lat || 0;
+            const lon = geo.lon || 0;
+            
+            let badgeClass = 'badge-sqli';
+            if (t.threat_type.includes('XSS')) badgeClass = 'badge-xss';
+            else if (t.threat_type.includes('TRAVERSAL')) badgeClass = 'badge-traversal';
+            else if (t.threat_type.includes('HONEYPOT')) badgeClass = 'badge-honeypot';
+            else if (t.threat_type.includes('BOT') || t.threat_type.includes('SCANNER')) badgeClass = 'badge-bot';
+
+            return `
+              <tr>
+                <td style="font-family:'JetBrains Mono', monospace; font-size:12px;">${t.timestamp}</td>
+                <td><span class="threat-badge ${badgeClass}">${t.threat_type}</span></td>
+                <td style="font-family:'JetBrains Mono', monospace; font-weight:bold; color:#fca5a5;">${t.ip}</td>
+                <td>
+                  <div class="location-cell">
+                    <span class="loc-main"><i class="fa-solid fa-location-dot"></i> ${city}, ${country}</span>
+                    <span class="loc-sub">Coords: [${lat}, ${lon}] • ISP: ${isp}</span>
+                  </div>
+                </td>
+                <td style="font-family:'JetBrains Mono', monospace; color:#93c5fd;">${t.path}</td>
+                <td style="font-family:'JetBrains Mono', monospace; font-size:11px; color:#cbd5e1; max-width:260px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;" title="${t.payload}">
+                  ${t.payload}
+                </td>
+                <td><span class="threat-badge badge-banned">${t.action}</span></td>
+              </tr>
+            `;
+          }).join('');
+        }
+
+        // Render Hits Table
+        const hitsTbody = document.getElementById('hitsTableBody');
+        if (data.recent_hits && data.recent_hits.length > 0) {
+          hitsTbody.innerHTML = data.recent_hits.map(h => {
+            const statusColor = h.status < 400 ? '#10b981' : (h.status === 403 ? '#ef4444' : '#f59e0b');
+            return `
+              <tr>
+                <td style="font-family:'JetBrains Mono', monospace; font-size:12px;">${h.timestamp}</td>
+                <td style="font-family:'JetBrains Mono', monospace;">${h.ip}</td>
+                <td><strong>${h.method}</strong></td>
+                <td style="font-family:'JetBrains Mono', monospace; color:#93c5fd;">${h.path}</td>
+                <td><span style="color:${statusColor}; font-weight:bold; font-family:'JetBrains Mono', monospace;">${h.status}</span></td>
+                <td style="font-family:'JetBrains Mono', monospace;">${h.latency_ms} ms</td>
+                <td style="font-size:11px; color:#64748b; max-width:200px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;">${h.user_agent}</td>
+              </tr>
+            `;
+          }).join('');
+        }
+
+      } catch (err) {
+        console.error('Error loading telemetry:', err);
+      }
+    }
+
+    async function loadDailyReport() {
+      try {
+        const res = await fetch('/api/security/daily-report');
+        const data = await res.json();
+        
+        let reportTxt = `================================================================================
+          STREAMGUARD VIDEO PLATFORM - DAILY USAGE & SECURITY AUDIT
+                          Report Date: ${data.date}
+               Generated: ${data.generated_at}
+================================================================================
+
+1. TRAFFIC PROFILE
+* Total Website Hits:     ${data.total_hits}
+* Unique Visitors (IPs):  ${data.unique_visitors}
+* Total Video Plays:      ${data.video_plays}
+* Multi-Layer Defense:    ONLINE (Autonomous AI Shield Enforcing)
+
+2. THREAT DEFENSE AUDIT
+* Hostile Attacks Blocked:   ${data.attacks_thwarted}
+* Honeypot Decoys Sprung:    ${data.honeypots_triggered}
+* Attack Breakdown:
+${Object.entries(data.attack_types || {}).map(([k, v]) => `    - ${k}: ${v}`).join('\n') || '    - None logged.'}
+
+3. IDENTIFIED HACKER & ATTACKER ORIGIN LOCATIONS (threat_locations.log)
+${(data.recent_threats || []).map(t => `  - [${t.timestamp}] IP: ${t.ip} (${t.geo ? t.geo.city + ', ' + t.geo.country : 'Unknown'}) -> ${t.threat_type} on ${t.path}`).join('\n') || '  No threats logged.'}
+
+4. LOG REPOSITORIES
+* Access Hits Log:           ${data.log_files.access_hits}
+* Attacker Geolocation Log:  ${data.log_files.threat_locations}
+* Honeypot Canary Log:       ${data.log_files.honeypot_traps}
+* Daily Summary Log:         ${data.log_files.daily_report}
+================================================================================`;
+
+        document.getElementById('dailyReportTerminal').textContent = reportTxt;
+      } catch (err) {
+        document.getElementById('dailyReportTerminal').textContent = 'Error loading daily report.';
+      }
+    }
+
+    async function runAttackSimulation(attackType) {
+      const term = document.getElementById('simOutputTerminal');
+      term.textContent = `[SIMULATION ENGINE] Launching simulated ${attackType.toUpperCase()} probe...\nEvaluating defense reaction...`;
+      try {
+        const res = await fetch('/api/security/test-attack', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ attack_type: attackType })
+        });
+        const data = await res.json();
+        term.textContent = JSON.stringify(data, null, 2);
+        // Refresh telemetry immediately
+        loadTelemetry();
+      } catch (err) {
+        term.textContent = `Error executing simulation: ${err.message}`;
+      }
+    }
+
+    async function unbanSelf() {
+      try {
+        const res = await fetch('/api/security/unban', { method: 'POST' });
+        const data = await res.json();
+        alert('IP successfully removed from quarantine whitelist.');
+        loadTelemetry();
+      } catch (err) {
+        alert('Error unbanning IP: ' + err.message);
+      }
+    }
+
+    document.getElementById('refreshAllBtn').addEventListener('click', loadTelemetry);
+    document.getElementById('generateReportBtn').addEventListener('click', loadDailyReport);
+    document.getElementById('unbanSelfBtn').addEventListener('click', unbanSelf);
+
+    // Initial load
+    loadTelemetry();
+    setInterval(loadTelemetry, 5000); // 5s live polling
+  </script>
+</body>
+</html>

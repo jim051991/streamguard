@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StreamGuard | Next-Gen Video Streaming, Global Live TV & Autonomous Security</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- HLS.js for Live Television Streaming -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@1.5.8/dist/hls.min.js"></script>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="app-header">
+    <div class="header-left">
+      <button class="icon-btn mobile-toggle" id="sidebarToggle" title="Toggle Navigation">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <a href="/" class="brand-logo">
+        <div class="logo-icon">
+          <i class="fa-solid fa-play"></i>
+        </div>
+        <span class="logo-text">Stream<span class="highlight">Guard</span></span>
+      </a>
+
+      <!-- Primary Mode Switcher (On-Demand Movies vs Global Live TV) -->
+      <div class="mode-switcher-bar">
+        <button class="mode-tab active" id="tabVideosMode">
+          <i class="fa-solid fa-film"></i>
+          <span>Cinema & Videos</span>
+        </button>
+        <button class="mode-tab" id="tabLiveTvMode">
+          <span class="live-dot-beacon"></span>
+          <i class="fa-solid fa-tv"></i>
+          <span>Live TV Global</span>
+          <span class="gateway-pill" title="Protected by Built-in Streaming Proxy Gateway">
+            <i class="fa-solid fa-shield-halved"></i> Self-Gateway
+          </span>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Search videos, live channels (NASA, DW, Bloomberg)..." autocomplete="off">
+        <button class="clear-search-btn" id="clearSearchBtn" style="display:none;">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <!-- Live Multi-Layer Defense Status Pill -->
+      <a href="/security-dashboard" class="defense-pill" title="View Security Intelligence & Threat Locations">
+        <span class="pulse-dot"></span>
+        <span class="pill-label">Shield: <strong>ACTIVE</strong></span>
+        <span class="badge" id="headerThreatCount">0</span>
+      </a>
+
+      <button class="icon-btn" id="shortcutsBtn" title="Keyboard Shortcuts (Press ?)">
+        <i class="fa-regular fa-keyboard"></i>
+      </button>
+
+      <a href="/security-dashboard" class="dashboard-btn" title="Open Security & Daily Report Center">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Security Center</span>
+      </a>
+
+      <div class="user-profile">
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="User avatar">
+      </div>
+    </div>
+  </header>
+
+  <!-- Category & Regional Filter Bar -->
+  <nav class="category-bar" id="categoryBar">
+    <!-- Populated dynamically based on Cinema vs Live TV mode -->
+  </nav>
+
+  <!-- Main Content Layout -->
+  <main class="main-layout" id="mainLayout">
+    <!-- Left Column: Video Player & Meta -->
+    <section class="player-column">
+      <!-- Player Container -->
+      <div class="player-container" id="playerContainer">
+        <!-- HTML5 Video Element -->
+        <video id="videoElement" preload="metadata" playsinline>
+          <source src="" type="video/mp4">
+          Your browser does not support HTML5 video playback.
+        </video>
+
+        <!-- Live Stream Overlay Badge -->
+        <div class="live-indicator-tag" id="liveIndicatorTag" style="display:none;">
+          <span class="live-blink-circle"></span>
+          <span class="live-text-label">LIVE BROADCAST</span>
+          <span class="live-gateway-tag"><i class="fa-solid fa-bolt"></i> SELF-GATEWAY TUNNEL</span>
+        </div>
+
+        <!-- Center Click Overlay for Play/Pause Animation -->
+        <div class="center-play-overlay" id="centerPlayOverlay">
+          <i class="fa-solid fa-play"></i>
+        </div>
+
+        <!-- Custom Controls Overlay -->
+        <div class="player-controls-overlay" id="playerControls">
+          <!-- Timeline / Scrubber (hidden or live DVR mode for live streams) -->
+          <div class="scrubber-wrapper" id="scrubberWrapper">
+            <div class="scrubber-hover-preview" id="scrubberPreview">
+              <span id="previewTime">00:00</span>
+            </div>
+            <div class="scrubber-bar" id="scrubberBar">
+              <div class="buffer-progress" id="bufferProgress"></div>
+              <div class="scrubber-progress" id="scrubberProgress"></div>
+              <div class="scrubber-thumb" id="scrubberThumb"></div>
+            </div>
+          </div>
+
+          <!-- Controls Bottom Bar -->
+          <div class="controls-bottom">
+            <div class="controls-left">
+              <button class="ctrl-btn" id="playBtn" title="Play/Pause (Space/K)">
+                <i class="fa-solid fa-play"></i>
+              </button>
+              <button class="ctrl-btn" id="prevBtn" title="Previous Video / Channel">
+                <i class="fa-solid fa-backward-step"></i>
+              </button>
+              <button class="ctrl-btn" id="nextBtn" title="Next Video / Channel">
+                <i class="fa-solid fa-forward-step"></i>
+              </button>
+              
+              <!-- Volume Group -->
+              <div class="volume-group">
+                <button class="ctrl-btn" id="muteBtn" title="Mute/Unmute (M)">
+                  <i class="fa-solid fa-volume-high"></i>
+                </button>
+                <div class="volume-slider-container">
+                  <input type="range" id="volumeSlider" min="0" max="1" step="0.05" value="1">
+                </div>
+              </div>
+
+              <!-- Time / Live display -->
+              <div class="time-display" id="timeDisplayWrap">
+                <span id="currentTime">00:00</span> / <span id="totalDuration">00:00</span>
+              </div>
+            </div>
+
+            <div class="controls-right">
+              <!-- Autoplay Switch -->
+              <div class="autoplay-toggle" id="autoplayToggleWrap" title="Autoplay next video">
+                <label class="switch">
+                  <input type="checkbox" id="autoplayCheck" checked>
+                  <span class="slider round"></span>
+                </label>
+                <span class="switch-label">Autoplay</span>
+              </div>
+
+              <!-- Playback Speed -->
+              <div class="dropdown-wrapper" id="speedWrapper">
+                <button class="ctrl-btn text-badge" id="speedBtn" title="Playback Speed">
+                  <span id="speedLabel">1x</span>
+                </button>
+                <div class="dropdown-menu" id="speedMenu">
+                  <button class="speed-opt" data-speed="0.5">0.5x</button>
+                  <button class="speed-opt" data-speed="0.75">0.75x</button>
+                  <button class="speed-opt active" data-speed="1.0">Normal (1x)</button>
+                  <button class="speed-opt" data-speed="1.25">1.25x</button>
+                  <button class="speed-opt" data-speed="1.5">1.5x</button>
+                  <button class="speed-opt" data-speed="2.0">2.0x</button>
+                </div>
+              </div>
+
+              <!-- Quality Badge -->
+              <div class="quality-badge" id="qualityBadge" title="Streaming Quality">
+                <i class="fa-solid fa-sliders"></i>
+                <span id="qualityText">1080p HD</span>
+              </div>
+
+              <!-- Theater Mode Toggle -->
+              <button class="ctrl-btn" id="theaterBtn" title="Theater Mode (T)">
+                <i class="fa-solid fa-tablet-screen-button"></i>
+              </button>
+
+              <!-- Picture in Picture (PiP) -->
+              <button class="ctrl-btn" id="pipBtn" title="Picture in Picture">
+                <i class="fa-solid fa-clone"></i>
+              </button>
+
+              <!-- Fullscreen Toggle -->
+              <button class="ctrl-btn" id="fullscreenBtn" title="Fullscreen (F)">
+                <i class="fa-solid fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Video / Channel Details Section -->
+      <div class="video-meta-section">
+        <h1 class="video-title" id="videoTitle">Loading Media Stream...</h1>
+        
+        <div class="video-action-bar">
+          <div class="creator-info">
+            <img src="" alt="Creator avatar" id="channelAvatar" class="creator-avatar">
+            <div class="creator-meta">
+              <div class="creator-name-row">
+                <span class="creator-name" id="channelName">Channel</span>
+                <i class="fa-solid fa-circle-check verified-icon" title="Verified Broadcast"></i>
+                <span class="origin-flag-badge" id="channelFlagBadge" style="display:none;">🇺🇸</span>
+              </div>
+              <span class="sub-count" id="channelSubs">0 subscribers</span>
+            </div>
+            <button class="subscribe-btn" id="subBtn">Follow Broadcast</button>
+          </div>
+
+          <div class="action-buttons">
+            <button class="action-btn" id="likeBtn">
+              <i class="fa-regular fa-thumbs-up"></i>
+              <span id="likeCount">0</span>
+            </button>
+            <button class="action-btn" id="shareBtn" title="Copy Stream Link">
+              <i class="fa-solid fa-share-nodes"></i>
+              <span>Share</span>
+            </button>
+            <button class="action-btn" id="downloadBtn" title="Direct Stream Source">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i>
+              <span id="downloadBtnLabel">Source</span>
+            </button>
+            <a href="/security-dashboard" class="action-btn shield-pill" title="Security & Hacker Location Monitor">
+              <i class="fa-solid fa-user-shield"></i>
+              <span>Threat Radar</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Description Box -->
+        <div class="description-card">
+          <div class="desc-stats">
+            <span id="viewCount">0 views</span> • <span id="publishDate">Recently</span>
+            <div class="tags-row" id="tagsRow"></div>
+          </div>
+          <p class="desc-text" id="videoDescription">Loading broadcast description...</p>
+        </div>
+
+        <!-- Comments & Discussion Area -->
+        <div class="comments-section" id="commentsSection">
+          <div class="comments-header">
+            <h3>Live Discussion (<span id="commentsCount">0</span>)</h3>
+          </div>
+
+          <!-- Comment Input Box -->
+          <div class="add-comment-form">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Avatar" class="my-avatar">
+            <div class="comment-input-wrap">
+              <input type="text" id="commentAuthor" placeholder="Your display name..." value="Viewer">
+              <textarea id="commentText" placeholder="Post a live reaction or discussion note..." rows="2"></textarea>
+              <div class="comment-actions">
+                <span class="security-note"><i class="fa-solid fa-shield"></i> Live comments protected by Autonomous XSS Shield</span>
+                <button class="comment-submit-btn" id="submitCommentBtn">Send</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Comments List -->
+          <div class="comments-list" id="commentsList">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Right Column: Up Next Playlist / Live Channels Directory -->
+    <aside class="sidebar-column">
+      <div class="sidebar-header">
+        <h3 id="sidebarTitle"><i class="fa-solid fa-layer-group"></i> Up Next & Recommendations</h3>
+      </div>
+      
+      <div class="queue-list" id="queueList">
+        <!-- Dynamically populated video cards or live channels -->
+      </div>
+
+      <!-- Quick Security Status Card in Sidebar -->
+      <div class="security-card-sidebar">
+        <div class="card-title">
+          <i class="fa-solid fa-shield-virus"></i>
+          <span>Defense System Status</span>
+        </div>
+        <p class="card-desc">All streaming traffic, comments, and requests are scrutinized by Autonomous WAF & Geolocation tracking.</p>
+        <div class="defense-stats-grid">
+          <div class="stat-mini">
+            <span class="stat-val" id="sbHits">0</span>
+            <span class="stat-lbl">Hits Logged</span>
+          </div>
+          <div class="stat-mini">
+            <span class="stat-val" id="sbThreats">0</span>
+            <span class="stat-lbl">Attacks Thwarted</span>
+          </div>
+        </div>
+        <a href="/security-dashboard" class="sidebar-sec-link">Open Intruder Location Radar &rarr;</a>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Keyboard Shortcuts Modal -->
+  <div class="modal-backdrop" id="shortcutsModal" style="display:none;">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-regular fa-keyboard"></i> Player Hotkeys</h3>
+        <button class="modal-close-btn" id="closeModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="shortcuts-grid">
+        <div class="shortcut-row"><kbd>Space</kbd> or <kbd>K</kbd> <span>Play / Pause</span></div>
+        <div class="shortcut-row"><kbd>J</kbd> <span>Seek Backward 10 Seconds</span></div>
+        <div class="shortcut-row"><kbd>L</kbd> <span>Seek Forward 10 Seconds</span></div>
+        <div class="shortcut-row"><kbd>M</kbd> <span>Mute / Unmute Audio</span></div>
+        <div class="shortcut-row"><kbd>F</kbd> <span>Toggle Fullscreen</span></div>
+        <div class="shortcut-row"><kbd>T</kbd> <span>Toggle Theater Mode</span></div>
+        <div class="shortcut-row"><kbd>0</kbd> - <kbd>9</kbd> <span>Seek to 0% - 90%</span></div>
+        <div class="shortcut-row"><kbd>?</kbd> <span>Toggle this shortcuts menu</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Website Footer with Worldwide Legal Disclaimers & Policies -->
+  <footer class="app-footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <span class="footer-brand">StreamGuard Global Media Platform</span>
+        <span class="footer-copy">© 2026 StreamGuard. Worldwide Open-Source Streaming & Autonomous Security Grid.</span>
+      </div>
+      <div class="footer-links">
+        <button class="footer-link-btn" onclick="openLegalModal('legal-global-safe-harbor')">Global Safe Harbor (US/EU/Asia)</button>
+        <button class="footer-link-btn" onclick="openLegalModal('legal-non-hosting')">Worldwide Non-Hosting & Berne Conv.</button>
+        <button class="footer-link-btn" onclick="openLegalModal('legal-cross-border')">Cross-Border & Geoblocking Policy</button>
+        <button class="footer-link-btn" onclick="openLegalModal('legal-security-gdpr')">Cybersecurity & GDPR Recital 49</button>
+        <button class="footer-link-btn" onclick="openLegalModal('legal-takedown')">Universal Takedown / Grievance Contact</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Worldwide Legal Disclaimers & Multi-Jurisdictional Modal -->
+  <div class="modal-backdrop" id="legalModal" style="display:none;">
+    <div class="modal-card legal-modal-card">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-globe" style="color:var(--accent-cyan);"></i> Worldwide Legal Disclaimers & International Safe Harbor</h3>
+        <button class="modal-close-btn" id="closeLegalModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Legal Tabs -->
+      <div class="legal-nav-tabs">
+        <button class="legal-tab-btn active" data-tab="legal-global-safe-harbor">Global Safe Harbor</button>
+        <button class="legal-tab-btn" data-tab="legal-non-hosting">Non-Hosting & Berne</button>
+        <button class="legal-tab-btn" data-tab="legal-cross-border">Cross-Border Broadcasts</button>
+        <button class="legal-tab-btn" data-tab="legal-security-gdpr">Security & GDPR (Art. 6/49)</button>
+        <button class="legal-tab-btn" data-tab="legal-takedown">Takedown & Grievance</button>
+      </div>
+
+      <div class="legal-content-body">
+        <!-- Tab 1: Global Safe Harbor -->
+        <div class="legal-panel active" id="legal-global-safe-harbor">
+          <h4>1. Multi-Jurisdictional Safe Harbor & Intermediary Immunity</h4>
+          <p>StreamGuard operates globally as an intermediary media player and indexing directory under international safe harbor doctrines:</p>
+          <ul>
+            <li><strong>United States:</strong> Title II of the Digital Millennium Copyright Act (<strong>17 U.S.C. § 512</strong>) and Section 230 of the Communications Decency Act (<strong>47 U.S.C. § 230</strong>).</li>
+            <li><strong>European Union & UK:</strong> The <strong>EU Digital Services Act (DSA - Regulation (EU) 2022/2065)</strong>, Articles 4-6, Directive 2000/31/EC ("Mere Conduit" and "Hosting" liability exemptions), and the UK Electronic Commerce Regulations 2002.</li>
+            <li><strong>India:</strong> Section 79 of the <strong>Information Technology Act, 2000</strong> read with the Information Technology (Intermediary Guidelines and Digital Media Ethics Code) Rules, 2021.</li>
+            <li><strong>Canada:</strong> Sections 41.25 and 41.26 of the <strong>Copyright Act</strong> (Notice-and-Notice Regime).</li>
+            <li><strong>Australia:</strong> Part V, Division 2AA of the <strong>Copyright Act 1968</strong> (Safe Harbour Scheme).</li>
+            <li><strong>Singapore:</strong> Part 6, Division 2 of the <strong>Singapore Copyright Act 2021</strong> (Network Service Provider Safe Harbours).</li>
+          </ul>
+          <p>StreamGuard maintains an active, universal notice-and-takedown mechanism across all international jurisdictions.</p>
+        </div>
+
+        <!-- Tab 2: Non-Hosting & Berne Convention -->
+        <div class="legal-panel" id="legal-non-hosting">
+          <h4>2. Content Non-Hosting & Berne Convention Compliance</h4>
+          <p><strong>Zero Media Hosting:</strong> StreamGuard does NOT host, upload, record, capture, or store any proprietary video or television files on its servers. All live television channels indexed on this site are unencrypted <strong>Free-to-Air (FTA)</strong> web broadcasts distributed openly by their respective networks over the public Internet.</p>
+          <p><strong>International Copyright Treaties:</strong> StreamGuard respects the <strong>Berne Convention for the Protection of Literary and Artistic Works</strong> and the <strong>WIPO Copyright Treaty (WCT)</strong>. This platform functions strictly as an interactive playback client and indexing gateway.</p>
+          <p><strong>Trademarks & Logos:</strong> All network names, logos, and trademarks (e.g., NASA, Deutsche Welle, Bloomberg, Red Bull, TRT World, CGTN) are the exclusive property of their respective trademark holders. Reference to any commercial entity does not imply affiliation, sponsorship, or endorsement.</p>
+          <p><strong>Creative Commons:</strong> All on-demand open movies are officially licensed under Creative Commons Attribution (CC-BY) courtesy of the Blender Foundation.</p>
+        </div>
+
+        <!-- Tab 3: Cross-Border Broadcasts & Geoblocking -->
+        <div class="legal-panel" id="legal-cross-border">
+          <h4>3. Cross-Border Streaming & Geoblocking Policy</h4>
+          <p><strong>Territorial Licensing Acknowledgment:</strong> Broadcasters distribute content subject to territorial broadcast licenses and international spectrum allocations governed by the International Telecommunication Union (ITU).</p>
+          <p><strong>No DRM Circumvention:</strong> StreamGuard complies with Section 1201 of the US DMCA, Article 6 of the EU Copyright Directive 2001/29/EC, and international anti-circumvention treaties. This platform <strong>DOES NOT</strong> decrypt, crack, or bypass Digital Rights Management (Widevine, PlayReady, FairPlay) or paywalled subscription streams.</p>
+          <p><strong>End-User Responsibility:</strong> Users accessing broadcast streams across international borders are solely responsible for ensuring that viewing complies with local laws, regional broadcast regulations, and television reception licensing laws in their jurisdiction.</p>
+        </div>
+
+        <!-- Tab 4: Security & GDPR -->
+        <div class="legal-panel" id="legal-security-gdpr">
+          <h4>4. Cybersecurity Telemetry & GDPR Recital 49 Notice</h4>
+          <p><strong>Worldwide Cybersecurity Monitoring:</strong> To ensure platform availability, prevent cyber warfare attacks, and defend infrastructure from automated exploitation, this platform deploys autonomous threat detection, honeypot canary traps, and IP geolocation telemetry.</p>
+          <p><strong>GDPR / European Privacy Compliance:</strong> In full compliance with <strong>Article 6(1)(f) and Recital 49 of the EU General Data Protection Regulation (GDPR)</strong>, the processing of visitor IP addresses and threat signatures is legally recognized as a <em>"Legitimate Interest of the controller in network and information security"</em> for preventing unauthorized access, malicious bot floods, and denial of service.</p>
+          <p><strong>Honeypot Warning:</strong> Any automated or manual attempt to exploit SQL injection, XSS, directory traversal, or access honeypot canary files (such as <code>/.env</code>, <code>/admin</code>, <code>/backup.sql</code>) triggers autonomous IP blacklisting, forensic capture, and geolocation logging into <code>threat_locations.log</code>.</p>
+        </div>
+
+        <!-- Tab 5: Takedown & Grievance Contact -->
+        <div class="legal-panel" id="legal-takedown">
+          <h4>5. Universal Takedown Procedure & Grievance Officer</h4>
+          <p>Rightsholders from any country can request the expeditious removal of any indexed stream link by submitting an official notice containing:</p>
+          <ul>
+            <li>Title and description of the copyrighted broadcast.</li>
+            <li>The exact stream URL or channel indexed on this website to be delinked.</li>
+            <li>Your physical or electronic signature and contact information.</li>
+            <li>A good faith statement that the disputed use is unauthorized by the copyright owner.</li>
+          </ul>
+          <div class="contact-box">
+            <div><i class="fa-solid fa-building-shield"></i> <strong>Designated Global Compliance & DMCA Agent:</strong></div>
+            <div style="margin-top:6px;">Email: <code>dmca@streamguard.io</code> • <code>legal-compliance@streamguard.internal</code></div>
+            <div>Grievance Officer (India / Asia): <code>grievance-officer@streamguard.io</code></div>
+            <div style="font-size:11px; color:#94a3b8; margin-top:4px;">Average Response Time: Under 24 Business Hours.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Notification Toast -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
