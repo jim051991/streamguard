@@ -168,6 +168,9 @@ const railTrending = document.getElementById("railTrending");
 const railMoviesWrap = document.getElementById("railMoviesWrap");
 const railMovies = document.getElementById("railMovies");
 
+const railWorldCinemaWrap = document.getElementById("railWorldCinemaWrap");
+const railWorldCinema = document.getElementById("railWorldCinema");
+
 const railSeriesWrap = document.getElementById("railSeriesWrap");
 const railSeries = document.getElementById("railSeries");
 
@@ -280,6 +283,7 @@ function renderAllRails() {
   renderWatchlistRail();
   renderTrendingRail();
   renderMoviesRail();
+  renderWorldCinemaRail();
   renderSeriesRail();
   renderAnimeRail();
   renderLiveTvRail();
@@ -372,6 +376,12 @@ function renderTrendingRail() {
 function renderMoviesRail() {
   const movies = state.allVideos.filter((v) => v.content_type === "movie");
   railMovies.innerHTML = (movies.length ? movies : state.allVideos).map((item) => renderCard(item)).join("");
+}
+
+function renderWorldCinemaRail() {
+  if (!railWorldCinema) return;
+  const worldMovies = state.allVideos.filter((v) => v.content_type === "movie" && v.is_world_cinema);
+  railWorldCinema.innerHTML = (worldMovies.length ? worldMovies : state.allVideos).map((item) => renderCard(item)).join("");
 }
 
 function renderSeriesRail() {
@@ -1322,7 +1332,7 @@ function setupEventListeners() {
         railWatchlistWrap.style.display = "block";
       } else {
         document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "none"));
-        if (type === "movie") railMoviesWrap.style.display = "block";
+        if (type === "movie") { railMoviesWrap.style.display = "block"; if (railWorldCinemaWrap) railWorldCinemaWrap.style.display = "block"; }
         if (type === "series") railSeriesWrap.style.display = "block";
         if (type === "anime") railAnimeWrap.style.display = "block";
       }
