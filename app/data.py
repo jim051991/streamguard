@@ -96,6 +96,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4820000,
@@ -301,6 +311,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 3210000,
@@ -506,6 +526,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 2940000,
@@ -735,6 +765,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 6480000,
@@ -941,6 +981,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 5480000,
@@ -1146,6 +1196,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4890000,
@@ -1350,6 +1410,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4120000,
@@ -1555,6 +1625,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 5890000,
@@ -1760,6 +1840,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 3940000,
@@ -1965,6 +2055,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 3120000,
@@ -2170,6 +2270,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4450000,
@@ -2375,6 +2485,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 3780000,
@@ -2580,6 +2700,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 6120000,
@@ -2785,6 +2915,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 9850000,
@@ -2990,6 +3130,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 8450000,
@@ -3195,6 +3345,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4920000,
@@ -3399,6 +3559,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 5210000,
@@ -3604,6 +3774,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 2980000,
@@ -3809,6 +3989,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4750000,
@@ -4014,6 +4204,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4120000,
@@ -4219,6 +4419,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 6890000,
@@ -4425,6 +4635,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4350000,
@@ -4632,6 +4852,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 5920000,
@@ -4838,6 +5068,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 5340000,
@@ -5045,6 +5285,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 8120000,
@@ -5252,6 +5502,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 7320000,
@@ -5458,6 +5718,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4890000,
@@ -5664,6 +5934,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 8450000,
@@ -5872,6 +6152,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 6120000,
@@ -6079,6 +6369,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 5940000,
@@ -6287,6 +6587,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 6780000,
@@ -6494,6 +6804,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 9420000,
@@ -6700,6 +7020,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4120000,
@@ -6907,6 +7237,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 3890000,
@@ -7113,6 +7453,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4780000,
@@ -7320,6 +7670,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 4350000,
@@ -7525,6 +7885,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 6120000,
@@ -7732,6 +8102,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 5340000,
@@ -7939,6 +8319,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "views": 3890000,
@@ -8146,6 +8536,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "seasons": [
@@ -8373,6 +8773,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "seasons": [
@@ -8600,6 +9010,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "seasons": [
@@ -8828,6 +9248,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "seasons": [
@@ -9053,6 +9483,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "seasons": [
@@ -9277,6 +9717,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "seasons": [
@@ -9502,6 +9952,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "seasons": [
@@ -9726,6 +10186,16 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "label": "English [CC]",
                 "srclang": "en",
                 "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "हिन्दी [CC]",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            },
+            {
+                "label": "Español [CC]",
+                "srclang": "es",
+                "src": "/static/subtitles/spanish.vtt"
             }
         ],
         "seasons": [

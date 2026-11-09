@@ -331,11 +331,68 @@
                 <span id="activeLangCode">EN</span>
               </button>
 
-              <!-- Subtitle CC Toggle -->
-              <button class="ctrl-btn text-badge" id="ccToggleBtn" title="Toggle Subtitles [CC]">
-                <i class="fa-regular fa-closed-captioning"></i>
-                <span id="ccStatusText">CC</span>
-              </button>
+              <!-- Subtitle CC Selector & Customizer Popover (MovieBox & CineHD Style) -->
+              <div class="dropdown-wrapper cc-dropdown-wrapper" id="ccWrapper">
+                <button class="ctrl-btn text-badge" id="ccToggleBtn" title="Subtitles & Closed Captions [CC]">
+                  <i class="fa-regular fa-closed-captioning"></i>
+                  <span id="ccStatusText">CC</span>
+                  <i class="fa-solid fa-chevron-down" style="font-size: 0.65rem; margin-left: 3px;"></i>
+                </button>
+                <div class="dropdown-menu cc-dropdown-menu" id="ccDropdownMenu">
+                  <div class="cc-dropdown-header">
+                    <span><i class="fa-regular fa-closed-captioning"></i> Subtitles & Captions</span>
+                    <span class="cc-count-tag" id="ccCountTag">3 Tracks</span>
+                  </div>
+                  
+                  <!-- Subtitle Language Tracks List -->
+                  <div class="cc-tracks-list" id="ccTracksList">
+                    <!-- Populated dynamically: Off, English [CC], Hindi [CC], etc. -->
+                  </div>
+
+                  <!-- Subtitle Appearance Customizer (MovieBox Style) -->
+                  <div class="cc-customizer-section">
+                    <div class="cc-section-label"><i class="fa-solid fa-palette"></i> Caption Styling</div>
+                    
+                    <div class="cc-options-row">
+                      <span class="cc-opt-title">Color:</span>
+                      <div class="cc-chip-group" id="ccColorGroup">
+                        <button class="cc-chip active" data-color="white" title="White Text">White</button>
+                        <button class="cc-chip" data-color="yellow" title="Netflix Gold Yellow">Yellow</button>
+                        <button class="cc-chip" data-color="cyan" title="Cyan Cinema">Cyan</button>
+                      </div>
+                    </div>
+
+                    <div class="cc-options-row">
+                      <span class="cc-opt-title">Size:</span>
+                      <div class="cc-chip-group" id="ccSizeGroup">
+                        <button class="cc-chip" data-size="small">Small</button>
+                        <button class="cc-chip active" data-size="normal">Normal</button>
+                        <button class="cc-chip" data-size="large">Large</button>
+                      </div>
+                    </div>
+
+                    <div class="cc-options-row">
+                      <span class="cc-opt-title">Backdrop:</span>
+                      <div class="cc-chip-group" id="ccBgGroup">
+                        <button class="cc-chip" data-bg="none">None</button>
+                        <button class="cc-chip active" data-bg="semi">Semi</button>
+                        <button class="cc-chip" data-bg="solid">Solid</button>
+                      </div>
+                    </div>
+
+                    <!-- Audio-Sub Sync Offset Adjuster -->
+                    <div class="cc-options-row cc-sync-row">
+                      <span class="cc-opt-title">Sync Delay:</span>
+                      <div class="cc-sync-controls">
+                        <button class="cc-sync-btn" id="ccSyncMinus" title="Delay -0.5s">-0.5s</button>
+                        <span class="cc-sync-val" id="ccSyncVal">0.0s</span>
+                        <button class="cc-sync-btn" id="ccSyncPlus" title="Advance +0.5s">+0.5s</button>
+                        <button class="cc-sync-reset" id="ccSyncReset" title="Reset Sync"><i class="fa-solid fa-rotate-left"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               <!-- Playback Speed -->
               <div class="dropdown-wrapper" id="speedWrapper">

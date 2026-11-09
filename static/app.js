@@ -350,6 +350,13 @@ const state = {
   featuredItem: null,
   hlsInstance: null,
   subtitlesActive: true,
+  activeSubtitleLang: "en",
+  subtitleStyle: {
+    color: localStorage.getItem("streamguard_sub_color") || "white",
+    size: localStorage.getItem("streamguard_sub_size") || "normal",
+    bg: localStorage.getItem("streamguard_sub_bg") || "semi"
+  },
+  subtitleSyncOffset: 0.0,
   searchQuery: "",
   partyRoomCode: null,
   history: JSON.parse(localStorage.getItem("streamguard_history") || "{}"),
@@ -1148,14 +1155,15 @@ function loadActiveStream(autoPlay = true) {
     videoEl.removeAttribute("crossorigin");
 
     if (state.currentVideo.subtitles && state.currentVideo.subtitles.length > 0) {
-      const sub = state.currentVideo.subtitles[0];
-      const track = document.createElement("track");
-      track.kind = "subtitles";
-      track.label = sub.label;
-      track.srclang = sub.srclang;
-      track.src = sub.src;
-      track.default = true;
-      videoEl.appendChild(track);
+      state.currentVideo.subtitles.forEach((sub, idx) => {
+        const track = document.createElement("track");
+        track.kind = "subtitles";
+        track.label = sub.label;
+        track.srclang = sub.srclang;
+        track.src = sub.src;
+        track.default = idx === 0;
+        videoEl.appendChild(track);
+      });
     }
 
     videoEl.src = nativeUrl;
@@ -1167,6 +1175,8 @@ function loadActiveStream(autoPlay = true) {
     renderAudioQuickTabs();
     renderAudioLanguageMenu();
     renderVideoQualityMenu(srv);
+    renderSubtitleTracksMenu();
+    applySubtitleStyling();
     try {
       TheaterSoundEngine.init(videoEl);
       TheaterSoundEngine.resumeContext();
@@ -2007,14 +2017,181 @@ function updateVolumeIcon() {
   }
 }
 
-function toggleSubtitles() {
-  state.subtitlesActive = !state.subtitlesActive;
-  if (videoEl.textTracks && videoEl.textTracks.length > 0) {
-    videoEl.textTracks[0].mode = state.subtitlesActive ? "showing" : "hidden";
+// ----------------------------------------------------------------------------
+// Interactive Subtitle Track Menu & Font Styler (MovieBox & CineHD Style)
+// ----------------------------------------------------------------------------
+function renderSubtitleTracksMenu() {
+  const tracksList = document.getElementById("ccTracksList");
+  const countTag = document.getElementById("ccCountTag");
+  const ccStatusText = document.getElementById("ccStatusText");
+  const ccToggleBtn = document.getElementById("ccToggleBtn");
+  if (!tracksList) return;
+
+  const availableSubs = (state.currentVideo && state.currentVideo.subtitles) || [
+    { label: "English [CC]", srclang: "en", src: "/static/subtitles/english.vtt" },
+    { label: "हिन्दी [CC]", srclang: "hi", src: "/static/subtitles/hindi.vtt" },
+    { label: "Español [CC]", srclang: "es", src: "/static/subtitles/spanish.vtt" }
+  ];
+
+  if (countTag) countTag.textContent = `${availableSubs.length} Tracks`;
+
+  const isOff = !state.subtitlesActive;
+  if (ccStatusText) {
+    ccStatusText.textContent = isOff ? "OFF" : (state.activeSubtitleLang ? state.activeSubtitleLang.toUpperCase() : "CC");
   }
-  ccToggleBtn.classList.toggle("active", state.subtitlesActive);
-  showToast(state.subtitlesActive ? "Subtitles [CC] Enabled" : "Subtitles Disabled");
+  if (ccToggleBtn) {
+    ccToggleBtn.classList.toggle("active", !isOff);
+  }
+
+  let html = `
+    <button class="cc-track-opt ${isOff ? 'active' : ''}" onclick="selectSubtitleTrack('off')">
+      <span><i class="fa-solid fa-ban" style="margin-right:8px; font-size:12px; color:#ef4444;"></i> Subtitles Off</span>
+      ${isOff ? '<i class="fa-solid fa-check" style="color:var(--accent-cyan); font-size:12px;"></i>' : ''}
+    </button>
+  `;
+
+  availableSubs.forEach((sub) => {
+    const isActive = !isOff && state.activeSubtitleLang.toLowerCase() === sub.srclang.toLowerCase();
+    const flag = sub.srclang === "hi" ? "🇮🇳" : (sub.srclang === "es" ? "🇪🇸" : "🇺🇸");
+    html += `
+      <button class="cc-track-opt ${isActive ? 'active' : ''}" onclick="selectSubtitleTrack('${sub.srclang}')">
+        <span><span style="margin-right:8px; font-size:13px;">${flag}</span>${sub.label}</span>
+        ${isActive ? '<i class="fa-solid fa-check" style="color:var(--accent-cyan); font-size:12px;"></i>' : ''}
+      </button>
+    `;
+  });
+
+  tracksList.innerHTML = html;
 }
+
+function selectSubtitleTrack(srclang) {
+  if (srclang === "off") {
+    state.subtitlesActive = false;
+    for (let i = 0; i < videoEl.textTracks.length; i++) {
+      videoEl.textTracks[i].mode = "hidden";
+    }
+    showToast("Subtitles Disabled");
+  } else {
+    state.subtitlesActive = true;
+    state.activeSubtitleLang = srclang;
+    let found = false;
+    for (let i = 0; i < videoEl.textTracks.length; i++) {
+      const trk = videoEl.textTracks[i];
+      if (trk.language && trk.language.toLowerCase() === srclang.toLowerCase()) {
+        trk.mode = "showing";
+        found = true;
+      } else {
+        trk.mode = "hidden";
+      }
+    }
+    if (!found && videoEl.textTracks.length > 0) {
+      videoEl.textTracks[0].mode = "showing";
+    }
+    showToast(`Subtitles: ${srclang.toUpperCase()} [CC] Active`);
+  }
+
+  renderSubtitleTracksMenu();
+  applySubtitleStyling();
+}
+
+function toggleSubtitles() {
+  if (state.subtitlesActive) {
+    selectSubtitleTrack("off");
+  } else {
+    selectSubtitleTrack(state.activeSubtitleLang || "en");
+  }
+}
+
+function applySubtitleStyling() {
+  let styleEl = document.getElementById("dynamicSubtitleCueStyle");
+  if (!styleEl) {
+    styleEl = document.createElement("style");
+    styleEl.id = "dynamicSubtitleCueStyle";
+    document.head.appendChild(styleEl);
+  }
+
+  const colorMap = {
+    white: "color: #ffffff !important; text-shadow: 0 2px 4px rgba(0,0,0,0.95);",
+    yellow: "color: #facc15 !important; text-shadow: 0 2px 4px rgba(0,0,0,0.95);",
+    cyan: "color: #22d3ee !important; text-shadow: 0 2px 4px rgba(0,0,0,0.95);"
+  };
+
+  const sizeMap = {
+    small: "font-size: 0.95rem !important;",
+    normal: "font-size: 1.2rem !important;",
+    large: "font-size: 1.55rem !important;"
+  };
+
+  const bgMap = {
+    none: "background-color: transparent !important; text-shadow: 0 2px 6px #000, 0 0 3px #000;",
+    semi: "background-color: rgba(0, 0, 0, 0.6) !important; border-radius: 4px;",
+    solid: "background-color: rgba(0, 0, 0, 0.95) !important; border-radius: 4px;"
+  };
+
+  styleEl.textContent = `
+    video::cue {
+      ${colorMap[state.subtitleStyle.color] || colorMap.white}
+      ${sizeMap[state.subtitleStyle.size] || sizeMap.normal}
+      ${bgMap[state.subtitleStyle.bg] || bgMap.semi}
+      font-family: system-ui, -apple-system, sans-serif !important;
+      line-height: 1.4 !important;
+    }
+  `;
+
+  document.querySelectorAll("#ccColorGroup .cc-chip").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.color === state.subtitleStyle.color);
+  });
+  document.querySelectorAll("#ccSizeGroup .cc-chip").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.size === state.subtitleStyle.size);
+  });
+  document.querySelectorAll("#ccBgGroup .cc-chip").forEach(btn => {
+    btn.classList.toggle("active", btn.dataset.bg === state.subtitleStyle.bg);
+  });
+}
+
+function adjustSubtitleSync(delta) {
+  state.subtitleSyncOffset = parseFloat((state.subtitleSyncOffset + delta).toFixed(1));
+  const syncValEl = document.getElementById("ccSyncVal");
+  if (syncValEl) {
+    syncValEl.textContent = `${state.subtitleSyncOffset > 0 ? '+' : ''}${state.subtitleSyncOffset.toFixed(1)}s`;
+  }
+
+  for (let i = 0; i < videoEl.textTracks.length; i++) {
+    const trk = videoEl.textTracks[i];
+    if (trk.cues) {
+      for (let j = 0; j < trk.cues.length; j++) {
+        trk.cues[j].startTime = Math.max(0, trk.cues[j].startTime + delta);
+        trk.cues[j].endTime = Math.max(0, trk.cues[j].endTime + delta);
+      }
+    }
+  }
+
+  showToast(`Subtitle Sync: ${state.subtitleSyncOffset > 0 ? '+' : ''}${state.subtitleSyncOffset.toFixed(1)}s`);
+}
+
+function resetSubtitleSync() {
+  const reverseDelta = -state.subtitleSyncOffset;
+  state.subtitleSyncOffset = 0.0;
+  const syncValEl = document.getElementById("ccSyncVal");
+  if (syncValEl) syncValEl.textContent = "0.0s";
+
+  for (let i = 0; i < videoEl.textTracks.length; i++) {
+    const trk = videoEl.textTracks[i];
+    if (trk.cues) {
+      for (let j = 0; j < trk.cues.length; j++) {
+        trk.cues[j].startTime = Math.max(0, trk.cues[j].startTime + reverseDelta);
+        trk.cues[j].endTime = Math.max(0, trk.cues[j].endTime + reverseDelta);
+      }
+    }
+  }
+
+  showToast("Subtitle Sync Reset to 0.0s");
+}
+
+window.renderSubtitleTracksMenu = renderSubtitleTracksMenu;
+window.selectSubtitleTrack = selectSubtitleTrack;
+window.adjustSubtitleSync = adjustSubtitleSync;
+window.resetSubtitleSync = resetSubtitleSync;
 
 function setPlaybackSpeed(speed) {
   videoEl.playbackRate = speed;
@@ -2565,7 +2742,60 @@ function setupEventListeners() {
 
   muteBtn.addEventListener("click", toggleMute);
   volumeSlider.addEventListener("input", (e) => setVolume(e.target.value));
-  ccToggleBtn.addEventListener("click", toggleSubtitles);
+
+  const ccDropdownMenu = document.getElementById("ccDropdownMenu");
+  if (ccToggleBtn && ccDropdownMenu) {
+    ccToggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      renderSubtitleTracksMenu();
+      ccDropdownMenu.classList.toggle("show");
+    });
+  }
+
+  // Close CC menu on outside click
+  document.addEventListener("click", (e) => {
+    if (ccDropdownMenu && ccDropdownMenu.classList.contains("show")) {
+      if (!ccDropdownMenu.contains(e.target) && e.target !== ccToggleBtn) {
+        ccDropdownMenu.classList.remove("show");
+      }
+    }
+  });
+
+  // Wire Subtitle Customizer Chips
+  document.querySelectorAll("#ccColorGroup .cc-chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.subtitleStyle.color = btn.dataset.color;
+      localStorage.setItem("streamguard_sub_color", btn.dataset.color);
+      applySubtitleStyling();
+      showToast(`Subtitle Color: ${btn.dataset.color.toUpperCase()}`);
+    });
+  });
+
+  document.querySelectorAll("#ccSizeGroup .cc-chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.subtitleStyle.size = btn.dataset.size;
+      localStorage.setItem("streamguard_sub_size", btn.dataset.size);
+      applySubtitleStyling();
+      showToast(`Subtitle Size: ${btn.dataset.size.toUpperCase()}`);
+    });
+  });
+
+  document.querySelectorAll("#ccBgGroup .cc-chip").forEach(btn => {
+    btn.addEventListener("click", () => {
+      state.subtitleStyle.bg = btn.dataset.bg;
+      localStorage.setItem("streamguard_sub_bg", btn.dataset.bg);
+      applySubtitleStyling();
+      showToast(`Subtitle Backdrop: ${btn.dataset.bg.toUpperCase()}`);
+    });
+  });
+
+  // Wire Subtitle Sync Offset Buttons
+  const ccSyncMinus = document.getElementById("ccSyncMinus");
+  const ccSyncPlus = document.getElementById("ccSyncPlus");
+  const ccSyncReset = document.getElementById("ccSyncReset");
+  if (ccSyncMinus) ccSyncMinus.addEventListener("click", () => adjustSubtitleSync(-0.5));
+  if (ccSyncPlus) ccSyncPlus.addEventListener("click", () => adjustSubtitleSync(0.5));
+  if (ccSyncReset) ccSyncReset.addEventListener("click", resetSubtitleSync);
 
   speedBtn.addEventListener("click", (e) => {
     e.stopPropagation();
