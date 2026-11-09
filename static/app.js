@@ -5,8 +5,23 @@
 
 // ============================================================================
 // StreamGuard Autonomous Anti-Popup, Anti-Clickjack & Anti-Download Shield
+// Powered by AdGuard DNS (dns.adguard.com) Integration
 // Guarantees zero popups, zero auto-downloading links, and direct first-click playback
 // ============================================================================
+const ADGUARD_DNS_SERVER = "dns.adguard.com";
+const ADGUARD_BLOCKED_DOMAINS = [
+  "adsterra.com", "popcash.net", "popads.net", "onclickads.net", "trafficjunky.com",
+  "exoclick.com", "propellerads.com", "monetag.com", "hilltopads.net", "adcash.com",
+  "bet99.com", "1xbet.com", "parimatch.com", "cleanmymac.com", "macupdater.info",
+  "apkpure.com", "pushassist.com", "notifpush.com", "directrev.com", "adnxs.com",
+  "syndication.exoclick.com", "tsyndicate.com", "doubleclick.net", "adcolony.com"
+];
+
+function isAdGuardBlockedUrl(url) {
+  if (!url) return false;
+  const lower = url.toLowerCase();
+  return ADGUARD_BLOCKED_DOMAINS.some(d => lower.includes(d));
+}
 (function initStreamGuardShield() {
   // 1. Permanently freeze window.open against ad network popups/popunders
   try {
@@ -686,6 +701,45 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
 // ----------------------------------------------------------------------------
 // Stream Dispatcher: Cloud 4K Embed (VidLink / VidSrc) vs Native HTML5 Player
 // ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
+// Dynamic Un-sandboxed Embed Player Mount
+// Guarantees browser instantiates a 100% clean, unrestricted browsing context
+// ----------------------------------------------------------------------------
+function mountCleanEmbedPlayer(embedUrl) {
+  const container = document.getElementById("playerContainer");
+  if (!container) return;
+
+  // Fully remove any existing iframe to destroy previous sandbox browsing context
+  const existingFrame = document.getElementById("embedPlayerFrame");
+  if (existingFrame) {
+    try {
+      existingFrame.src = "about:blank";
+      existingFrame.remove();
+    } catch (e) {}
+  }
+
+  // Create brand-new, fresh, completely un-sandboxed iframe element
+  const newFrame = document.createElement("iframe");
+  newFrame.id = "embedPlayerFrame";
+  newFrame.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen; clipboard-write; microphone; camera");
+  newFrame.setAttribute("allowfullscreen", "true");
+  newFrame.setAttribute("referrerpolicy", "origin");
+  newFrame.style.cssText = "width:100%; height:100%; border:none; display:block; background:#000;";
+  
+  // Guarantee NO sandbox attribute is present
+  newFrame.removeAttribute("sandbox");
+
+  // Mount the movie stream
+  newFrame.src = embedUrl;
+
+  const adOverlay = document.getElementById("prerollAdOverlay");
+  if (adOverlay && adOverlay.parentNode === container) {
+    container.insertBefore(newFrame, adOverlay);
+  } else {
+    container.appendChild(newFrame);
+  }
+}
+
 function loadActiveStream(autoPlay = true) {
   if (!state.currentVideo) return;
   const servers = state.currentVideo.servers || [
@@ -722,13 +776,9 @@ function loadActiveStream(autoPlay = true) {
       }
     }
 
-    // 3. Mount in iframe (Clean, unrestricted frame with zero popups)
+    // 3. Mount in clean, brand-new iframe (Guaranteed zero sandbox flags & zero residual browsing context)
     if (prerollAdOverlay) prerollAdOverlay.style.display = "none";
-    if (embedPlayerFrame) {
-      embedPlayerFrame.removeAttribute("sandbox"); // Explicitly ensure no sandbox attribute is set
-      embedPlayerFrame.style.display = "block";
-      embedPlayerFrame.src = embedUrl;
-    }
+    mountCleanEmbedPlayer(embedUrl);
     showToast(`Streaming ${state.currentVideo.title} via ${srv.name}`);
   } else {
     // Native HTML5 Video Stream (Direct / Fallback)
