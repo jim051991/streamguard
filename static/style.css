@@ -5357,3 +5357,125 @@ video::cue {
     gap: 10px;
   }
 }
+
+/* ==========================================================================
+   Fix 5: 5-Title Hero Rotating Billboard Carousel (CineHD / MovieBoxHD)
+   ========================================================================== */
+.hero-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f8fafc;
+  font-size: 1.15rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 15;
+  opacity: 0;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+}
+
+.hero-billboard:hover .hero-carousel-arrow {
+  opacity: 1;
+}
+
+.hero-carousel-arrow.prev {
+  left: 20px;
+}
+
+.hero-carousel-arrow.next {
+  right: 20px;
+}
+
+.hero-carousel-arrow:hover {
+  background: rgba(6, 182, 212, 0.4);
+  border-color: #06b6d4;
+  color: #ffffff;
+  transform: translateY(-50%) scale(1.1);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.45);
+}
+
+/* Pagination indicator dots */
+.hero-carousel-dots {
+  position: absolute;
+  bottom: 24px;
+  right: 48px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 15;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.hero-dot {
+  width: 10px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.25);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-dot:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.hero-dot.active {
+  width: 30px;
+  background: linear-gradient(90deg, #06b6d4, #3b82f6);
+  box-shadow: 0 0 12px rgba(6, 182, 212, 0.6);
+}
+
+/* Smooth transition classes for slide changes */
+.hero-content {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.hero-content.slide-transition {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.hero-backdrop-img {
+  transition: opacity 0.5s ease, filter 0.5s ease;
+}
+
+.hero-backdrop-img.fade-out {
+  opacity: 0.2;
+}
+
+@media (max-width: 768px) {
+  .hero-carousel-arrow {
+    width: 38px;
+    height: 38px;
+    font-size: 0.95rem;
+    opacity: 0.85; /* Accessible on mobile touch screens */
+  }
+  .hero-carousel-arrow.prev {
+    left: 10px;
+  }
+  .hero-carousel-arrow.next {
+    right: 10px;
+  }
+  .hero-carousel-dots {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 14px;
+  }
+}

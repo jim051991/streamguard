@@ -372,7 +372,11 @@ const state = {
     year: "all",
     rating: "all",
     sort: "trending"
-  }
+  },
+  heroItems: [],
+  heroCurrentIndex: 0,
+  heroTimer: null,
+  heroIsPaused: false
 };
 
 // ----------------------------------------------------------------------------
@@ -617,11 +621,8 @@ async function loadCatalogData() {
     const data = await res.json();
     state.allVideos = data.videos || [];
 
-    // Set Hero Billboard
-    const featRes = await fetch("/api/videos/featured");
-    const featData = await featRes.json();
-    state.featuredItem = featData.featured || state.allVideos[0];
-    renderHeroBillboard(state.featuredItem);
+    // Initialize 5-Title Hero Rotating Carousel
+    initHeroCarousel();
   } catch (err) {
     console.error("Error loading video catalog:", err);
   }
@@ -650,12 +651,85 @@ async function updateSecurityTelemetry() {
 }
 
 // ----------------------------------------------------------------------------
-// Hero Billboard Rendering (Movibox & Netflix Model)
+// Fix 5: 5-Title Hero Rotating Billboard Carousel (CineHD / MovieBoxHD Model)
 // ----------------------------------------------------------------------------
-function renderHeroBillboard(item) {
-  if (!item) return;
+function getFeaturedHeroItems() {
+  const preferredIds = [
+    "mov-deadpool-wolverine",
+    "mov-gladiator-2",
+    "mov-dune-2",
+    "ser-stranger-things",
+    "ani-solo-leveling"
+  ];
+  const items = [];
+  preferredIds.forEach((id) => {
+    const item = state.allVideos.find((v) => v.id === id);
+    if (item && !items.some((x) => x.id === item.id)) {
+      items.push(item);
+    }
+  });
+  // Fill up to 5 with featured / trending items
+  for (const v of state.allVideos) {
+    if (items.length >= 5) break;
+    if ((v.is_featured || v.is_trending) && !items.some((x) => x.id === v.id)) {
+      items.push(v);
+    }
+  }
+  return items.slice(0, 5);
+}
+
+function initHeroCarousel() {
+  state.heroItems = getFeaturedHeroItems();
+  if (state.heroItems.length === 0 && state.allVideos.length > 0) {
+    state.heroItems = state.allVideos.slice(0, 5);
+  }
+  if (state.heroItems.length === 0) return;
+
+  const dotsContainer = document.getElementById("heroCarouselDots");
+  if (dotsContainer) {
+    dotsContainer.innerHTML = state.heroItems
+      .map(
+        (item, idx) => `
+        <button class="hero-dot ${idx === 0 ? "active" : ""}" data-index="${idx}" title="${item.title}" aria-label="Go to slide ${idx + 1}"></button>
+      `
+      )
+      .join("");
+
+    dotsContainer.querySelectorAll(".hero-dot").forEach((dot) => {
+      dot.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const idx = parseInt(dot.dataset.index, 10);
+        goToHeroSlide(idx);
+      });
+    });
+  }
+
+  // Display initial slide
+  renderHeroSlide(0, false);
+  startHeroTimer();
+}
+
+function renderHeroSlide(index, animate = true) {
+  if (!state.heroItems || state.heroItems.length === 0) return;
+  state.heroCurrentIndex = index;
+  const item = state.heroItems[index];
   state.featuredItem = item;
 
+  const heroContent = document.querySelector(".hero-content");
+  if (animate && heroContent && heroBackdrop) {
+    heroContent.classList.add("slide-transition");
+    heroBackdrop.classList.add("fade-out");
+    setTimeout(() => {
+      updateHeroSlideDOM(item, index);
+      heroContent.classList.remove("slide-transition");
+      heroBackdrop.classList.remove("fade-out");
+    }, 200);
+  } else {
+    updateHeroSlideDOM(item, index);
+  }
+}
+
+function updateHeroSlideDOM(item, index) {
   heroTitle.textContent = item.title;
   heroSubtitle.textContent = item.subtitle || item.category || "Cinema Feature";
   heroDesc.textContent = item.description;
@@ -665,9 +739,83 @@ function renderHeroBillboard(item) {
   heroYear.textContent = item.release_year || "2024";
   heroAge.textContent = item.age_rating || "PG-13";
 
+  // Dynamic Audio badge based on title
+  const heroDualAudio = document.getElementById("heroDualAudio");
+  if (heroDualAudio) {
+    if (item.id === "mov-deadpool-wolverine" || (item.audio_tracks_count || 0) >= 12) {
+      heroDualAudio.innerHTML = `<i class="fa-solid fa-headphones"></i> 12+ THEATRICAL DUBS`;
+    } else if (item.is_dual_audio) {
+      heroDualAudio.innerHTML = `<i class="fa-solid fa-headphones"></i> DUAL AUDIO (HINDI + ENG)`;
+    } else {
+      heroDualAudio.innerHTML = `<i class="fa-solid fa-film"></i> 4K CINEMA STREAM`;
+    }
+  }
+
+  // Dynamic Spotlight rank
+  const heroTrendBadge = document.querySelector(".hero-trend-badge");
+  if (heroTrendBadge) {
+    heroTrendBadge.innerHTML = `<i class="fa-solid fa-fire"></i> #${index + 1} SPOTLIGHT CAROUSEL`;
+  }
+
+  // Update watchlist state
   const isInWatchlist = state.watchlist.includes(item.id);
   heroWatchlistText.textContent = isInWatchlist ? "✓ In Watchlist" : "Add to Watchlist";
   heroWatchlistBtn.classList.toggle("active", isInWatchlist);
+
+  // Update dots
+  document.querySelectorAll(".hero-dot").forEach((d, i) => {
+    d.classList.toggle("active", i === index);
+  });
+}
+
+function renderHeroBillboard(item) {
+  // Legacy compatibility: when called directly, routes into carousel
+  if (item && state.heroItems) {
+    const idx = state.heroItems.findIndex((x) => x.id === item.id);
+    if (idx !== -1) {
+      goToHeroSlide(idx);
+      return;
+    }
+  }
+  updateHeroSlideDOM(item, 0);
+}
+
+function nextHeroSlide() {
+  if (!state.heroItems.length) return;
+  const next = (state.heroCurrentIndex + 1) % state.heroItems.length;
+  renderHeroSlide(next, true);
+}
+
+function prevHeroSlide() {
+  if (!state.heroItems.length) return;
+  const prev = (state.heroCurrentIndex - 1 + state.heroItems.length) % state.heroItems.length;
+  renderHeroSlide(prev, true);
+}
+
+function goToHeroSlide(index) {
+  renderHeroSlide(index, true);
+  restartHeroTimer();
+}
+
+function startHeroTimer() {
+  stopHeroTimer();
+  state.heroTimer = setInterval(() => {
+    if (!state.heroIsPaused) {
+      nextHeroSlide();
+    }
+  }, 7000);
+}
+
+function stopHeroTimer() {
+  if (state.heroTimer) {
+    clearInterval(state.heroTimer);
+    state.heroTimer = null;
+  }
+}
+
+function restartHeroTimer() {
+  stopHeroTimer();
+  startHeroTimer();
 }
 
 // ----------------------------------------------------------------------------
@@ -2957,6 +3105,34 @@ function setupEventListeners() {
       if (state.featuredItem) {
         openTitleDetailsModal(state.featuredItem.id);
       }
+    });
+  }
+
+  // Wire Fix 5: Hero Carousel Arrows and Pause on Hover
+  const heroPrevSlideBtn = document.getElementById("heroPrevSlideBtn");
+  const heroNextSlideBtn = document.getElementById("heroNextSlideBtn");
+
+  if (heroPrevSlideBtn) {
+    heroPrevSlideBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      prevHeroSlide();
+      restartHeroTimer();
+    });
+  }
+  if (heroNextSlideBtn) {
+    heroNextSlideBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      nextHeroSlide();
+      restartHeroTimer();
+    });
+  }
+
+  if (heroBillboard) {
+    heroBillboard.addEventListener("mouseenter", () => {
+      state.heroIsPaused = true;
+    });
+    heroBillboard.addEventListener("mouseleave", () => {
+      state.heroIsPaused = false;
     });
   }
 
