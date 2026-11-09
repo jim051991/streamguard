@@ -417,6 +417,7 @@
             <button class="quick-lang-pill" data-lang="te-IN">తెలుగు (Telugu)</button>
             <button class="quick-lang-pill" data-lang="ml-IN">മലയാളം (Malayalam)</button>
             <button class="quick-lang-pill" data-lang="kn-IN">ಕನ್ನಡ (Kannada)</button>
+            <button class="quick-lang-pill" data-lang="mr-IN">मराठी (Marathi)</button>
             <button class="quick-lang-pill" data-lang="es-MX">Español (Spanish)</button>
             <button class="quick-lang-pill" data-lang="fr-FR">Français (French)</button>
             <button class="quick-lang-pill" data-lang="de-DE">Deutsch (German)</button>
@@ -426,6 +427,25 @@
           </div>
         </div>
         <div class="audio-bar-right">
+          <!-- Real Audible Voice Dubbing Audio Controls -->
+          <div class="audio-controls-group">
+            <button class="audio-bar-tool-btn" id="amlveTestVoiceBtn" title="Test Voice Output in Selected Language">
+              <i class="fa-solid fa-volume-high"></i>
+              <span>Test Audio</span>
+            </button>
+            <button class="audio-bar-tool-btn active" id="amlveDubbingToggleBtn" title="Toggle Real-Time AI Vocal Dubbing">
+              <i class="fa-solid fa-microphone-lines"></i>
+              <span>Dub: <b id="amlveDubStatus">ON</b></span>
+            </button>
+            <div class="audio-volume-wrap" title="Adjust Vocal Track Volume">
+              <i class="fa-solid fa-sliders"></i>
+              <input type="range" id="amlveVolumeSlider" min="0" max="1" step="0.05" value="1.0" class="audio-vol-range" title="Voice Dub Volume">
+              <span id="amlveVolPct">100%</span>
+            </div>
+            <div class="audio-visualizer-bars" id="amlveVisualizer" title="Vocal Audio Stream Active">
+              <span class="bar"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span>
+            </div>
+          </div>
           <span class="amlve-active-badge"><i class="fa-solid fa-bolt"></i> AMLVE 2.0 ZERO-LATENCY VDT</span>
         </div>
       </div>
