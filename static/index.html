@@ -657,6 +657,113 @@
       </div>
     </section>
 
+    <!-- Multi-Attribute Discovery & Filter Bar (Fix 4: CineHD & MovieBoxHD Style) -->
+    <section class="discovery-filter-section" id="discoveryFilterSection">
+      <div class="discovery-filter-container">
+        
+        <!-- Primary Genre Chips Row (Horizontal Scroll) -->
+        <div class="filter-genre-scroll-wrapper">
+          <div class="filter-genre-chips" id="filterGenreChips">
+            <button class="genre-chip active" data-genre="all"><i class="fa-solid fa-shapes"></i> All Genres</button>
+            <button class="genre-chip" data-genre="action"><i class="fa-solid fa-bolt"></i> Action</button>
+            <button class="genre-chip" data-genre="sci-fi"><i class="fa-solid fa-rocket"></i> Sci-Fi</button>
+            <button class="genre-chip" data-genre="adventure"><i class="fa-solid fa-compass"></i> Adventure</button>
+            <button class="genre-chip" data-genre="drama"><i class="fa-solid fa-masks-theater"></i> Drama</button>
+            <button class="genre-chip" data-genre="horror"><i class="fa-solid fa-ghost"></i> Horror</button>
+            <button class="genre-chip" data-genre="thriller"><i class="fa-solid fa-skull"></i> Thriller</button>
+            <button class="genre-chip" data-genre="animation"><i class="fa-solid fa-wand-magic-sparkles"></i> Animation</button>
+            <button class="genre-chip" data-genre="comedy"><i class="fa-solid fa-face-laugh-squint"></i> Comedy</button>
+            <button class="genre-chip" data-genre="crime"><i class="fa-solid fa-handcuffs"></i> Crime</button>
+            <button class="genre-chip" data-genre="fantasy"><i class="fa-solid fa-dragon"></i> Fantasy</button>
+          </div>
+        </div>
+
+        <!-- Filter Dropdowns & Control Bar -->
+        <div class="filter-controls-row">
+          <div class="filter-dropdown-group">
+            
+            <!-- Audio Dub Filter -->
+            <div class="filter-dropdown-item">
+              <label for="filterAudioSelect"><i class="fa-solid fa-headphones"></i> Audio</label>
+              <select id="filterAudioSelect" class="filter-select">
+                <option value="all">All Audio</option>
+                <option value="dual">Dual Audio (Hindi + Eng)</option>
+                <option value="multi">Multi-Language Dub (12+)</option>
+                <option value="original">English Original</option>
+              </select>
+            </div>
+
+            <!-- Release Year Filter -->
+            <div class="filter-dropdown-item">
+              <label for="filterYearSelect"><i class="fa-solid fa-calendar"></i> Year</label>
+              <select id="filterYearSelect" class="filter-select">
+                <option value="all">All Years</option>
+                <option value="2024">2024 (Latest)</option>
+                <option value="2023">2023</option>
+                <option value="2022">2022</option>
+                <option value="2020-2021">2020 - 2021</option>
+                <option value="classic">Classic (&lt; 2020)</option>
+              </select>
+            </div>
+
+            <!-- Rating Filter -->
+            <div class="filter-dropdown-item">
+              <label for="filterRatingSelect"><i class="fa-solid fa-star"></i> Rating</label>
+              <select id="filterRatingSelect" class="filter-select">
+                <option value="all">All Ratings</option>
+                <option value="8.5">⭐ 8.5+ (Masterpiece)</option>
+                <option value="8.0">⭐ 8.0+ (Exceptional)</option>
+                <option value="7.5">⭐ 7.5+ (Great)</option>
+                <option value="7.0">⭐ 7.0+ (Good)</option>
+              </select>
+            </div>
+
+            <!-- Sort Order Filter -->
+            <div class="filter-dropdown-item">
+              <label for="filterSortSelect"><i class="fa-solid fa-arrow-down-short-wide"></i> Sort</label>
+              <select id="filterSortSelect" class="filter-select">
+                <option value="trending">Trending &amp; Featured</option>
+                <option value="rating">Rating (Highest First)</option>
+                <option value="newest">Release Year (Newest First)</option>
+                <option value="alpha">Alphabetical (A - Z)</option>
+              </select>
+            </div>
+
+          </div>
+
+          <!-- Active Filter Badge & Reset Button -->
+          <div class="filter-status-group">
+            <span class="filter-count-badge" id="filterCountBadge">47 Titles</span>
+            <button class="filter-reset-btn" id="filterResetBtn" style="display:none;" title="Clear all filters">
+              <i class="fa-solid fa-rotate-left"></i>
+              <span>Reset</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Filtered Results Grid Section (Displays when any non-default filter is active) -->
+    <section class="ott-rail filtered-results-section" id="filteredResultsSection" style="display:none;">
+      <div class="rail-header">
+        <div class="rail-title-group">
+          <i class="fa-solid fa-filter" style="color:var(--accent-cyan);"></i>
+          <h2 class="rail-title" id="filteredResultsTitle">Filtered Discovery Results</h2>
+        </div>
+        <span class="rail-badge" id="filteredResultsBadge">Matches</span>
+      </div>
+      <div class="filtered-results-grid" id="filteredResultsGrid">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="filtered-empty-state" id="filteredEmptyState" style="display:none;">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <h3>No titles found</h3>
+        <p>No movies or series match your selected filter criteria.</p>
+        <button class="empty-reset-btn" id="emptyResetBtn">Reset All Filters</button>
+      </div>
+    </section>
+
     <!-- Rail: Continue Watching (Stores playback state in localStorage) -->
     <section class="ott-rail" id="railContinueWatchingWrap" style="display:none;">
       <div class="rail-header">

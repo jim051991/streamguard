@@ -365,7 +365,14 @@ const state = {
   upNextTimer: null,
   upNextRemaining: 15,
   upNextDismissed: false,
-  isUpNextActive: false
+  isUpNextActive: false,
+  filters: {
+    genre: "all",
+    audio: "all",
+    year: "all",
+    rating: "all",
+    sort: "trending"
+  }
 };
 
 // ----------------------------------------------------------------------------
@@ -597,6 +604,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   ]);
 
   renderAllRails();
+  initCatalogFilters();
   setInterval(updateSecurityTelemetry, 5000);
 });
 
@@ -802,6 +810,193 @@ function renderAnimeRail() {
 
 function renderLiveTvRail() {
   railLiveTv.innerHTML = state.channels.map((ch) => renderCard(ch, true)).join("");
+}
+
+// ----------------------------------------------------------------------------
+// Fix 4: Multi-Attribute Catalog Filter & Discovery Engine (CineHD / MovieBoxHD Style)
+// ----------------------------------------------------------------------------
+function initCatalogFilters() {
+  const countBadge = document.getElementById("filterCountBadge");
+  if (countBadge && state.allVideos) {
+    countBadge.textContent = `${state.allVideos.length} Titles`;
+  }
+}
+
+function hasActiveFilters() {
+  return (
+    state.filters.genre !== "all" ||
+    state.filters.audio !== "all" ||
+    state.filters.year !== "all" ||
+    state.filters.rating !== "all" ||
+    state.filters.sort !== "trending"
+  );
+}
+
+function applyCatalogFilters() {
+  const filteredSection = document.getElementById("filteredResultsSection");
+  const filteredGrid = document.getElementById("filteredResultsGrid");
+  const emptyState = document.getElementById("filteredEmptyState");
+  const countBadge = document.getElementById("filterCountBadge");
+  const resetBtn = document.getElementById("filterResetBtn");
+  const titleEl = document.getElementById("filteredResultsTitle");
+  const badgeEl = document.getElementById("filteredResultsBadge");
+
+  // Determine base items based on viewMode
+  let items = [...(state.allVideos || [])];
+
+  if (state.viewMode === "movie") {
+    items = items.filter(v => v.content_type === "movie");
+  } else if (state.viewMode === "series") {
+    items = items.filter(v => v.content_type === "series");
+  } else if (state.viewMode === "anime") {
+    items = items.filter(v => v.content_type === "anime");
+  } else if (state.viewMode === "watchlist") {
+    items = items.filter(v => state.watchlist.includes(v.id));
+  }
+
+  // 1. Filter by Genre
+  if (state.filters.genre !== "all") {
+    const g = state.filters.genre.toLowerCase();
+    items = items.filter(v => {
+      const cat = (v.category || "").toLowerCase();
+      const tags = (v.tags || []).map(t => t.toLowerCase());
+      const desc = (v.description || "").toLowerCase();
+      const sub = (v.subtitle || "").toLowerCase();
+      return cat === g || tags.includes(g) || desc.includes(g) || sub.includes(g);
+    });
+  }
+
+  // 2. Filter by Audio Dub
+  if (state.filters.audio === "dual") {
+    items = items.filter(v => v.is_dual_audio);
+  } else if (state.filters.audio === "multi") {
+    items = items.filter(v => (v.audio_tracks_count || 0) >= 12 || v.id === "mov-deadpool-wolverine");
+  } else if (state.filters.audio === "original") {
+    items = items.filter(v => !v.is_dual_audio);
+  }
+
+  // 3. Filter by Release Year
+  if (state.filters.year === "2024") {
+    items = items.filter(v => v.release_year === 2024);
+  } else if (state.filters.year === "2023") {
+    items = items.filter(v => v.release_year === 2023);
+  } else if (state.filters.year === "2022") {
+    items = items.filter(v => v.release_year === 2022);
+  } else if (state.filters.year === "2020-2021") {
+    items = items.filter(v => v.release_year >= 2020 && v.release_year <= 2021);
+  } else if (state.filters.year === "classic") {
+    items = items.filter(v => v.release_year && v.release_year < 2020);
+  }
+
+  // 4. Filter by Rating
+  if (state.filters.rating !== "all") {
+    const minRating = parseFloat(state.filters.rating);
+    items = items.filter(v => (v.imdb_rating || 0) >= minRating);
+  }
+
+  // 5. Sort Order
+  if (state.filters.sort === "rating") {
+    items.sort((a, b) => (b.imdb_rating || 0) - (a.imdb_rating || 0));
+  } else if (state.filters.sort === "newest") {
+    items.sort((a, b) => (b.release_year || 0) - (a.release_year || 0));
+  } else if (state.filters.sort === "alpha") {
+    items.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+  } else {
+    // Trending / Featured default
+    items.sort((a, b) => {
+      if (a.is_trending && !b.is_trending) return -1;
+      if (!a.is_trending && b.is_trending) return 1;
+      return (b.views || 0) - (a.views || 0);
+    });
+  }
+
+  const active = hasActiveFilters();
+
+  if (countBadge) {
+    countBadge.textContent = `${items.length} ${items.length === 1 ? "Title" : "Titles"}`;
+  }
+  if (resetBtn) {
+    resetBtn.style.display = active ? "inline-flex" : "none";
+  }
+
+  if (active) {
+    // Hide standard curated rails while filter view is active
+    document.querySelectorAll(".ott-rail:not(#filteredResultsSection)").forEach(r => {
+      r.style.display = "none";
+    });
+
+    if (filteredSection) filteredSection.style.display = "block";
+
+    // Update filter header labels
+    if (titleEl) {
+      const genreLabel = state.filters.genre !== "all" ? `${state.filters.genre.toUpperCase()}` : "All Genres";
+      titleEl.textContent = `Filtered Results: ${genreLabel}`;
+    }
+    if (badgeEl) {
+      badgeEl.textContent = `${items.length} Matches Found`;
+    }
+
+    if (items.length === 0) {
+      if (filteredGrid) filteredGrid.style.display = "none";
+      if (emptyState) emptyState.style.display = "block";
+    } else {
+      if (emptyState) emptyState.style.display = "none";
+      if (filteredGrid) {
+        filteredGrid.style.display = "grid";
+        filteredGrid.innerHTML = items.map(v => renderCard(v)).join("");
+      }
+    }
+  } else {
+    // Hide filtered results, restore standard rails for active viewMode
+    if (filteredSection) filteredSection.style.display = "none";
+    if (filteredGrid) filteredGrid.innerHTML = "";
+
+    const type = state.viewMode || "all";
+    if (type === "all") {
+      document.querySelectorAll(".ott-rail:not(#filteredResultsSection)").forEach((r) => (r.style.display = "block"));
+      if (!state.watchlist.length && railWatchlistWrap) railWatchlistWrap.style.display = "none";
+      if (!Object.keys(state.history).length && railContinueWatchingWrap) railContinueWatchingWrap.style.display = "none";
+    } else if (type === "livetv") {
+      document.querySelectorAll(".ott-rail:not(#filteredResultsSection)").forEach((r) => (r.style.display = "none"));
+      if (railLiveTvWrap) railLiveTvWrap.style.display = "block";
+    } else if (type === "watchlist") {
+      document.querySelectorAll(".ott-rail:not(#filteredResultsSection)").forEach((r) => (r.style.display = "none"));
+      if (railWatchlistWrap) railWatchlistWrap.style.display = "block";
+    } else {
+      document.querySelectorAll(".ott-rail:not(#filteredResultsSection)").forEach((r) => (r.style.display = "none"));
+      if (type === "movie") {
+        if (railMoviesWrap) railMoviesWrap.style.display = "block";
+        if (railWorldCinemaWrap) railWorldCinemaWrap.style.display = "block";
+      }
+      if (type === "series" && railSeriesWrap) railSeriesWrap.style.display = "block";
+      if (type === "anime" && railAnimeWrap) railAnimeWrap.style.display = "block";
+    }
+  }
+}
+
+function resetCatalogFilters() {
+  state.filters.genre = "all";
+  state.filters.audio = "all";
+  state.filters.year = "all";
+  state.filters.rating = "all";
+  state.filters.sort = "trending";
+
+  document.querySelectorAll(".genre-chip").forEach(chip => {
+    chip.classList.toggle("active", chip.dataset.genre === "all");
+  });
+
+  const audioSel = document.getElementById("filterAudioSelect");
+  const yearSel = document.getElementById("filterYearSelect");
+  const ratingSel = document.getElementById("filterRatingSelect");
+  const sortSel = document.getElementById("filterSortSelect");
+
+  if (audioSel) audioSel.value = "all";
+  if (yearSel) yearSel.value = "all";
+  if (ratingSel) ratingSel.value = "all";
+  if (sortSel) sortSel.value = "trending";
+
+  applyCatalogFilters();
+  showToast("Catalog filters reset to all titles.");
 }
 
 // ----------------------------------------------------------------------------
@@ -2671,24 +2866,77 @@ function setupEventListeners() {
       const type = tab.dataset.type;
       state.viewMode = type;
 
-      if (type === "all") {
-        document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "block"));
-        if (!state.watchlist.length) railWatchlistWrap.style.display = "none";
-        if (!Object.keys(state.history).length) railContinueWatchingWrap.style.display = "none";
-      } else if (type === "livetv") {
-        document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "none"));
-        railLiveTvWrap.style.display = "block";
-      } else if (type === "watchlist") {
-        document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "none"));
-        railWatchlistWrap.style.display = "block";
+      if (hasActiveFilters()) {
+        applyCatalogFilters();
       } else {
-        document.querySelectorAll(".ott-rail").forEach((r) => (r.style.display = "none"));
-        if (type === "movie") { railMoviesWrap.style.display = "block"; if (railWorldCinemaWrap) railWorldCinemaWrap.style.display = "block"; }
-        if (type === "series") railSeriesWrap.style.display = "block";
-        if (type === "anime") railAnimeWrap.style.display = "block";
+        if (type === "all") {
+          document.querySelectorAll(".ott-rail:not(#filteredResultsSection)").forEach((r) => (r.style.display = "block"));
+          if (!state.watchlist.length && railWatchlistWrap) railWatchlistWrap.style.display = "none";
+          if (!Object.keys(state.history).length && railContinueWatchingWrap) railContinueWatchingWrap.style.display = "none";
+        } else if (type === "livetv") {
+          document.querySelectorAll(".ott-rail:not(#filteredResultsSection)").forEach((r) => (r.style.display = "none"));
+          if (railLiveTvWrap) railLiveTvWrap.style.display = "block";
+        } else if (type === "watchlist") {
+          document.querySelectorAll(".ott-rail:not(#filteredResultsSection)").forEach((r) => (r.style.display = "none"));
+          if (railWatchlistWrap) railWatchlistWrap.style.display = "block";
+        } else {
+          document.querySelectorAll(".ott-rail:not(#filteredResultsSection)").forEach((r) => (r.style.display = "none"));
+          if (type === "movie") {
+            if (railMoviesWrap) railMoviesWrap.style.display = "block";
+            if (railWorldCinemaWrap) railWorldCinemaWrap.style.display = "block";
+          }
+          if (type === "series" && railSeriesWrap) railSeriesWrap.style.display = "block";
+          if (type === "anime" && railAnimeWrap) railAnimeWrap.style.display = "block";
+        }
       }
     });
   });
+
+  // Wire Fix 4: Genre Chips
+  document.querySelectorAll(".genre-chip").forEach((chip) => {
+    chip.addEventListener("click", () => {
+      document.querySelectorAll(".genre-chip").forEach((c) => c.classList.remove("active"));
+      chip.classList.add("active");
+      state.filters.genre = chip.dataset.genre || "all";
+      applyCatalogFilters();
+    });
+  });
+
+  // Wire Fix 4: Filter Dropdowns
+  const filterAudioSelect = document.getElementById("filterAudioSelect");
+  const filterYearSelect = document.getElementById("filterYearSelect");
+  const filterRatingSelect = document.getElementById("filterRatingSelect");
+  const filterSortSelect = document.getElementById("filterSortSelect");
+  const filterResetBtn = document.getElementById("filterResetBtn");
+  const emptyResetBtn = document.getElementById("emptyResetBtn");
+
+  if (filterAudioSelect) {
+    filterAudioSelect.addEventListener("change", (e) => {
+      state.filters.audio = e.target.value;
+      applyCatalogFilters();
+    });
+  }
+  if (filterYearSelect) {
+    filterYearSelect.addEventListener("change", (e) => {
+      state.filters.year = e.target.value;
+      applyCatalogFilters();
+    });
+  }
+  if (filterRatingSelect) {
+    filterRatingSelect.addEventListener("change", (e) => {
+      state.filters.rating = e.target.value;
+      applyCatalogFilters();
+    });
+  }
+  if (filterSortSelect) {
+    filterSortSelect.addEventListener("change", (e) => {
+      state.filters.sort = e.target.value;
+      applyCatalogFilters();
+    });
+  }
+
+  if (filterResetBtn) filterResetBtn.addEventListener("click", resetCatalogFilters);
+  if (emptyResetBtn) emptyResetBtn.addEventListener("click", resetCatalogFilters);
 
   // Hero Actions
   heroPlayBtn.addEventListener("click", () => {
