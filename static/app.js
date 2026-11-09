@@ -635,8 +635,34 @@ function finishPrerollAd(triggerCallback = true) {
 }
 
 // ----------------------------------------------------------------------------
+// ----------------------------------------------------------------------------
 // Video Playback Engine (Cinema & On-Demand)
 // ----------------------------------------------------------------------------
+function updateDualAudioBanner(video) {
+  if (!video) return;
+  const card = document.getElementById("dualAudioStreamCard");
+  const titleEl = document.getElementById("dualCardTitle");
+  const qualityEl = document.getElementById("dualCardQuality");
+  const audioEl = document.getElementById("dualCardAudio");
+  const sizeEl = document.getElementById("dualCardSize");
+  const theaterLangLabel = document.getElementById("theaterLangLabel");
+
+  const meta = video.dual_audio_meta;
+  if (card) {
+    if (meta) {
+      card.style.display = "flex";
+      if (titleEl) titleEl.textContent = meta.title_with_audio || `${video.title} (${meta.languages})`;
+      if (qualityEl) qualityEl.innerHTML = `<i class="fa-solid fa-film"></i> ${meta.quality_spec ? meta.quality_spec.split(" ")[0] : "720p HD"}`;
+      if (audioEl) audioEl.innerHTML = `<i class="fa-solid fa-language"></i> ${meta.languages || "Dual Audio"}`;
+      const sizeMatch = (meta.quality_spec || "").match(/\(([^)]+)\)/);
+      if (sizeEl) sizeEl.innerHTML = `<i class="fa-solid fa-hard-drive"></i> ${sizeMatch ? sizeMatch[1] : "Direct MP4"}`;
+      if (theaterLangLabel) theaterLangLabel.textContent = `Audio: ${meta.languages} (Dual Audio MP4)`;
+    } else {
+      card.style.display = "none";
+      if (theaterLangLabel) theaterLangLabel.textContent = "Audio: Original";
+    }
+  }
+}
 async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
   try {
     destroyHls();
@@ -702,7 +728,6 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
 
     // Directly open and stream the chosen movie on first click!
     loadActiveStream(autoPlay);
-    // Dual Audio metadata banner sync
     updateDualAudioBanner(state.currentVideo);
   } catch (err) {
     console.error("Error playing video:", err);
@@ -1616,6 +1641,34 @@ function setupEventListeners() {
     }
   });
 
+  // Wire Direct Dual Audio MP4 Stream Launchers
+  const btnDirectStreamMp4 = document.getElementById("btnDirectStreamMp4");
+  if (btnDirectStreamMp4) {
+    btnDirectStreamMp4.addEventListener("click", () => {
+      if (state.currentVideo) {
+        const dualIdx = (state.currentVideo.servers || []).findIndex(
+          s => s.type === "native" || s.name.toLowerCase().includes("direct")
+        );
+        switchServer(dualIdx !== -1 ? dualIdx : 0);
+        showToast(`Streaming ${state.currentVideo.title} with embedded Dual Audio soundtrack!`);
+      }
+    });
+  }
+
+  const theaterAudioLangBtn = document.getElementById("theaterAudioLangBtn");
+  if (theaterAudioLangBtn) {
+    theaterAudioLangBtn.addEventListener("click", () => {
+      if (state.currentVideo) {
+        const dualIdx = (state.currentVideo.servers || []).findIndex(
+          s => s.type === "native" || s.name.toLowerCase().includes("direct")
+        );
+        switchServer(dualIdx !== -1 ? dualIdx : 0);
+        showToast(`Dual Audio Mode: Playing direct ${state.currentVideo.dual_audio_meta?.languages || "Hindi + English"} track`);
+      }
+    });
+  }
+
+
   // Pre-Roll Video Advertisement Listeners
   if (skipAdBtn) {
     skipAdBtn.addEventListener("click", () => {
@@ -1660,6 +1713,16 @@ function setupEventListeners() {
   videoEl.addEventListener("play", updatePlayButton);
   videoEl.addEventListener("pause", updatePlayButton);
   videoEl.addEventListener("timeupdate", updateTimeline);
+  videoEl.addEventListener("error", (e) => {
+    console.warn("[StreamGuard] Direct native video stream buffer/network warning:", videoEl.error);
+    if (state.currentVideo && state.currentServerIndex === 0 && (state.currentVideo.servers || []).length > 1) {
+      showToast("Direct stream buffer timeout on this connection. Auto-switching to Cloud 4K Mirror...");
+      setTimeout(() => {
+        switchServer(1);
+      }, 700);
+    }
+  });
+
   videoEl.addEventListener("ended", () => {
     if (state.currentVideo) {
       const episodes = state.currentVideo.seasons?.[0]?.episodes || [];
@@ -2065,66 +2128,14 @@ const AMLVE = {
     }
   },
 
-  async speakVocal(text, lang) { /* Silenced: zero outer audio */ }
-      this.vocalAudio.pause();
-      this.vocalAudio.currentTime = 0;
-      this.vocalAudio.src = `/api/amlve/audio/speech?lang=${encodeURIComponent(cleanLang)}&text=${encodeURIComponent(text)}`;
-      this.vocalAudio.volume = this.vocalVolume;
-
-      // Professional broadcasting auto-ducking on native video
-      let origVol = 1.0;
-      const shouldDuck = videoEl && !videoEl.paused && videoEl.style.display !== "none" && videoEl.volume > 0.4;
-      if (shouldDuck) {
-        origVol = videoEl.volume;
-        videoEl.volume = 0.3;
-      }
-
-      this.vocalAudio.onended = () => {
-        if (shouldDuck && videoEl) videoEl.volume = origVol;
-        this.setVisualizerActive(false);
-      };
-      this.vocalAudio.onerror = () => {
-        if (shouldDuck && videoEl) videoEl.volume = origVol;
-        this.fallbackSpeechSynthesis(text, targetCode);
-      };
-
-      const playPromise = this.vocalAudio.play();
-      if (playPromise !== undefined) {
-        await playPromise;
-        return; // Success! Studio-grade MP3 audio is playing through speakers!
-      }
-    } catch (netErr) {
-      console.warn("[AMLVE] Primary MP3 speech deferred, using Web Speech Synthesis:", netErr);
-      this.fallbackSpeechSynthesis(text, targetCode);
-    }
+  async speakVocal(text, langCode) {
+    // Silenced: Zero outer audio
+    return;
   },
 
   fallbackSpeechSynthesis(text, langCode) {
-    try {
-      if (!window.speechSynthesis) {
-        this.setVisualizerActive(false);
-        return;
-      }
-      window.speechSynthesis.cancel();
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = langCode;
-      utter.volume = this.vocalVolume;
-      utter.rate = 1.0;
-      utter.pitch = 1.0;
-
-      const clean = langCode.split("-")[0].toLowerCase();
-      const voices = window.speechSynthesis.getVoices() || [];
-      const match = voices.find(v => v.lang.toLowerCase().startsWith(clean));
-      if (match) utter.voice = match;
-
-      utter.onend = () => this.setVisualizerActive(false);
-      utter.onerror = () => this.setVisualizerActive(false);
-
-      window.speechSynthesis.speak(utter);
-    } catch (e) {
-      console.warn("[AMLVE] Fallback speech error:", e);
-      this.setVisualizerActive(false);
-    }
+    // Silenced: Zero outer audio
+    return;
   },
 
   async testVoice(langCode) {
@@ -2241,52 +2252,19 @@ const AMLVE = {
     }
   },
 
-  async loadMovieDubAudio(vId, lCode) { /* Silenced */ }/${cleanLang}.mp3`;
-
-    try {
-      if (!this.movieDubPlayer) {
-        this.movieDubPlayer = new Audio();
-      }
-      this.movieDubPlayer.pause();
-      this.movieDubPlayer.src = audioUrl;
-      this.movieDubPlayer.volume = this.vocalVolume;
-
-      // Auto-sync with video if native video is playing
-      if (videoEl && !videoEl.paused && videoEl.style.display !== "none") {
-        this.movieDubPlayer.currentTime = videoEl.currentTime;
-        this.movieDubPlayer.play().catch(() => {});
-      }
-    } catch (e) {
-      console.warn("[AMLVE] Dub audio track init:", e);
-    }
+  async loadMovieDubAudio(videoId, langCode) {
+    // Silenced: Zero outer audio
+    return;
   },
 
-  async loadMovieDubbing(vId, lCode, speak) { /* Silenced */ }/${langCode}`);
-      if (res.ok) {
-        const data = await res.json();
-        this.activeCues = data.cues || [];
-        if (speakImmediately && data.activation_phrase) {
-          await this.speakVocal(data.activation_phrase, langCode);
-        }
-      }
-    } catch (e) {
-      console.warn("[AMLVE] Failed to load movie dialogue cues:", e);
-    }
+  async loadMovieDubbing(videoId, langCode, speakImmediately = false) {
+    // Silenced: Zero outer audio
+    return;
   },
 
-  startPlaybackDubbing(vId) { /* Silenced: zero outer audio */ } else {
-        const container = document.getElementById("theaterSection");
-        if (!container || container.style.display === "none") return;
-        currentSeconds = Math.floor((Date.now() - this.playbackStartEpoch) / 1000);
-      }
-
-      this.activeCues.forEach((cue, index) => {
-        if (!this.spokenCueIndices.has(index) && currentSeconds >= cue.time && currentSeconds <= cue.time + 3) {
-          this.spokenCueIndices.add(index);
-          this.speakVocal(cue.text, this.activeLanguage);
-        }
-      });
-    }, 1000);
+  startPlaybackDubbing(videoId) {
+    // Silenced: Zero outer audio
+    return;
   },
 
   stopPlaybackDubbing() {
@@ -2462,7 +2440,7 @@ const AMLVE = {
       });
     }
 
-    [audioLangBtn, theaterAudioLangBtn, audioBarMoreBtn].forEach((btn) => {
+    [audioLangBtn, audioBarMoreBtn].forEach((btn) => {
       if (btn && amlveModal) {
         btn.addEventListener("click", () => {
           this.initAudioGraph();
