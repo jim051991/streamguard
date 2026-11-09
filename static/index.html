@@ -155,6 +155,24 @@
             </div>
           </div>
 
+          <!-- Video Quality Selector Dropdown (4K, 1080p, 720p, 480p) -->
+          <div class="quality-select-wrap" id="theaterQualityWrap" style="position:relative;">
+            <button class="server-pill-btn quality-pill-btn" id="theaterQualityBtn" title="Select Video Quality">
+              <i class="fa-solid fa-film"></i>
+              <span id="theaterQualityLabel">Quality: 1080p Full HD</span>
+              <i class="fa-solid fa-chevron-down" style="font-size:10px; margin-left:4px;"></i>
+            </button>
+            <div class="quality-dropdown-menu" id="theaterQualityMenu">
+              <div class="quality-dropdown-header">
+                <span><i class="fa-solid fa-sliders"></i> Select Video Resolution</span>
+                <span class="quality-count-tag" id="qualityCountTag">4 Qualities</span>
+              </div>
+              <div class="quality-options-list" id="theaterQualityOptionsList">
+                <!-- Dynamically populated with all released qualities -->
+              </div>
+            </div>
+          </div>
+
           <button class="close-player-btn" id="closePlayerBtn" title="Minimize Player to Theater Banner">
             <i class="fa-solid fa-xmark"></i>
           </button>
@@ -347,10 +365,16 @@
                 <span class="theater-badge-mini">PRO</span>
               </button>
 
-              <!-- Quality Tag -->
-              <div class="quality-badge" id="qualityBadge" title="Stream Resolution">
-                <i class="fa-solid fa-sliders"></i>
-                <span id="qualityText">1080p HD</span>
+              <!-- Interactive Video Quality Selector -->
+              <div class="dropdown-wrapper quality-wrapper" id="ctrlQualityWrapper">
+                <button class="ctrl-btn text-badge quality-badge-btn" id="ctrlQualityBtn" title="Change Video Quality / Resolution">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span id="qualityText">1080p HD</span>
+                  <i class="fa-solid fa-chevron-down" style="font-size: 0.65rem; margin-left: 3px;"></i>
+                </button>
+                <div class="dropdown-menu quality-dropdown-menu bottom-menu" id="ctrlQualityMenu">
+                  <!-- Dynamically populated -->
+                </div>
               </div>
 
               <!-- Theater Mode -->

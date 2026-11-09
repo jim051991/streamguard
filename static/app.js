@@ -1079,6 +1079,14 @@ function loadActiveStream(autoPlay = true) {
     videoEl.style.display = "none";
     if (playerControls) playerControls.style.display = "none";
     if (centerPlayOverlay) centerPlayOverlay.style.display = "none";
+    const qWrap = document.getElementById("theaterQualityWrap");
+    if (qWrap) qWrap.style.display = "none";
+    const audioWrap = document.querySelector(".audio-lang-wrap");
+    if (audioWrap) audioWrap.style.display = "none";
+    const audioQuickLabel = document.getElementById("audioQuickLabel");
+    if (audioQuickLabel) audioQuickLabel.style.display = "none";
+    const audioQuickTabsList = document.getElementById("audioQuickTabsList");
+    if (audioQuickTabsList) audioQuickTabsList.style.display = "none";
 
     // 2. Build Embed URL
     let embedUrl = srv.url;
@@ -1113,6 +1121,14 @@ function loadActiveStream(autoPlay = true) {
     videoEl.style.display = "block";
     if (playerControls) playerControls.style.display = "flex";
     if (centerPlayOverlay) centerPlayOverlay.style.display = "flex";
+    const qWrapNative = document.getElementById("theaterQualityWrap");
+    if (qWrapNative) qWrapNative.style.display = (srv.video_qualities && srv.video_qualities.length > 0) ? "block" : "none";
+    const audioWrapNative = document.querySelector(".audio-lang-wrap");
+    if (audioWrapNative) audioWrapNative.style.display = (srv.dual_audio || state.currentVideo.is_dual_audio) ? "block" : "none";
+    const audioQuickLabelNative = document.getElementById("audioQuickLabel");
+    if (audioQuickLabelNative) audioQuickLabelNative.style.display = (srv.dual_audio || state.currentVideo.is_dual_audio) ? "flex" : "none";
+    const audioQuickTabsListNative = document.getElementById("audioQuickTabsList");
+    if (audioQuickTabsListNative) audioQuickTabsListNative.style.display = (srv.dual_audio || state.currentVideo.is_dual_audio) ? "flex" : "none";
 
     let nativeUrl = srv.url;
     if (state.currentVideo.seasons && state.currentVideo.seasons.length > 0) {
@@ -1147,6 +1163,7 @@ function loadActiveStream(autoPlay = true) {
     updateVolumeIcon();
     renderAudioQuickTabs();
     renderAudioLanguageMenu();
+    renderVideoQualityMenu(srv);
     try {
       TheaterSoundEngine.init(videoEl);
       TheaterSoundEngine.resumeContext();
@@ -1247,6 +1264,14 @@ async function selectLiveChannel(channelId, autoPlay = true) {
     videoEl.style.display = "block";
     if (playerControls) playerControls.style.display = "flex";
     if (centerPlayOverlay) centerPlayOverlay.style.display = "flex";
+    const qWrapLive = document.getElementById("theaterQualityWrap");
+    if (qWrapLive) qWrapLive.style.display = "none";
+    const audioWrapLive = document.querySelector(".audio-lang-wrap");
+    if (audioWrapLive) audioWrapLive.style.display = "none";
+    const audioQuickLabelLive = document.getElementById("audioQuickLabel");
+    if (audioQuickLabelLive) audioQuickLabelLive.style.display = "none";
+    const audioQuickTabsListLive = document.getElementById("audioQuickTabsList");
+    if (audioQuickTabsListLive) audioQuickTabsListLive.style.display = "none";
 
     // Stream via In-App Gateway
     playHlsStream(state.currentChannel.gateway_url, autoPlay);
@@ -1447,6 +1472,114 @@ function toggleAudioDropdown(e) {
   const menu = document.getElementById("audioLangDropdownMenu");
   if (menu) menu.classList.toggle("show");
 }
+
+// ----------------------------------------------------------------------------
+// Video Quality Switching System (4K IMAX, 1080p BluRay, 720p HD, 480p SD)
+// ----------------------------------------------------------------------------
+let activeVideoQuality = null;
+
+function renderVideoQualityMenu(srv) {
+  const qualityListTop = document.getElementById("theaterQualityOptionsList");
+  const qualityListBottom = document.getElementById("ctrlQualityMenu");
+  const topLabel = document.getElementById("theaterQualityLabel");
+  const bottomLabel = document.getElementById("qualityText");
+  const countTag = document.getElementById("qualityCountTag");
+
+  const qualities = (srv && srv.video_qualities && srv.video_qualities.length > 0)
+    ? srv.video_qualities
+    : [
+        { label: "1080p Full HD (Direct Stream)", res: "1080p", size: srv?.size || "Direct Stream", url: srv?.url || (videoEl && videoEl.src) },
+        { label: "720p HD (High Definition)", res: "720p", size: "Optimized", url: srv?.url || (videoEl && videoEl.src) },
+        { label: "480p SD (Data Saver)", res: "480p", size: "Data Saver", url: srv?.url || (videoEl && videoEl.src) }
+      ];
+
+  if (!activeVideoQuality || !qualities.some(q => q.res === activeVideoQuality.res)) {
+    activeVideoQuality = qualities.find(q => q.res === "1080p") || qualities[0];
+  }
+
+  if (topLabel) topLabel.textContent = `Quality: ${activeVideoQuality.label.split(" (")[0]}`;
+  if (bottomLabel) bottomLabel.textContent = activeVideoQuality.res + (activeVideoQuality.res === "2160p" ? " 4K" : " HD");
+  if (countTag) countTag.textContent = `${qualities.length} Qualities`;
+
+  const renderOptions = () => qualities.map(q => {
+    const isActive = activeVideoQuality && activeVideoQuality.res === q.res;
+    return `
+      <button class="quality-opt ${isActive ? 'active' : ''}" onclick="switchVideoQuality('${q.res}')">
+        <div>
+          <span style="font-weight:700; color:${isActive ? '#34d399' : '#fff'};">${q.label}</span>
+          <span style="display:block; font-size:10.5px; color:var(--text-muted);">${q.size ? `Size: ${q.size} • ` : ''}${q.res} Master</span>
+        </div>
+        ${isActive ? '<i class="fa-solid fa-check" style="color:#34d399; font-size:12px;"></i>' : ''}
+      </button>
+    `;
+  }).join("");
+
+  if (qualityListTop) qualityListTop.innerHTML = renderOptions();
+  if (qualityListBottom) qualityListBottom.innerHTML = `
+    <div class="quality-dropdown-header">
+      <span><i class="fa-solid fa-sliders"></i> Stream Quality</span>
+      <span class="quality-count-tag">${qualities.length} Profiles</span>
+    </div>
+    ${renderOptions()}
+  `;
+}
+
+function switchVideoQuality(res) {
+  if (!state.currentVideo) return;
+  const servers = state.currentVideo.servers || [];
+  const srv = servers[state.currentServerIndex] || servers[0];
+  const qualities = (srv && srv.video_qualities && srv.video_qualities.length > 0)
+    ? srv.video_qualities
+    : [];
+
+  const target = qualities.find(q => q.res === res);
+  if (!target) return;
+
+  activeVideoQuality = target;
+
+  // 1. Preserve current playback timestamp & play state
+  const savedTime = (videoEl && videoEl.currentTime) ? videoEl.currentTime : 0;
+  const wasPlaying = videoEl && !videoEl.paused;
+
+  // 2. Seamlessly update video src
+  if (target.url && videoEl.src !== target.url) {
+    videoEl.src = target.url;
+    videoEl.load();
+    videoEl.currentTime = savedTime;
+
+    // 3. Keep audio unmuted and active
+    videoEl.muted = false;
+    videoEl.volume = 1.0;
+    forceUnmuteAudio();
+
+    // 4. Resume playback if it was playing
+    if (wasPlaying) {
+      const p = videoEl.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          videoEl.muted = true;
+          videoEl.play().catch(() => {});
+          showTapToUnmuteBadge();
+        });
+      }
+    }
+  }
+
+  // 5. Update UI labels and menus
+  renderVideoQualityMenu(srv);
+
+  // Close menus
+  const topMenu = document.getElementById("theaterQualityMenu");
+  if (topMenu) topMenu.classList.remove("show");
+  const bottomMenu = document.getElementById("ctrlQualityMenu");
+  if (bottomMenu) bottomMenu.classList.remove("show");
+
+  showToast(`Switched Video Quality to ${target.label}`);
+}
+
+window.selectAudioLanguage = selectAudioLanguage;
+window.toggleAudioDropdown = toggleAudioDropdown;
+window.switchVideoQuality = switchVideoQuality;
 
 function switchServer(serverIndex) {
   state.currentServerIndex = serverIndex;
@@ -2101,10 +2234,38 @@ function setupEventListeners() {
     });
   }
 
+  const theaterQualityBtn = document.getElementById("theaterQualityBtn");
+  const theaterQualityMenu = document.getElementById("theaterQualityMenu");
+  if (theaterQualityBtn) {
+    theaterQualityBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (theaterQualityMenu) theaterQualityMenu.classList.toggle("show");
+    });
+  }
+
+  const ctrlQualityBtn = document.getElementById("ctrlQualityBtn");
+  const ctrlQualityMenu = document.getElementById("ctrlQualityMenu");
+  if (ctrlQualityBtn) {
+    ctrlQualityBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (ctrlQualityMenu) ctrlQualityMenu.classList.toggle("show");
+    });
+  }
+
   document.addEventListener("click", (e) => {
     if (audioLangDropdownMenu && audioLangDropdownMenu.classList.contains("show")) {
       if (!audioLangDropdownMenu.contains(e.target) && e.target !== theaterAudioLangBtn) {
         audioLangDropdownMenu.classList.remove("show");
+      }
+    }
+    if (theaterQualityMenu && theaterQualityMenu.classList.contains("show")) {
+      if (!theaterQualityMenu.contains(e.target) && e.target !== theaterQualityBtn) {
+        theaterQualityMenu.classList.remove("show");
+      }
+    }
+    if (ctrlQualityMenu && ctrlQualityMenu.classList.contains("show")) {
+      if (!ctrlQualityMenu.contains(e.target) && e.target !== ctrlQualityBtn) {
+        ctrlQualityMenu.classList.remove("show");
       }
     }
   });

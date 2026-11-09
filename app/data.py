@@ -680,7 +680,33 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4",
                 "clean": True,
                 "dual_audio": True,
-                "size": "759 MB"
+                "size": "759 MB",
+                "video_qualities": [
+                    {
+                        "label": "4K Ultra HD (2160p IMAX)",
+                        "res": "2160p",
+                        "size": "2.9 GB",
+                        "url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.mp4"
+                    },
+                    {
+                        "label": "1080p Full HD (BluRay Direct MP4)",
+                        "res": "1080p",
+                        "size": "759 MB",
+                        "url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4"
+                    },
+                    {
+                        "label": "720p HD (Direct Stream)",
+                        "res": "720p",
+                        "size": "450 MB",
+                        "url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4"
+                    },
+                    {
+                        "label": "480p SD (Data Saver)",
+                        "res": "480p",
+                        "size": "260 MB",
+                        "url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4"
+                    }
+                ]
             },
             {
                 "id": "srv-2",
