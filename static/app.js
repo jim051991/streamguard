@@ -499,6 +499,46 @@ const closeLegalModalBtn = document.getElementById("closeLegalModalBtn");
 // Initialization
 // ----------------------------------------------------------------------------
 document.addEventListener("DOMContentLoaded", async () => {
+
+  // Enable seamless mouse wheel & touch scrolling on the players
+  const playerContainer = document.getElementById("playerContainer");
+  if (playerContainer) {
+    playerContainer.addEventListener("wheel", (e) => {
+      window.scrollBy({
+        top: e.deltaY,
+        behavior: "auto"
+      });
+    }, { passive: true });
+
+    let touchStartY = 0;
+    playerContainer.addEventListener("touchstart", (e) => {
+      if (e.touches && e.touches[0]) {
+        touchStartY = e.touches[0].clientY;
+      }
+    }, { passive: true });
+
+    playerContainer.addEventListener("touchmove", (e) => {
+      if (e.touches && e.touches[0]) {
+        const touchY = e.touches[0].clientY;
+        const deltaY = touchStartY - touchY;
+        touchStartY = touchY;
+        window.scrollBy({
+          top: deltaY,
+          behavior: "auto"
+        });
+      }
+    }, { passive: true });
+  }
+
+  document.querySelectorAll(".player-scroll-gutter").forEach((gutter) => {
+    gutter.addEventListener("wheel", (e) => {
+      window.scrollBy({
+        top: e.deltaY,
+        behavior: "auto"
+      });
+    }, { passive: true });
+  });
+
   setupEventListeners();
   updateWatchlistBadge();
   checkPartyRoomUrl();
@@ -870,6 +910,17 @@ function updateDualAudioBanner(video) {
     }
   }
 }
+function scrollToTheaterSection() {
+  if (!theaterSection) return;
+  const headerHeight = 76; // 68px header + 8px breathing margin
+  const elementPosition = theaterSection.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+  window.scrollTo({
+    top: Math.max(0, offsetPosition),
+    behavior: "smooth"
+  });
+}
+
 async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
   try {
     destroyHls();
@@ -884,7 +935,7 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
 
     // Show theater container
     theaterSection.style.display = "block";
-    theaterSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToTheaterSection();
     liveIndicatorTag.style.display = "none";
     channelFlagBadge.style.display = "none";
 
@@ -958,7 +1009,7 @@ function mountCleanEmbedPlayer(embedUrl) {
   // Create brand-new, fresh, completely un-sandboxed iframe element
   const newFrame = document.createElement("iframe");
   newFrame.id = "embedPlayerFrame";
-  newFrame.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture; fullscreen; clipboard-write; microphone; camera");
+  newFrame.setAttribute("allow", "autoplay *; encrypted-media *; picture-in-picture *; fullscreen *; clipboard-write; microphone; camera");
   newFrame.setAttribute("allowfullscreen", "true");
   newFrame.setAttribute("referrerpolicy", "origin");
   newFrame.style.cssText = "width:100%; height:100%; border:none; display:block; background:#000;";
@@ -1057,7 +1108,10 @@ function loadActiveStream(autoPlay = true) {
 
     videoEl.src = nativeUrl;
     videoEl.load();
+    videoEl.muted = false; // Guaranteed unmuted from the start on every movie
     videoEl.volume = 1.0;
+    if (volumeSlider) volumeSlider.value = 1.0;
+    updateVolumeIcon();
     try {
       TheaterSoundEngine.init(videoEl);
       TheaterSoundEngine.resumeContext();
@@ -1079,9 +1133,25 @@ function loadActiveStream(autoPlay = true) {
     }
 
     if (autoPlay) {
-      videoEl.play().catch((err) => {
-        console.warn("Autoplay held by browser policy.", err);
-      });
+      const playPromise = videoEl.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((err) => {
+          console.warn("Autoplay with sound held by browser policy. Retrying unmuted on first interaction.", err);
+          videoEl.muted = true;
+          videoEl.play().catch(() => {});
+          const forceUnmute = () => {
+            videoEl.muted = false;
+            videoEl.volume = 1.0;
+            if (volumeSlider) volumeSlider.value = 1.0;
+            updateVolumeIcon();
+            try { TheaterSoundEngine.resumeContext(); } catch(e) {}
+            window.removeEventListener("pointerdown", forceUnmute, true);
+            window.removeEventListener("keydown", forceUnmute, true);
+          };
+          window.addEventListener("pointerdown", forceUnmute, true);
+          window.addEventListener("keydown", forceUnmute, true);
+        });
+      }
     }
     showToast(`Streaming ${state.currentVideo.title} via ${srv.name}`);
   }
@@ -1102,7 +1172,7 @@ async function selectLiveChannel(channelId, autoPlay = true) {
 
     // Show theater container
     theaterSection.style.display = "block";
-    theaterSection.scrollIntoView({ behavior: "smooth", block: "start" });
+    scrollToTheaterSection();
     liveIndicatorTag.style.display = "flex";
     channelFlagBadge.textContent = state.currentChannel.flag;
     channelFlagBadge.style.display = "inline-block";

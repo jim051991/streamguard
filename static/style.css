@@ -855,17 +855,20 @@ body.ott-theme {
    -------------------------------------------------------------------------- */
 .theater-section {
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto 36px;
-  padding: 0 24px;
+  max-width: min(1080px, 94vw); /* Sized proportionally to prevent viewport overflow */
+  margin: 0 auto 28px;
+  padding: 0 16px;
+  scroll-margin-top: calc(var(--header-height) + 14px); /* Never cut under sticky header */
+  touch-action: pan-y;
 }
 
 .theater-inner {
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
-  border-radius: 16px;
+  border-radius: 14px;
   overflow: hidden;
   box-shadow: var(--player-shadow);
+  touch-action: pan-y;
 }
 
 .player-top-bar {
@@ -994,16 +997,46 @@ body.ott-theme {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  max-height: calc(100vh - var(--header-height) - 150px); /* Strictly fits on device screen */
+  min-height: 220px;
   background: #000;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: pan-y;
 }
 
 #videoElement {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  max-height: 100%;
+  object-fit: contain; /* Prevents video from getting cut at top and bottom */
   display: block;
 }
+
+#embedPlayerFrame {
+  width: 100%;
+  height: 100%;
+  max-height: 100%;
+  border: none;
+  display: block;
+  background: #000;
+  touch-action: pan-y;
+}
+
+/* Subtle side scroll guide gutters for smooth vertical scrolling over player */
+.player-scroll-gutter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 24px;
+  z-index: 35;
+  pointer-events: auto;
+  touch-action: pan-y;
+}
+.player-scroll-gutter.left { left: 0; }
+.player-scroll-gutter.right { right: 0; }
 
 /* Pre-Roll Video Advertisement Overlay (YouTube / OTT Style) */
 .preroll-ad-overlay {
@@ -3880,5 +3913,39 @@ body.ott-theme {
 @media (max-width: 600px) {
   .theater-presets-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+
+/* Responsive Player Viewport Adaptation (Prevents top/bottom cutoff on laptops & phones) */
+@media (max-height: 850px) {
+  .theater-section {
+    max-width: min(980px, calc((100vh - var(--header-height) - 130px) * (16 / 9)));
+    margin-bottom: 20px;
+  }
+  .player-container {
+    max-height: calc(100vh - var(--header-height) - 125px);
+  }
+  .player-top-bar {
+    padding: 8px 14px;
+  }
+  .player-server-tabs-bar {
+    padding: 6px 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .theater-section {
+    padding: 0 8px;
+    margin-bottom: 18px;
+    max-width: 100%;
+    scroll-margin-top: calc(var(--header-height) + 8px);
+  }
+  .player-container {
+    aspect-ratio: 16 / 9;
+    max-height: 55vh;
+  }
+  .theater-inner {
+    border-radius: 10px;
   }
 }

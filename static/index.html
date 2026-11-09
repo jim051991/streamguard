@@ -163,6 +163,10 @@
 
       <!-- Video Player Frame -->
       <div class="player-container" id="playerContainer">
+        <!-- Side Scroll Gutters (Ensures page scrolling always works over player) -->
+        <div class="player-scroll-gutter left" title="Scroll page"></div>
+        <div class="player-scroll-gutter right" title="Scroll page"></div>
+
         <!-- 1. HTML5 Video Element (CORS-free for direct native streaming & Live TV) -->
         <video id="videoElement" preload="metadata" playsinline>
           <track id="subtitleTrack" kind="subtitles" srclang="en" label="English [CC]" src="/static/subtitles/english.vtt" default>
