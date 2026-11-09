@@ -1,3 +1,4 @@
+from app.data import generate_movie_audio_tracks
 """
 StreamGuard 2.0 - Global Cinema Discovery Engine
 Enables dynamic discovery and real-time streaming of any movie or TV series
@@ -88,6 +89,7 @@ def format_global_title(item: Dict[str, Any]) -> Dict[str, Any]:
         "is_world_cinema": True,
         "is_dual_audio": True,
         "audio_tracks_count": 48,
+        "audio_tracks": generate_movie_audio_tracks(f"global-{imdb_id}"),
         "is_global_dynamic": True,
         "comments": []
     }

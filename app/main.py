@@ -32,7 +32,7 @@ from app.security import (
 )
 from app.honeypots import honeypot_router
 from app.live_tv import live_router
-from app.amlve import amlve_router
+from app.amlve import amlve_router, audio_router
 from app.global_cinema import global_router, get_cached_global_video, get_global_video_details
 from app.data import (
     get_all_videos,
@@ -173,6 +173,7 @@ async def security_waf_middleware(request: Request, call_next):
 app.include_router(honeypot_router)
 app.include_router(live_router)
 app.include_router(amlve_router)
+app.include_router(audio_router)
 app.include_router(global_router)
 
 # -----------------------------------------------------------------------------

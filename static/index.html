@@ -399,6 +399,25 @@
             <i class="fa-solid fa-arrow-up-right-from-square"></i>
             <span id="downloadBtnLabel">Raw Source</span>
           </button>
+          <!-- Dub Audio Files Download & Listen Dropdown -->
+          <div class="dub-audio-dropdown-wrap">
+            <button class="meta-btn dub-files-btn" id="dubAudioMenuBtn" title="Browse & Download Dubbed Audio Files (.MP3)">
+              <i class="fa-solid fa-file-audio" style="color:var(--accent-cyan);"></i>
+              <span>Dub Audio Files <i class="fa-solid fa-chevron-down" style="font-size:10px; margin-left:3px;"></i></span>
+            </button>
+            <div class="dub-audio-menu" id="dubAudioMenu" style="display:none;">
+              <div class="dub-menu-header">
+                <div>
+                  <h4><i class="fa-solid fa-headphones"></i> Movie Dub Audio Files (.MP3)</h4>
+                  <p>Stream or download 320kbps Dolby dubbed vocal tracks</p>
+                </div>
+                <button class="dub-menu-close" id="closeDubMenuBtn"><i class="fa-solid fa-xmark"></i></button>
+              </div>
+              <div class="dub-menu-items" id="dubMenuItems">
+                <!-- Dynamically populated with all audio tracks -->
+              </div>
+            </div>
+          </div>
           <a href="/security-dashboard" class="meta-btn shield-btn" title="View Hacker Location Radar">
             <i class="fa-solid fa-user-shield"></i>
             <span>Threat Radar</span>

@@ -702,6 +702,7 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
 
     // Directly open and stream the chosen movie on first click!
     loadActiveStream(autoPlay);
+    AMLVE.renderDubAudioDropdown(state.currentVideo);
     AMLVE.startPlaybackDubbing(state.currentVideo.id);
   } catch (err) {
     console.error("Error playing video:", err);
@@ -1570,6 +1571,7 @@ function setupEventListeners() {
   closePlayerBtn.addEventListener("click", () => {
     theaterSection.style.display = "none";
     AMLVE.stopPlaybackDubbing();
+    if (AMLVE.movieDubAudio) AMLVE.movieDubAudio.pause();
     videoEl.pause();
     destroyHls();
     finishPrerollAd(false);
@@ -1887,6 +1889,7 @@ const AMLVE = {
 
   // Real Audible Vocal Dialogue Track (VDT) Engine
   vocalAudio: null,
+  movieDubAudio: null,
   vocalVolume: 1.0,
   dubbingEnabled: true,
   activeCues: [],
@@ -2194,6 +2197,7 @@ const AMLVE = {
     // Fetch dialogue cues and immediately speak activation confirmation aloud!
     const vidId = state.currentVideo ? state.currentVideo.id : "vid-01";
     this.loadMovieDubbing(vidId, targetLang.code, true);
+    this.loadMovieDubAudio(vidId, targetLang.code);
   },
 
   async loadMovieDubbing(videoId, langCode, speakImmediately = false) {
@@ -2356,6 +2360,31 @@ const AMLVE = {
     const audioBarMoreBtn = document.getElementById("audioBarMoreBtn");
 
     // Audio Bar Controls
+    
+    // Dubbed Audio Dropdown Menu Listeners
+    const dubMenuBtn = document.getElementById("dubAudioMenuBtn");
+    const dubMenu = document.getElementById("dubAudioMenu");
+    const closeDubMenuBtn = document.getElementById("closeDubMenuBtn");
+
+    if (dubMenuBtn && dubMenu) {
+      dubMenuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        dubMenu.style.display = dubMenu.style.display === "none" ? "block" : "none";
+      });
+    }
+
+    if (closeDubMenuBtn && dubMenu) {
+      closeDubMenuBtn.addEventListener("click", () => {
+        dubMenu.style.display = "none";
+      });
+    }
+
+    document.addEventListener("click", (e) => {
+      if (dubMenu && dubMenu.style.display !== "none" && !dubMenu.contains(e.target) && e.target !== dubMenuBtn) {
+        dubMenu.style.display = "none";
+      }
+    });
+
     const testVoiceBtn = document.getElementById("amlveTestVoiceBtn");
     if (testVoiceBtn) {
       testVoiceBtn.addEventListener("click", () => {

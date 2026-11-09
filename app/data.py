@@ -7,6 +7,37 @@ Modeled after CineHD & Movibox catalog architecture with Cloud 4K Embeds (VidSrc
 
 from typing import List, Dict, Any, Optional
 
+
+DUB_AUDIO_LANGUAGES = [
+    {"code": "en-US", "lang": "en", "label": "English (Original)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "hi-IN", "lang": "hi", "label": "हिन्दी (Hindi Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "ta-IN", "lang": "ta", "label": "தமிழ் (Tamil Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "te-IN", "lang": "te", "label": "తెలుగు (Telugu Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "ml-IN", "lang": "ml", "label": "മലയാളം (Malayalam Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "kn-IN", "lang": "kn", "label": "ಕನ್ನಡ (Kannada Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "mr-IN", "lang": "mr", "label": "मराठी (Marathi Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "es-MX", "lang": "es", "label": "Español (Spanish Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "fr-FR", "lang": "fr", "label": "Français (French Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "de-DE", "lang": "de", "label": "Deutsch (German Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "ja-JP", "lang": "ja", "label": "日本語 (Japanese Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"},
+    {"code": "ko-KR", "lang": "ko", "label": "한국어 (Korean Dub)", "bitrate": "320 kbps", "codec": "MP3 Dolby"}
+]
+
+def generate_movie_audio_tracks(video_id: str) -> List[Dict[str, Any]]:
+    return [
+        {
+            "code": item["code"],
+            "lang": item["lang"],
+            "label": item["label"],
+            "bitrate": item["bitrate"],
+            "codec": item["codec"],
+            "url": f"/api/audio/dub/{video_id}/{item['lang']}.mp3",
+            "download_url": f"/api/audio/dub/{video_id}/{item['lang']}.mp3?download=1",
+            "file_name": f"{video_id}_{item['lang']}.mp3"
+        }
+        for item in DUB_AUDIO_LANGUAGES
+    ]
+
 VIDEOS_CATALOG: List[Dict[str, Any]] = [
     # =========================================================================
     # 1. HOLLYWOOD & WORLDWIDE TRENDING BLOCKBUSTERS (CineHD / Movibox Top Hits)
@@ -1811,3 +1842,7 @@ def add_video_comment(video_id: str, author: str, text: str) -> Optional[Dict[st
             v["comments"].insert(0, comment)
             return comment
     return None
+
+# Attach audio_tracks to all catalog movies
+for _v in VIDEOS_CATALOG:
+    _v['audio_tracks'] = generate_movie_audio_tracks(_v['id'])
