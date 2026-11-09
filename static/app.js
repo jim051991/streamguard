@@ -835,6 +835,18 @@ function loadActiveStream(autoPlay = true) {
     videoEl.src = nativeUrl;
     videoEl.load();
 
+    // Check if Hindi or Regional Dubbed Audio should be armed
+    if (srv.default_audio === "hi" || (AMLVE.activeLanguage && AMLVE.activeLanguage.toLowerCase().startsWith("hi"))) {
+      videoEl.volume = 0.2; // Duck background sound so Hindi voice is loud and clear
+      AMLVE.loadMovieDubAudio(state.currentVideo.id, "hi");
+    } else if (AMLVE.activeLanguage && !AMLVE.activeLanguage.toLowerCase().startsWith("en")) {
+      videoEl.volume = 0.2;
+      AMLVE.loadMovieDubAudio(state.currentVideo.id, AMLVE.activeLanguage);
+    } else {
+      videoEl.volume = 1.0;
+      if (AMLVE.movieDubPlayer) AMLVE.movieDubPlayer.pause();
+    }
+
     scrubberProgress.style.width = "0%";
     scrubberThumb.style.left = "0%";
     currentTimeEl.textContent = "00:00";
@@ -1036,6 +1048,25 @@ function switchServer(serverIndex) {
     const srv = servers[serverIndex];
     if (srv) {
       currentServerLabel.textContent = srv.name;
+
+      if (srv.default_audio === "hi" || (srv.name && srv.name.toLowerCase().includes("hindi"))) {
+        AMLVE.activeLanguage = "hi-IN";
+        const shortCode = "HI";
+        const activeLangCodeEl = document.getElementById("activeLangCode");
+        if (activeLangCodeEl) activeLangCodeEl.textContent = shortCode;
+        const theaterLangLabel = document.getElementById("theaterLangLabel");
+        if (theaterLangLabel) theaterLangLabel.textContent = "Audio: हिन्दी (Hindi Dubbed)";
+        showToast("🇮🇳 Server 2 Active: Hindi Dubbed Audio Stream Linked");
+      } else if (srv.default_audio === "multi" || (srv.name && srv.name.toLowerCase().includes("multi-audio"))) {
+        showToast("🌐 Server 3 Active: Multi-Audio Mode (12+ Regional Languages Available)");
+      } else if (srv.name && srv.name.toLowerCase().includes("english")) {
+        AMLVE.activeLanguage = "en-US";
+        const activeLangCodeEl = document.getElementById("activeLangCode");
+        if (activeLangCodeEl) activeLangCodeEl.textContent = "EN";
+        const theaterLangLabel = document.getElementById("theaterLangLabel");
+        if (theaterLangLabel) theaterLangLabel.textContent = "Audio: English (Original)";
+      }
+
       loadActiveStream(true);
     }
   }
@@ -1652,8 +1683,24 @@ function setupEventListeners() {
     togglePlay();
     flashCenterOverlay(videoEl.paused ? "fa-pause" : "fa-play");
   });
-  videoEl.addEventListener("play", updatePlayButton);
-  videoEl.addEventListener("pause", updatePlayButton);
+  videoEl.addEventListener("play", () => {
+    updatePlayButton();
+    if (AMLVE.movieDubPlayer && AMLVE.movieDubPlayer.src && AMLVE.dubbingEnabled) {
+      AMLVE.movieDubPlayer.currentTime = videoEl.currentTime;
+      AMLVE.movieDubPlayer.play().catch(() => {});
+    }
+  });
+  videoEl.addEventListener("pause", () => {
+    updatePlayButton();
+    if (AMLVE.movieDubPlayer) {
+      AMLVE.movieDubPlayer.pause();
+    }
+  });
+  videoEl.addEventListener("seeked", () => {
+    if (AMLVE.movieDubPlayer && AMLVE.movieDubPlayer.src) {
+      AMLVE.movieDubPlayer.currentTime = videoEl.currentTime;
+    }
+  });
   videoEl.addEventListener("timeupdate", updateTimeline);
   videoEl.addEventListener("ended", () => {
     if (state.currentVideo) {
@@ -2228,6 +2275,18 @@ const AMLVE = {
     const vidId = state.currentVideo ? state.currentVideo.id : "vid-01";
     this.loadMovieDubbing(vidId, targetLang.code, true);
     this.loadMovieDubAudio(vidId, targetLang.code);
+
+    // If currently playing in Native mode, update dub audio track & duck original volume immediately
+    if (videoEl && videoEl.style.display !== "none") {
+      const cleanLang = (targetLang.code || "en").split("-")[0].toLowerCase();
+      if (cleanLang !== "en") {
+        videoEl.volume = 0.2;
+        this.loadMovieDubAudio(vidId, cleanLang);
+      } else {
+        videoEl.volume = 1.0;
+        if (this.movieDubPlayer) this.movieDubPlayer.pause();
+      }
+    }
 
     // Option B Integration: If switching to Hindi or English on an embed player, auto-switch to corresponding dubbed server
     if (state.currentVideo && state.currentVideo.servers && state.currentVideo.servers.length > 1) {
