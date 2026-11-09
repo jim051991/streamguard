@@ -14,8 +14,24 @@ const ADGUARD_BLOCKED_DOMAINS = [
   "exoclick.com", "propellerads.com", "monetag.com", "hilltopads.net", "adcash.com",
   "bet99.com", "1xbet.com", "parimatch.com", "cleanmymac.com", "macupdater.info",
   "apkpure.com", "pushassist.com", "notifpush.com", "directrev.com", "adnxs.com",
-  "syndication.exoclick.com", "tsyndicate.com", "doubleclick.net", "adcolony.com"
+  "syndication.exoclick.com", "tsyndicate.com", "doubleclick.net", "adcolony.com",
+  "clickadu.com", "revenuehits.com", "bidvertiser.com", "popmyads.com", "infolinks.com",
+  "ad-maven.com", "richpush.com", "evadav.com", "rollerads.com", "trafficstars.com",
+  "juicyads.com", "plugrush.com", "yllix.com", "adoperator.com", "galaksion.com",
+  "bet365.com", "stake.com", "bcgame.com", "mostbet.com", "melbet.com", "dafabet.com"
 ];
+
+function sanitizeMovieUrlWithAdGuard(rawUrl) {
+  if (!rawUrl) return "";
+  try {
+    const parsed = new URL(rawUrl, window.location.origin);
+    const adParams = ["ref", "ad_id", "ad", "utm_source", "utm_medium", "utm_campaign", "subid", "track", "token", "affiliate", "banner"];
+    adParams.forEach(p => parsed.searchParams.delete(p));
+    return parsed.toString();
+  } catch (e) {
+    return rawUrl;
+  }
+}
 
 function isAdGuardBlockedUrl(url) {
   if (!url) return false;
@@ -137,6 +153,173 @@ function isAdGuardBlockedUrl(url) {
 })();
 
 // ----------------------------------------------------------------------------
+
+// ============================================================================
+// THEATER SOUND ACOUSTIC ENHANCEMENT ENGINE (DOLBY ATMOS & CINEMA PRO DSP)
+// Enhances audio across ALL movies with Subwoofer Bass, Dialogue Clarity & 3D Spatial Hall
+// ============================================================================
+const TheaterSoundEngine = {
+  isInitialized: false,
+  audioCtx: null,
+  sourceNode: null,
+  subBassFilter: null,
+  dialogueFilter: null,
+  spatialAirFilter: null,
+  compressorNode: null,
+  masterGain: null,
+  analyserNode: null,
+  currentPreset: localStorage.getItem("streamguard_theater_sound") || "DOLBY_ATMOS",
+  analyserDataArray: null,
+  animationFrameId: null,
+
+  init(mediaElement) {
+    if (this.isInitialized && this.sourceNode) {
+      this.resumeContext();
+      return;
+    }
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      this.audioCtx = new AudioCtx({ sampleRate: 48000, latencyHint: "playback" });
+
+      // 1. Media Element Source
+      this.sourceNode = this.audioCtx.createMediaElementSource(mediaElement);
+
+      // 2. Subwoofer Sub-Bass LowShelf Filter (50Hz - 80Hz)
+      this.subBassFilter = this.audioCtx.createBiquadFilter();
+      this.subBassFilter.type = "lowshelf";
+      this.subBassFilter.frequency.value = 65;
+      this.subBassFilter.gain.value = 6.5; // +6.5dB deep cinema rumble
+
+      // 3. Cinema Dialogue Center Peaking Filter (2.2kHz - 2.8kHz)
+      this.dialogueFilter = this.audioCtx.createBiquadFilter();
+      this.dialogueFilter.type = "peaking";
+      this.dialogueFilter.frequency.value = 2400;
+      this.dialogueFilter.Q.value = 1.2;
+      this.dialogueFilter.gain.value = 3.8; // +3.8dB crisp voice intelligibility
+
+      // 4. Spatial Air HighShelf Filter (11kHz - 14kHz)
+      this.spatialAirFilter = this.audioCtx.createBiquadFilter();
+      this.spatialAirFilter.type = "highshelf";
+      this.spatialAirFilter.frequency.value = 12000;
+      this.spatialAirFilter.gain.value = 2.5; // +2.5dB air & ambience sparkle
+
+      // 5. Cinema Dynamics Mastering Compressor
+      this.compressorNode = this.audioCtx.createDynamicsCompressor();
+      this.compressorNode.threshold.value = -20;
+      this.compressorNode.knee.value = 8;
+      this.compressorNode.ratio.value = 3.5;
+      this.compressorNode.attack.value = 0.003;
+      this.compressorNode.release.value = 0.25;
+
+      // 6. Real-time Frequency Analyser for Spectrum Visualizer
+      this.analyserNode = this.audioCtx.createAnalyser();
+      this.analyserNode.fftSize = 64;
+      this.analyserDataArray = new Uint8Array(this.analyserNode.frequencyBinCount);
+
+      // 7. Master Gain Node
+      this.masterGain = this.audioCtx.createGain();
+      this.masterGain.gain.value = 1.0;
+
+      // Connect DSP chain
+      this.sourceNode.connect(this.subBassFilter);
+      this.subBassFilter.connect(this.dialogueFilter);
+      this.dialogueFilter.connect(this.spatialAirFilter);
+      this.spatialAirFilter.connect(this.compressorNode);
+      this.compressorNode.connect(this.masterGain);
+      this.masterGain.connect(this.analyserNode);
+      this.analyserNode.connect(this.audioCtx.destination);
+
+      this.isInitialized = true;
+      this.applyPreset(this.currentPreset);
+      this.startSpectrumVisualizer();
+      console.log("[TheaterSound] Cinema Acoustic DSP active: Dolby Atmos Emulation engaged.");
+    } catch (e) {
+      console.warn("[TheaterSound] Web Audio init note:", e.message);
+    }
+  },
+
+  async resumeContext() {
+    if (this.audioCtx && this.audioCtx.state === "suspended") {
+      try {
+        await this.audioCtx.resume();
+      } catch (e) {}
+    }
+  },
+
+  applyPreset(presetKey) {
+    this.currentPreset = presetKey;
+    localStorage.setItem("streamguard_theater_sound", presetKey);
+    if (!this.isInitialized || !this.subBassFilter) {
+      this.updateUI();
+      return;
+    }
+
+    if (presetKey === "DOLBY_ATMOS") {
+      this.subBassFilter.gain.value = 6.5;
+      this.dialogueFilter.gain.value = 3.8;
+      this.spatialAirFilter.gain.value = 2.8;
+      this.compressorNode.threshold.value = -20;
+      this.compressorNode.ratio.value = 3.5;
+    } else if (presetKey === "IMAX_BASS") {
+      this.subBassFilter.gain.value = 9.5;
+      this.dialogueFilter.gain.value = 1.5;
+      this.spatialAirFilter.gain.value = 2.0;
+      this.compressorNode.threshold.value = -24;
+      this.compressorNode.ratio.value = 4.5;
+    } else if (presetKey === "CLEAR_DIALOGUE") {
+      this.subBassFilter.gain.value = 1.0;
+      this.dialogueFilter.gain.value = 6.0;
+      this.spatialAirFilter.gain.value = 3.0;
+      this.compressorNode.threshold.value = -18;
+      this.compressorNode.ratio.value = 3.0;
+    } else if (presetKey === "STUDIO_DIRECT") {
+      this.subBassFilter.gain.value = 0.0;
+      this.dialogueFilter.gain.value = 0.0;
+      this.spatialAirFilter.gain.value = 0.0;
+      this.compressorNode.threshold.value = 0.0;
+      this.compressorNode.ratio.value = 1.0;
+    }
+
+    this.updateUI();
+  },
+
+  updateUI() {
+    const label = document.getElementById("theaterSoundPresetLabel");
+    const names = {
+      DOLBY_ATMOS: "Dolby Atmos",
+      IMAX_BASS: "IMAX Bass",
+      CLEAR_DIALOGUE: "Dialogue Pro",
+      STUDIO_DIRECT: "Studio Bitstream"
+    };
+    if (label) label.textContent = names[this.currentPreset] || "Dolby Atmos";
+
+    document.querySelectorAll(".theater-sound-card-option").forEach(card => {
+      card.classList.toggle("active", card.dataset.preset === this.currentPreset);
+    });
+  },
+
+  startSpectrumVisualizer() {
+    const bars = document.querySelectorAll(".theater-spectrum-bar");
+    if (!bars.length || !this.analyserNode) return;
+
+    const renderFrame = () => {
+      this.animationFrameId = requestAnimationFrame(renderFrame);
+      if (!this.analyserNode || !this.analyserDataArray) return;
+      this.analyserNode.getByteFrequencyData(this.analyserDataArray);
+
+      const bandIndices = [1, 3, 6, 10, 16, 24];
+      bars.forEach((bar, idx) => {
+        const binIndex = bandIndices[idx % bandIndices.length] || idx;
+        const val = this.analyserDataArray[binIndex] || 0;
+        const pct = Math.min(100, Math.max(14, (val / 255) * 100));
+        bar.style.height = `${pct}%`;
+      });
+    };
+    renderFrame();
+  }
+};
+
 // Global Application State
 // ----------------------------------------------------------------------------
 const state = {
@@ -788,7 +971,7 @@ function mountCleanEmbedPlayer(embedUrl) {
   newFrame.removeAttribute("sandbox");
 
   // Mount the movie stream
-  newFrame.src = embedUrl;
+  newFrame.src = sanitizeMovieUrlWithAdGuard(embedUrl);
 
   const adOverlay = document.getElementById("prerollAdOverlay");
   if (adOverlay && adOverlay.parentNode === container) {
@@ -879,6 +1062,10 @@ function loadActiveStream(autoPlay = true) {
     videoEl.src = nativeUrl;
     videoEl.load();
     videoEl.volume = 1.0;
+    try {
+      TheaterSoundEngine.init(videoEl);
+      TheaterSoundEngine.resumeContext();
+    } catch (e) {}
     if (AMLVE.movieDubPlayer) {
       AMLVE.movieDubPlayer.pause();
       AMLVE.movieDubPlayer.src = "";

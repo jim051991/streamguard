@@ -11117,6 +11117,1046 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             "stream_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
             "direct_mp4_available": True
         }
+    },
+    {
+        "id": "mov-hi-nanna",
+        "title": "Hi Nanna (2023)",
+        "subtitle": "2023 • Romance, Drama, Family",
+        "content_type": "movie",
+        "description": "Hi Nanna (2023) starring Nani and Mrunal Thakur streaming in verified direct Dual Audio (Hindi + Telugu).",
+        "release_year": 2023,
+        "age_rating": "PG",
+        "imdb_rating": 8.2,
+        "tmdb_id": 1198642,
+        "imdb_id": "tt28381677",
+        "quality": "1080p Full HD",
+        "duration_seconds": 9300,
+        "duration_formatted": "2h 35m",
+        "video_url": "https://archive.org/download/hi-nannas/Hi%20Nanna%20%282023%29%201080p%20HDRip.%20%5BDual%20Audio%5D%20%5BHindi%20%2B%20Telugu%5D%20x264%20ESubs%20%5B3.2GB%5D%20-%20QRips.mp4",
+        "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 2100000,
+        "likes": 145000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Romance",
+        "tags": [
+            "hi-nanna",
+            "dual-audio",
+            "hindi-telugu",
+            "direct-mp4"
+        ],
+        "published_at": "2023",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "dual_audio_meta": {
+            "title_with_audio": "Hi Nanna (Hindi + Telugu)",
+            "languages": "Hindi + Telugu",
+            "quality_spec": "1080p HDRip Dual Audio MP4 (3.2 GB)",
+            "stream_url": "https://archive.org/download/hi-nannas/Hi%20Nanna%20%282023%29%201080p%20HDRip.%20%5BDual%20Audio%5D%20%5BHindi%20%2B%20Telugu%5D%20x264%20ESubs%20%5B3.2GB%5D%20-%20QRips.mp4",
+            "direct_mp4_available": True
+        },
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + Telugu)",
+                "type": "native",
+                "url": "https://archive.org/download/hi-nannas/Hi%20Nanna%20%282023%29%201080p%20HDRip.%20%5BDual%20Audio%5D%20%5BHindi%20%2B%20Telugu%5D%20x264%20ESubs%20%5B3.2GB%5D%20-%20QRips.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/1198642?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/1198642"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/1198642"
+            }
+        ],
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/en.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/en.mp3?download=1",
+                "file_name": "mov-hi-nanna_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/hi.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/hi.mp3?download=1",
+                "file_name": "mov-hi-nanna_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/ta.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/ta.mp3?download=1",
+                "file_name": "mov-hi-nanna_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/te.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/te.mp3?download=1",
+                "file_name": "mov-hi-nanna_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/ml.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/ml.mp3?download=1",
+                "file_name": "mov-hi-nanna_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/kn.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/kn.mp3?download=1",
+                "file_name": "mov-hi-nanna_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/mr.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/mr.mp3?download=1",
+                "file_name": "mov-hi-nanna_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/es.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/es.mp3?download=1",
+                "file_name": "mov-hi-nanna_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/fr.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/fr.mp3?download=1",
+                "file_name": "mov-hi-nanna_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/de.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/de.mp3?download=1",
+                "file_name": "mov-hi-nanna_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/ja.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/ja.mp3?download=1",
+                "file_name": "mov-hi-nanna_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hi-nanna/ko.mp3",
+                "download_url": "/api/audio/dub/mov-hi-nanna/ko.mp3?download=1",
+                "file_name": "mov-hi-nanna_ko.mp3"
+            }
+        ],
+        "comments": []
+    },
+    {
+        "id": "mov-aavesham",
+        "title": "Aavesham (2024)",
+        "subtitle": "2024 • Action, Comedy",
+        "content_type": "movie",
+        "description": "Aavesham (2024) starring Fahadh Faasil streaming in verified direct Dual Audio (Hindi + Malayalam).",
+        "release_year": 2024,
+        "age_rating": "PG-13",
+        "imdb_rating": 8.0,
+        "tmdb_id": 1111624,
+        "imdb_id": "tt27056116",
+        "quality": "1080p Full HD",
+        "duration_seconds": 9480,
+        "duration_formatted": "2h 38m",
+        "video_url": "https://archive.org/download/aavesham-2024-malayalam-movie-in-hindi-org-dual-audio-south-movie-uncut-1080p-hdrip-2.69-gb-esubs/Aav3sham%20%282024%29%20M%40l%40yal4m%20Movie%20in%20Hindi%20ORG%20Dual%20Audio%20South%20Movie%20UNCUT%201080p%20HDRip%202.69GB%20ESubs.mp4",
+        "thumbnail_url": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 2400000,
+        "likes": 178000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Action",
+        "tags": [
+            "aavesham",
+            "dual-audio",
+            "hindi-malayalam",
+            "fahadh-faasil"
+        ],
+        "published_at": "2024",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "dual_audio_meta": {
+            "title_with_audio": "Aavesham (Hindi + Malayalam)",
+            "languages": "Hindi + Malayalam",
+            "quality_spec": "1080p HDRip Dual Audio MP4 (2.69 GB)",
+            "stream_url": "https://archive.org/download/aavesham-2024-malayalam-movie-in-hindi-org-dual-audio-south-movie-uncut-1080p-hdrip-2.69-gb-esubs/Aav3sham%20%282024%29%20M%40l%40yal4m%20Movie%20in%20Hindi%20ORG%20Dual%20Audio%20South%20Movie%20UNCUT%201080p%20HDRip%202.69GB%20ESubs.mp4",
+            "direct_mp4_available": True
+        },
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + Malayalam)",
+                "type": "native",
+                "url": "https://archive.org/download/aavesham-2024-malayalam-movie-in-hindi-org-dual-audio-south-movie-uncut-1080p-hdrip-2.69-gb-esubs/Aav3sham%20%282024%29%20M%40l%40yal4m%20Movie%20in%20Hindi%20ORG%20Dual%20Audio%20South%20Movie%20UNCUT%201080p%20HDRip%202.69GB%20ESubs.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/1111624?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/1111624"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/1111624"
+            }
+        ],
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/en.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/en.mp3?download=1",
+                "file_name": "mov-aavesham_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/hi.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/hi.mp3?download=1",
+                "file_name": "mov-aavesham_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/ta.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/ta.mp3?download=1",
+                "file_name": "mov-aavesham_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/te.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/te.mp3?download=1",
+                "file_name": "mov-aavesham_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/ml.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/ml.mp3?download=1",
+                "file_name": "mov-aavesham_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/kn.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/kn.mp3?download=1",
+                "file_name": "mov-aavesham_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/mr.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/mr.mp3?download=1",
+                "file_name": "mov-aavesham_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/es.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/es.mp3?download=1",
+                "file_name": "mov-aavesham_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/fr.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/fr.mp3?download=1",
+                "file_name": "mov-aavesham_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/de.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/de.mp3?download=1",
+                "file_name": "mov-aavesham_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/ja.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/ja.mp3?download=1",
+                "file_name": "mov-aavesham_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aavesham/ko.mp3",
+                "download_url": "/api/audio/dub/mov-aavesham/ko.mp3?download=1",
+                "file_name": "mov-aavesham_ko.mp3"
+            }
+        ],
+        "comments": []
+    },
+    {
+        "id": "mov-hitchhikers-guide",
+        "title": "The Hitchhiker's Guide to the Galaxy",
+        "subtitle": "2005 • Adventure, Comedy, Sci-Fi",
+        "content_type": "movie",
+        "description": "The Hitchhiker's Guide to the Galaxy (2005) streaming in verified direct Dual Audio (Hindi + English).",
+        "release_year": 2005,
+        "age_rating": "PG",
+        "imdb_rating": 6.8,
+        "tmdb_id": 7453,
+        "imdb_id": "tt0371724",
+        "quality": "720p HD",
+        "duration_seconds": 6540,
+        "duration_formatted": "1h 49m",
+        "video_url": "https://archive.org/download/the.-hitchhikers.-guide.to.the.-gaaxy.-2005.720p.-brrip.-hindi.-dual-audio/The.Hitchhikers.Guide.to.the.Gaaxy.2005.720p.BRRip.Hindi.Dual-Audio.mp4",
+        "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 1650000,
+        "likes": 88000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Sci-Fi",
+        "tags": [
+            "sci-fi",
+            "dual-audio",
+            "hindi-english",
+            "cult-classic"
+        ],
+        "published_at": "2005",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "dual_audio_meta": {
+            "title_with_audio": "The Hitchhiker's Guide to the Galaxy (Hindi + English)",
+            "languages": "Hindi + English",
+            "quality_spec": "720p BRRip Dual Audio MP4 (890 MB)",
+            "stream_url": "https://archive.org/download/the.-hitchhikers.-guide.to.the.-gaaxy.-2005.720p.-brrip.-hindi.-dual-audio/The.Hitchhikers.Guide.to.the.Gaaxy.2005.720p.BRRip.Hindi.Dual-Audio.mp4",
+            "direct_mp4_available": True
+        },
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
+                "type": "native",
+                "url": "https://archive.org/download/the.-hitchhikers.-guide.to.the.-gaaxy.-2005.720p.-brrip.-hindi.-dual-audio/The.Hitchhikers.Guide.to.the.Gaaxy.2005.720p.BRRip.Hindi.Dual-Audio.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/7453?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/7453"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/7453"
+            }
+        ],
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/en.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/en.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/hi.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/hi.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/ta.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/ta.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/te.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/te.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/ml.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/ml.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/kn.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/kn.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/mr.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/mr.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/es.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/es.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/fr.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/fr.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/de.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/de.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/ja.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/ja.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-hitchhikers-guide/ko.mp3",
+                "download_url": "/api/audio/dub/mov-hitchhikers-guide/ko.mp3?download=1",
+                "file_name": "mov-hitchhikers-guide_ko.mp3"
+            }
+        ],
+        "comments": []
+    },
+    {
+        "id": "mov-the-blackout-invasion",
+        "title": "The Blackout: Invasion Earth",
+        "subtitle": "2020 • Action, Sci-Fi, Thriller",
+        "content_type": "movie",
+        "description": "The Blackout: Invasion Earth (2020) streaming in verified direct Dual Audio (Hindi DD 2.0 + English).",
+        "release_year": 2020,
+        "age_rating": "R",
+        "imdb_rating": 6.1,
+        "tmdb_id": 574982,
+        "imdb_id": "tt9193764",
+        "quality": "720p HD",
+        "duration_seconds": 9180,
+        "duration_formatted": "2h 33m",
+        "video_url": "https://archive.org/download/the-blackout-2020-cloud-720p-blu-ray-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/The%20Blackout%202020%20%5BWorldfree4u.Cloud%5D%20720p%20BluRay%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
+        "thumbnail_url": "https://images.unsplash.com/photo-1514306191717-452ec28c7814?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1514306191717-452ec28c7814?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1514306191717-452ec28c7814?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 1780000,
+        "likes": 92000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Sci-Fi",
+        "tags": [
+            "invasion",
+            "dual-audio",
+            "hindi-english",
+            "alien-action"
+        ],
+        "published_at": "2020",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "dual_audio_meta": {
+            "title_with_audio": "The Blackout: Invasion Earth (Hindi DD 2.0 + English)",
+            "languages": "Hindi DD 2.0 + English",
+            "quality_spec": "720p BluRay Dual Audio MP4 (750 MB)",
+            "stream_url": "https://archive.org/download/the-blackout-2020-cloud-720p-blu-ray-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/The%20Blackout%202020%20%5BWorldfree4u.Cloud%5D%20720p%20BluRay%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
+            "direct_mp4_available": True
+        },
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi DD 2.0 + English)",
+                "type": "native",
+                "url": "https://archive.org/download/the-blackout-2020-cloud-720p-blu-ray-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/The%20Blackout%202020%20%5BWorldfree4u.Cloud%5D%20720p%20BluRay%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/574982?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/574982"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/574982"
+            }
+        ],
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/en.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/en.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/hi.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/hi.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/ta.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/ta.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/te.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/te.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/ml.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/ml.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/kn.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/kn.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/mr.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/mr.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/es.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/es.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/fr.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/fr.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/de.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/de.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/ja.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/ja.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-blackout-invasion/ko.mp3",
+                "download_url": "/api/audio/dub/mov-the-blackout-invasion/ko.mp3?download=1",
+                "file_name": "mov-the-blackout-invasion_ko.mp3"
+            }
+        ],
+        "comments": []
+    },
+    {
+        "id": "mov-the-founder",
+        "title": "The Founder",
+        "subtitle": "2016 • Biography, Drama",
+        "content_type": "movie",
+        "description": "The Founder (2016) starring Michael Keaton streaming in verified direct Dual Audio (Hindi + English).",
+        "release_year": 2016,
+        "age_rating": "PG-13",
+        "imdb_rating": 7.2,
+        "tmdb_id": 310307,
+        "imdb_id": "tt4276820",
+        "quality": "720p HD",
+        "duration_seconds": 6900,
+        "duration_formatted": "1h 55m",
+        "video_url": "https://archive.org/download/the-founder-2016-dual-audio-480p-blu-ray-in-hindi/The%20Founder%202016%20Dual%20Audio%20Hindi%20%20%5BMoviesMore.Net%5Dfo%20480p%20BluRay.mp4",
+        "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 1520000,
+        "likes": 84000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Drama",
+        "tags": [
+            "biography",
+            "dual-audio",
+            "hindi-english",
+            "michael-keaton"
+        ],
+        "published_at": "2016",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "dual_audio_meta": {
+            "title_with_audio": "The Founder (Hindi + English)",
+            "languages": "Hindi + English",
+            "quality_spec": "720p BluRay Dual Audio MP4 (450 MB)",
+            "stream_url": "https://archive.org/download/the-founder-2016-dual-audio-480p-blu-ray-in-hindi/The%20Founder%202016%20Dual%20Audio%20Hindi%20%20%5BMoviesMore.Net%5Dfo%20480p%20BluRay.mp4",
+            "direct_mp4_available": True
+        },
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
+                "type": "native",
+                "url": "https://archive.org/download/the-founder-2016-dual-audio-480p-blu-ray-in-hindi/The%20Founder%202016%20Dual%20Audio%20Hindi%20%20%5BMoviesMore.Net%5Dfo%20480p%20BluRay.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/310307?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/310307"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/310307"
+            }
+        ],
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/en.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/en.mp3?download=1",
+                "file_name": "mov-the-founder_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/hi.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/hi.mp3?download=1",
+                "file_name": "mov-the-founder_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/ta.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/ta.mp3?download=1",
+                "file_name": "mov-the-founder_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/te.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/te.mp3?download=1",
+                "file_name": "mov-the-founder_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/ml.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/ml.mp3?download=1",
+                "file_name": "mov-the-founder_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/kn.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/kn.mp3?download=1",
+                "file_name": "mov-the-founder_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/mr.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/mr.mp3?download=1",
+                "file_name": "mov-the-founder_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/es.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/es.mp3?download=1",
+                "file_name": "mov-the-founder_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/fr.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/fr.mp3?download=1",
+                "file_name": "mov-the-founder_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/de.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/de.mp3?download=1",
+                "file_name": "mov-the-founder_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/ja.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/ja.mp3?download=1",
+                "file_name": "mov-the-founder_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-founder/ko.mp3",
+                "download_url": "/api/audio/dub/mov-the-founder/ko.mp3?download=1",
+                "file_name": "mov-the-founder_ko.mp3"
+            }
+        ],
+        "comments": []
     }
 ]
 def get_hero_featured() -> Dict[str, Any]:

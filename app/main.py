@@ -93,6 +93,9 @@ async def hit_logger_middleware(request: Request, call_next):
     response.headers["X-XSS-Protection"] = "1; mode=block"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
     response.headers["X-Shield-Defense"] = "StreamGuard-Autonomous-AI-WAF-Active"
+    response.headers["X-AdGuard-Protection"] = "Active"
+    response.headers["X-AdGuard-DNS"] = "dns.adguard.com (94.140.14.14)"
+    response.headers["X-AdGuard-Shield"] = "Popup-Free"
 
     return response
 

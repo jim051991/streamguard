@@ -177,6 +177,10 @@
         <div class="server-tabs-list" id="serverTabsList">
           <!-- Populated dynamically with active server tabs -->
         </div>
+        <div class="adguard-shield-badge" id="adguardShieldBadge" title="Protected by AdGuard DNS (dns.adguard.com • 94.140.14.14)">
+          <i class="fa-solid fa-shield-halved"></i>
+          <span>ADGUARD PROTECTED • ZERO POPUPS</span>
+        </div>
       </div>
 
       <!-- Video Player Frame -->
@@ -324,6 +328,23 @@
                   <button class="speed-opt" data-speed="2.0">2.0x</button>
                 </div>
               </div>
+
+              <!-- Mini 6-Band Acoustic Equalizer Spectrum -->
+              <div class="theater-spectrum-wrap" id="theaterSpectrumWrap" title="Dolby Cinema 6-Band Acoustic Real-Time Equalizer">
+                <div class="theater-spectrum-bar"></div>
+                <div class="theater-spectrum-bar"></div>
+                <div class="theater-spectrum-bar"></div>
+                <div class="theater-spectrum-bar"></div>
+                <div class="theater-spectrum-bar"></div>
+                <div class="theater-spectrum-bar"></div>
+              </div>
+
+              <!-- Theater Sound Acoustic Enhancement Button -->
+              <button class="ctrl-btn text-badge theater-sound-trigger-btn" id="theaterSoundPillBtn" title="Cinema Acoustic Enhancement (Dolby Atmos Emulation)">
+                <i class="fa-solid fa-volume-high" style="color: #06b6d4;"></i>
+                <span id="theaterSoundPresetLabel">Dolby Atmos</span>
+                <span class="theater-badge-mini">PRO</span>
+              </button>
 
               <!-- Quality Tag -->
               <div class="quality-badge" id="qualityBadge" title="Stream Resolution">
@@ -879,5 +900,78 @@
 
   <!-- Application Script -->
   <script src="/static/app.js?v=20261109_v4"></script>
+
+  <!-- Theater Sound DSP Acoustic Studio Modal -->
+  <div class="theater-sound-modal" id="theaterSoundModal" style="display:none;">
+    <div class="theater-sound-modal-backdrop" id="closeTheaterSoundBackdrop"></div>
+    <div class="theater-sound-modal-content">
+      <div class="theater-sound-modal-header">
+        <div class="theater-sound-title-wrap">
+          <i class="fa-solid fa-volume-high" style="color: #06b6d4; font-size: 24px;"></i>
+          <div>
+            <h3 class="theater-sound-modal-title">Theater Sound Acoustic Studio</h3>
+            <p class="theater-sound-modal-desc">Cinema DSP Audio Processing • Dolby Atmos Emulation & Subwoofer Bass</p>
+          </div>
+        </div>
+        <button class="theater-sound-close-btn" id="closeTheaterSoundBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <!-- Live Cinema Frequency Visualizer -->
+      <div class="theater-sound-viz-container">
+        <div class="theater-sound-viz-header">
+          <span><i class="fa-solid fa-wave-square"></i> LIVE CINEMA ACOUSTIC SPECTRUM</span>
+          <span class="viz-status-pill">48kHz / 32-bit DSP Active</span>
+        </div>
+        <div class="theater-sound-eq-bands">
+          <div class="eq-band-col"><div class="eq-bar-wrap"><div class="theater-spectrum-bar"></div></div><span>SUB 60Hz</span></div>
+          <div class="eq-band-col"><div class="eq-bar-wrap"><div class="theater-spectrum-bar"></div></div><span>BASS 120Hz</span></div>
+          <div class="eq-band-col"><div class="eq-bar-wrap"><div class="theater-spectrum-bar"></div></div><span>MID 500Hz</span></div>
+          <div class="eq-band-col"><div class="eq-bar-wrap"><div class="theater-spectrum-bar"></div></div><span>VOCAL 2.4k</span></div>
+          <div class="eq-band-col"><div class="eq-bar-wrap"><div class="theater-spectrum-bar"></div></div><span>PRESENCE 6k</span></div>
+          <div class="eq-band-col"><div class="eq-bar-wrap"><div class="theater-spectrum-bar"></div></div><span>AIR 12kHz</span></div>
+        </div>
+      </div>
+
+      <!-- Cinema Presets Grid -->
+      <div class="theater-presets-grid">
+        <div class="theater-sound-card-option active" data-preset="DOLBY_ATMOS">
+          <div class="preset-card-top">
+            <span class="preset-icon">🎬</span>
+            <span class="preset-badge">RECOMMENDED</span>
+          </div>
+          <h4>Dolby Atmos Cinema Hall</h4>
+          <p>Wide 3D spatial hall acoustics, 65Hz subwoofer rumble (+6.5dB), and center channel dialogue clarity.</p>
+        </div>
+
+        <div class="theater-sound-card-option" data-preset="IMAX_BASS">
+          <div class="preset-card-top">
+            <span class="preset-icon">💥</span>
+            <span class="preset-badge" style="background: rgba(239, 68, 68, 0.2); color: #ef4444; border-color: rgba(239, 68, 68, 0.4);">IMAX PUNCH</span>
+          </div>
+          <h4>IMAX Action Bass</h4>
+          <p>Thunderous 50Hz sub-bass boost (+9.5dB) and tight dynamics compression for explosions & action.</p>
+        </div>
+
+        <div class="theater-sound-card-option" data-preset="CLEAR_DIALOGUE">
+          <div class="preset-card-top">
+            <span class="preset-icon">🗣️</span>
+            <span class="preset-badge" style="background: rgba(16, 185, 129, 0.2); color: #10b981; border-color: rgba(16, 185, 129, 0.4);">VOICE ENHANCE</span>
+          </div>
+          <h4>Clear Dialogue Pro</h4>
+          <p>2.4kHz center channel dialogue boost (+6.0dB) to make Hindi and English spoken words crystal clear.</p>
+        </div>
+
+        <div class="theater-sound-card-option" data-preset="STUDIO_DIRECT">
+          <div class="preset-card-top">
+            <span class="preset-icon">🎧</span>
+            <span class="preset-badge" style="background: rgba(148, 163, 184, 0.2); color: #94a3b8; border-color: rgba(148, 163, 184, 0.4);">FLAT</span>
+          </div>
+          <h4>Studio Bitstream Direct</h4>
+          <p>Pure unmodified bitstream audio with 0dB flat studio monitor response for reference listening.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
