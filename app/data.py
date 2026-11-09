@@ -669,17 +669,17 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7680,
         "duration_formatted": "2h 08m",
-        "video_url": "https://archive.org/download/d-w-wolverine/D%26W%20Wolverine.mp4",
+        "video_url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
+                "name": "Server 1: Stream Direct Full Movie (1080p Direct MP4)",
                 "type": "native",
                 "quality": "1080p HD",
-                "url": "https://archive.org/download/d-w-wolverine/D%26W%20Wolverine.mp4",
+                "url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4",
                 "clean": True,
                 "dual_audio": True,
-                "size": "434 MB"
+                "size": "759 MB"
             },
             {
                 "id": "srv-2",
@@ -856,10 +856,10 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Deadpool & Wolverine (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "1080p HD Dual Audio MP4 (434 MB)",
-            "stream_url": "https://archive.org/download/d-w-wolverine/D%26W%20Wolverine.mp4",
+            "title_with_audio": "Deadpool & Wolverine (Full Movie)",
+            "languages": "Cinema Audio (Direct Stream)",
+            "quality_spec": "1080p HD Full Movie (759 MB)",
+            "stream_url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4",
             "direct_mp4_available": True
         }
     },
