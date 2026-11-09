@@ -157,10 +157,9 @@
           </div>
 
           <!-- Dual Audio / Regional Language Selector Pill -->
-          <button class="server-pill-btn dual-audio-pill-btn" id="theaterAudioLangBtn" title="Antigravity Multi-Language Dual Audio Engine (AMLVE)">
+          <button class="server-pill-btn dual-audio-pill-btn" id="theaterAudioLangBtn" title="Stream Direct Dual Audio MP4">
             <i class="fa-solid fa-headphones"></i>
-            <span id="theaterLangLabel">Audio: English (Original)</span>
-            <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+            <span id="theaterLangLabel">Audio: Dual Audio (Direct MP4)</span>
           </button>
 
           <button class="close-player-btn" id="closePlayerBtn" title="Minimize Player to Theater Banner">
@@ -378,6 +377,29 @@
         </div>
         <div class="schedule-timeline" id="scheduleTimeline">
           <!-- Populated dynamically with current & upcoming broadcasts -->
+        </div>
+      </div>
+
+            <!-- Verified Dual Audio Stream Banner Card (Direct MP4 Stream) -->
+      <div class="dual-audio-stream-card" id="dualAudioStreamCard">
+        <div class="dual-stream-left">
+          <div class="dual-stream-badge-row">
+            <span class="badge-direct-stream"><i class="fa-solid fa-headphones"></i> VERIFIED DUAL AUDIO STREAM</span>
+            <span class="badge-status-direct"><i class="fa-solid fa-circle-check"></i> Direct HTTP 206 Stream</span>
+          </div>
+          <div class="dual-stream-title" id="dualCardTitle">The Amazing Spider-Man 2 (Hindi + English)</div>
+          <div class="dual-stream-meta-row">
+            <span class="stream-spec-pill" id="dualCardQuality"><i class="fa-solid fa-film"></i> 720p BluRay</span>
+            <span class="stream-spec-pill" id="dualCardAudio"><i class="fa-solid fa-language"></i> Dual Audio (Hindi + English)</span>
+            <span class="stream-spec-pill" id="dualCardSize"><i class="fa-solid fa-hard-drive"></i> 857 MB</span>
+            <span class="stream-spec-pill audio-guarantee"><i class="fa-solid fa-shield-halved"></i> Genuine In-Movie Dub (Zero Outer Audio)</span>
+          </div>
+        </div>
+        <div class="dual-stream-right">
+          <button class="btn-direct-stream-mp4" id="btnDirectStreamMp4" title="Stream directly in native player with real embedded Hindi audio track">
+            <i class="fa-solid fa-play"></i>
+            <span>Stream Direct MP4</span>
+          </button>
         </div>
       </div>
 

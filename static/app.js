@@ -702,8 +702,8 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
 
     // Directly open and stream the chosen movie on first click!
     loadActiveStream(autoPlay);
-    AMLVE.renderDubAudioDropdown(state.currentVideo);
-    AMLVE.startPlaybackDubbing(state.currentVideo.id);
+    // Dual Audio metadata banner sync
+    updateDualAudioBanner(state.currentVideo);
   } catch (err) {
     console.error("Error playing video:", err);
   }
@@ -2065,19 +2065,7 @@ const AMLVE = {
     }
   },
 
-  async speakVocal(text, langCode) {
-    if (!this.dubbingEnabled || !text) return;
-    const targetCode = langCode || this.activeLanguage || "en-US";
-    const cleanLang = targetCode.split("-")[0].toLowerCase();
-
-    this.setVisualizerActive(true);
-    this.playChime(528);
-
-    // 1. Primary: High-fidelity Neural MP3 Stream from Backend API
-    try {
-      if (!this.vocalAudio) {
-        this.vocalAudio = new Audio();
-      }
+  async speakVocal(text, lang) { /* Silenced: zero outer audio */ }
       this.vocalAudio.pause();
       this.vocalAudio.currentTime = 0;
       this.vocalAudio.src = `/api/amlve/audio/speech?lang=${encodeURIComponent(cleanLang)}&text=${encodeURIComponent(text)}`;
@@ -2253,10 +2241,7 @@ const AMLVE = {
     }
   },
 
-  async loadMovieDubAudio(videoId, langCode) {
-    if (!videoId) return;
-    const cleanLang = (langCode || "en").split("-")[0].toLowerCase();
-    const audioUrl = `/api/audio/dub/${encodeURIComponent(videoId)}/${cleanLang}.mp3`;
+  async loadMovieDubAudio(vId, lCode) { /* Silenced */ }/${cleanLang}.mp3`;
 
     try {
       if (!this.movieDubPlayer) {
@@ -2276,12 +2261,7 @@ const AMLVE = {
     }
   },
 
-  async loadMovieDubbing(videoId, langCode, speakImmediately = false) {
-    this.currentDubbingVideoId = videoId;
-    this.spokenCueIndices.clear();
-
-    try {
-      const res = await fetch(`/api/amlve/dialogue/${videoId}/${langCode}`);
+  async loadMovieDubbing(vId, lCode, speak) { /* Silenced */ }/${langCode}`);
       if (res.ok) {
         const data = await res.json();
         this.activeCues = data.cues || [];
@@ -2294,19 +2274,7 @@ const AMLVE = {
     }
   },
 
-  startPlaybackDubbing(videoId) {
-    this.stopPlaybackDubbing();
-    this.playbackStartEpoch = Date.now();
-    this.loadMovieDubbing(videoId, this.activeLanguage, false);
-
-    // Continuous dialogue cue monitor
-    this.dubbingInterval = setInterval(() => {
-      if (!this.dubbingEnabled || !this.activeCues.length) return;
-      
-      let currentSeconds = 0;
-      if (videoEl && !videoEl.paused && videoEl.style.display !== "none") {
-        currentSeconds = Math.floor(videoEl.currentTime);
-      } else {
+  startPlaybackDubbing(vId) { /* Silenced: zero outer audio */ } else {
         const container = document.getElementById("theaterSection");
         if (!container || container.style.display === "none") return;
         currentSeconds = Math.floor((Date.now() - this.playbackStartEpoch) / 1000);
