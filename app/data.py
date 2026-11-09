@@ -48,7 +48,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "age_rating": "UA 16+",
         "imdb_rating": 8.5,
         "tmdb_id": 1114738,
-        "imdb_id": "tt26548260",
+        "imdb_id": "tt26548265",
         "quality": "720p HD",
         "is_dual_audio": True,
         "audio_tracks_count": 48,
@@ -71,7 +71,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             },
             {
                 "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K)",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/1114738?primaryColor=06b6d4"
             },
@@ -119,7 +119,129 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "is_trending": True,
         "is_featured": True,
         "is_world_cinema": True,
-        "comments": []
+        "comments": [],
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/en.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/en.mp3?download=1",
+                "file_name": "mov-maharaja-2024_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/hi.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/hi.mp3?download=1",
+                "file_name": "mov-maharaja-2024_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/ta.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/ta.mp3?download=1",
+                "file_name": "mov-maharaja-2024_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/te.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/te.mp3?download=1",
+                "file_name": "mov-maharaja-2024_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/ml.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/ml.mp3?download=1",
+                "file_name": "mov-maharaja-2024_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/kn.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/kn.mp3?download=1",
+                "file_name": "mov-maharaja-2024_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/mr.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/mr.mp3?download=1",
+                "file_name": "mov-maharaja-2024_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/es.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/es.mp3?download=1",
+                "file_name": "mov-maharaja-2024_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/fr.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/fr.mp3?download=1",
+                "file_name": "mov-maharaja-2024_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/de.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/de.mp3?download=1",
+                "file_name": "mov-maharaja-2024_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/ja.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/ja.mp3?download=1",
+                "file_name": "mov-maharaja-2024_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-maharaja-2024/ko.mp3",
+                "download_url": "/api/audio/dub/mov-maharaja-2024/ko.mp3?download=1",
+                "file_name": "mov-maharaja-2024_ko.mp3"
+            }
+        ]
     },
     {
         "id": "mov-blackout-2024",
@@ -131,7 +253,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "age_rating": "UA 16+",
         "imdb_rating": 7.4,
         "tmdb_id": 1284004,
-        "imdb_id": "tt32188188",
+        "imdb_id": "tt27995874",
         "quality": "720p HD",
         "is_dual_audio": True,
         "audio_tracks_count": 48,
@@ -139,7 +261,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "duration_formatted": "2h 02m",
         "video_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
         "dual_audio_meta": {
-            "title_with_audio": "Blackout (2024) (Bollywood Hindi)",
+            "title_with_audio": "Blackout (2024) (Bollywood Hindi (Original))",
             "languages": "Bollywood Hindi (Original)",
             "quality_spec": "720p HD Hindi MP4 (708 MB)",
             "stream_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
@@ -148,13 +270,13 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Hindi MP4 (Bollywood Original)",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Bollywood Hindi (Original))",
                 "type": "native",
                 "url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4"
             },
             {
                 "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K)",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/1284004?primaryColor=06b6d4"
             },
@@ -202,7 +324,129 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "is_trending": True,
         "is_featured": False,
         "is_world_cinema": True,
-        "comments": []
+        "comments": [],
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/en.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/en.mp3?download=1",
+                "file_name": "mov-blackout-2024_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/hi.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/hi.mp3?download=1",
+                "file_name": "mov-blackout-2024_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/ta.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/ta.mp3?download=1",
+                "file_name": "mov-blackout-2024_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/te.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/te.mp3?download=1",
+                "file_name": "mov-blackout-2024_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/ml.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/ml.mp3?download=1",
+                "file_name": "mov-blackout-2024_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/kn.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/kn.mp3?download=1",
+                "file_name": "mov-blackout-2024_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/mr.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/mr.mp3?download=1",
+                "file_name": "mov-blackout-2024_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/es.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/es.mp3?download=1",
+                "file_name": "mov-blackout-2024_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/fr.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/fr.mp3?download=1",
+                "file_name": "mov-blackout-2024_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/de.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/de.mp3?download=1",
+                "file_name": "mov-blackout-2024_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/ja.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/ja.mp3?download=1",
+                "file_name": "mov-blackout-2024_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-blackout-2024/ko.mp3",
+                "download_url": "/api/audio/dub/mov-blackout-2024/ko.mp3?download=1",
+                "file_name": "mov-blackout-2024_ko.mp3"
+            }
+        ]
     },
     {
         "id": "mov-artemis-fowl",
@@ -237,7 +481,7 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             },
             {
                 "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K)",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/475430?primaryColor=06b6d4"
             },
@@ -285,7 +529,129 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "is_trending": True,
         "is_featured": False,
         "is_world_cinema": False,
-        "comments": []
+        "comments": [],
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/en.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/en.mp3?download=1",
+                "file_name": "mov-artemis-fowl_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/hi.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/hi.mp3?download=1",
+                "file_name": "mov-artemis-fowl_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/ta.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/ta.mp3?download=1",
+                "file_name": "mov-artemis-fowl_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/te.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/te.mp3?download=1",
+                "file_name": "mov-artemis-fowl_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/ml.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/ml.mp3?download=1",
+                "file_name": "mov-artemis-fowl_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/kn.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/kn.mp3?download=1",
+                "file_name": "mov-artemis-fowl_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/mr.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/mr.mp3?download=1",
+                "file_name": "mov-artemis-fowl_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/es.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/es.mp3?download=1",
+                "file_name": "mov-artemis-fowl_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/fr.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/fr.mp3?download=1",
+                "file_name": "mov-artemis-fowl_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/de.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/de.mp3?download=1",
+                "file_name": "mov-artemis-fowl_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/ja.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/ja.mp3?download=1",
+                "file_name": "mov-artemis-fowl_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-artemis-fowl/ko.mp3",
+                "download_url": "/api/audio/dub/mov-artemis-fowl/ko.mp3?download=1",
+                "file_name": "mov-artemis-fowl_ko.mp3"
+            }
+        ]
     },
     {
         "id": "mov-deadpool-wolverine",
@@ -303,31 +669,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7680,
         "duration_formatted": "2h 08m",
-        "video_url": "https://archive.org/download/venom-2-venom-let-there-be-carnage-2021-hindi-english-dual-audio-mcu-movie-blu-ray-hd-720p-esub/Venom%202%20%28Venom%20Let%20There%20Be%20Carnage%29%20%282021%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20MCU%20Movie%20BluRay%20HD%20720p%20ESub.mp4",
+        "video_url": "https://vidlink.pro/movie/533535?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/venom-2-venom-let-there-be-carnage-2021-hindi-english-dual-audio-mcu-movie-blu-ray-hd-720p-esub/Venom%202%20%28Venom%20Let%20There%20Be%20Carnage%29%20%282021%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20MCU%20Movie%20BluRay%20HD%20720p%20ESub.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/533535?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/533535"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/533535"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
@@ -486,11 +852,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Deadpool & Wolverine (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BluRay Dual Audio MP4 (561 MB)",
-            "stream_url": "https://archive.org/download/venom-2-venom-let-there-be-carnage-2021-hindi-english-dual-audio-mcu-movie-blu-ray-hd-720p-esub/Venom%202%20%28Venom%20Let%20There%20Be%20Carnage%29%20%282021%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20MCU%20Movie%20BluRay%20HD%20720p%20ESub.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Deadpool & Wolverine (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/533535?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -509,31 +875,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 9960,
         "duration_formatted": "2h 46m",
-        "video_url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4",
+        "video_url": "https://vidlink.pro/movie/693134?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/693134?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/693134"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/693134"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -691,11 +1057,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Dune: Part Two (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p IMAX BluRay Dual Audio MP4 (823 MB)",
-            "stream_url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Dune: Part Two (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/693134?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -714,31 +1080,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10800,
         "duration_formatted": "3h 00m",
-        "video_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/872585?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/872585?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/872585"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/872585"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
@@ -895,11 +1261,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Oppenheimer (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "1080p BluRay Dual Audio MP4 (1112 MB)",
-            "stream_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Oppenheimer (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/872585?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -918,31 +1284,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8880,
         "duration_formatted": "2h 28m",
-        "video_url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/558449?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi DD 2.0 + English)",
-                "type": "native",
-                "url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/558449?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/558449"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/558449"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&auto=format&fit=crop&q=80",
@@ -1100,11 +1466,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Gladiator II (Hindi DD 2.0 + English)",
-            "languages": "Hindi DD 2.0 + English",
-            "quality_spec": "720p HDRip Dual Audio MP4 (258 MB)",
-            "stream_url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Gladiator II (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/558449?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -1123,31 +1489,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 5760,
         "duration_formatted": "1h 36m",
-        "video_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
+        "video_url": "https://vidlink.pro/movie/1022789?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/1022789?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/1022789"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/1022789"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&auto=format&fit=crop&q=80",
@@ -1305,11 +1671,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Inside Out 2 (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BRRip Dual Audio MP4 (637 MB)",
-            "stream_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Inside Out 2 (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/1022789?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -1328,31 +1694,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7140,
         "duration_formatted": "1h 59m",
-        "video_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
+        "video_url": "https://vidlink.pro/movie/945961?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi Dubbed)",
-                "type": "native",
-                "url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/945961?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/945961"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/945961"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
@@ -1510,11 +1876,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Alien: Romulus (Hindi Dubbed)",
-            "languages": "Hindi Dubbed",
-            "quality_spec": "1080p HD Hindi Dubbed MP4 (2108 MB)",
-            "stream_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Alien: Romulus (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/945961?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -1533,31 +1899,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8460,
         "duration_formatted": "2h 21m",
-        "video_url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/933260?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/933260?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/933260"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/933260"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&auto=format&fit=crop&q=80",
@@ -1715,11 +2081,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "The Substance (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BluRay Dual Audio MP4 (857 MB)",
-            "stream_url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "The Substance (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/933260?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -1738,31 +2104,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 6120,
         "duration_formatted": "1h 42m",
-        "video_url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/1184918?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi DD 2.0 + English)",
-                "type": "native",
-                "url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/1184918?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/1184918"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/1184918"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&auto=format&fit=crop&q=80",
@@ -1920,11 +2286,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "The Wild Robot (Hindi DD 2.0 + English)",
-            "languages": "Hindi DD 2.0 + English",
-            "quality_spec": "720p HDRip Dual Audio MP4 (258 MB)",
-            "stream_url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "The Wild Robot (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/1184918?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -1943,31 +2309,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8880,
         "duration_formatted": "2h 28m",
-        "video_url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4",
+        "video_url": "https://vidlink.pro/movie/786892?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/786892?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/786892"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/786892"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -2125,11 +2491,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Furiosa: A Mad Max Saga (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p IMAX BluRay Dual Audio MP4 (823 MB)",
-            "stream_url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Furiosa: A Mad Max Saga (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/786892?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -2148,31 +2514,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7800,
         "duration_formatted": "2h 10m",
-        "video_url": "https://archive.org/download/venom-2-venom-let-there-be-carnage-2021-hindi-english-dual-audio-mcu-movie-blu-ray-hd-720p-esub/Venom%202%20%28Venom%20Let%20There%20Be%20Carnage%29%20%282021%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20MCU%20Movie%20BluRay%20HD%20720p%20ESub.mp4",
+        "video_url": "https://vidlink.pro/movie/361743?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/venom-2-venom-let-there-be-carnage-2021-hindi-english-dual-audio-mcu-movie-blu-ray-hd-720p-esub/Venom%202%20%28Venom%20Let%20There%20Be%20Carnage%29%20%282021%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20MCU%20Movie%20BluRay%20HD%20720p%20ESub.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/361743?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/361743"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/361743"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1519074069444-1ba4ea16e6f1?w=800&auto=format&fit=crop&q=80",
@@ -2330,11 +2696,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Top Gun: Maverick (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BluRay Dual Audio MP4 (561 MB)",
-            "stream_url": "https://archive.org/download/venom-2-venom-let-there-be-carnage-2021-hindi-english-dual-audio-mcu-movie-blu-ray-hd-720p-esub/Venom%202%20%28Venom%20Let%20There%20Be%20Carnage%29%20%282021%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20MCU%20Movie%20BluRay%20HD%20720p%20ESub.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Top Gun: Maverick (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/361743?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -2353,31 +2719,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 9120,
         "duration_formatted": "2h 32m",
-        "video_url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4",
+        "video_url": "https://vidlink.pro/movie/155?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/155?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/155"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/155"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -2535,11 +2901,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "The Dark Knight (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p IMAX BluRay Dual Audio MP4 (823 MB)",
-            "stream_url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "The Dark Knight (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/155?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -2558,31 +2924,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8880,
         "duration_formatted": "2h 28m",
-        "video_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/27205?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/27205?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/27205"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/27205"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&auto=format&fit=crop&q=80",
@@ -2740,11 +3106,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Inception (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "1080p BluRay Dual Audio MP4 (1112 MB)",
-            "stream_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Inception (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/27205?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -2763,31 +3129,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10140,
         "duration_formatted": "2h 49m",
-        "video_url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/603692?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/603692?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/603692"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/603692"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -2944,11 +3310,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "John Wick: Chapter 4 (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BluRay Dual Audio MP4 (857 MB)",
-            "stream_url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "John Wick: Chapter 4 (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/603692?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -2967,31 +3333,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10140,
         "duration_formatted": "2h 49m",
-        "video_url": "https://archive.org/download/the-martian-2015-bolly-4u.org-blu-ray-extended-dual-audio-720p-1.1-gb/The%20Martian%20%282015%29%20%5B%20Bolly4u.org%5D%20BluRay%20Extended%20Dual%20audio%20720p%201.1GB.mp4",
+        "video_url": "https://vidlink.pro/movie/157336?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/the-martian-2015-bolly-4u.org-blu-ray-extended-dual-audio-720p-1.1-gb/The%20Martian%20%282015%29%20%5B%20Bolly4u.org%5D%20BluRay%20Extended%20Dual%20audio%20720p%201.1GB.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/157336?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/157336"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/157336"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&auto=format&fit=crop&q=80",
@@ -3149,11 +3515,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Interstellar (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BluRay Extended Dual Audio MP4 (845 MB)",
-            "stream_url": "https://archive.org/download/the-martian-2015-bolly-4u.org-blu-ray-extended-dual-audio-720p-1.1-gb/The%20Martian%20%282015%29%20%5B%20Bolly4u.org%5D%20BluRay%20Extended%20Dual%20audio%20720p%201.1GB.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Interstellar (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/157336?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -3172,31 +3538,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10560,
         "duration_formatted": "2h 56m",
-        "video_url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/414906?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/414906?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/414906"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/414906"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -3354,11 +3720,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "The Batman (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BluRay Dual Audio MP4 (857 MB)",
-            "stream_url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "The Batman (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/414906?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -3377,31 +3743,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 11520,
         "duration_formatted": "3h 12m",
-        "video_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/76600?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/76600?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/76600"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/76600"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
@@ -3559,11 +3925,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Avatar: The Way of Water (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "1080p BluRay Dual Audio MP4 (1112 MB)",
-            "stream_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Avatar: The Way of Water (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/76600?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -3575,8 +3941,8 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "release_year": 2014,
         "age_rating": "PG-13",
         "imdb_rating": 8.7,
-        "tmdb_id": 569094,
-        "imdb_id": "tt9362722",
+        "tmdb_id": 102382,
+        "imdb_id": "tt1872181",
         "quality": "720p BLURAY DUAL AUDIO",
         "is_dual_audio": True,
         "audio_tracks_count": 2,
@@ -3594,19 +3960,19 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "id": "srv-2",
                 "name": "Server 2: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
-                "url": "https://vidlink.pro/movie/569094?primaryColor=06b6d4"
+                "url": "https://vidlink.pro/movie/102382?primaryColor=06b6d4"
             },
             {
                 "id": "srv-3",
                 "name": "Server 3: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
-                "url": "https://www.2embed.cc/embed/569094"
+                "url": "https://www.2embed.cc/embed/102382"
             },
             {
                 "id": "srv-4",
                 "name": "Server 4: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
-                "url": "https://autoembed.co/movie/tmdb/569094"
+                "url": "https://autoembed.co/movie/tmdb/102382"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800&auto=format&fit=crop&q=80",
@@ -3787,31 +4153,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7920,
         "duration_formatted": "2h 12m",
-        "video_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
+        "video_url": "https://vidlink.pro/movie/496243?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/496243?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/496243"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/496243"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
@@ -3970,11 +4336,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Parasite (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BRRip Dual Audio MP4 (637 MB)",
-            "stream_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Parasite (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/496243?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -3993,31 +4359,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8040,
         "duration_formatted": "2h 14m",
-        "video_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
+        "video_url": "https://vidlink.pro/movie/1011985?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi Dubbed)",
-                "type": "native",
-                "url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/1011985?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/1011985"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/1011985"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -4177,11 +4543,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Exhuma (Hindi Dubbed)",
-            "languages": "Hindi Dubbed",
-            "quality_spec": "1080p HD Hindi Dubbed MP4 (2108 MB)",
-            "stream_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Exhuma (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/1011985?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -4200,31 +4566,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7080,
         "duration_formatted": "1h 58m",
-        "video_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
+        "video_url": "https://vidlink.pro/movie/396535?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi Dubbed)",
-                "type": "native",
-                "url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/396535?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/396535"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/396535"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
@@ -4383,11 +4749,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Train to Busan (Hindi Dubbed)",
-            "languages": "Hindi Dubbed",
-            "quality_spec": "1080p HD Hindi Dubbed MP4 (2108 MB)",
-            "stream_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Train to Busan (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/396535?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -4406,31 +4772,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7440,
         "duration_formatted": "2h 04m",
-        "video_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
+        "video_url": "https://vidlink.pro/movie/940721?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi Dubbed)",
-                "type": "native",
-                "url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/940721?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/940721"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/940721"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -4590,11 +4956,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Godzilla Minus One (Hindi Dubbed)",
-            "languages": "Hindi Dubbed",
-            "quality_spec": "1080p HD Hindi Dubbed MP4 (2108 MB)",
-            "stream_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Godzilla Minus One (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/940721?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -5026,31 +5392,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7440,
         "duration_formatted": "2h 04m",
-        "video_url": "https://archive.org/download/spirited-away-2001-dual-audio-hindi-japanese-1080-p-hevc/Spirited%20Away%202001%20Dual%20Audio%20Hindi%20Japanese%201080P%20Hevc.mp4",
+        "video_url": "https://vidlink.pro/movie/508883?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + Japanese)",
-                "type": "native",
-                "url": "https://archive.org/download/spirited-away-2001-dual-audio-hindi-japanese-1080-p-hevc/Spirited%20Away%202001%20Dual%20Audio%20Hindi%20Japanese%201080P%20Hevc.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/508883?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/508883"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/508883"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
@@ -5209,11 +5575,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "The Boy and the Heron (Hindi + Japanese)",
-            "languages": "Hindi + Japanese",
-            "quality_spec": "1080p HEVC Dual Audio MP4 (2060 MB)",
-            "stream_url": "https://archive.org/download/spirited-away-2001-dual-audio-hindi-japanese-1080-p-hevc/Spirited%20Away%202001%20Dual%20Audio%20Hindi%20Japanese%201080P%20Hevc.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "The Boy and the Heron (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/508883?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -5232,31 +5598,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10920,
         "duration_formatted": "3h 02m",
-        "video_url": "https://archive.org/download/rangasthalam-2018-hindi-dubbed-dhallyshre/Rangasthalam%202018%20hindi%20dubbed%20%28dhallyshre%29.mp4",
+        "video_url": "https://vidlink.pro/movie/579974?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + Telugu)",
-                "type": "native",
-                "url": "https://archive.org/download/rangasthalam-2018-hindi-dubbed-dhallyshre/Rangasthalam%202018%20hindi%20dubbed%20%28dhallyshre%29.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/579974?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/579974"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/579974"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -5417,11 +5783,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "RRR (Hindi + Telugu)",
-            "languages": "Hindi + Telugu",
-            "quality_spec": "720p HD Dual Audio MP4 (1485 MB)",
-            "stream_url": "https://archive.org/download/rangasthalam-2018-hindi-dubbed-dhallyshre/Rangasthalam%202018%20hindi%20dubbed%20%28dhallyshre%29.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "RRR (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/579974?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -5440,31 +5806,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10860,
         "duration_formatted": "3h 01m",
-        "video_url": "https://archive.org/download/hi-papa-2023-hindi-dubbed-org-720p/Hi_Papa_%282023%29_Hindi_Dubbed_ORG_720p.mp4",
+        "video_url": "https://vidlink.pro/movie/801688?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + Telugu)",
-                "type": "native",
-                "url": "https://archive.org/download/hi-papa-2023-hindi-dubbed-org-720p/Hi_Papa_%282023%29_Hindi_Dubbed_ORG_720p.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/801688?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/801688"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/801688"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
@@ -5624,11 +5990,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Kalki 2898 AD (Hindi + Telugu)",
-            "languages": "Hindi + Telugu",
-            "quality_spec": "720p HD Dual Audio MP4 (1410 MB)",
-            "stream_url": "https://archive.org/download/hi-papa-2023-hindi-dubbed-org-720p/Hi_Papa_%282023%29_Hindi_Dubbed_ORG_720p.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Kalki 2898 AD (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/801688?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -5647,31 +6013,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10140,
         "duration_formatted": "2h 49m",
-        "video_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
+        "video_url": "https://vidlink.pro/movie/872906?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Bollywood Hindi (Original))",
-                "type": "native",
-                "url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/872906?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/872906"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/872906"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
@@ -5832,11 +6198,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Jawan (Bollywood Hindi (Original))",
-            "languages": "Bollywood Hindi (Original)",
-            "quality_spec": "720p HD Hindi MP4 (708 MB)",
-            "stream_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Jawan (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/872906?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -5855,31 +6221,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8940,
         "duration_formatted": "2h 29m",
-        "video_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
+        "video_url": "https://vidlink.pro/movie/1151534?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Bollywood Hindi (Original))",
-                "type": "native",
-                "url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/1151534?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/1151534"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/1151534"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -6039,11 +6405,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Stree 2: Sarkate Ka Aatank (Bollywood Hindi (Original))",
-            "languages": "Bollywood Hindi (Original)",
-            "quality_spec": "720p HD Hindi MP4 (708 MB)",
-            "stream_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Stree 2: Sarkate Ka Aatank (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/1151534?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -6062,31 +6428,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 9660,
         "duration_formatted": "2h 41m",
-        "video_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
+        "video_url": "https://vidlink.pro/movie/360814?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Bollywood Hindi (Original))",
-                "type": "native",
-                "url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/360814?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/360814"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/360814"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
@@ -6245,11 +6611,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Dangal (Bollywood Hindi (Original))",
-            "languages": "Bollywood Hindi (Original)",
-            "quality_spec": "720p HD Hindi MP4 (708 MB)",
-            "stream_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Dangal (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/360814?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -6268,31 +6634,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 9060,
         "duration_formatted": "2h 31m",
-        "video_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
+        "video_url": "https://vidlink.pro/movie/915935?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/915935?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/915935"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/915935"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
@@ -6452,11 +6818,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Anatomy of a Fall (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BRRip Dual Audio MP4 (637 MB)",
-            "stream_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Anatomy of a Fall (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/915935?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -6475,31 +6841,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10680,
         "duration_formatted": "2h 58m",
-        "video_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/1005331?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/1005331?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/1005331"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/1005331"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&auto=format&fit=crop&q=80",
@@ -6658,11 +7024,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "The Count of Monte-Cristo (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "1080p BluRay Dual Audio MP4 (1112 MB)",
-            "stream_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "The Count of Monte-Cristo (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/1005331?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -6681,31 +7047,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8640,
         "duration_formatted": "2h 24m",
-        "video_url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/906126?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi DD 2.0 + English)",
-                "type": "native",
-                "url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/906126?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/906126"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/906126"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&auto=format&fit=crop&q=80",
@@ -6865,11 +7231,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Society of the Snow (Hindi DD 2.0 + English)",
-            "languages": "Hindi DD 2.0 + English",
-            "quality_spec": "720p HDRip Dual Audio MP4 (258 MB)",
-            "stream_url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Society of the Snow (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/906126?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -6888,31 +7254,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8460,
         "duration_formatted": "2h 21m",
-        "video_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
+        "video_url": "https://vidlink.pro/movie/792307?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/792307?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/792307"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/792307"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&auto=format&fit=crop&q=80",
@@ -7070,11 +7436,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Poor Things (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BRRip Dual Audio MP4 (637 MB)",
-            "stream_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Poor Things (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/792307?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -7093,31 +7459,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7800,
         "duration_formatted": "2h 10m",
-        "video_url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/598?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
-                "type": "native",
-                "url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/598?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/598"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/598"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
@@ -7277,11 +7643,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "City of God (Hindi + English)",
-            "languages": "Hindi + English",
-            "quality_spec": "720p BluRay Dual Audio MP4 (857 MB)",
-            "stream_url": "https://archive.org/download/the-amazing-spider-man-2-2014-dual-audio-hindi-english-720p/The%20Amazing%20Spider-Man%202%20%282014%29%20Dual%20Audio%20%7BHindi-English%7D%20720p%20BluRay%201.2GB%20ESub%20%5BBollYFlix%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "City of God (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/598?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -7300,31 +7666,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7080,
         "duration_formatted": "1h 58m",
-        "video_url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
+        "video_url": "https://vidlink.pro/movie/1417?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi DD 2.0 + English)",
-                "type": "native",
-                "url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/1417?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/1417"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/1417"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
@@ -7484,11 +7850,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Pan's Labyrinth (Hindi DD 2.0 + English)",
-            "languages": "Hindi DD 2.0 + English",
-            "quality_spec": "720p HDRip Dual Audio MP4 (258 MB)",
-            "stream_url": "https://archive.org/download/artemis-fowl-2020-720p-hdrip-x-264-dual-audio-hindi-dd-2.0-english-dd-2.0/Artemis%20Fowl%202020%20%5BWorldfree4u.Cloud%5D%20720p%20HDRip%20x264%20%5BDual%20Audio%5D%20%5BHindi%20DD%202.0%20%2B%20English%20DD%202.0%5D.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Pan's Labyrinth (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/1417?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -7507,31 +7873,31 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7560,
         "duration_formatted": "2h 06m",
-        "video_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
+        "video_url": "https://vidlink.pro/movie/517814?primaryColor=06b6d4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Dual Audio MP4 (Bollywood Hindi (Original))",
-                "type": "native",
-                "url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4"
-            },
-            {
-                "id": "srv-2",
-                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/517814?primaryColor=06b6d4"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/517814"
             },
             {
-                "id": "srv-4",
-                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "id": "srv-3",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/517814"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cinema Stream (Direct CDN)",
+                "type": "native",
+                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
@@ -7691,11 +8057,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Capernaum (Bollywood Hindi (Original))",
-            "languages": "Bollywood Hindi (Original)",
-            "quality_spec": "720p HD Hindi MP4 (708 MB)",
-            "stream_url": "https://archive.org/download/maharaja-2024-hindi-tamil-dual-audio-un-cut-movie-hd-720p-esub/Blackout%20%282024%29%20Bollywood%20Hindi%20Movies%20HD%20720p%20ESub.mp4",
-            "direct_mp4_available": True
+            "title_with_audio": "Capernaum (Cloud 4K Multi-Audio)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": "https://vidlink.pro/movie/517814?primaryColor=06b6d4",
+            "direct_mp4_available": False
         }
     },
     {
@@ -7718,25 +8084,25 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1:  Full Series (Cloud 4K)",
+                "name": "Server 1: Full Series (Cloud 4K VidLink)",
                 "type": "embed_tv",
-                "url": "https://vidlink.pro/tv/66732"
+                "url": "https://vidlink.pro/tv/66732/1/1?primaryColor=06b6d4"
             },
             {
                 "id": "srv-2",
-                "name": "Server 2:  Fast Cloud Mirror (2Embed)",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed_tv",
-                "url": "https://www.2embed.cc/embedtv/66732&s=1&e=1"
+                "url": "https://www.2embed.cc/embedtv/tt4574334&s=1&e=1"
             },
             {
                 "id": "srv-3",
-                "name": "Server 3:  Cloud Mirror (AutoEmbed)",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed_tv",
-                "url": "https://autoembed.co/tv/tmdb/66732"
+                "url": "https://autoembed.co/tv/tmdb/66732/1/1"
             },
             {
                 "id": "srv-4",
-                "name": "Server 4:  Native Cinema Stream",
+                "name": "Server 4: Direct HD Stream",
                 "type": "native",
                 "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
@@ -7916,7 +8282,14 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "download_url": "/api/audio/dub/ser-stranger-things/ko.mp3?download=1",
                 "file_name": "ser-stranger-things_ko.mp3"
             }
-        ]
+        ],
+        "dual_audio_meta": {
+            "title_with_audio": "Stranger Things (HD Series Stream)",
+            "languages": "English / Original",
+            "quality_spec": "1080p HD Full Season",
+            "stream_url": "https://vidlink.pro/tv/66732/1/1?primaryColor=06b6d4",
+            "direct_mp4_available": False
+        }
     },
     {
         "id": "ser-house-of-the-dragon",
@@ -7938,25 +8311,25 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1:  Full Series (Cloud 4K)",
+                "name": "Server 1: Full Series (Cloud 4K VidLink)",
                 "type": "embed_tv",
-                "url": "https://vidlink.pro/tv/94997"
+                "url": "https://vidlink.pro/tv/94997/1/1?primaryColor=06b6d4"
             },
             {
                 "id": "srv-2",
-                "name": "Server 2:  Fast Cloud Mirror (2Embed)",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed_tv",
-                "url": "https://www.2embed.cc/embedtv/94997&s=1&e=1"
+                "url": "https://www.2embed.cc/embedtv/tt11198330&s=1&e=1"
             },
             {
                 "id": "srv-3",
-                "name": "Server 3:  Cloud Mirror (AutoEmbed)",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed_tv",
-                "url": "https://autoembed.co/tv/tmdb/94997"
+                "url": "https://autoembed.co/tv/tmdb/94997/1/1"
             },
             {
                 "id": "srv-4",
-                "name": "Server 4:  Native Cinema Stream",
+                "name": "Server 4: Direct HD Stream",
                 "type": "native",
                 "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
@@ -8136,7 +8509,14 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "download_url": "/api/audio/dub/ser-house-of-the-dragon/ko.mp3?download=1",
                 "file_name": "ser-house-of-the-dragon_ko.mp3"
             }
-        ]
+        ],
+        "dual_audio_meta": {
+            "title_with_audio": "House of the Dragon (HD Series Stream)",
+            "languages": "English / Original",
+            "quality_spec": "1080p HD Full Season",
+            "stream_url": "https://vidlink.pro/tv/94997/1/1?primaryColor=06b6d4",
+            "direct_mp4_available": False
+        }
     },
     {
         "id": "ser-shogun",
@@ -8158,25 +8538,25 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1:  Full Series (Cloud 4K)",
+                "name": "Server 1: Full Series (Cloud 4K VidLink)",
                 "type": "embed_tv",
-                "url": "https://vidlink.pro/tv/126308"
+                "url": "https://vidlink.pro/tv/126308/1/1?primaryColor=06b6d4"
             },
             {
                 "id": "srv-2",
-                "name": "Server 2:  Fast Cloud Mirror (2Embed)",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed_tv",
-                "url": "https://www.2embed.cc/embedtv/126308&s=1&e=1"
+                "url": "https://www.2embed.cc/embedtv/tt2788316&s=1&e=1"
             },
             {
                 "id": "srv-3",
-                "name": "Server 3:  Cloud Mirror (AutoEmbed)",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed_tv",
-                "url": "https://autoembed.co/tv/tmdb/126308"
+                "url": "https://autoembed.co/tv/tmdb/126308/1/1"
             },
             {
                 "id": "srv-4",
-                "name": "Server 4:  Native Cinema Stream",
+                "name": "Server 4: Direct HD Stream",
                 "type": "native",
                 "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
@@ -8357,7 +8737,14 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "download_url": "/api/audio/dub/ser-shogun/ko.mp3?download=1",
                 "file_name": "ser-shogun_ko.mp3"
             }
-        ]
+        ],
+        "dual_audio_meta": {
+            "title_with_audio": "Shōgun (HD Series Stream)",
+            "languages": "English / Original",
+            "quality_spec": "1080p HD Full Season",
+            "stream_url": "https://vidlink.pro/tv/126308/1/1?primaryColor=06b6d4",
+            "direct_mp4_available": False
+        }
     },
     {
         "id": "ser-the-last-of-us",
@@ -8379,25 +8766,25 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1:  Full Series (Cloud 4K)",
+                "name": "Server 1: Full Series (Cloud 4K VidLink)",
                 "type": "embed_tv",
-                "url": "https://vidlink.pro/tv/100088"
+                "url": "https://vidlink.pro/tv/100088/1/1?primaryColor=06b6d4"
             },
             {
                 "id": "srv-2",
-                "name": "Server 2:  Fast Cloud Mirror (2Embed)",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed_tv",
-                "url": "https://www.2embed.cc/embedtv/100088&s=1&e=1"
+                "url": "https://www.2embed.cc/embedtv/tt3581920&s=1&e=1"
             },
             {
                 "id": "srv-3",
-                "name": "Server 3:  Cloud Mirror (AutoEmbed)",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed_tv",
-                "url": "https://autoembed.co/tv/tmdb/100088"
+                "url": "https://autoembed.co/tv/tmdb/100088/1/1"
             },
             {
                 "id": "srv-4",
-                "name": "Server 4:  Native Cinema Stream",
+                "name": "Server 4: Direct HD Stream",
                 "type": "native",
                 "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
@@ -8577,7 +8964,14 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "download_url": "/api/audio/dub/ser-the-last-of-us/ko.mp3?download=1",
                 "file_name": "ser-the-last-of-us_ko.mp3"
             }
-        ]
+        ],
+        "dual_audio_meta": {
+            "title_with_audio": "The Last of Us (HD Series Stream)",
+            "languages": "English / Original",
+            "quality_spec": "1080p HD Full Season",
+            "stream_url": "https://vidlink.pro/tv/100088/1/1?primaryColor=06b6d4",
+            "direct_mp4_available": False
+        }
     },
     {
         "id": "ani-solo-leveling",
@@ -8597,25 +8991,25 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1:  Full Series (Cloud 4K)",
+                "name": "Server 1: Full Series (Cloud 4K VidLink)",
                 "type": "embed_tv",
-                "url": "https://vidlink.pro/tv/209867"
+                "url": "https://vidlink.pro/tv/209867/1/1?primaryColor=06b6d4"
             },
             {
                 "id": "srv-2",
-                "name": "Server 2:  Fast Cloud Mirror (2Embed)",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed_tv",
-                "url": "https://www.2embed.cc/embedtv/209867&s=1&e=1"
+                "url": "https://www.2embed.cc/embedtv/tt21209876&s=1&e=1"
             },
             {
                 "id": "srv-3",
-                "name": "Server 3:  Cloud Mirror (AutoEmbed)",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed_tv",
-                "url": "https://autoembed.co/tv/tmdb/209867"
+                "url": "https://autoembed.co/tv/tmdb/209867/1/1"
             },
             {
                 "id": "srv-4",
-                "name": "Server 4:  Native Cinema Stream",
+                "name": "Server 4: Direct HD Stream",
                 "type": "native",
                 "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
@@ -8794,7 +9188,14 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "download_url": "/api/audio/dub/ani-solo-leveling/ko.mp3?download=1",
                 "file_name": "ani-solo-leveling_ko.mp3"
             }
-        ]
+        ],
+        "dual_audio_meta": {
+            "title_with_audio": "Solo Leveling (HD Series Stream)",
+            "languages": "English / Original",
+            "quality_spec": "1080p HD Full Season",
+            "stream_url": "https://vidlink.pro/tv/209867/1/1?primaryColor=06b6d4",
+            "direct_mp4_available": False
+        }
     },
     {
         "id": "ani-demon-slayer",
@@ -8814,25 +9215,25 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1:  Full Series (Cloud 4K)",
+                "name": "Server 1: Full Series (Cloud 4K VidLink)",
                 "type": "embed_tv",
-                "url": "https://vidlink.pro/tv/85937"
+                "url": "https://vidlink.pro/tv/85937/1/1?primaryColor=06b6d4"
             },
             {
                 "id": "srv-2",
-                "name": "Server 2:  Fast Cloud Mirror (2Embed)",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed_tv",
-                "url": "https://www.2embed.cc/embedtv/85937&s=1&e=1"
+                "url": "https://www.2embed.cc/embedtv/tt9335498&s=1&e=1"
             },
             {
                 "id": "srv-3",
-                "name": "Server 3:  Cloud Mirror (AutoEmbed)",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed_tv",
-                "url": "https://autoembed.co/tv/tmdb/85937"
+                "url": "https://autoembed.co/tv/tmdb/85937/1/1"
             },
             {
                 "id": "srv-4",
-                "name": "Server 4:  Native Cinema Stream",
+                "name": "Server 4: Direct HD Stream",
                 "type": "native",
                 "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
@@ -9012,7 +9413,14 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "download_url": "/api/audio/dub/ani-demon-slayer/ko.mp3?download=1",
                 "file_name": "ani-demon-slayer_ko.mp3"
             }
-        ]
+        ],
+        "dual_audio_meta": {
+            "title_with_audio": "Demon Slayer: Hashira Training Arc (HD Series Stream)",
+            "languages": "English / Original",
+            "quality_spec": "1080p HD Full Season",
+            "stream_url": "https://vidlink.pro/tv/85937/1/1?primaryColor=06b6d4",
+            "direct_mp4_available": False
+        }
     },
     {
         "id": "ani-attack-on-titan",
@@ -9032,25 +9440,25 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1:  Full Series (Cloud 4K)",
+                "name": "Server 1: Full Series (Cloud 4K VidLink)",
                 "type": "embed_tv",
-                "url": "https://vidlink.pro/tv/1429"
+                "url": "https://vidlink.pro/tv/1429/1/1?primaryColor=06b6d4"
             },
             {
                 "id": "srv-2",
-                "name": "Server 2:  Fast Cloud Mirror (2Embed)",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed_tv",
-                "url": "https://www.2embed.cc/embedtv/1429&s=1&e=1"
+                "url": "https://www.2embed.cc/embedtv/tt2560140&s=1&e=1"
             },
             {
                 "id": "srv-3",
-                "name": "Server 3:  Cloud Mirror (AutoEmbed)",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed_tv",
-                "url": "https://autoembed.co/tv/tmdb/1429"
+                "url": "https://autoembed.co/tv/tmdb/1429/1/1"
             },
             {
                 "id": "srv-4",
-                "name": "Server 4:  Native Cinema Stream",
+                "name": "Server 4: Direct HD Stream",
                 "type": "native",
                 "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
@@ -9229,7 +9637,14 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "download_url": "/api/audio/dub/ani-attack-on-titan/ko.mp3?download=1",
                 "file_name": "ani-attack-on-titan_ko.mp3"
             }
-        ]
+        ],
+        "dual_audio_meta": {
+            "title_with_audio": "Attack on Titan (HD Series Stream)",
+            "languages": "English / Original",
+            "quality_spec": "1080p HD Full Season",
+            "stream_url": "https://vidlink.pro/tv/1429/1/1?primaryColor=06b6d4",
+            "direct_mp4_available": False
+        }
     },
     {
         "id": "ani-cyberpunk-edgerunners",
@@ -9249,25 +9664,25 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1:  Full Series (Cloud 4K)",
+                "name": "Server 1: Full Series (Cloud 4K VidLink)",
                 "type": "embed_tv",
-                "url": "https://vidlink.pro/tv/105248"
+                "url": "https://vidlink.pro/tv/105248/1/1?primaryColor=06b6d4"
             },
             {
                 "id": "srv-2",
-                "name": "Server 2:  Fast Cloud Mirror (2Embed)",
+                "name": "Server 2: Fast Cloud Mirror (2Embed)",
                 "type": "embed_tv",
-                "url": "https://www.2embed.cc/embedtv/105248&s=1&e=1"
+                "url": "https://www.2embed.cc/embedtv/tt12590266&s=1&e=1"
             },
             {
                 "id": "srv-3",
-                "name": "Server 3:  Cloud Mirror (AutoEmbed)",
+                "name": "Server 3: Cloud Mirror (AutoEmbed)",
                 "type": "embed_tv",
-                "url": "https://autoembed.co/tv/tmdb/105248"
+                "url": "https://autoembed.co/tv/tmdb/105248/1/1"
             },
             {
                 "id": "srv-4",
-                "name": "Server 4:  Native Cinema Stream",
+                "name": "Server 4: Direct HD Stream",
                 "type": "native",
                 "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
@@ -9446,10 +9861,1264 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
                 "download_url": "/api/audio/dub/ani-cyberpunk-edgerunners/ko.mp3?download=1",
                 "file_name": "ani-cyberpunk-edgerunners_ko.mp3"
             }
-        ]
+        ],
+        "dual_audio_meta": {
+            "title_with_audio": "Cyberpunk: Edgerunners (HD Series Stream)",
+            "languages": "English / Original",
+            "quality_spec": "1080p HD Full Season",
+            "stream_url": "https://vidlink.pro/tv/105248/1/1?primaryColor=06b6d4",
+            "direct_mp4_available": False
+        }
+    },
+    {
+        "id": "mov-titanic",
+        "title": "Titanic",
+        "subtitle": "1997 • Drama, Romance",
+        "content_type": "movie",
+        "description": "Titanic (1997) streaming in verified direct Dual Audio (Hindi + English).",
+        "release_year": 1997,
+        "age_rating": "PG-13",
+        "imdb_rating": 7.9,
+        "tmdb_id": 597,
+        "imdb_id": "tt0120338",
+        "quality": "1080p Full HD",
+        "duration_seconds": 7200,
+        "duration_formatted": "2h 10m",
+        "video_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
+                "type": "native",
+                "url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/597?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/597"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/597"
+            }
+        ],
+        "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 1850000,
+        "likes": 95000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Drama",
+        "tags": [
+            "dual-audio",
+            "hindi-dubbed",
+            "direct-mp4",
+            "cinema"
+        ],
+        "published_at": "1997",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/en.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/en.mp3?download=1",
+                "file_name": "mov-titanic_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/hi.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/hi.mp3?download=1",
+                "file_name": "mov-titanic_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/ta.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/ta.mp3?download=1",
+                "file_name": "mov-titanic_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/te.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/te.mp3?download=1",
+                "file_name": "mov-titanic_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/ml.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/ml.mp3?download=1",
+                "file_name": "mov-titanic_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/kn.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/kn.mp3?download=1",
+                "file_name": "mov-titanic_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/mr.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/mr.mp3?download=1",
+                "file_name": "mov-titanic_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/es.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/es.mp3?download=1",
+                "file_name": "mov-titanic_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/fr.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/fr.mp3?download=1",
+                "file_name": "mov-titanic_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/de.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/de.mp3?download=1",
+                "file_name": "mov-titanic_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/ja.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/ja.mp3?download=1",
+                "file_name": "mov-titanic_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-titanic/ko.mp3",
+                "download_url": "/api/audio/dub/mov-titanic/ko.mp3?download=1",
+                "file_name": "mov-titanic_ko.mp3"
+            }
+        ],
+        "comments": [],
+        "dual_audio_meta": {
+            "title_with_audio": "Titanic (Hindi + English)",
+            "languages": "Hindi + English",
+            "quality_spec": "1080p BluRay Dual Audio MP4 (1112 MB)",
+            "stream_url": "https://archive.org/download/titanic-1997-dual-audio-hindi-english-1080p-blu-ray-3.1-gb-esub-boll-yflix_202610/Titanic%20%281997%29%20Dual%20Audio%20%7BHindi-English%7D%201080p%20BluRay%203.1GB%20ESub%20%5BBollYFlix%5D.mp4",
+            "direct_mp4_available": True
+        }
+    },
+    {
+        "id": "mov-aquaman",
+        "title": "Aquaman",
+        "subtitle": "2018 • Action, Adventure, Fantasy",
+        "content_type": "movie",
+        "description": "Aquaman (2018) streaming in verified direct Dual Audio (Hindi + English).",
+        "release_year": 2018,
+        "age_rating": "PG-13",
+        "imdb_rating": 6.8,
+        "tmdb_id": 297802,
+        "imdb_id": "tt1477834",
+        "quality": "1080p Full HD",
+        "duration_seconds": 7200,
+        "duration_formatted": "2h 10m",
+        "video_url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4",
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
+                "type": "native",
+                "url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/297802?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/297802"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/297802"
+            }
+        ],
+        "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 1850000,
+        "likes": 95000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Action",
+        "tags": [
+            "dual-audio",
+            "hindi-dubbed",
+            "direct-mp4",
+            "cinema"
+        ],
+        "published_at": "2018",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/en.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/en.mp3?download=1",
+                "file_name": "mov-aquaman_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/hi.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/hi.mp3?download=1",
+                "file_name": "mov-aquaman_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/ta.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/ta.mp3?download=1",
+                "file_name": "mov-aquaman_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/te.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/te.mp3?download=1",
+                "file_name": "mov-aquaman_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/ml.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/ml.mp3?download=1",
+                "file_name": "mov-aquaman_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/kn.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/kn.mp3?download=1",
+                "file_name": "mov-aquaman_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/mr.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/mr.mp3?download=1",
+                "file_name": "mov-aquaman_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/es.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/es.mp3?download=1",
+                "file_name": "mov-aquaman_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/fr.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/fr.mp3?download=1",
+                "file_name": "mov-aquaman_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/de.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/de.mp3?download=1",
+                "file_name": "mov-aquaman_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/ja.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/ja.mp3?download=1",
+                "file_name": "mov-aquaman_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-aquaman/ko.mp3",
+                "download_url": "/api/audio/dub/mov-aquaman/ko.mp3?download=1",
+                "file_name": "mov-aquaman_ko.mp3"
+            }
+        ],
+        "comments": [],
+        "dual_audio_meta": {
+            "title_with_audio": "Aquaman (Hindi + English)",
+            "languages": "Hindi + English",
+            "quality_spec": "720p IMAX BluRay Dual Audio MP4 (823 MB)",
+            "stream_url": "https://archive.org/download/aquaman-2018-hindi-english-dual-audio-hollywood-movie-imax-blu-ray-hd-720p-esub/Aquaman%20%282018%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20Hollywood%20Movie%20IMAX%20BluRay%20HD%20720p%20ESub.mp4",
+            "direct_mp4_available": True
+        }
+    },
+    {
+        "id": "mov-venom-2",
+        "title": "Venom: Let There Be Carnage",
+        "subtitle": "2021 • Action, Sci-Fi, Thriller",
+        "content_type": "movie",
+        "description": "Venom: Let There Be Carnage (2021) streaming in verified direct Dual Audio (Hindi + English).",
+        "release_year": 2021,
+        "age_rating": "PG-13",
+        "imdb_rating": 5.9,
+        "tmdb_id": 580489,
+        "imdb_id": "tt7097896",
+        "quality": "1080p Full HD",
+        "duration_seconds": 7200,
+        "duration_formatted": "2h 10m",
+        "video_url": "https://archive.org/download/venom-2-venom-let-there-be-carnage-2021-hindi-english-dual-audio-mcu-movie-blu-ray-hd-720p-esub/Venom%202%20%28Venom%20Let%20There%20Be%20Carnage%29%20%282021%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20MCU%20Movie%20BluRay%20HD%20720p%20ESub.mp4",
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
+                "type": "native",
+                "url": "https://archive.org/download/venom-2-venom-let-there-be-carnage-2021-hindi-english-dual-audio-mcu-movie-blu-ray-hd-720p-esub/Venom%202%20%28Venom%20Let%20There%20Be%20Carnage%29%20%282021%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20MCU%20Movie%20BluRay%20HD%20720p%20ESub.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/580489?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/580489"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/580489"
+            }
+        ],
+        "thumbnail_url": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 1850000,
+        "likes": 95000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Action",
+        "tags": [
+            "dual-audio",
+            "hindi-dubbed",
+            "direct-mp4",
+            "cinema"
+        ],
+        "published_at": "2021",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/en.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/en.mp3?download=1",
+                "file_name": "mov-venom-2_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/hi.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/hi.mp3?download=1",
+                "file_name": "mov-venom-2_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/ta.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/ta.mp3?download=1",
+                "file_name": "mov-venom-2_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/te.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/te.mp3?download=1",
+                "file_name": "mov-venom-2_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/ml.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/ml.mp3?download=1",
+                "file_name": "mov-venom-2_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/kn.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/kn.mp3?download=1",
+                "file_name": "mov-venom-2_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/mr.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/mr.mp3?download=1",
+                "file_name": "mov-venom-2_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/es.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/es.mp3?download=1",
+                "file_name": "mov-venom-2_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/fr.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/fr.mp3?download=1",
+                "file_name": "mov-venom-2_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/de.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/de.mp3?download=1",
+                "file_name": "mov-venom-2_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/ja.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/ja.mp3?download=1",
+                "file_name": "mov-venom-2_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-venom-2/ko.mp3",
+                "download_url": "/api/audio/dub/mov-venom-2/ko.mp3?download=1",
+                "file_name": "mov-venom-2_ko.mp3"
+            }
+        ],
+        "comments": [],
+        "dual_audio_meta": {
+            "title_with_audio": "Venom: Let There Be Carnage (Hindi + English)",
+            "languages": "Hindi + English",
+            "quality_spec": "720p BluRay Dual Audio MP4 (561 MB)",
+            "stream_url": "https://archive.org/download/venom-2-venom-let-there-be-carnage-2021-hindi-english-dual-audio-mcu-movie-blu-ray-hd-720p-esub/Venom%202%20%28Venom%20Let%20There%20Be%20Carnage%29%20%282021%29%20%28Hindi%20%2B%20English%29%20Dual%20Audio%20MCU%20Movie%20BluRay%20HD%20720p%20ESub.mp4",
+            "direct_mp4_available": True
+        }
+    },
+    {
+        "id": "mov-the-sixth-sense",
+        "title": "The Sixth Sense",
+        "subtitle": "1999 • Drama, Mystery, Thriller",
+        "content_type": "movie",
+        "description": "The Sixth Sense (1999) streaming in verified direct Dual Audio (Hindi + English).",
+        "release_year": 1999,
+        "age_rating": "PG-13",
+        "imdb_rating": 8.2,
+        "tmdb_id": 745,
+        "imdb_id": "tt0167404",
+        "quality": "1080p Full HD",
+        "duration_seconds": 7200,
+        "duration_formatted": "2h 10m",
+        "video_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
+                "type": "native",
+                "url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/745?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/745"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/745"
+            }
+        ],
+        "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 1850000,
+        "likes": 95000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Drama",
+        "tags": [
+            "dual-audio",
+            "hindi-dubbed",
+            "direct-mp4",
+            "cinema"
+        ],
+        "published_at": "1999",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/en.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/en.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/hi.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/hi.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/ta.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/ta.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/te.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/te.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/ml.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/ml.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/kn.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/kn.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/mr.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/mr.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/es.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/es.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/fr.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/fr.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/de.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/de.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/ja.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/ja.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-sixth-sense/ko.mp3",
+                "download_url": "/api/audio/dub/mov-the-sixth-sense/ko.mp3?download=1",
+                "file_name": "mov-the-sixth-sense_ko.mp3"
+            }
+        ],
+        "comments": [],
+        "dual_audio_meta": {
+            "title_with_audio": "The Sixth Sense (Hindi + English)",
+            "languages": "Hindi + English",
+            "quality_spec": "720p BRRip Dual Audio MP4 (637 MB)",
+            "stream_url": "https://archive.org/download/TheSixthSense1999720pWWW.DesiPirates.TKBRRipDualAudioHindiEnglish/The%20Sixth%20Sense%20%281999%29%20720p%20WWW.DesiPirates.TK%20BRRip%20Dual%20Audio%20Hindi-English.mp4",
+            "direct_mp4_available": True
+        }
+    },
+    {
+        "id": "mov-the-martian",
+        "title": "The Martian",
+        "subtitle": "2015 • Adventure, Drama, Sci-Fi",
+        "content_type": "movie",
+        "description": "The Martian (2015) streaming in verified direct Dual Audio (Hindi + English).",
+        "release_year": 2015,
+        "age_rating": "PG-13",
+        "imdb_rating": 8.0,
+        "tmdb_id": 286217,
+        "imdb_id": "tt3659388",
+        "quality": "1080p Full HD",
+        "duration_seconds": 7200,
+        "duration_formatted": "2h 10m",
+        "video_url": "https://archive.org/download/the-martian-2015-bolly-4u.org-blu-ray-extended-dual-audio-720p-1.1-gb/The%20Martian%20%282015%29%20%5B%20Bolly4u.org%5D%20BluRay%20Extended%20Dual%20audio%20720p%201.1GB.mp4",
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
+                "type": "native",
+                "url": "https://archive.org/download/the-martian-2015-bolly-4u.org-blu-ray-extended-dual-audio-720p-1.1-gb/The%20Martian%20%282015%29%20%5B%20Bolly4u.org%5D%20BluRay%20Extended%20Dual%20audio%20720p%201.1GB.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/286217?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/286217"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/286217"
+            }
+        ],
+        "thumbnail_url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1614728894747-a83421e2b9c9?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 1850000,
+        "likes": 95000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Adventure",
+        "tags": [
+            "dual-audio",
+            "hindi-dubbed",
+            "direct-mp4",
+            "cinema"
+        ],
+        "published_at": "2015",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/en.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/en.mp3?download=1",
+                "file_name": "mov-the-martian_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/hi.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/hi.mp3?download=1",
+                "file_name": "mov-the-martian_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/ta.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/ta.mp3?download=1",
+                "file_name": "mov-the-martian_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/te.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/te.mp3?download=1",
+                "file_name": "mov-the-martian_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/ml.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/ml.mp3?download=1",
+                "file_name": "mov-the-martian_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/kn.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/kn.mp3?download=1",
+                "file_name": "mov-the-martian_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/mr.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/mr.mp3?download=1",
+                "file_name": "mov-the-martian_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/es.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/es.mp3?download=1",
+                "file_name": "mov-the-martian_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/fr.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/fr.mp3?download=1",
+                "file_name": "mov-the-martian_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/de.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/de.mp3?download=1",
+                "file_name": "mov-the-martian_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/ja.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/ja.mp3?download=1",
+                "file_name": "mov-the-martian_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-the-martian/ko.mp3",
+                "download_url": "/api/audio/dub/mov-the-martian/ko.mp3?download=1",
+                "file_name": "mov-the-martian_ko.mp3"
+            }
+        ],
+        "comments": [],
+        "dual_audio_meta": {
+            "title_with_audio": "The Martian (Hindi + English)",
+            "languages": "Hindi + English",
+            "quality_spec": "720p BluRay Extended Dual Audio MP4 (845 MB)",
+            "stream_url": "https://archive.org/download/the-martian-2015-bolly-4u.org-blu-ray-extended-dual-audio-720p-1.1-gb/The%20Martian%20%282015%29%20%5B%20Bolly4u.org%5D%20BluRay%20Extended%20Dual%20audio%20720p%201.1GB.mp4",
+            "direct_mp4_available": True
+        }
+    },
+    {
+        "id": "mov-godzilla-final-wars",
+        "title": "Godzilla: Final Wars",
+        "subtitle": "2004 • Action, Adventure, Fantasy",
+        "content_type": "movie",
+        "description": "Godzilla: Final Wars (2004) streaming in verified direct Dual Audio (Hindi Dubbed).",
+        "release_year": 2004,
+        "age_rating": "PG-13",
+        "imdb_rating": 6.4,
+        "tmdb_id": 15301,
+        "imdb_id": "tt0399102",
+        "quality": "1080p Full HD",
+        "duration_seconds": 7200,
+        "duration_formatted": "2h 10m",
+        "video_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
+        "servers": [
+            {
+                "id": "srv-1",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi Dubbed)",
+                "type": "native",
+                "url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Full Movie (Cloud 4K VidLink)",
+                "type": "embed",
+                "url": "https://vidlink.pro/movie/15301?primaryColor=06b6d4"
+            },
+            {
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
+                "type": "embed",
+                "url": "https://www.2embed.cc/embed/15301"
+            },
+            {
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
+                "type": "embed",
+                "url": "https://autoembed.co/movie/tmdb/15301"
+            }
+        ],
+        "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
+        "poster_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
+        "backdrop_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
+        "subtitles": [
+            {
+                "label": "English [CC]",
+                "srclang": "en",
+                "src": "/static/subtitles/english.vtt"
+            },
+            {
+                "label": "Hindi",
+                "srclang": "hi",
+                "src": "/static/subtitles/hindi.vtt"
+            }
+        ],
+        "views": 1850000,
+        "likes": 95000,
+        "channel": {
+            "name": "Cinema Dual Audio Vault",
+            "avatar": "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=100",
+            "subscribers": "8.5M",
+            "verified": True
+        },
+        "category": "Action",
+        "tags": [
+            "dual-audio",
+            "hindi-dubbed",
+            "direct-mp4",
+            "cinema"
+        ],
+        "published_at": "2004",
+        "is_trending": True,
+        "is_featured": False,
+        "is_world_cinema": False,
+        "is_dual_audio": True,
+        "audio_tracks_count": 48,
+        "audio_tracks": [
+            {
+                "code": "en-US",
+                "lang": "en",
+                "label": "English (Original)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/en.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/en.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_en.mp3"
+            },
+            {
+                "code": "hi-IN",
+                "lang": "hi",
+                "label": "हिन्दी (Hindi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/hi.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/hi.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_hi.mp3"
+            },
+            {
+                "code": "ta-IN",
+                "lang": "ta",
+                "label": "தமிழ் (Tamil Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/ta.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/ta.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_ta.mp3"
+            },
+            {
+                "code": "te-IN",
+                "lang": "te",
+                "label": "తెలుగు (Telugu Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/te.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/te.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_te.mp3"
+            },
+            {
+                "code": "ml-IN",
+                "lang": "ml",
+                "label": "മലയാളം (Malayalam Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/ml.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/ml.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_ml.mp3"
+            },
+            {
+                "code": "kn-IN",
+                "lang": "kn",
+                "label": "ಕನ್ನಡ (Kannada Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/kn.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/kn.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_kn.mp3"
+            },
+            {
+                "code": "mr-IN",
+                "lang": "mr",
+                "label": "मराठी (Marathi Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/mr.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/mr.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_mr.mp3"
+            },
+            {
+                "code": "es-MX",
+                "lang": "es",
+                "label": "Español (Spanish Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/es.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/es.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_es.mp3"
+            },
+            {
+                "code": "fr-FR",
+                "lang": "fr",
+                "label": "Français (French Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/fr.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/fr.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_fr.mp3"
+            },
+            {
+                "code": "de-DE",
+                "lang": "de",
+                "label": "Deutsch (German Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/de.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/de.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_de.mp3"
+            },
+            {
+                "code": "ja-JP",
+                "lang": "ja",
+                "label": "日本語 (Japanese Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/ja.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/ja.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_ja.mp3"
+            },
+            {
+                "code": "ko-KR",
+                "lang": "ko",
+                "label": "한국어 (Korean Dub)",
+                "bitrate": "320 kbps",
+                "codec": "MP3 Dolby",
+                "url": "/api/audio/dub/mov-godzilla-final-wars/ko.mp3",
+                "download_url": "/api/audio/dub/mov-godzilla-final-wars/ko.mp3?download=1",
+                "file_name": "mov-godzilla-final-wars_ko.mp3"
+            }
+        ],
+        "comments": [],
+        "dual_audio_meta": {
+            "title_with_audio": "Godzilla: Final Wars (Hindi Dubbed)",
+            "languages": "Hindi Dubbed",
+            "quality_spec": "1080p HD Hindi Dubbed MP4 (2108 MB)",
+            "stream_url": "https://archive.org/download/godzilla-final-wars-hindi-dubbed-version/Godzilla%20Final%20Wars%20-%20Hindi%20dubbed%20version.ia.mp4",
+            "direct_mp4_available": True
+        }
     }
 ]
-
 def get_hero_featured() -> Dict[str, Any]:
     """Returns the top spotlight trending video for the hero billboard banner."""
     for v in VIDEOS_CATALOG:
@@ -9461,6 +11130,7 @@ def get_content_rails() -> Dict[str, List[Dict[str, Any]]]:
     """Returns structured horizontal rails for Netflix / Movibox / CineHD layout."""
     trending = [v for v in VIDEOS_CATALOG if v.get("is_trending")]
     movies = [v for v in VIDEOS_CATALOG if v.get("content_type") == "movie"]
+    dual_audio = [v for v in VIDEOS_CATALOG if v.get("is_dual_audio")]
     world_cinema = [v for v in VIDEOS_CATALOG if v.get("content_type") == "movie" and v.get("is_world_cinema")]
     series = [v for v in VIDEOS_CATALOG if v.get("content_type") == "series"]
     anime = [v for v in VIDEOS_CATALOG if v.get("content_type") == "anime"]
@@ -9470,7 +11140,8 @@ def get_content_rails() -> Dict[str, List[Dict[str, Any]]]:
         "movies": movies,
         "world_cinema": world_cinema,
         "series": series,
-        "anime": anime
+        "anime": anime,
+        "dual_audio": dual_audio
     }
 
 def get_all_videos(category: Optional[str] = None, search: Optional[str] = None, content_type: Optional[str] = None) -> List[Dict[str, Any]]:

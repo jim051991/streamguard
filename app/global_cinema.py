@@ -69,7 +69,7 @@ def format_global_title(item: Dict[str, Any]) -> Dict[str, Any]:
         "quality": "4K ULTRA HD",
         "duration_seconds": 7200,
         "duration_formatted": runtime if runtime != "N/A" else "2h 05m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
+        "video_url": servers[0]["url"] if servers else "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
         "servers": servers,
         "thumbnail_url": poster,
         "poster_url": poster,
@@ -89,7 +89,14 @@ def format_global_title(item: Dict[str, Any]) -> Dict[str, Any]:
         "is_trending": True,
         "is_featured": False,
         "is_world_cinema": True,
-        "is_dual_audio": True,
+        "is_dual_audio": False,
+        "dual_audio_meta": {
+            "title_with_audio": f"{title} (Cloud 4K Cinema)",
+            "languages": "Original Cinema Audio",
+            "quality_spec": "4K Ultra HD Cinema Stream",
+            "stream_url": servers[0]["url"] if servers else "",
+            "direct_mp4_available": False
+        },
         "audio_tracks_count": 48,
         "audio_tracks": generate_movie_audio_tracks(f"global-{imdb_id}"),
         "is_global_dynamic": True,
@@ -112,12 +119,13 @@ def format_global_title(item: Dict[str, Any]) -> Dict[str, Any]:
 
 
 @global_router.get("/search")
-async def search_global_movies(query: str = Query(..., min_length=1)):
+async def search_global_movies(query: Optional[str] = Query(None), q: Optional[str] = Query(None)):
+    clean_q = (query or q or "").strip()
     """
     Searches worldwide cinema database for any movie or series ever made.
     Returns playable StreamGuard titles with Cloud 4K resolvers.
     """
-    clean_q = query.strip()
+
     if not clean_q:
         return {"query": clean_q, "results": [], "total": 0}
 

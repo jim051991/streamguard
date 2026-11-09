@@ -182,7 +182,24 @@ const serverMenu = document.getElementById("serverMenu");
 
 const playerContainer = document.getElementById("playerContainer");
 const videoEl = document.getElementById("videoElement");
-const embedPlayerFrame = document.getElementById("embedPlayerFrame");
+let embedPlayerFrame = document.getElementById("embedPlayerFrame");
+
+function getActiveEmbedFrame() {
+  return document.getElementById("embedPlayerFrame");
+}
+
+function hideAndStopEmbedPlayer() {
+  const frame = document.getElementById("embedPlayerFrame");
+  if (frame) {
+    try {
+      frame.src = "about:blank";
+    } catch (e) {}
+    frame.style.display = "none";
+    try {
+      frame.remove();
+    } catch (e) {}
+  }
+}
 const playerControls = document.getElementById("playerControls");
 const subtitleTrack = document.getElementById("subtitleTrack");
 const liveIndicatorTag = document.getElementById("liveIndicatorTag");
@@ -387,6 +404,7 @@ function renderHeroBillboard(item) {
 function renderAllRails() {
   renderContinueWatchingRail();
   renderWatchlistRail();
+  renderDualAudioRail();
   renderTrendingRail();
   renderMoviesRail();
   renderWorldCinemaRail();
@@ -420,7 +438,7 @@ function renderCard(item, isChannel = false) {
         <img src="${poster}" alt="${title}" class="card-poster-img" loading="lazy">
         <span class="card-quality-tag">${quality}</span>
         <span class="card-rating-tag">${rating}</span>
-        ${isVideo ? `<span class="card-audio-tag"><i class="fa-solid fa-headphones"></i> DUAL AUDIO</span>` : ""}
+        ${isVideo ? (item.is_dual_audio ? `<span class="card-audio-tag"><i class="fa-solid fa-headphones"></i> DUAL AUDIO</span>` : `<span class="card-audio-tag" style="background: rgba(6, 182, 212, 0.25); color: #06b6d4; border-color: rgba(6, 182, 212, 0.4);"><i class="fa-solid fa-film"></i> 4K CINEMA</span>`) : ""}
         ${isVideo ? `
           <button class="card-watchlist-quick-btn ${inWatchlist ? "active" : ""}" onclick="event.stopPropagation(); toggleWatchlist('${id}');" title="${inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}">
             <i class="fa-${inWatchlist ? "solid" : "regular"} fa-bookmark"></i>
@@ -439,7 +457,7 @@ function renderCard(item, isChannel = false) {
           <span>${subMeta}</span>
           ${isChannel ? '<span style="color:#ef4444; font-weight:bold;">● LIVE</span>' : `<span>${item.category || ""}</span>`}
         </div>
-        ${isVideo ? `<div class="card-audio-langs"><i class="fa-solid fa-language"></i> Multi-Audio • 48+ Regional</div>` : ""}
+        ${isVideo ? (item.dual_audio_meta && item.is_dual_audio ? `<div class="card-audio-langs"><i class="fa-solid fa-headphones"></i> ${item.dual_audio_meta.languages}</div>` : `<div class="card-audio-langs"><i class="fa-solid fa-film"></i> Cloud 4K • Multi-Server</div>`) : ""}
       </div>
     </div>
   `;
@@ -474,6 +492,19 @@ function renderWatchlistRail() {
     .filter(Boolean);
 
   railWatchlist.innerHTML = items.map((item) => renderCard(item)).join("");
+}
+
+function renderDualAudioRail() {
+  const railDualAudio = document.getElementById("railDualAudio");
+  const railDualAudioWrap = document.getElementById("railDualAudioWrap");
+  if (!railDualAudio) return;
+  const dualVideos = state.allVideos.filter((v) => v.is_dual_audio);
+  if (dualVideos.length === 0) {
+    if (railDualAudioWrap) railDualAudioWrap.style.display = "none";
+    return;
+  }
+  if (railDualAudioWrap) railDualAudioWrap.style.display = "block";
+  railDualAudio.innerHTML = dualVideos.map((item) => renderCard(item)).join("");
 }
 
 function renderTrendingRail() {
@@ -566,10 +597,7 @@ function startPrerollAd(onFinished) {
   // Hide main video player & controls, show ad overlay
   videoEl.pause();
   destroyHls();
-  if (embedPlayerFrame) {
-    embedPlayerFrame.src = "about:blank";
-    embedPlayerFrame.style.display = "none";
-  }
+  hideAndStopEmbedPlayer();
   videoEl.style.display = "none";
   if (playerControls) playerControls.style.display = "none";
   if (centerPlayOverlay) centerPlayOverlay.style.display = "none";
@@ -649,7 +677,7 @@ function updateDualAudioBanner(video) {
 
   const meta = video.dual_audio_meta;
   if (card) {
-    if (meta) {
+    if (meta && meta.direct_mp4_available) {
       card.style.display = "flex";
       if (titleEl) titleEl.textContent = meta.title_with_audio || `${video.title} (${meta.languages})`;
       if (qualityEl) qualityEl.innerHTML = `<i class="fa-solid fa-film"></i> ${meta.quality_spec ? meta.quality_spec.split(" ")[0] : "720p HD"}`;
@@ -659,7 +687,7 @@ function updateDualAudioBanner(video) {
       if (theaterLangLabel) theaterLangLabel.textContent = `Audio: ${meta.languages} (Dual Audio MP4)`;
     } else {
       card.style.display = "none";
-      if (theaterLangLabel) theaterLangLabel.textContent = "Audio: Original";
+      if (theaterLangLabel) theaterLangLabel.textContent = "Audio: Original Cinema Track";
     }
   }
 }
@@ -746,13 +774,7 @@ function mountCleanEmbedPlayer(embedUrl) {
   if (!container) return;
 
   // Fully remove any existing iframe to destroy previous sandbox browsing context
-  const existingFrame = document.getElementById("embedPlayerFrame");
-  if (existingFrame) {
-    try {
-      existingFrame.src = "about:blank";
-      existingFrame.remove();
-    } catch (e) {}
-  }
+  hideAndStopEmbedPlayer();
 
   // Create brand-new, fresh, completely un-sandboxed iframe element
   const newFrame = document.createElement("iframe");
@@ -824,10 +846,7 @@ function loadActiveStream(autoPlay = true) {
     showToast(`Streaming ${state.currentVideo.title} via ${srv.name}`);
   } else {
     // Native HTML5 Video Stream (Direct / Fallback)
-    if (embedPlayerFrame) {
-      embedPlayerFrame.src = "about:blank";
-      embedPlayerFrame.style.display = "none";
-    }
+    hideAndStopEmbedPlayer();
     videoEl.style.display = "block";
     if (playerControls) playerControls.style.display = "flex";
     if (centerPlayOverlay) centerPlayOverlay.style.display = "flex";
@@ -939,10 +958,7 @@ async function selectLiveChannel(channelId, autoPlay = true) {
     `;
 
     // Ensure embed player is stopped and hidden
-    if (embedPlayerFrame) {
-      embedPlayerFrame.src = "about:blank";
-      embedPlayerFrame.style.display = "none";
-    }
+    hideAndStopEmbedPlayer();
     videoEl.style.display = "block";
     if (playerControls) playerControls.style.display = "flex";
     if (centerPlayOverlay) centerPlayOverlay.style.display = "flex";
@@ -1714,6 +1730,9 @@ function setupEventListeners() {
   videoEl.addEventListener("pause", updatePlayButton);
   videoEl.addEventListener("timeupdate", updateTimeline);
   videoEl.addEventListener("error", (e) => {
+    if (videoEl.style.display === "none" || !videoEl.currentSrc) {
+      return;
+    }
     console.warn("[StreamGuard] Direct native video stream buffer/network warning:", videoEl.error);
     if (state.currentVideo && state.currentServerIndex === 0 && (state.currentVideo.servers || []).length > 1) {
       showToast("Direct stream buffer timeout on this connection. Auto-switching to Cloud 4K Mirror...");
@@ -2235,7 +2254,8 @@ const AMLVE = {
 
     // Option B Integration: If switching to Hindi or English on an embed player, auto-switch to corresponding dubbed server
     if (state.currentVideo && state.currentVideo.servers && state.currentVideo.servers.length > 1) {
-      const isEmbedActive = embedPlayerFrame && embedPlayerFrame.style.display !== "none";
+      const activeFrame = document.getElementById("embedPlayerFrame");
+      const isEmbedActive = Boolean(activeFrame && activeFrame.style.display !== "none");
       if (isEmbedActive) {
         const cleanShort = targetLang.code.split("-")[0].toLowerCase();
         let matchedIdx = -1;
