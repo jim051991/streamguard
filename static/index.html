@@ -102,6 +102,10 @@
           <i class="fa-solid fa-play"></i>
           <span>Play Now</span>
         </button>
+        <button class="hero-btn secondary" id="heroDetailsBtn" title="View Full Storyline & Details">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>More Details</span>
+        </button>
         <button class="hero-btn secondary" id="heroWatchlistBtn">
           <i class="fa-regular fa-bookmark"></i>
           <span id="heroWatchlistText">Add to Watchlist</span>
@@ -838,6 +842,91 @@
         <div class="shortcut-row"><kbd>T</kbd> <span>Toggle Theater Mode</span></div>
         <div class="shortcut-row"><kbd>0</kbd> - <kbd>9</kbd> <span>Seek to 0% - 90%</span></div>
         <div class="shortcut-row"><kbd>?</kbd> <span>Toggle this shortcuts menu</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MovieBox & CineHD-Style Rich Title Overview / Details Modal -->
+  <div class="modal-backdrop details-modal-backdrop" id="movieDetailsModal" style="display:none;">
+    <div class="modal-card details-modal-card">
+      <div class="details-modal-hero">
+        <img src="" alt="Backdrop" class="details-modal-backdrop-img" id="detailsBackdropImg">
+        <div class="details-modal-gradient"></div>
+        <button class="modal-close-btn details-modal-close" id="closeDetailsModalBtn" title="Close (Esc)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="details-modal-hero-content">
+          <div class="details-modal-badges">
+            <span class="badge-accent" id="detailsQualityBadge">4K ULTRA HD</span>
+            <span class="badge-rating" id="detailsRatingBadge"><i class="fa-solid fa-star"></i> 8.8 IMDb</span>
+            <span class="badge-age" id="detailsAgeBadge">PG-13</span>
+            <span class="badge-year" id="detailsYearBadge">2024</span>
+            <span class="badge-duration" id="detailsDurationBadge">2h 08m</span>
+          </div>
+          <h2 class="details-modal-title" id="detailsTitle">Title</h2>
+          <p class="details-modal-tagline" id="detailsTagline">Tagline</p>
+          <div class="details-modal-actions">
+            <button class="details-play-btn" id="detailsPlayBtn">
+              <i class="fa-solid fa-play"></i>
+              <span>Play Now</span>
+            </button>
+            <button class="details-watchlist-btn" id="detailsWatchlistBtn">
+              <i class="fa-regular fa-bookmark"></i>
+              <span id="detailsWatchlistText">Add to Watchlist</span>
+            </button>
+            <button class="details-trailer-btn" id="detailsTrailerBtn">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Stream Direct</span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="details-modal-body">
+        <div class="details-grid-layout">
+          <div class="details-main-col">
+            <h4 class="details-section-heading">Storyline</h4>
+            <p class="details-overview-text" id="detailsOverview">Synopsis...</p>
+            
+            <!-- Episodes Section for TV Shows / Anime -->
+            <div class="details-episodes-section" id="detailsEpisodesSection" style="display:none;">
+              <div class="details-episodes-header">
+                <h4 class="details-section-heading"><i class="fa-solid fa-list-ol"></i> Episodes</h4>
+              </div>
+              <div class="details-episodes-grid" id="detailsEpisodesGrid">
+                <!-- Dynamically populated episode cards -->
+              </div>
+            </div>
+
+            <!-- Server Availability Preview -->
+            <div class="details-servers-preview">
+              <h4 class="details-section-heading"><i class="fa-solid fa-server"></i> Available Streaming Mirrors</h4>
+              <div class="details-server-chips" id="detailsServerChips">
+                <!-- Server chips -->
+              </div>
+            </div>
+          </div>
+
+          <div class="details-sidebar-col">
+            <div class="details-meta-block">
+              <span class="meta-label">Genres:</span>
+              <div class="details-genre-tags" id="detailsGenreTags">
+                <!-- #Action, #Sci-Fi -->
+              </div>
+            </div>
+            <div class="details-meta-block">
+              <span class="meta-label">Audio Languages:</span>
+              <p class="meta-val" id="detailsAudioLangs">English, Hindi Dub, Dual Audio...</p>
+            </div>
+            <div class="details-meta-block">
+              <span class="meta-label">Subtitles:</span>
+              <p class="meta-val" id="detailsSubtitles">English [CC], Hindi [CC]</p>
+            </div>
+            <div class="details-meta-block" id="detailsCastBlock">
+              <span class="meta-label">Stream Security:</span>
+              <p class="meta-val" style="color:var(--accent-cyan); font-weight:700;"><i class="fa-solid fa-shield-halved"></i> Ad-Free StreamGuard Verified</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

@@ -685,7 +685,7 @@ function renderCard(item, isChannel = false) {
   ` : "";
 
   return `
-    <div class="ott-card ${isChannel ? "live-channel-card" : ""}" data-id="${id}" onclick="${isChannel ? `selectLiveChannel('${id}')` : `playVideoById('${id}')`}">
+    <div class="ott-card ${isChannel ? "live-channel-card" : ""}" data-id="${id}" onclick="${isChannel ? `selectLiveChannel('${id}')` : `openTitleDetailsModal('${id}')`}">
       <div class="card-poster-wrap">
         <img src="${poster}" alt="${title}" class="card-poster-img" loading="lazy">
         <span class="card-quality-tag">${quality}</span>
@@ -697,9 +697,12 @@ function renderCard(item, isChannel = false) {
           </button>
         ` : ""}
         <div class="card-hover-overlay">
-          <div class="card-hover-play-icon">
+          <button class="card-hover-play-btn" onclick="event.stopPropagation(); playVideoById('${id}');" title="Play Movie Instantly">
             <i class="fa-solid fa-play"></i>
-          </div>
+          </button>
+          <button class="card-hover-info-btn" onclick="event.stopPropagation(); openTitleDetailsModal('${id}');" title="View Storyline & Details">
+            <i class="fa-solid fa-circle-info"></i>
+          </button>
         </div>
         ${progressHtml}
       </div>
@@ -1662,6 +1665,157 @@ function renderLiveSchedule(schedule) {
 }
 
 // ----------------------------------------------------------------------------
+// Rich Title Overview & Details Modal (MovieBox & CineHD Style)
+// ----------------------------------------------------------------------------
+function openTitleDetailsModal(videoId) {
+  const item = state.allVideos.find((v) => v.id === videoId);
+  if (!item) {
+    playVideoById(videoId);
+    return;
+  }
+  state.selectedDetailsItem = item;
+
+  const modal = document.getElementById("movieDetailsModal");
+  if (!modal) {
+    playVideoById(videoId);
+    return;
+  }
+
+  const backdrop = document.getElementById("detailsBackdropImg");
+  const title = document.getElementById("detailsTitle");
+  const tagline = document.getElementById("detailsTagline");
+  const quality = document.getElementById("detailsQualityBadge");
+  const rating = document.getElementById("detailsRatingBadge");
+  const age = document.getElementById("detailsAgeBadge");
+  const year = document.getElementById("detailsYearBadge");
+  const duration = document.getElementById("detailsDurationBadge");
+  const overview = document.getElementById("detailsOverview");
+  const genreTags = document.getElementById("detailsGenreTags");
+  const audioLangs = document.getElementById("detailsAudioLangs");
+  const subtitles = document.getElementById("detailsSubtitles");
+  const serverChips = document.getElementById("detailsServerChips");
+  const episodesSection = document.getElementById("detailsEpisodesSection");
+  const watchlistText = document.getElementById("detailsWatchlistText");
+  const watchlistBtn = document.getElementById("detailsWatchlistBtn");
+
+  if (backdrop) backdrop.src = item.backdrop_url || item.thumbnail_url;
+  if (title) title.textContent = item.title;
+  if (tagline) tagline.textContent = item.subtitle || item.category || "Cinema Feature";
+  if (quality) quality.textContent = item.quality || "4K ULTRA HD";
+  if (rating) rating.innerHTML = `<i class="fa-solid fa-star"></i> ${item.imdb_rating || "8.5"} IMDb`;
+  if (age) age.textContent = item.age_rating || "PG-13";
+  if (year) year.textContent = item.release_year || "2024";
+  if (duration) duration.textContent = item.duration_formatted || "Full Length";
+  if (overview) overview.textContent = item.description || "Enjoy full high-definition streaming with high-fidelity surround sound.";
+
+  const inWatchlist = state.watchlist.includes(item.id);
+  if (watchlistText) watchlistText.textContent = inWatchlist ? "✓ In Watchlist" : "Add to Watchlist";
+  if (watchlistBtn) watchlistBtn.classList.toggle("active", inWatchlist);
+
+  // Genre tags
+  if (genreTags) {
+    const tags = item.tags && item.tags.length > 0 ? item.tags : [item.category || "Cinema", "Action", "Top Rated"];
+    genreTags.innerHTML = tags.map(t => `<span class="details-genre-pill">#${t}</span>`).join(" ");
+  }
+
+  // Audio & Subtitles
+  if (audioLangs) {
+    if (item.id === "mov-deadpool-wolverine") {
+      audioLangs.textContent = "12 Released Theatrical Dubs (English, हिन्दी, தமிழ், తెలుగు, മലയാളം, ಕನ್ನಡ, मराठी, Español, Français, Deutsch, 日本語, 한국어)";
+    } else if (item.is_dual_audio && item.dual_audio_meta) {
+      audioLangs.textContent = `Dual Audio: ${item.dual_audio_meta.languages} (Original Master)`;
+    } else {
+      audioLangs.textContent = item.languages || "Original English (Stereo / 5.1 Surround)";
+    }
+  }
+
+  if (subtitles) {
+    if (item.subtitles && item.subtitles.length > 0) {
+      subtitles.textContent = item.subtitles.map(s => s.label).join(", ");
+    } else {
+      subtitles.textContent = "English [CC] (Subtitles Available)";
+    }
+  }
+
+  // Server chips
+  if (serverChips) {
+    const servers = item.servers || [];
+    serverChips.innerHTML = servers.map((s, idx) => `
+      <span class="details-server-chip ${idx === 0 ? 'primary' : ''}">
+        <i class="fa-solid ${s.type === 'native' ? 'fa-bolt' : 'fa-cloud'}"></i>
+        ${s.name.split(':')[0]} (${s.quality || '1080p'})
+      </span>
+    `).join("");
+  }
+
+  // Episodes section if series / anime
+  if (episodesSection) {
+    if (item.seasons && item.seasons.length > 0) {
+      episodesSection.style.display = "block";
+      const season = item.seasons[0];
+      const grid = document.getElementById("detailsEpisodesGrid");
+      if (grid) {
+        grid.innerHTML = (season.episodes || []).map((ep, idx) => `
+          <div class="details-episode-card" onclick="closeTitleDetailsModal(); playVideoById('${item.id}', true, ${idx});">
+            <div class="details-episode-thumb">
+              <img src="${ep.thumbnail || item.thumbnail_url}" alt="${ep.title}">
+              <div class="details-episode-play"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <div class="details-episode-info">
+              <h5>${ep.episode_number}. ${ep.title}</h5>
+              <span>${ep.duration}</span>
+            </div>
+          </div>
+        `).join("");
+      }
+    } else {
+      episodesSection.style.display = "none";
+    }
+  }
+
+  // Wire Play Button
+  const playBtn = document.getElementById("detailsPlayBtn");
+  if (playBtn) {
+    playBtn.onclick = () => {
+      closeTitleDetailsModal();
+      playVideoById(item.id, true);
+    };
+  }
+
+  // Wire Watchlist Button
+  if (watchlistBtn) {
+    watchlistBtn.onclick = () => {
+      toggleWatchlist(item.id);
+      const isNowIn = state.watchlist.includes(item.id);
+      if (watchlistText) watchlistText.textContent = isNowIn ? "✓ In Watchlist" : "Add to Watchlist";
+      watchlistBtn.classList.toggle("active", isNowIn);
+    };
+  }
+
+  // Wire Trailer Button
+  const trailerBtn = document.getElementById("detailsTrailerBtn");
+  if (trailerBtn) {
+    trailerBtn.onclick = () => {
+      closeTitleDetailsModal();
+      playVideoById(item.id, true);
+      showToast(`Now playing: ${item.title}`);
+    };
+  }
+
+  modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+function closeTitleDetailsModal() {
+  const modal = document.getElementById("movieDetailsModal");
+  if (modal) modal.style.display = "none";
+  document.body.style.overflow = "";
+}
+
+window.openTitleDetailsModal = openTitleDetailsModal;
+window.closeTitleDetailsModal = closeTitleDetailsModal;
+
+// ----------------------------------------------------------------------------
 // Watchlist & Personalization (LocalStorage Engine)
 // ----------------------------------------------------------------------------
 function toggleWatchlist(videoId) {
@@ -2191,6 +2345,33 @@ function setupEventListeners() {
   heroWatchlistBtn.addEventListener("click", () => {
     if (state.featuredItem) {
       toggleWatchlist(state.featuredItem.id);
+    }
+  });
+
+  const heroDetailsBtn = document.getElementById("heroDetailsBtn");
+  if (heroDetailsBtn) {
+    heroDetailsBtn.addEventListener("click", () => {
+      if (state.featuredItem) {
+        openTitleDetailsModal(state.featuredItem.id);
+      }
+    });
+  }
+
+  const closeDetailsModalBtn = document.getElementById("closeDetailsModalBtn");
+  const movieDetailsModal = document.getElementById("movieDetailsModal");
+  if (closeDetailsModalBtn) {
+    closeDetailsModalBtn.addEventListener("click", closeTitleDetailsModal);
+  }
+  if (movieDetailsModal) {
+    movieDetailsModal.addEventListener("click", (e) => {
+      if (e.target === movieDetailsModal) {
+        closeTitleDetailsModal();
+      }
+    });
+  }
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      closeTitleDetailsModal();
     }
   });
 
