@@ -539,6 +539,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, { passive: true });
   });
 
+  // Seamless horizontal mouse wheel scrolling on server tabs without visible scrollbars
+  const serverTabsBar = document.getElementById("playerServerTabsBar") || document.querySelector(".player-server-tabs-bar");
+  if (serverTabsBar) {
+    serverTabsBar.addEventListener("wheel", (e) => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        serverTabsBar.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  }
+
   setupEventListeners();
   updateWatchlistBadge();
   checkPartyRoomUrl();
@@ -912,7 +923,7 @@ function updateDualAudioBanner(video) {
 }
 function scrollToTheaterSection() {
   if (!theaterSection) return;
-  const headerHeight = 76; // 68px header + 8px breathing margin
+  const headerHeight = 72; // 68px header + 4px breathing margin
   const elementPosition = theaterSection.getBoundingClientRect().top;
   const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
   window.scrollTo({
