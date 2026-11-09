@@ -137,11 +137,23 @@
             </div>
           </div>
 
-          <!-- Dual Audio / Regional Language Selector Pill -->
-          <button class="server-pill-btn dual-audio-pill-btn" id="theaterAudioLangBtn" title="Stream Direct Dual Audio MP4">
-            <i class="fa-solid fa-headphones"></i>
-            <span id="theaterLangLabel">Audio: Dual Audio (Direct MP4)</span>
-          </button>
+          <!-- Dual Audio / Multi-Language Audio Selector Dropdown -->
+          <div class="audio-lang-wrap" style="position:relative;">
+            <button class="server-pill-btn dual-audio-pill-btn" id="theaterAudioLangBtn" title="Select Audio Language">
+              <i class="fa-solid fa-language"></i>
+              <span id="theaterLangLabel">Audio: English (Original)</span>
+              <i class="fa-solid fa-chevron-down" style="font-size:10px; margin-left:4px;"></i>
+            </button>
+            <div class="audio-lang-dropdown-menu" id="audioLangDropdownMenu">
+              <div class="audio-lang-dropdown-header">
+                <span><i class="fa-solid fa-headphones"></i> Select Audio Language</span>
+                <span class="audio-dub-count-tag" id="audioDubCountTag">12 Released Dubs</span>
+              </div>
+              <div class="audio-lang-options-list" id="audioLangOptionsList">
+                <!-- Dynamically populated with all released languages -->
+              </div>
+            </div>
+          </div>
 
           <button class="close-player-btn" id="closePlayerBtn" title="Minimize Player to Theater Banner">
             <i class="fa-solid fa-xmark"></i>
@@ -159,6 +171,13 @@
           <!-- Populated dynamically with active server tabs -->
         </div>
 
+        <div class="server-tabs-label" style="margin-left:8px;" id="audioQuickLabel">
+          <i class="fa-solid fa-language"></i>
+          <span>AUDIO:</span>
+        </div>
+        <div class="audio-quick-tabs-list" id="audioQuickTabsList">
+          <!-- Populated dynamically with quick language pills -->
+        </div>
       </div>
 
       <!-- Video Player Frame -->

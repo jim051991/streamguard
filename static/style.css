@@ -3999,3 +3999,115 @@ body.ott-theme {
   50% { transform: scale(1.03); box-shadow: 0 4px 25px rgba(6, 182, 212, 0.8); }
   100% { transform: scale(1); }
 }
+
+/* ==========================================================================
+   Multi-Language Audio Selector Dropdown & Quick Audio Tabs Bar
+   ========================================================================== */
+.audio-lang-dropdown-menu {
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background: #0d1522;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+  border-radius: 10px;
+  min-width: 270px;
+  max-height: 380px;
+  overflow-y: auto;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.9);
+  display: none;
+  z-index: 250;
+  padding: 6px 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(6, 182, 212, 0.4) transparent;
+}
+
+.audio-lang-dropdown-menu.show {
+  display: block;
+}
+
+.audio-lang-dropdown-header {
+  padding: 9px 14px;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--accent-cyan);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audio-dub-count-tag {
+  font-size: 10px;
+  color: #fff;
+  background: rgba(6, 182, 212, 0.2);
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.audio-lang-option {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  font-size: 12.5px;
+  padding: 9px 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.15s ease;
+}
+
+.audio-lang-option:hover {
+  background: rgba(6, 182, 212, 0.12);
+  color: #fff;
+}
+
+.audio-lang-option.active {
+  background: rgba(6, 182, 212, 0.22);
+  color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+.audio-quick-tabs-list {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.audio-quick-tab-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--text-muted);
+  font-family: var(--font-sans);
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+.audio-quick-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-color: rgba(6, 182, 212, 0.4);
+}
+
+.audio-quick-tab-btn.active {
+  background: rgba(6, 182, 212, 0.2);
+  border-color: var(--accent-cyan);
+  color: #fff;
+  font-weight: 700;
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.4);
+}

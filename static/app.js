@@ -1145,6 +1145,8 @@ function loadActiveStream(autoPlay = true) {
     videoEl.volume = 1.0;
     if (volumeSlider) volumeSlider.value = 1.0;
     updateVolumeIcon();
+    renderAudioQuickTabs();
+    renderAudioLanguageMenu();
     try {
       TheaterSoundEngine.init(videoEl);
       TheaterSoundEngine.resumeContext();
@@ -1342,6 +1344,108 @@ function renderServerOptions(servers) {
       )
       .join("");
   }
+
+  // Populate on-player quick audio tabs & language dropdown
+  renderAudioQuickTabs();
+  renderAudioLanguageMenu();
+}
+
+const RELEASED_AUDIO_LANGUAGES = [
+  { code: "en-US", name: "English (Original Theatrical)", autonym: "English", flag: "🇺🇸", short: "EN" },
+  { code: "hi-IN", name: "हिन्दी (Hindi Dub)", autonym: "हिन्दी", flag: "🇮🇳", short: "HI" },
+  { code: "ta-IN", name: "தமிழ் (Tamil Dub)", autonym: "தமிழ்", flag: "🇮🇳", short: "TA" },
+  { code: "te-IN", name: "తెలుగు (Telugu Dub)", autonym: "తెలుగు", flag: "🇮🇳", short: "TE" },
+  { code: "ml-IN", name: "മലയാളം (Malayalam Dub)", autonym: "മലയാളം", flag: "🇮🇳", short: "ML" },
+  { code: "kn-IN", name: "ಕನ್ನಡ (Kannada Dub)", autonym: "ಕನ್ನಡ", flag: "🇮🇳", short: "KN" },
+  { code: "mr-IN", name: "मराठी (Marathi Dub)", autonym: "मराठी", flag: "🇮🇳", short: "MR" },
+  { code: "es-MX", name: "Español (Spanish Dub)", autonym: "Español", flag: "🇪🇸", short: "ES" },
+  { code: "fr-FR", name: "Français (French Dub)", autonym: "Français", flag: "🇫🇷", short: "FR" },
+  { code: "de-DE", name: "Deutsch (German Dub)", autonym: "Deutsch", flag: "🇩🇪", short: "DE" },
+  { code: "ja-JP", name: "日本語 (Japanese Dub)", autonym: "日本語", flag: "🇯🇵", short: "JA" },
+  { code: "ko-KR", name: "한국어 (Korean Dub)", autonym: "한국어", flag: "🇰🇷", short: "KO" }
+];
+
+let activeAudioLanguageCode = "en-US";
+
+function selectAudioLanguage(langCode) {
+  const target = RELEASED_AUDIO_LANGUAGES.find(l => l.code.toLowerCase() === langCode.toLowerCase()) || RELEASED_AUDIO_LANGUAGES[0];
+  activeAudioLanguageCode = target.code;
+
+  // 1. Update Top Bar Label
+  const theaterLangLabel = document.getElementById("theaterLangLabel");
+  if (theaterLangLabel) {
+    theaterLangLabel.textContent = `Audio: ${target.name}`;
+  }
+
+  // 2. Update Controls Badge
+  const activeLangCodeEl = document.getElementById("activeLangCode");
+  if (activeLangCodeEl) {
+    activeLangCodeEl.textContent = target.short;
+  }
+
+  // 3. Switch Language in AMLVE Engine
+  try {
+    if (typeof AMLVE !== "undefined" && AMLVE.switchLanguage) {
+      AMLVE.switchLanguage(target.code);
+    }
+  } catch (e) {}
+
+  // 4. Update Dropdown and Quick Tabs UI
+  renderAudioLanguageMenu();
+  renderAudioQuickTabs();
+
+  // 5. Close Dropdown if open
+  const menu = document.getElementById("audioLangDropdownMenu");
+  if (menu) menu.classList.remove("show");
+
+  showToast(`Audio Track Active: ${target.flag} ${target.name}`);
+}
+
+function renderAudioLanguageMenu() {
+  const list = document.getElementById("audioLangOptionsList");
+  if (!list) return;
+
+  list.innerHTML = RELEASED_AUDIO_LANGUAGES.map(l => {
+    const isActive = l.code.toLowerCase() === activeAudioLanguageCode.toLowerCase();
+    return `
+      <button class="audio-lang-option ${isActive ? 'active' : ''}" onclick="selectAudioLanguage('${l.code}')">
+        <span><span style="margin-right:8px; font-size:14px;">${l.flag}</span>${l.name}</span>
+        ${isActive ? '<i class="fa-solid fa-check" style="color:var(--accent-cyan); font-size:12px;"></i>' : ''}
+      </button>
+    `;
+  }).join("");
+}
+
+function renderAudioQuickTabs() {
+  const container = document.getElementById("audioQuickTabsList");
+  if (!container) return;
+
+  const quickPills = [
+    { code: "en-US", label: "🇺🇸 English" },
+    { code: "hi-IN", label: "🇮🇳 हिन्दी" },
+    { code: "ta-IN", label: "🇮🇳 தமிழ்" },
+    { code: "te-IN", label: "🇮🇳 తెలుగు" }
+  ];
+
+  container.innerHTML = quickPills.map(p => {
+    const isActive = p.code.toLowerCase() === activeAudioLanguageCode.toLowerCase();
+    return `
+      <button class="audio-quick-tab-btn ${isActive ? 'active' : ''}" onclick="selectAudioLanguage('${p.code}')" title="Play audio in ${p.label}">
+        <span>${p.label}</span>
+      </button>
+    `;
+  }).join("") + `
+    <button class="audio-quick-tab-btn" onclick="toggleAudioDropdown(event)" title="View all 12 released dubs">
+      <i class="fa-solid fa-earth-americas"></i> <span>All Dubs ▾</span>
+    </button>
+  `;
+}
+
+function toggleAudioDropdown(e) {
+  if (e) e.stopPropagation();
+  renderAudioLanguageMenu();
+  const menu = document.getElementById("audioLangDropdownMenu");
+  if (menu) menu.classList.toggle("show");
 }
 
 function switchServer(serverIndex) {
@@ -1989,17 +2093,21 @@ function setupEventListeners() {
   }
 
   const theaterAudioLangBtn = document.getElementById("theaterAudioLangBtn");
+  const audioLangDropdownMenu = document.getElementById("audioLangDropdownMenu");
   if (theaterAudioLangBtn) {
-    theaterAudioLangBtn.addEventListener("click", () => {
-      if (state.currentVideo) {
-        const dualIdx = (state.currentVideo.servers || []).findIndex(
-          s => s.type === "native" || s.name.toLowerCase().includes("direct")
-        );
-        switchServer(dualIdx !== -1 ? dualIdx : 0);
-        showToast(`Dual Audio Mode: Playing direct ${state.currentVideo.dual_audio_meta?.languages || "Hindi + English"} track`);
-      }
+    theaterAudioLangBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleAudioDropdown(e);
     });
   }
+
+  document.addEventListener("click", (e) => {
+    if (audioLangDropdownMenu && audioLangDropdownMenu.classList.contains("show")) {
+      if (!audioLangDropdownMenu.contains(e.target) && e.target !== theaterAudioLangBtn) {
+        audioLangDropdownMenu.classList.remove("show");
+      }
+    }
+  });
 
 
   // Pre-Roll Video Advertisement Listeners

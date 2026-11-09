@@ -666,14 +666,15 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "imdb_id": "tt6263850",
         "quality": "1080p HD",
         "is_dual_audio": True,
-        "audio_tracks_count": 48,
+        "languages": "English (Original), हिन्दी (Hindi Dub), தமிழ் (Tamil Dub), తెలుగు (Telugu Dub), മലയാളം (Malayalam Dub), ಕನ್ನಡ (Kannada Dub), मराठी (Marathi Dub), Español (Spanish Dub), Français (French Dub), Deutsch (German Dub), 日本語 (Japanese Dub), 한국어 (Korean Dub)",
+        "audio_tracks_count": 12,
         "duration_seconds": 7680,
         "duration_formatted": "2h 08m",
         "video_url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Stream Direct Full Movie (1080p Direct MP4)",
+                "name": "Server 1: Stream Direct Full Movie (All Languages Dual Audio 1080p)",
                 "type": "native",
                 "quality": "1080p HD",
                 "url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4",
@@ -856,9 +857,9 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Deadpool & Wolverine (Full Movie)",
-            "languages": "Cinema Audio (Direct Stream)",
-            "quality_spec": "1080p HD Full Movie (759 MB)",
+            "title_with_audio": "Deadpool & Wolverine (All Released Languages)",
+            "languages": "English, Hindi, Tamil, Telugu, Malayalam, Kannada, Marathi, Spanish, French, German, Japanese, Korean",
+            "quality_spec": "1080p HD Multi-Language (12 Released Dubs)",
             "stream_url": "https://archive.org/download/deadpool-wolverine_HD_DUBLADO_SINCRONIZADO/Deadpool%20%26%20Wolverine.ia.mp4",
             "direct_mp4_available": True
         }
