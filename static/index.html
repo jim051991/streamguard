@@ -270,6 +270,44 @@
           <i class="fa-solid fa-play"></i>
         </div>
 
+        <!-- Episodic Up Next Episode Countdown Overlay (Fix 3: Netflix/CineHD/MovieBoxHD Auto-Advance) -->
+        <div class="up-next-overlay" id="upNextOverlay" style="display:none;">
+          <div class="up-next-countdown-track">
+            <div class="up-next-countdown-fill" id="upNextCountdownFill"></div>
+          </div>
+          <div class="up-next-header">
+            <div class="up-next-badge-group">
+              <span class="up-next-badge"><i class="fa-solid fa-forward-step"></i> UP NEXT</span>
+              <span class="up-next-timer-label">in <strong id="upNextTimerPill">15</strong>s</span>
+            </div>
+            <button class="up-next-dismiss-btn" id="upNextDismissBtn" title="Dismiss countdown (Stay on current video)">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="up-next-body" id="upNextBody" title="Click to play next episode now">
+            <div class="up-next-thumb-wrap">
+              <img id="upNextThumb" src="" alt="Next Episode Thumbnail">
+              <div class="up-next-thumb-play"><i class="fa-solid fa-play"></i></div>
+            </div>
+            <div class="up-next-info">
+              <div class="up-next-ep-num" id="upNextEpNum">Episode 2</div>
+              <div class="up-next-title" id="upNextTitle">Next Episode</div>
+              <div class="up-next-meta">
+                <span class="up-next-duration" id="upNextDuration">45m</span>
+                <span class="up-next-hd-badge">HD</span>
+              </div>
+            </div>
+          </div>
+          <div class="up-next-actions">
+            <button class="up-next-play-btn" id="upNextPlayBtn">
+              <i class="fa-solid fa-play"></i> Play Now
+            </button>
+            <button class="up-next-cancel-btn" id="upNextCancelBtn">
+              Stay Here
+            </button>
+          </div>
+        </div>
+
         <!-- Custom Controls Overlay -->
         <div class="player-controls-overlay" id="playerControls">
           <!-- Scrubber Timeline -->

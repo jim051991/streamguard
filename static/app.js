@@ -360,7 +360,12 @@ const state = {
   searchQuery: "",
   partyRoomCode: null,
   history: JSON.parse(localStorage.getItem("streamguard_history") || "{}"),
-  watchlist: JSON.parse(localStorage.getItem("streamguard_watchlist") || "[]")
+  watchlist: JSON.parse(localStorage.getItem("streamguard_watchlist") || "[]"),
+  watchedEpisodes: JSON.parse(localStorage.getItem("streamguard_watched_episodes") || "{}"),
+  upNextTimer: null,
+  upNextRemaining: 15,
+  upNextDismissed: false,
+  isUpNextActive: false
 };
 
 // ----------------------------------------------------------------------------
@@ -975,6 +980,8 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
     state.currentChannel = null;
     state.currentServerIndex = 0;
     state.currentEpisodeIndex = episodeIndex !== null ? episodeIndex : 0;
+    state.upNextDismissed = false;
+    hideUpNextOverlay(false);
 
     // Show theater container
     theaterSection.style.display = "block";
@@ -1621,11 +1628,165 @@ function switchServer(serverIndex) {
 }
 
 // ----------------------------------------------------------------------------
+// Fix 3: Episodic Watch Tracking & Up Next Auto-Advance Engine
+// ----------------------------------------------------------------------------
+function isEpisodeWatched(videoId, epIdx) {
+  if (!videoId || !state.watchedEpisodes || !state.watchedEpisodes[videoId]) return false;
+  return state.watchedEpisodes[videoId].includes(epIdx);
+}
+
+function markEpisodeWatched(videoId, epIdx) {
+  if (!videoId || epIdx === undefined || epIdx === null) return;
+  if (!state.watchedEpisodes) state.watchedEpisodes = {};
+  if (!state.watchedEpisodes[videoId]) {
+    state.watchedEpisodes[videoId] = [];
+  }
+  if (!state.watchedEpisodes[videoId].includes(epIdx)) {
+    state.watchedEpisodes[videoId].push(epIdx);
+    try {
+      localStorage.setItem("streamguard_watched_episodes", JSON.stringify(state.watchedEpisodes));
+    } catch (e) {
+      console.warn("[StreamGuard] Failed to save watched episodes:", e);
+    }
+    // Update badge in episodesDrawer if visible
+    if (episodesGrid) {
+      const cards = episodesGrid.querySelectorAll(".episode-card");
+      if (cards[epIdx]) {
+        const thumbWrap = cards[epIdx].querySelector(".episode-thumb-wrap");
+        if (thumbWrap && !thumbWrap.querySelector(".episode-watched-badge")) {
+          const badge = document.createElement("span");
+          badge.className = "episode-watched-badge";
+          badge.innerHTML = '<i class="fa-solid fa-check"></i> Watched';
+          thumbWrap.appendChild(badge);
+        }
+      }
+    }
+  }
+}
+
+function getNextEpisodeInfo() {
+  if (!state.currentVideo) return null;
+  const episodes = state.currentVideo.seasons?.[0]?.episodes || [];
+  const nextIdx = (state.currentEpisodeIndex || 0) + 1;
+  if (nextIdx < episodes.length) {
+    return {
+      nextIdx,
+      episode: episodes[nextIdx]
+    };
+  }
+  return null;
+}
+
+function checkUpNextTrigger() {
+  if (!state.currentVideo || state.upNextDismissed || !videoEl.duration) return;
+  const nextInfo = getNextEpisodeInfo();
+  if (!nextInfo) return;
+
+  const remaining = videoEl.duration - videoEl.currentTime;
+
+  // Trigger when remaining time <= 18 seconds and video is playing
+  if (remaining <= 18 && remaining > 0 && !state.isUpNextActive && !videoEl.paused) {
+    showUpNextOverlay(nextInfo);
+  } else if (state.isUpNextActive && (videoEl.duration - videoEl.currentTime > 22)) {
+    // If user rewinds backwards, hide overlay temporarily
+    hideUpNextOverlay(false);
+  }
+}
+
+function showUpNextOverlay(nextInfo) {
+  const upNextOverlay = document.getElementById("upNextOverlay");
+  if (!upNextOverlay) return;
+
+  state.isUpNextActive = true;
+  const nextEp = nextInfo.episode;
+
+  const upNextThumb = document.getElementById("upNextThumb");
+  const upNextEpNum = document.getElementById("upNextEpNum");
+  const upNextTitle = document.getElementById("upNextTitle");
+  const upNextDuration = document.getElementById("upNextDuration");
+  const upNextTimerPill = document.getElementById("upNextTimerPill");
+  const upNextCountdownFill = document.getElementById("upNextCountdownFill");
+
+  if (upNextThumb) upNextThumb.src = nextEp.thumbnail || state.currentVideo.thumbnail_url || "";
+  if (upNextEpNum) upNextEpNum.textContent = `Episode ${nextEp.episode_number || (nextInfo.nextIdx + 1)}`;
+  if (upNextTitle) upNextTitle.textContent = nextEp.title || "Next Episode";
+  if (upNextDuration) upNextDuration.textContent = nextEp.duration || "HD";
+
+  if (state.upNextTimer) {
+    clearInterval(state.upNextTimer);
+    state.upNextTimer = null;
+  }
+
+  const totalSecs = Math.max(5, Math.min(15, Math.floor(videoEl.duration - videoEl.currentTime)));
+  state.upNextRemaining = totalSecs;
+  if (upNextTimerPill) upNextTimerPill.textContent = state.upNextRemaining;
+  if (upNextCountdownFill) {
+    upNextCountdownFill.style.transition = "none";
+    upNextCountdownFill.style.width = "100%";
+    void upNextCountdownFill.offsetWidth;
+    upNextCountdownFill.style.transition = `width ${totalSecs}s linear`;
+    upNextCountdownFill.style.width = "0%";
+  }
+
+  upNextOverlay.classList.remove("closing");
+  upNextOverlay.style.display = "flex";
+
+  state.upNextTimer = setInterval(() => {
+    state.upNextRemaining--;
+    if (upNextTimerPill) upNextTimerPill.textContent = Math.max(0, state.upNextRemaining);
+    if (state.upNextRemaining <= 0) {
+      clearInterval(state.upNextTimer);
+      state.upNextTimer = null;
+      playNextEpisode();
+    }
+  }, 1000);
+}
+
+function hideUpNextOverlay(dismiss = false) {
+  const upNextOverlay = document.getElementById("upNextOverlay");
+  if (state.upNextTimer) {
+    clearInterval(state.upNextTimer);
+    state.upNextTimer = null;
+  }
+  state.isUpNextActive = false;
+  if (dismiss) {
+    state.upNextDismissed = true;
+  }
+  if (upNextOverlay) {
+    upNextOverlay.classList.add("closing");
+    setTimeout(() => {
+      if (!state.isUpNextActive) {
+        upNextOverlay.style.display = "none";
+        upNextOverlay.classList.remove("closing");
+      }
+    }, 250);
+  }
+}
+
+function playNextEpisode() {
+  const nextInfo = getNextEpisodeInfo();
+  if (!nextInfo) {
+    hideUpNextOverlay(false);
+    return;
+  }
+  // Mark current episode watched before advancing
+  markEpisodeWatched(state.currentVideo.id, state.currentEpisodeIndex);
+
+  hideUpNextOverlay(false);
+  state.upNextDismissed = false;
+
+  selectEpisode(nextInfo.nextIdx);
+  showToast(`Auto-playing Episode ${nextInfo.episode.episode_number}: ${nextInfo.episode.title}`);
+}
+
+// ----------------------------------------------------------------------------
 // Episodes Drawer & Live Schedule Rendering (CineHD Style)
 // ----------------------------------------------------------------------------
 function selectEpisode(idx) {
   if (!state.currentVideo) return;
   state.currentEpisodeIndex = idx;
+  state.upNextDismissed = false;
+  hideUpNextOverlay(false);
 
   const cards = episodesGrid.querySelectorAll(".episode-card");
   cards.forEach((c, i) => c.classList.toggle("active", i === idx));
@@ -1641,19 +1802,24 @@ function selectEpisode(idx) {
 }
 
 function renderEpisodesDrawer(season, activeIdx = 0) {
+  const videoId = state.currentVideo?.id;
   episodesGrid.innerHTML = season.episodes
     .map(
-      (ep, idx) => `
-      <div class="episode-card ${idx === activeIdx ? "active" : ""}" onclick="selectEpisode(${idx})">
-        <div class="episode-thumb-wrap">
-          <img src="${ep.thumbnail}" alt="${ep.title}">
+      (ep, idx) => {
+        const isWatched = isEpisodeWatched(videoId, idx);
+        return `
+        <div class="episode-card ${idx === activeIdx ? "active" : ""}" onclick="selectEpisode(${idx})">
+          <div class="episode-thumb-wrap">
+            <img src="${ep.thumbnail}" alt="${ep.title}">
+            ${isWatched ? '<span class="episode-watched-badge"><i class="fa-solid fa-check"></i> Watched</span>' : ""}
+          </div>
+          <div class="episode-card-info">
+            <h4>${ep.episode_number}. ${ep.title}</h4>
+            <span>${ep.duration}</span>
+          </div>
         </div>
-        <div class="episode-card-info">
-          <h4>${ep.episode_number}. ${ep.title}</h4>
-          <span>${ep.duration}</span>
-        </div>
-      </div>
-    `
+      `;
+      }
     )
     .join("");
 }
@@ -1765,18 +1931,22 @@ function openTitleDetailsModal(videoId) {
       const season = item.seasons[0];
       const grid = document.getElementById("detailsEpisodesGrid");
       if (grid) {
-        grid.innerHTML = (season.episodes || []).map((ep, idx) => `
+        grid.innerHTML = (season.episodes || []).map((ep, idx) => {
+          const isWatched = isEpisodeWatched(item.id, idx);
+          return `
           <div class="details-episode-card" onclick="closeTitleDetailsModal(); playVideoById('${item.id}', true, ${idx});">
             <div class="details-episode-thumb">
               <img src="${ep.thumbnail || item.thumbnail_url}" alt="${ep.title}">
               <div class="details-episode-play"><i class="fa-solid fa-play"></i></div>
+              ${isWatched ? '<span class="episode-watched-badge"><i class="fa-solid fa-check"></i> Watched</span>' : ""}
             </div>
             <div class="details-episode-info">
               <h5>${ep.episode_number}. ${ep.title}</h5>
               <span>${ep.duration}</span>
             </div>
           </div>
-        `).join("");
+        `;
+        }).join("");
       }
     } else {
       episodesSection.style.display = "none";
@@ -1967,6 +2137,14 @@ function updateTimeline() {
     const bufPct = (bufferedEnd / total) * 100;
     bufferProgress.style.width = `${bufPct}%`;
   }
+
+  // Mark episode watched if passed 90%
+  if (pct > 90 && state.currentVideo?.seasons?.[0]?.episodes) {
+    markEpisodeWatched(state.currentVideo.id, state.currentEpisodeIndex);
+  }
+
+  // Check Up Next auto-advance countdown trigger
+  checkUpNextTrigger();
 
   savePlayProgress();
 }
@@ -2689,15 +2867,17 @@ function setupEventListeners() {
   videoEl.addEventListener("ended", () => {
     if (state.currentVideo) {
       const episodes = state.currentVideo.seasons?.[0]?.episodes || [];
-      if (episodes.length > 0 && state.currentEpisodeIndex + 1 < episodes.length) {
-        playVideoById(state.currentVideo.id, true, state.currentEpisodeIndex + 1);
-        showToast(`Auto-playing Episode ${state.currentEpisodeIndex + 2}`);
-      } else {
-        const curIdx = state.allVideos.findIndex((v) => v.id === state.currentVideo.id);
-        const nextIdx = (curIdx + 1) % state.allVideos.length;
-        playVideoById(state.allVideos[nextIdx].id, true);
-        showToast(`Auto-playing Next: ${state.allVideos[nextIdx].title}`);
+      if (episodes.length > 0) {
+        markEpisodeWatched(state.currentVideo.id, state.currentEpisodeIndex);
+        if (state.currentEpisodeIndex + 1 < episodes.length) {
+          playNextEpisode();
+          return;
+        }
       }
+      const curIdx = state.allVideos.findIndex((v) => v.id === state.currentVideo.id);
+      const nextIdx = (curIdx + 1) % state.allVideos.length;
+      playVideoById(state.allVideos[nextIdx].id, true);
+      showToast(`Auto-playing Next: ${state.allVideos[nextIdx].title}`);
     }
   });
 
@@ -2739,6 +2919,17 @@ function setupEventListeners() {
   scrubberWrapper.addEventListener("click", seekTimeline);
   scrubberWrapper.addEventListener("mousemove", updateHoverPreview);
   scrubberWrapper.addEventListener("mouseleave", hideHoverPreview);
+
+  // Fix 3: Up Next Overlay controls
+  const upNextPlayBtn = document.getElementById("upNextPlayBtn");
+  const upNextDismissBtn = document.getElementById("upNextDismissBtn");
+  const upNextCancelBtn = document.getElementById("upNextCancelBtn");
+  const upNextBody = document.getElementById("upNextBody");
+
+  if (upNextPlayBtn) upNextPlayBtn.addEventListener("click", playNextEpisode);
+  if (upNextDismissBtn) upNextDismissBtn.addEventListener("click", () => hideUpNextOverlay(true));
+  if (upNextCancelBtn) upNextCancelBtn.addEventListener("click", () => hideUpNextOverlay(true));
+  if (upNextBody) upNextBody.addEventListener("click", playNextEpisode);
 
   muteBtn.addEventListener("click", toggleMute);
   volumeSlider.addEventListener("input", (e) => setVolume(e.target.value));
