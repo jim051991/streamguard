@@ -44,8 +44,7 @@ function isAdGuardBlockedUrl(url) {
     Object.defineProperty(window, "open", {
       value: function(url, target, features) {
         console.warn("[StreamGuard Shield] Intercepted and BLOCKED rogue window.open popup:", url);
-        if (typeof showToast === "function") showToast("Blocked advertisement popup");
-        return null;
+        return null; // Silently blocked without showing on screen
       },
       writable: false,
       configurable: false
@@ -69,8 +68,7 @@ function isAdGuardBlockedUrl(url) {
 
     if (hasDownload || isDangerousExt) {
       console.warn("[StreamGuard Shield] Blocked rogue auto-download click:", href);
-      if (typeof showToast === "function") showToast("Blocked unapproved download link");
-      return;
+      return; // Silently blocked without showing on screen
     }
 
     const isSafe = href.startsWith("/") || href.startsWith("#") ||
@@ -80,8 +78,7 @@ function isAdGuardBlockedUrl(url) {
 
     if (this.target === "_blank" && !isSafe) {
       console.warn("[StreamGuard Shield] Blocked rogue popup target=_blank click:", href);
-      if (typeof showToast === "function") showToast("Blocked advertisement popup");
-      return;
+      return; // Silently blocked without showing on screen
     }
 
     return originalAnchorClick.apply(this, arguments);
@@ -104,8 +101,7 @@ function isAdGuardBlockedUrl(url) {
           e.stopPropagation();
           e.stopImmediatePropagation();
           console.warn("[StreamGuard Shield] Intercepted and blocked auto-download link:", href);
-          if (typeof showToast === "function") showToast("Blocked auto-downloading link");
-          return false;
+          return false; // Silently blocked without showing on screen
         }
 
         if (anchor.target === "_blank") {
