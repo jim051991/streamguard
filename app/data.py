@@ -58,11 +58,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7680,
         "duration_formatted": "2h 08m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/533535?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/533535"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/533535?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=533535&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/533535"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
@@ -95,11 +95,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 9960,
         "duration_formatted": "2h 46m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/693134?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/693134"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/693134?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=693134&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/693134"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -132,11 +132,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10800,
         "duration_formatted": "3h 00m",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/872585?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/872585"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/872585?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=872585&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/872585"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=80",
@@ -169,11 +169,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8880,
         "duration_formatted": "2h 28m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/558449?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/558449"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/558449?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=558449&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/558449"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&auto=format&fit=crop&q=80",
@@ -206,11 +206,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 5760,
         "duration_formatted": "1h 36m",
-        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1022789?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1022789"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
+        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1022789?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=1022789&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1022789"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=80",
@@ -243,11 +243,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7140,
         "duration_formatted": "1h 59m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/945961?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/945961"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/945961?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=945961&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/945961"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -280,11 +280,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8460,
         "duration_formatted": "2h 21m",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/933260?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/933260"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/933260?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=933260&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/933260"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop&q=80",
@@ -317,11 +317,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 6120,
         "duration_formatted": "1h 42m",
-        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1184918?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1184918"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
+        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1184918?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=1184918&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1184918"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1448375240586-882707db888b?w=500&auto=format&fit=crop&q=80",
@@ -354,11 +354,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8880,
         "duration_formatted": "2h 28m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/786892?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/786892"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/786892?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=786892&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/786892"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -391,11 +391,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7800,
         "duration_formatted": "2h 10m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/361743?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/361743"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/361743?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=361743&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/361743"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1519074069444-1ba4ea16e6f1?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1519074069444-1ba4ea16e6f1?w=500&auto=format&fit=crop&q=80",
@@ -428,11 +428,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 9120,
         "duration_formatted": "2h 32m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/155?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/155"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/155?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=155&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/155"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -465,11 +465,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8880,
         "duration_formatted": "2h 28m",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/27205?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/27205"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/27205?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=27205&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/27205"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop&q=80",
@@ -502,11 +502,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10140,
         "duration_formatted": "2h 49m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/603692?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/603692"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/603692?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=603692&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/603692"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -539,11 +539,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10140,
         "duration_formatted": "2h 49m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/157336?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/157336"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/157336?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=157336&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/157336"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=500&auto=format&fit=crop&q=80",
@@ -576,11 +576,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10560,
         "duration_formatted": "2h 56m",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/414906?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/414906"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/414906?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=414906&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/414906"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -613,11 +613,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 11520,
         "duration_formatted": "3h 12m",
-        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/76600?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/76600"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
+        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/76600?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=76600&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/76600"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -650,11 +650,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8400,
         "duration_formatted": "2h 20m",
-        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/569094?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/569094"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
+        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/569094?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=569094&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/569094"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1635805737707-575885ab0820?w=500&auto=format&fit=crop&q=80",
@@ -691,11 +691,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7920,
         "duration_formatted": "2h 12m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/496243?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/496243"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/496243?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=496243&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/496243"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -728,11 +728,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8040,
         "duration_formatted": "2h 14m",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1011985?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1011985"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1011985?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=1011985&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1011985"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -765,11 +765,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7080,
         "duration_formatted": "1h 58m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/396535?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/396535"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/396535?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=396535&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/396535"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -802,11 +802,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7440,
         "duration_formatted": "2h 04m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/940721?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/940721"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/940721?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=940721&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/940721"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -839,11 +839,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7500,
         "duration_formatted": "2h 05m",
-        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/129?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/129"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
+        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/129?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=129&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/129"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=80",
@@ -876,11 +876,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 6360,
         "duration_formatted": "1h 46m",
-        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/372058?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/372058"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
+        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/372058?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=372058&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/372058"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -913,11 +913,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7440,
         "duration_formatted": "2h 04m",
-        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/508883?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/508883"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"}
+        "video_url": "https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/508883?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=508883&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/508883"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
@@ -954,11 +954,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10920,
         "duration_formatted": "3h 02m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/579974?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/579974"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/579974?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=579974&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/579974"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -991,11 +991,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10860,
         "duration_formatted": "3h 01m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/801688?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/801688"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/801688?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=801688&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/801688"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=80",
@@ -1028,11 +1028,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10140,
         "duration_formatted": "2h 49m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/872906?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/872906"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/872906?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=872906&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/872906"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
@@ -1065,11 +1065,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8940,
         "duration_formatted": "2h 29m",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1151534?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1151534"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1151534?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=1151534&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1151534"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -1102,11 +1102,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 9660,
         "duration_formatted": "2h 41m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/360814?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/360814"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/360814?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=360814&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/360814"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -1143,11 +1143,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 9060,
         "duration_formatted": "2h 31m",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/915935?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/915935"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/915935?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=915935&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/915935"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=80",
@@ -1180,11 +1180,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 10680,
         "duration_formatted": "2h 58m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1005331?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1005331"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1005331?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=1005331&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1005331"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&auto=format&fit=crop&q=80",
@@ -1217,11 +1217,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8640,
         "duration_formatted": "2h 24m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/906126?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/906126"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/906126?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=906126&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/906126"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=500&auto=format&fit=crop&q=80",
@@ -1254,11 +1254,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 8460,
         "duration_formatted": "2h 21m",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/792307?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/792307"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/792307?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=792307&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/792307"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1514565131-fce0801e5785?w=500&auto=format&fit=crop&q=80",
@@ -1295,11 +1295,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7800,
         "duration_formatted": "2h 10m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/598?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/598"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/598?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=598&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/598"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -1332,11 +1332,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7080,
         "duration_formatted": "1h 58m",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1417?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1417"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/1417?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=1417&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/1417"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -1369,11 +1369,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 7560,
         "duration_formatted": "2h 06m",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": "https://vidlink.pro/movie/517814?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/517814"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": "https://vidlink.pro/movie/517814?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": "https://multiembed.mov/?video_id=517814&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": "https://autoembed.co/movie/tmdb/517814"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -1410,11 +1410,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 3600,
         "duration_formatted": "4 Seasons",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/66732"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/66732"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/66732"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed_tv", "url": "https://multiembed.mov/?video_id=66732&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/66732"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",
@@ -1457,11 +1457,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 3600,
         "duration_formatted": "2 Seasons",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/94997"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/94997"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/94997"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed_tv", "url": "https://multiembed.mov/?video_id=94997&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/94997"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -1504,11 +1504,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 3600,
         "duration_formatted": "10 Episodes",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/126308"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/126308"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/126308"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed_tv", "url": "https://multiembed.mov/?video_id=126308&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/126308"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=500&auto=format&fit=crop&q=80",
@@ -1551,11 +1551,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "audio_tracks_count": 48,
         "duration_seconds": 3600,
         "duration_formatted": "9 Episodes",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/100088"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/100088"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/100088"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed_tv", "url": "https://multiembed.mov/?video_id=100088&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/100088"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=500&auto=format&fit=crop&q=80",
@@ -1600,11 +1600,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "quality": "1080p HD",
         "duration_seconds": 1500,
         "duration_formatted": "12 Episodes",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/209867"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/209867"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/209867"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed_tv", "url": "https://multiembed.mov/?video_id=209867&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/209867"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1579546929518-9e396f3cc809?w=500&auto=format&fit=crop&q=80",
@@ -1645,11 +1645,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "quality": "1080p HD",
         "duration_seconds": 1500,
         "duration_formatted": "4 Seasons",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/85937"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/85937"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/85937"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed_tv", "url": "https://multiembed.mov/?video_id=85937&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/85937"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=500&auto=format&fit=crop&q=80",
@@ -1690,11 +1690,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "quality": "1080p HD",
         "duration_seconds": 1500,
         "duration_formatted": "4 Seasons",
-        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/1429"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/1429"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+        "video_url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/1429"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed_tv", "url": "https://multiembed.mov/?video_id=1429&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/1429"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=500&auto=format&fit=crop&q=80",
@@ -1735,11 +1735,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "quality": "1080p HD",
         "duration_seconds": 1500,
         "duration_formatted": "10 Episodes",
-        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",
-        "servers": [
-            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/105248"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/105248"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4"}
+        "video_url": "https://archive.org/download/ElephantsDream/ed_1024_512kb.mp4",        "servers": [
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed_tv", "url": "https://vidlink.pro/tv/105248"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed_tv", "url": "https://multiembed.mov/?video_id=105248&tmdb=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed_tv", "url": "https://autoembed.co/tv/tmdb/105248"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=800&auto=format&fit=crop&q=80",
         "poster_url": "https://images.unsplash.com/photo-1509198397868-475647b2a1e5?w=500&auto=format&fit=crop&q=80",

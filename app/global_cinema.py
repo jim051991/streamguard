@@ -43,15 +43,17 @@ def format_global_title(item: Dict[str, Any]) -> Dict[str, Any]:
 
     if content_type == "movie":
         servers = [
-            {"id": "srv-1", "name": "Server 1: Full Original Movie (Cloud 4K)", "type": "embed", "url": f"https://vidlink.pro/movie/{imdb_id}?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed", "url": f"https://autoembed.co/movie/imdb/{imdb_id}"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed", "url": f"https://vidlink.pro/movie/{imdb_id}?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed", "url": f"https://multiembed.mov/?video_id={imdb_id}"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed", "url": f"https://autoembed.co/movie/imdb/{imdb_id}"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ]
     else:
         servers = [
-            {"id": "srv-1", "name": "Server 1: Full Original Series (Cloud 4K)", "type": "embed_tv", "url": f"https://vidlink.pro/tv/{imdb_id}/1/1?primaryColor=06b6d4"},
-            {"id": "srv-2", "name": "Server 2: Fast Cloud Mirror (AutoEmbed)", "type": "embed_tv", "url": f"https://autoembed.co/tv/imdb/{imdb_id}"},
-            {"id": "srv-3", "name": "Server 3: Fast Native Stream (Demo)", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
+            {"id": "srv-1", "name": "Server 1: 🎬 English (Original 4K)", "type": "embed_tv", "url": f"https://vidlink.pro/tv/{imdb_id}/1/1?primaryColor=06b6d4"},
+            {"id": "srv-2", "name": "Server 2: 🇮🇳 Hindi Dubbed (MultiEmbed)", "type": "embed_tv", "url": f"https://multiembed.mov/?video_id={imdb_id}&s=1&e=1"},
+            {"id": "srv-3", "name": "Server 3: 🌐 Multi-Audio (AutoEmbed)", "type": "embed_tv", "url": f"https://autoembed.co/tv/imdb/{imdb_id}"},
+            {"id": "srv-4", "name": "Server 4: ⚡ Direct Cinema Stream", "type": "native", "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"}
         ]
 
     video_obj = {

@@ -778,6 +778,9 @@ function loadActiveStream(autoPlay = true) {
       if (embedUrl.includes("vidlink.pro")) {
         const cleanBase = embedUrl.split("?")[0].replace(/\/+$/, "");
         embedUrl = `${cleanBase}/${seasonNum}/${epNum}?primaryColor=06b6d4`;
+      } else if (embedUrl.includes("multiembed.mov")) {
+        const cleanBase = embedUrl.replace(/&s=\d+&e=\d+/, "");
+        embedUrl = `${cleanBase}&s=${seasonNum}&e=${epNum}`;
       } else if (embedUrl.includes("vidsrc")) {
         const cleanBase = embedUrl.replace(/\/+$/, "");
         embedUrl = `${cleanBase}/${seasonNum}/${epNum}`;
@@ -958,31 +961,55 @@ function destroyHls() {
 // Multi-Server Streaming Switcher (Movibox Style)
 // ----------------------------------------------------------------------------
 function updateServerMenuUI(activeIndex) {
-  if (!serverMenu) return;
-  const buttons = serverMenu.querySelectorAll(".server-option");
-  buttons.forEach((btn, idx) => {
-    btn.classList.toggle("active", idx === activeIndex);
-    const check = btn.querySelector("i");
-    if (check) {
-      check.style.display = idx === activeIndex ? "inline-block" : "none";
-    }
-  });
+  if (serverMenu) {
+    const buttons = serverMenu.querySelectorAll(".server-option");
+    buttons.forEach((btn, idx) => {
+      btn.classList.toggle("active", idx === activeIndex);
+      const check = btn.querySelector("i");
+      if (check) {
+        check.style.display = idx === activeIndex ? "inline-block" : "none";
+      }
+    });
+  }
+
+  const serverTabsList = document.getElementById("serverTabsList");
+  if (serverTabsList) {
+    const tabs = serverTabsList.querySelectorAll(".server-tab-btn");
+    tabs.forEach((tab, idx) => {
+      tab.classList.toggle("active", idx === activeIndex);
+    });
+  }
 }
 
 function renderServerOptions(servers) {
   if (!servers || servers.length === 0) return;
-  currentServerLabel.textContent = servers[0].name;
+  if (currentServerLabel) currentServerLabel.textContent = servers[0].name;
 
-  serverMenu.innerHTML = servers
-    .map(
-      (srv, idx) => `
-      <button class="server-option ${idx === 0 ? "active" : ""}" onclick="switchServer(${idx})">
-        <span>${srv.name}</span>
-        <i class="fa-solid fa-check" style="${idx === 0 ? "" : "display:none;"}"></i>
-      </button>
-    `
-    )
-    .join("");
+  if (serverMenu) {
+    serverMenu.innerHTML = servers
+      .map(
+        (srv, idx) => `
+        <button class="server-option ${idx === 0 ? "active" : ""}" onclick="switchServer(${idx})">
+          <span>${srv.name}</span>
+          <i class="fa-solid fa-check" style="${idx === 0 ? "" : "display:none;"}"></i>
+        </button>
+      `
+      )
+      .join("");
+  }
+
+  const serverTabsList = document.getElementById("serverTabsList");
+  if (serverTabsList) {
+    serverTabsList.innerHTML = servers
+      .map(
+        (srv, idx) => `
+        <button class="server-tab-btn ${idx === 0 ? "active" : ""}" onclick="switchServer(${idx})" title="Switch to ${srv.name}">
+          <span>${srv.name}</span>
+        </button>
+      `
+      )
+      .join("");
+  }
 }
 
 function switchServer(serverIndex) {
@@ -2198,6 +2225,47 @@ const AMLVE = {
     const vidId = state.currentVideo ? state.currentVideo.id : "vid-01";
     this.loadMovieDubbing(vidId, targetLang.code, true);
     this.loadMovieDubAudio(vidId, targetLang.code);
+
+    // Option B Integration: If switching to Hindi or English on an embed player, auto-switch to corresponding dubbed server
+    if (state.currentVideo && state.currentVideo.servers && state.currentVideo.servers.length > 1) {
+      const isEmbedActive = embedPlayerFrame && embedPlayerFrame.style.display !== "none";
+      if (isEmbedActive) {
+        const cleanShort = targetLang.code.split("-")[0].toLowerCase();
+        let matchedIdx = -1;
+        if (cleanShort === "hi") {
+          matchedIdx = state.currentVideo.servers.findIndex(s => s.name.toLowerCase().includes("hindi"));
+        } else if (cleanShort === "en") {
+          matchedIdx = state.currentVideo.servers.findIndex(s => s.name.toLowerCase().includes("english"));
+        }
+        if (matchedIdx !== -1 && matchedIdx !== state.currentServerIndex) {
+          switchServer(matchedIdx);
+          showToast(`Stream source auto-routed to ${state.currentVideo.servers[matchedIdx].name}`);
+        }
+      }
+    }
+  },
+
+  async loadMovieDubAudio(videoId, langCode) {
+    if (!videoId) return;
+    const cleanLang = (langCode || "en").split("-")[0].toLowerCase();
+    const audioUrl = `/api/audio/dub/${encodeURIComponent(videoId)}/${cleanLang}.mp3`;
+
+    try {
+      if (!this.movieDubPlayer) {
+        this.movieDubPlayer = new Audio();
+      }
+      this.movieDubPlayer.pause();
+      this.movieDubPlayer.src = audioUrl;
+      this.movieDubPlayer.volume = this.vocalVolume;
+
+      // Auto-sync with video if native video is playing
+      if (videoEl && !videoEl.paused && videoEl.style.display !== "none") {
+        this.movieDubPlayer.currentTime = videoEl.currentTime;
+        this.movieDubPlayer.play().catch(() => {});
+      }
+    } catch (e) {
+      console.warn("[AMLVE] Dub audio track init:", e);
+    }
   },
 
   async loadMovieDubbing(videoId, langCode, speakImmediately = false) {
