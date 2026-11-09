@@ -184,6 +184,18 @@ const TheaterSoundEngine = {
       return;
     }
     try {
+      // Native audio passthrough protection:
+      // If the stream is cross-origin without CORS headers (like Archive.org/CDNs),
+      // calling createMediaElementSource will disconnect native speakers and output SILENCE.
+      // Preserving native audio routing guarantees loud, crisp, unmuted audio to speakers!
+      const src = mediaElement.currentSrc || mediaElement.src || "";
+      const isCrossOrigin = src && !src.startsWith(window.location.origin) && !src.startsWith("/") && !src.startsWith("blob:");
+      if (isCrossOrigin) {
+        console.log("[TheaterSound] Preserving direct native audio hardware output for cross-origin stream (zero CORS muting).");
+        this.isInitialized = true;
+        return;
+      }
+
       const AudioCtx = window.AudioContext || window.webkitAudioContext;
       if (!AudioCtx) return;
       this.audioCtx = new AudioCtx({ sampleRate: 48000, latencyHint: "playback" });
@@ -1160,17 +1172,14 @@ function loadActiveStream(autoPlay = true) {
           console.warn("Autoplay with sound held by browser policy. Retrying unmuted on first interaction.", err);
           videoEl.muted = true;
           videoEl.play().catch(() => {});
-          const forceUnmute = () => {
-            videoEl.muted = false;
-            videoEl.volume = 1.0;
-            if (volumeSlider) volumeSlider.value = 1.0;
-            updateVolumeIcon();
-            try { TheaterSoundEngine.resumeContext(); } catch(e) {}
-            window.removeEventListener("pointerdown", forceUnmute, true);
-            window.removeEventListener("keydown", forceUnmute, true);
+          showTapToUnmuteBadge();
+          const onFirstInteraction = () => {
+            forceUnmuteAudio();
+            window.removeEventListener("pointerdown", onFirstInteraction, true);
+            window.removeEventListener("keydown", onFirstInteraction, true);
           };
-          window.addEventListener("pointerdown", forceUnmute, true);
-          window.addEventListener("keydown", forceUnmute, true);
+          window.addEventListener("pointerdown", onFirstInteraction, true);
+          window.addEventListener("keydown", onFirstInteraction, true);
         });
       }
     }
@@ -1469,11 +1478,45 @@ function savePlayProgress() {
   localStorage.setItem("streamguard_history", JSON.stringify(state.history));
 }
 
+
+function showTapToUnmuteBadge() {
+  let badge = document.getElementById("tapToUnmuteBadge");
+  if (!badge) {
+    badge = document.createElement("div");
+    badge.id = "tapToUnmuteBadge";
+    badge.className = "tap-to-unmute-badge";
+    badge.innerHTML = '<i class="fa-solid fa-volume-xmark"></i> Sound Paused by Browser — Click to Unmute';
+    badge.addEventListener("click", (e) => {
+      e.stopPropagation();
+      forceUnmuteAudio();
+    });
+    const container = document.getElementById("playerContainer");
+    if (container) container.appendChild(badge);
+  }
+  badge.style.display = "flex";
+}
+
+function hideTapToUnmuteBadge() {
+  const badge = document.getElementById("tapToUnmuteBadge");
+  if (badge) badge.style.display = "none";
+}
+
+function forceUnmuteAudio() {
+  if (!videoEl) return;
+  videoEl.muted = false;
+  videoEl.volume = 1.0;
+  if (volumeSlider) volumeSlider.value = 1.0;
+  updateVolumeIcon();
+  hideTapToUnmuteBadge();
+  try { TheaterSoundEngine.resumeContext(); } catch(e) {}
+}
+
 // ----------------------------------------------------------------------------
 // Player Controls Logic
 // ----------------------------------------------------------------------------
 function togglePlay() {
   if (videoEl.paused || videoEl.ended) {
+    forceUnmuteAudio();
     const playPromise = videoEl.play();
     if (playPromise !== undefined) {
       playPromise.catch((err) => {
