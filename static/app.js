@@ -778,6 +778,9 @@ function loadActiveStream(autoPlay = true) {
       if (embedUrl.includes("vidlink.pro")) {
         const cleanBase = embedUrl.split("?")[0].replace(/\/+$/, "");
         embedUrl = `${cleanBase}/${seasonNum}/${epNum}?primaryColor=06b6d4`;
+      } else if (embedUrl.includes("2embed.cc")) {
+        const cleanBase = embedUrl.split("&s=")[0].split("?")[0].replace(/\/+$/, "");
+        embedUrl = `${cleanBase}&s=${seasonNum}&e=${epNum}`;
       } else if (embedUrl.includes("multiembed.mov")) {
         const cleanBase = embedUrl.replace(/&s=\d+&e=\d+/, "");
         embedUrl = `${cleanBase}&s=${seasonNum}&e=${epNum}`;
