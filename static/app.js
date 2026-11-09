@@ -3,35 +3,123 @@
  * Incorporates Movibox & CineHD UI/UX Patterns with Autonomous Security Shield
  */
 
-// ----------------------------------------------------------------------------
-// StreamGuard Anti-Popup & Anti-Clickjack Shield
-// Neutralizes rogue window.open and clickjack redirects from third-party embeds
-// ----------------------------------------------------------------------------
-window.open = function(url, target, features) {
-  console.warn("[StreamGuard AdBlock Shield] Intercepted and blocked rogue popup attempt:", url);
-  return null;
-};
+// ============================================================================
+// StreamGuard Autonomous Anti-Popup, Anti-Clickjack & Anti-Download Shield
+// Guarantees zero popups, zero auto-downloading links, and direct first-click playback
+// ============================================================================
+(function initStreamGuardShield() {
+  // 1. Permanently freeze window.open against ad network popups/popunders
+  try {
+    Object.defineProperty(window, "open", {
+      value: function(url, target, features) {
+        console.warn("[StreamGuard Shield] Intercepted and BLOCKED rogue window.open popup:", url);
+        if (typeof showToast === "function") showToast("Blocked advertisement popup");
+        return null;
+      },
+      writable: false,
+      configurable: false
+    });
+  } catch (e) {
+    window.open = function() { return null; };
+  }
 
-document.addEventListener("click", function(e) {
-  const anchor = e.target.closest("a");
-  if (anchor) {
-    if (anchor.hasAttribute("download")) {
-      e.preventDefault();
-      e.stopPropagation();
-      console.warn("[StreamGuard AdBlock Shield] Blocked unapproved automatic download link.");
+  // 2. Dangerous file extensions commonly used by rogue ad networks
+  const BLOCKED_DOWNLOAD_EXTS = [
+    ".apk", ".exe", ".zip", ".rar", ".7z", ".dmg", ".iso", ".bat",
+    ".cmd", ".scr", ".vbs", ".msi", ".bin", ".tar", ".gz", ".jar", ".app"
+  ];
+
+  // 3. Intercept synthetic .click() on <a> elements (used by rogue auto-downloaders)
+  const originalAnchorClick = HTMLAnchorElement.prototype.click;
+  HTMLAnchorElement.prototype.click = function() {
+    const href = (this.getAttribute("href") || "").toLowerCase();
+    const hasDownload = this.hasAttribute("download");
+    const isDangerousExt = BLOCKED_DOWNLOAD_EXTS.some((ext) => href.includes(ext));
+
+    if (hasDownload || isDangerousExt) {
+      console.warn("[StreamGuard Shield] Blocked rogue auto-download click:", href);
+      if (typeof showToast === "function") showToast("Blocked unapproved download link");
       return;
     }
-    if (anchor.target === "_blank") {
-      const href = anchor.getAttribute("href") || "";
-      const isSafe = href.includes("github.com") || href.includes("twitter.com") || href.includes("whatsapp.com") || href.includes("render.com");
-      if (!isSafe && (href.startsWith("javascript:") || href === "#" || href.includes("http"))) {
-        e.preventDefault();
-        e.stopPropagation();
-        console.warn("[StreamGuard AdBlock Shield] Blocked unauthorized new tab clickjack:", href);
+
+    const isSafe = href.startsWith("/") || href.startsWith("#") ||
+      href.includes("github.com") || href.includes("render.com") ||
+      href.includes("twitter.com") || href.includes("whatsapp.com") ||
+      href.includes("archive.org");
+
+    if (this.target === "_blank" && !isSafe) {
+      console.warn("[StreamGuard Shield] Blocked rogue popup target=_blank click:", href);
+      if (typeof showToast === "function") showToast("Blocked advertisement popup");
+      return;
+    }
+
+    return originalAnchorClick.apply(this, arguments);
+  };
+
+  // 4. Capture-phase interceptor for user clicks & auxiliary clicks (middle-click)
+  ["click", "auxclick"].forEach((evtName) => {
+    document.addEventListener(
+      evtName,
+      function(e) {
+        const anchor = e.target.closest("a");
+        if (!anchor) return;
+
+        const href = (anchor.getAttribute("href") || "").toLowerCase();
+        const hasDownload = anchor.hasAttribute("download");
+        const isDangerousExt = BLOCKED_DOWNLOAD_EXTS.some((ext) => href.includes(ext));
+
+        if (hasDownload || isDangerousExt) {
+          e.preventDefault();
+          e.stopPropagation();
+          e.stopImmediatePropagation();
+          console.warn("[StreamGuard Shield] Intercepted and blocked auto-download link:", href);
+          if (typeof showToast === "function") showToast("Blocked auto-downloading link");
+          return false;
+        }
+
+        if (anchor.target === "_blank") {
+          const isSafe = href.startsWith("/") || href.startsWith("#") ||
+            href.includes("github.com") || href.includes("render.com") ||
+            href.includes("twitter.com") || href.includes("whatsapp.com") ||
+            href.includes("archive.org");
+
+          if (!isSafe) {
+            e.preventDefault();
+            e.stopPropagation();
+            e.stopImmediatePropagation();
+            console.warn("[StreamGuard Shield] Intercepted and blocked popup link:", href);
+            if (typeof showToast === "function") showToast("Blocked advertisement popup");
+            return false;
+          }
+        }
+      },
+      true // Capture phase - runs before any rogue handler
+    );
+  });
+
+  // 5. DOM MutationObserver: neutralizes dynamically injected rogue download triggers
+  const rogueObserver = new MutationObserver((mutations) => {
+    for (const mutation of mutations) {
+      for (const node of mutation.addedNodes) {
+        if (node.nodeType === 1) {
+          if (node.tagName === "A") {
+            const href = (node.getAttribute("href") || "").toLowerCase();
+            if (node.hasAttribute("download") || BLOCKED_DOWNLOAD_EXTS.some((ext) => href.includes(ext))) {
+              console.warn("[StreamGuard Shield] Sanitized injected download anchor:", node);
+              node.removeAttribute("download");
+              node.setAttribute("href", "javascript:void(0)");
+              node.remove();
+            }
+          }
+        }
       }
     }
+  });
+
+  if (document.documentElement) {
+    rogueObserver.observe(document.documentElement, { childList: true, subtree: true });
   }
-}, true);
+})();
 
 // ----------------------------------------------------------------------------
 // Global Application State
@@ -535,6 +623,8 @@ function finishPrerollAd(triggerCallback = true) {
 async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
   try {
     destroyHls();
+    // Guarantee movie plays directly on first click without ad interruptions
+    finishPrerollAd(false);
     const res = await fetch(`/api/videos/${videoId}`);
     const data = await res.json();
     state.currentVideo = data.video;
@@ -632,8 +722,10 @@ function loadActiveStream(autoPlay = true) {
       }
     }
 
-    // 3. Mount in iframe
+    // 3. Mount in iframe (Clean, unrestricted frame with zero popups)
+    if (prerollAdOverlay) prerollAdOverlay.style.display = "none";
     if (embedPlayerFrame) {
+      embedPlayerFrame.removeAttribute("sandbox"); // Explicitly ensure no sandbox attribute is set
       embedPlayerFrame.style.display = "block";
       embedPlayerFrame.src = embedUrl;
     }

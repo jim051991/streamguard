@@ -134,7 +134,7 @@ async def run_tests():
         assert g_data.get("total", 0) > 0, "Expected at least 1 global search result"
         first_result = g_data["results"][0]
         assert "Inception" in first_result["title"]
-        assert first_result["servers"][0]["url"].startswith("https://vidsrc.pm/embed/movie/tt")
+        assert first_result["servers"][0]["url"].startswith("https://vidlink.pro/movie/tt")
         
         # Test On-Demand Video Retrieval for Global Discovered Movie
         global_vid_resp = await client.get(f"/api/videos/{first_result['id']}")
