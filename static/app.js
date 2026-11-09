@@ -420,6 +420,7 @@ function renderCard(item, isChannel = false) {
         <img src="${poster}" alt="${title}" class="card-poster-img" loading="lazy">
         <span class="card-quality-tag">${quality}</span>
         <span class="card-rating-tag">${rating}</span>
+        ${isVideo ? `<span class="card-audio-tag"><i class="fa-solid fa-headphones"></i> DUAL AUDIO</span>` : ""}
         ${isVideo ? `
           <button class="card-watchlist-quick-btn ${inWatchlist ? "active" : ""}" onclick="event.stopPropagation(); toggleWatchlist('${id}');" title="${inWatchlist ? "Remove from Watchlist" : "Add to Watchlist"}">
             <i class="fa-${inWatchlist ? "solid" : "regular"} fa-bookmark"></i>
@@ -438,6 +439,7 @@ function renderCard(item, isChannel = false) {
           <span>${subMeta}</span>
           ${isChannel ? '<span style="color:#ef4444; font-weight:bold;">● LIVE</span>' : `<span>${item.category || ""}</span>`}
         </div>
+        ${isVideo ? `<div class="card-audio-langs"><i class="fa-solid fa-language"></i> Multi-Audio • 48+ Regional</div>` : ""}
       </div>
     </div>
   `;
@@ -656,6 +658,13 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
     // Update Player Top Bar
     activePlayerTitle.textContent = state.currentVideo.title;
     qualityText.textContent = state.currentVideo.quality || "4K ULTRA HD";
+    const theaterLangLabel = document.getElementById("theaterLangLabel");
+    if (theaterLangLabel) {
+      theaterLangLabel.textContent = "Audio: English (Original)";
+    }
+    document.querySelectorAll(".quick-lang-pill[data-lang]").forEach((pill) => {
+      pill.classList.toggle("active", pill.dataset.lang === "en-US");
+    });
 
     // Setup Multi-Server options
     renderServerOptions(state.currentVideo.servers || [
@@ -2045,6 +2054,20 @@ const AMLVE = {
       activeLangLabelEl.textContent = `${targetLang.name} (${targetLang.autonym}) [${targetLang.code}]`;
     }
 
+    const theaterLangLabel = document.getElementById("theaterLangLabel");
+    if (theaterLangLabel) {
+      theaterLangLabel.textContent = `Audio: ${targetLang.name} (${targetLang.autonym})`;
+    }
+
+    const activeLangCode = document.getElementById("activeLangCode");
+    if (activeLangCode) {
+      activeLangCode.textContent = targetLang.code.split("-")[0].toUpperCase();
+    }
+
+    document.querySelectorAll(".quick-lang-pill[data-lang]").forEach((pill) => {
+      pill.classList.toggle("active", pill.dataset.lang.toLowerCase() === targetLang.code.toLowerCase());
+    });
+
     this.renderGrid();
     showToast(`AMLVE: Switched to ${targetLang.name} (${targetLang.autonym}) in 5ms [Zero-Latency VDT Cross-Fade]`);
   },
@@ -2135,16 +2158,29 @@ const AMLVE = {
     const searchClear = document.getElementById("amlveSearchClear");
     const tabBtns = document.querySelectorAll(".amlve-tab-btn");
 
-    if (audioLangBtn && amlveModal) {
-      audioLangBtn.addEventListener("click", () => {
+    const theaterAudioLangBtn = document.getElementById("theaterAudioLangBtn");
+    const audioBarMoreBtn = document.getElementById("audioBarMoreBtn");
+
+    [audioLangBtn, theaterAudioLangBtn, audioBarMoreBtn].forEach((btn) => {
+      if (btn && amlveModal) {
+        btn.addEventListener("click", () => {
+          this.initAudioGraph();
+          amlveModal.style.display = "flex";
+          this.renderGrid();
+          if (searchInput) {
+            setTimeout(() => searchInput.focus(), 80);
+          }
+        });
+      }
+    });
+
+    document.querySelectorAll(".quick-lang-pill[data-lang]").forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const lang = pill.dataset.lang;
         this.initAudioGraph();
-        amlveModal.style.display = "flex";
-        this.renderGrid();
-        if (searchInput) {
-          setTimeout(() => searchInput.focus(), 80);
-        }
+        this.switchLanguage(lang);
       });
-    }
+    });
 
     if (closeAmlveModalBtn && amlveModal) {
       closeAmlveModalBtn.addEventListener("click", () => {

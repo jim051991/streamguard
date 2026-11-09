@@ -86,6 +86,8 @@ def format_global_title(item: Dict[str, Any]) -> Dict[str, Any]:
         "is_trending": True,
         "is_featured": False,
         "is_world_cinema": True,
+        "is_dual_audio": True,
+        "audio_tracks_count": 48,
         "is_global_dynamic": True,
         "comments": []
     }

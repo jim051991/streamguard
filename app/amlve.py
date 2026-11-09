@@ -455,11 +455,109 @@ AMLVE_LANGUAGES: List[Dict[str, Any]] = [
         "name": "Telugu",
         "autonym": "తెలుగు",
         "dialect": "Standard Telugu",
-        "category": "asia",
+        "category": "regional",
         "region": "Asia",
         "is_original": False,
         "vdt_profile": "Dolby 5.1 VDT",
         "payload_size": "4.5% Vector",
+        "timecode_anchor": "Frame-Locked Exact",
+        "cached_in_ram": True,
+        "sample_rate": 48000
+    },
+    {
+        "code": "ml-IN",
+        "name": "Malayalam",
+        "autonym": "മലയാളം",
+        "dialect": "Standard Kerala",
+        "category": "regional",
+        "region": "Asia",
+        "is_original": False,
+        "vdt_profile": "Dolby 5.1 VDT",
+        "payload_size": "4.3% Vector",
+        "timecode_anchor": "Frame-Locked Exact",
+        "cached_in_ram": True,
+        "sample_rate": 48000
+    },
+    {
+        "code": "kn-IN",
+        "name": "Kannada",
+        "autonym": "ಕನ್ನಡ",
+        "dialect": "Standard Mysore / Bengaluru",
+        "category": "regional",
+        "region": "Asia",
+        "is_original": False,
+        "vdt_profile": "Dolby 5.1 VDT",
+        "payload_size": "4.4% Vector",
+        "timecode_anchor": "Frame-Locked Exact",
+        "cached_in_ram": True,
+        "sample_rate": 48000
+    },
+    {
+        "code": "mr-IN",
+        "name": "Marathi",
+        "autonym": "मराठी",
+        "dialect": "Standard Deshi / Pune",
+        "category": "regional",
+        "region": "Asia",
+        "is_original": False,
+        "vdt_profile": "Dolby 5.1 VDT",
+        "payload_size": "4.2% Vector",
+        "timecode_anchor": "Frame-Locked Exact",
+        "cached_in_ram": True,
+        "sample_rate": 48000
+    },
+    {
+        "code": "pa-IN",
+        "name": "Punjabi",
+        "autonym": "ਪੰਜਾਬੀ",
+        "dialect": "Majhi Standard",
+        "category": "regional",
+        "region": "Asia",
+        "is_original": False,
+        "vdt_profile": "Dolby 5.1 VDT",
+        "payload_size": "4.3% Vector",
+        "timecode_anchor": "Frame-Locked Exact",
+        "cached_in_ram": True,
+        "sample_rate": 48000
+    },
+    {
+        "code": "gu-IN",
+        "name": "Gujarati",
+        "autonym": "ગુજરાતી",
+        "dialect": "Standard Kathiawari / Surat",
+        "category": "regional",
+        "region": "Asia",
+        "is_original": False,
+        "vdt_profile": "Dolby 5.1 VDT",
+        "payload_size": "4.4% Vector",
+        "timecode_anchor": "Frame-Locked Exact",
+        "cached_in_ram": True,
+        "sample_rate": 48000
+    },
+    {
+        "code": "bho-IN",
+        "name": "Bhojpuri",
+        "autonym": "भोजपुरी",
+        "dialect": "Purvanchal / Bihar Regional",
+        "category": "regional",
+        "region": "Asia",
+        "is_original": False,
+        "vdt_profile": "Dolby 5.1 VDT",
+        "payload_size": "4.5% Vector",
+        "timecode_anchor": "Frame-Locked Exact",
+        "cached_in_ram": True,
+        "sample_rate": 48000
+    },
+    {
+        "code": "ur-IN",
+        "name": "Urdu",
+        "autonym": "اردو",
+        "dialect": "Standard Nastaliq",
+        "category": "regional",
+        "region": "Asia",
+        "is_original": False,
+        "vdt_profile": "Dolby 5.1 VDT",
+        "payload_size": "4.2% Vector",
         "timecode_anchor": "Frame-Locked Exact",
         "cached_in_ram": False,
         "sample_rate": 48000
@@ -609,7 +707,10 @@ async def get_amlve_languages(
 
     if category and category.lower() != "all":
         cat_lower = category.lower()
-        results = [l for l in results if l.get("category") == cat_lower]
+        if cat_lower == "regional":
+            results = [l for l in results if l.get("category") == "regional" or l.get("code") in ("hi-IN", "ta-IN", "te-IN", "es-MX", "fr-CA", "ja-KS")]
+        else:
+            results = [l for l in results if l.get("category") == cat_lower]
 
     if query:
         q = query.strip().lower()

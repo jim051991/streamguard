@@ -104,6 +104,7 @@
       <div class="hero-badges-row">
         <span class="hero-trend-badge"><i class="fa-solid fa-fire"></i> #1 TRENDING SPOTLIGHT</span>
         <span class="hero-badge quality" id="heroQuality">4K ULTRA HD</span>
+        <span class="hero-badge dual-audio" id="heroDualAudio"><i class="fa-solid fa-headphones"></i> DUAL AUDIO (48+ REGIONAL)</span>
         <span class="hero-badge rating" id="heroRating"><i class="fa-solid fa-star"></i> 8.9 IMDb</span>
         <span class="hero-badge age" id="heroAge">PG-13</span>
         <span class="hero-badge year" id="heroYear">2024</span>
@@ -154,6 +155,13 @@
               <!-- Dynamically populated servers -->
             </div>
           </div>
+
+          <!-- Dual Audio / Regional Language Selector Pill -->
+          <button class="server-pill-btn dual-audio-pill-btn" id="theaterAudioLangBtn" title="Antigravity Multi-Language Dual Audio Engine (AMLVE)">
+            <i class="fa-solid fa-headphones"></i>
+            <span id="theaterLangLabel">Audio: English (Original)</span>
+            <i class="fa-solid fa-chevron-down" style="font-size:10px;"></i>
+          </button>
 
           <button class="close-player-btn" id="closePlayerBtn" title="Minimize Player to Theater Banner">
             <i class="fa-solid fa-xmark"></i>
@@ -395,6 +403,30 @@
             <i class="fa-solid fa-user-shield"></i>
             <span>Threat Radar</span>
           </a>
+        </div>
+      </div>
+
+      <!-- Quick Dual Audio & Regional Language Track Bar -->
+      <div class="player-audio-bar" id="playerAudioBar">
+        <div class="audio-bar-left">
+          <span class="audio-bar-title"><i class="fa-solid fa-headphones"></i> DUAL AUDIO TRACKS:</span>
+          <div class="quick-lang-pills" id="quickLangPills">
+            <button class="quick-lang-pill active" data-lang="en-US">English (Original)</button>
+            <button class="quick-lang-pill" data-lang="hi-IN">हिन्दी (Hindi)</button>
+            <button class="quick-lang-pill" data-lang="ta-IN">தமிழ் (Tamil)</button>
+            <button class="quick-lang-pill" data-lang="te-IN">తెలుగు (Telugu)</button>
+            <button class="quick-lang-pill" data-lang="ml-IN">മലയാളം (Malayalam)</button>
+            <button class="quick-lang-pill" data-lang="kn-IN">ಕನ್ನಡ (Kannada)</button>
+            <button class="quick-lang-pill" data-lang="es-MX">Español (Spanish)</button>
+            <button class="quick-lang-pill" data-lang="fr-FR">Français (French)</button>
+            <button class="quick-lang-pill" data-lang="de-DE">Deutsch (German)</button>
+            <button class="quick-lang-pill" data-lang="ja-JP">日本語 (Japanese)</button>
+            <button class="quick-lang-pill" data-lang="ko-KR">한국어 (Korean)</button>
+            <button class="quick-lang-pill more-btn" id="audioBarMoreBtn"><i class="fa-solid fa-earth-americas"></i> 48+ More Regional Languages...</button>
+          </div>
+        </div>
+        <div class="audio-bar-right">
+          <span class="amlve-active-badge"><i class="fa-solid fa-bolt"></i> AMLVE 2.0 ZERO-LATENCY VDT</span>
         </div>
       </div>
 
@@ -670,6 +702,7 @@
       <div class="amlve-tabs" id="amlveTabs">
         <button class="amlve-tab-btn active" data-category="all"><i class="fa-solid fa-globe"></i> All Languages</button>
         <button class="amlve-tab-btn" data-category="popular"><i class="fa-solid fa-fire"></i> Top / Popular</button>
+        <button class="amlve-tab-btn" data-category="regional"><i class="fa-solid fa-headphones"></i> Regional & Dual Audio</button>
         <button class="amlve-tab-btn" data-category="europe"><i class="fa-solid fa-earth-europe"></i> Europe</button>
         <button class="amlve-tab-btn" data-category="asia"><i class="fa-solid fa-earth-asia"></i> Asia-Pacific</button>
         <button class="amlve-tab-btn" data-category="mena"><i class="fa-solid fa-earth-africa"></i> MENA & Africa</button>
