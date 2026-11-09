@@ -664,36 +664,40 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
         "imdb_rating": 7.8,
         "tmdb_id": 533535,
         "imdb_id": "tt6263850",
-        "quality": "4K ULTRA HD",
+        "quality": "1080p HD",
         "is_dual_audio": True,
         "audio_tracks_count": 48,
         "duration_seconds": 7680,
         "duration_formatted": "2h 08m",
-        "video_url": "https://vidlink.pro/movie/533535?primaryColor=06b6d4",
+        "video_url": "https://archive.org/download/d-w-wolverine/D%26W%20Wolverine.mp4",
         "servers": [
             {
                 "id": "srv-1",
-                "name": "Server 1: Full Movie (Cloud 4K VidLink)",
+                "name": "Server 1: Stream Direct Dual Audio MP4 (Hindi + English)",
+                "type": "native",
+                "quality": "1080p HD",
+                "url": "https://archive.org/download/d-w-wolverine/D%26W%20Wolverine.mp4",
+                "clean": True,
+                "dual_audio": True,
+                "size": "434 MB"
+            },
+            {
+                "id": "srv-2",
+                "name": "Server 2: Fast Cloud Mirror (VidLink 4K)",
                 "type": "embed",
                 "url": "https://vidlink.pro/movie/533535?primaryColor=06b6d4"
             },
             {
-                "id": "srv-2",
-                "name": "Server 2: Fast Cloud Mirror (2Embed)",
+                "id": "srv-3",
+                "name": "Server 3: Fast Cloud Mirror (2Embed)",
                 "type": "embed",
                 "url": "https://www.2embed.cc/embed/533535"
             },
             {
-                "id": "srv-3",
-                "name": "Server 3: Cloud Mirror (AutoEmbed)",
+                "id": "srv-4",
+                "name": "Server 4: Cloud Mirror (AutoEmbed)",
                 "type": "embed",
                 "url": "https://autoembed.co/movie/tmdb/533535"
-            },
-            {
-                "id": "srv-4",
-                "name": "Server 4: Cinema Stream (Direct CDN)",
-                "type": "native",
-                "url": "https://archive.org/download/Tears-of-Steel/tears_of_steel_720p.mp4"
             }
         ],
         "thumbnail_url": "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800&auto=format&fit=crop&q=80",
@@ -852,11 +856,11 @@ VIDEOS_CATALOG: List[Dict[str, Any]] = [
             }
         ],
         "dual_audio_meta": {
-            "title_with_audio": "Deadpool & Wolverine (Cloud 4K Multi-Audio)",
-            "languages": "Original Cinema Audio",
-            "quality_spec": "4K Ultra HD Cinema Stream",
-            "stream_url": "https://vidlink.pro/movie/533535?primaryColor=06b6d4",
-            "direct_mp4_available": False
+            "title_with_audio": "Deadpool & Wolverine (Hindi + English)",
+            "languages": "Hindi + English",
+            "quality_spec": "1080p HD Dual Audio MP4 (434 MB)",
+            "stream_url": "https://archive.org/download/d-w-wolverine/D%26W%20Wolverine.mp4",
+            "direct_mp4_available": True
         }
     },
     {

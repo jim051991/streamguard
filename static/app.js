@@ -146,6 +146,16 @@ function isAdGuardBlockedUrl(url) {
   if (document.documentElement) {
     rogueObserver.observe(document.documentElement, { childList: true, subtree: true });
   }
+
+  // 6. Anti-Popunder Focus Shield: Refocus parent if an iframe click attempts to steal focus to a popup
+  window.addEventListener("blur", () => {
+    const active = document.activeElement;
+    if (active && active.tagName === "IFRAME") {
+      setTimeout(() => {
+        window.focus();
+      }, 50);
+    }
+  });
 })();
 
 // ----------------------------------------------------------------------------
@@ -1025,8 +1035,8 @@ function mountCleanEmbedPlayer(embedUrl) {
   newFrame.setAttribute("referrerpolicy", "origin");
   newFrame.style.cssText = "width:100%; height:100%; border:none; display:block; background:#000;";
   
-  // Guarantee NO sandbox attribute is present
-  newFrame.removeAttribute("sandbox");
+  // Stealth sandbox: permits scripts, same-origin storage & presentation, strictly prevents popups and top-navigation
+  newFrame.setAttribute("sandbox", "allow-scripts allow-same-origin allow-forms allow-presentation");
 
   // Mount the movie stream
   newFrame.src = sanitizeMovieUrlWithAdGuard(embedUrl);
