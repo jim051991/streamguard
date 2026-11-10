@@ -1439,6 +1439,7 @@ function loadActiveStream(autoPlay = true) {
     videoEl.style.display = "none";
     if (playerControls) playerControls.style.display = "none";
     if (centerPlayOverlay) centerPlayOverlay.style.display = "none";
+    document.querySelectorAll(".double-tap-zone").forEach(z => z.style.display = "none");
     const qWrap = document.getElementById("theaterQualityWrap");
     if (qWrap) qWrap.style.display = "none";
     const audioWrap = document.querySelector(".audio-lang-wrap");
@@ -1481,6 +1482,7 @@ function loadActiveStream(autoPlay = true) {
     videoEl.style.display = "block";
     if (playerControls) playerControls.style.display = "flex";
     if (centerPlayOverlay) centerPlayOverlay.style.display = "flex";
+    document.querySelectorAll(".double-tap-zone").forEach(z => z.style.display = "flex");
     const qWrapNative = document.getElementById("theaterQualityWrap");
     if (qWrapNative) qWrapNative.style.display = (srv.video_qualities && srv.video_qualities.length > 0) ? "block" : "none";
     const audioWrapNative = document.querySelector(".audio-lang-wrap");
@@ -2506,6 +2508,103 @@ window.openDownloadModal = openDownloadModal;
 window.closeDownloadModal = closeDownloadModal;
 
 // ----------------------------------------------------------------------------
+// Fix 7: Mobile & Touch Double-Tap to Seek (±10s Ripple Gesture Engine)
+// ----------------------------------------------------------------------------
+let tapTimerLeft = null;
+let tapTimerRight = null;
+let lastTapLeft = 0;
+let lastTapRight = 0;
+let seekAccumLeft = 0;
+let seekAccumRight = 0;
+let hideRippleTimerLeft = null;
+let hideRippleTimerRight = null;
+
+function handleDoubleTapSeek(side, e) {
+  if (e) {
+    e.preventDefault();
+    e.stopPropagation();
+  }
+
+  const now = Date.now();
+  const isLeft = side === "left";
+
+  if (isLeft) {
+    const diff = now - lastTapLeft;
+    lastTapLeft = now;
+
+    if (diff < 320) {
+      // Double tap detected on Left Zone!
+      if (tapTimerLeft) {
+        clearTimeout(tapTimerLeft);
+        tapTimerLeft = null;
+      }
+      seekAccumLeft += 10;
+      videoEl.currentTime = Math.max(0, (videoEl.currentTime || 0) - 10);
+      showDoubleTapRipple("left", seekAccumLeft);
+    } else {
+      if (tapTimerLeft) clearTimeout(tapTimerLeft);
+      tapTimerLeft = setTimeout(() => {
+        togglePlay();
+        flashCenterOverlay(videoEl.paused ? "fa-pause" : "fa-play");
+        seekAccumLeft = 0;
+      }, 260);
+    }
+  } else {
+    // Right Zone
+    const diff = now - lastTapRight;
+    lastTapRight = now;
+
+    if (diff < 320) {
+      // Double tap detected on Right Zone!
+      if (tapTimerRight) {
+        clearTimeout(tapTimerRight);
+        tapTimerRight = null;
+      }
+      seekAccumRight += 10;
+      videoEl.currentTime = Math.min(videoEl.duration || 0, (videoEl.currentTime || 0) + 10);
+      showDoubleTapRipple("right", seekAccumRight);
+    } else {
+      if (tapTimerRight) clearTimeout(tapTimerRight);
+      tapTimerRight = setTimeout(() => {
+        togglePlay();
+        flashCenterOverlay(videoEl.paused ? "fa-pause" : "fa-play");
+        seekAccumRight = 0;
+      }, 260);
+    }
+  }
+}
+
+function showDoubleTapRipple(side, seconds) {
+  const isLeft = side === "left";
+  const ripple = document.getElementById(isLeft ? "doubleTapLeftRipple" : "doubleTapRightRipple");
+  const textEl = document.getElementById(isLeft ? "doubleTapLeftText" : "doubleTapRightText");
+
+  if (!ripple) return;
+
+  if (textEl) {
+    textEl.textContent = `${seconds} seconds`;
+  }
+
+  ripple.classList.remove("active");
+  void ripple.offsetWidth;
+  ripple.classList.add("active");
+
+  if (isLeft) {
+    if (hideRippleTimerLeft) clearTimeout(hideRippleTimerLeft);
+    hideRippleTimerLeft = setTimeout(() => {
+      ripple.classList.remove("active");
+      seekAccumLeft = 0;
+    }, 650);
+  } else {
+    if (hideRippleTimerRight) clearTimeout(hideRippleTimerRight);
+    hideRippleTimerRight = setTimeout(() => {
+      ripple.classList.remove("active");
+      seekAccumRight = 0;
+    }, 650);
+  }
+}
+
+// ----------------------------------------------------------------------------
 // Watchlist & Personalization (LocalStorage Engine)
 // ----------------------------------------------------------------------------
 function toggleWatchlist(videoId) {
@@ -3435,6 +3534,24 @@ function setupEventListeners() {
   document.addEventListener("click", () => serverMenu.classList.remove("show"));
 
   // Video Events
+  // Wire Fix 7: Mobile & Touch Double-Tap to Seek Zones
+  const doubleTapLeftZone = document.getElementById("doubleTapLeftZone");
+  const doubleTapRightZone = document.getElementById("doubleTapRightZone");
+
+  if (doubleTapLeftZone) {
+    doubleTapLeftZone.addEventListener("click", (e) => handleDoubleTapSeek("left", e));
+    doubleTapLeftZone.addEventListener("wheel", (e) => {
+      window.scrollBy({ top: e.deltaY, behavior: "auto" });
+    }, { passive: true });
+  }
+
+  if (doubleTapRightZone) {
+    doubleTapRightZone.addEventListener("click", (e) => handleDoubleTapSeek("right", e));
+    doubleTapRightZone.addEventListener("wheel", (e) => {
+      window.scrollBy({ top: e.deltaY, behavior: "auto" });
+    }, { passive: true });
+  }
+
   videoEl.addEventListener("click", () => {
     togglePlay();
     flashCenterOverlay(videoEl.paused ? "fa-pause" : "fa-play");

@@ -5809,3 +5809,99 @@ video::cue {
     justify-content: center;
   }
 }
+
+/* ==========================================================================
+   Fix 7: Mobile & Touch Double-Tap to Seek (±10s Ripple Gesture Engine)
+   ========================================================================== */
+.double-tap-zone {
+  position: absolute;
+  top: 0;
+  bottom: 60px;
+  width: 36%;
+  z-index: 25;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow: hidden;
+}
+
+.double-tap-zone.left {
+  left: 0;
+}
+
+.double-tap-zone.right {
+  right: 0;
+}
+
+.double-tap-ripple-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.7);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.double-tap-zone.left .double-tap-ripple-content {
+  border-radius: 0 100% 100% 0 / 0 50% 50% 0;
+  background: radial-gradient(circle at left center, rgba(6, 182, 212, 0.45) 0%, rgba(6, 182, 212, 0.15) 60%, transparent 100%);
+}
+
+.double-tap-zone.right .double-tap-ripple-content {
+  border-radius: 100% 0 0 100% / 50% 0 0 50%;
+  background: radial-gradient(circle at right center, rgba(6, 182, 212, 0.45) 0%, rgba(6, 182, 212, 0.15) 60%, transparent 100%);
+}
+
+.double-tap-ripple-content.active {
+  opacity: 1;
+  transform: scale(1);
+  animation: doubleTapPulse 0.4s ease-out;
+}
+
+@keyframes doubleTapPulse {
+  0% {
+    opacity: 0.2;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.double-tap-icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+  color: #38bdf8;
+  filter: drop-shadow(0 0 14px rgba(6, 182, 212, 0.85));
+}
+
+.double-tap-text {
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(6, 182, 212, 0.4);
+}
