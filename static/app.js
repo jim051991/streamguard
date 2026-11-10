@@ -1367,7 +1367,7 @@ async function playVideoById(videoId, autoPlay = true, episodeIndex = null) {
     channelName.textContent = state.currentVideo.channel?.name || "Cinema";
     channelSubs.textContent = `${state.currentVideo.channel?.subscribers || "10M"} subscribers`;
     likeCountEl.textContent = (state.currentVideo.likes || 12000).toLocaleString();
-    downloadBtnLabel.textContent = "Source";
+    downloadBtnLabel.textContent = "Download";
     videoDescription.textContent = state.currentVideo.description;
 
     tagsRow.innerHTML = (state.currentVideo.tags || [])
@@ -2337,6 +2337,173 @@ function closeTitleDetailsModal() {
 
 window.openTitleDetailsModal = openTitleDetailsModal;
 window.closeTitleDetailsModal = closeTitleDetailsModal;
+
+// ----------------------------------------------------------------------------
+// Fix 6: Direct Named MP4 Download Manager Dialog (CineHD / MovieBoxHD Model)
+// ----------------------------------------------------------------------------
+let downloadCurrentItem = null;
+let downloadCurrentEpisodeIndex = 0;
+
+function generateCleanDownloadName(item, quality, episode = null) {
+  const sanitize = (s) => (s || "").replace(/[/\\?%*:|"<>]/g, "").trim();
+  const title = sanitize(item.title || item.name || "StreamGuard_Cinema");
+  const year = item.release_year ? ` (${item.release_year})` : "";
+  const audioTag = item.is_dual_audio ? " [Dual-Audio]" : "";
+
+  if (episode) {
+    const epNum = episode.episode_number ? `S01E${String(episode.episode_number).padStart(2, "0")}` : "";
+    const epTitle = episode.title ? ` - ${sanitize(episode.title)}` : "";
+    return `${title} - ${epNum}${epTitle}${year} [${quality}]${audioTag}.mp4`;
+  }
+
+  return `${title}${year} [${quality}]${audioTag}.mp4`;
+}
+
+function openDownloadModal(item, episodeIdx = null) {
+  if (!item) return;
+  downloadCurrentItem = item;
+  downloadCurrentEpisodeIndex = episodeIdx !== null ? episodeIdx : (state.currentEpisodeIndex || 0);
+
+  const modal = document.getElementById("downloadModal");
+  if (!modal) return;
+
+  const thumbEl = document.getElementById("downloadMediaThumb");
+  const titleEl = document.getElementById("downloadMediaTitle");
+  const qualityEl = document.getElementById("downloadQualityBadge");
+  const yearEl = document.getElementById("downloadYearBadge");
+  const durationEl = document.getElementById("downloadDurationBadge");
+  const audioEl = document.getElementById("downloadAudioBadge");
+  const episodePicker = document.getElementById("downloadEpisodePicker");
+  const episodeSelect = document.getElementById("downloadEpisodeSelect");
+
+  if (thumbEl) thumbEl.src = item.poster_url || item.thumbnail_url || item.logo || "";
+  if (titleEl) titleEl.textContent = item.title || item.name || "Cinema Stream";
+  if (qualityEl) qualityEl.textContent = item.quality || "1080p FHD";
+  if (yearEl) yearEl.textContent = item.release_year || "2024";
+  if (durationEl) durationEl.textContent = item.duration_formatted || item.category || "Full Movie";
+
+  if (audioEl) {
+    if (item.id === "mov-deadpool-wolverine" || (item.audio_tracks_count || 0) >= 12) {
+      audioEl.innerHTML = `<i class="fa-solid fa-headphones"></i> 12+ Audio Dubs`;
+    } else if (item.is_dual_audio) {
+      audioEl.innerHTML = `<i class="fa-solid fa-headphones"></i> Dual Audio (Hindi+Eng)`;
+    } else {
+      audioEl.innerHTML = `<i class="fa-solid fa-volume-high"></i> Stereo Audio`;
+    }
+  }
+
+  // Handle episodic content (series / anime)
+  if (item.seasons && item.seasons.length > 0 && item.seasons[0].episodes) {
+    const episodes = item.seasons[0].episodes;
+    if (episodePicker && episodeSelect) {
+      episodePicker.style.display = "flex";
+      episodeSelect.innerHTML = episodes
+        .map(
+          (ep, idx) => `
+          <option value="${idx}" ${idx === downloadCurrentEpisodeIndex ? "selected" : ""}>
+            Episode ${ep.episode_number}: ${ep.title} (${ep.duration || "45m"})
+          </option>
+        `
+        )
+        .join("");
+    }
+  } else {
+    if (episodePicker) episodePicker.style.display = "none";
+  }
+
+  updateDownloadResolutionLinks();
+  modal.style.display = "flex";
+}
+
+function updateDownloadResolutionLinks() {
+  const item = downloadCurrentItem;
+  if (!item) return;
+
+  let activeEpisode = null;
+  let targetUrl = item.video_url || "";
+
+  if (item.seasons && item.seasons.length > 0 && item.seasons[0].episodes) {
+    activeEpisode = item.seasons[0].episodes[downloadCurrentEpisodeIndex] || item.seasons[0].episodes[0];
+    if (activeEpisode && activeEpisode.video_url) {
+      targetUrl = activeEpisode.video_url;
+    }
+  }
+
+  // Check if item has multi-resolution servers
+  const srv = (item.servers || [])[0];
+  const qList = srv && srv.video_qualities ? srv.video_qualities : [];
+
+  const url1080 = (qList.find((q) => q.quality.includes("1080") || q.quality.includes("4K")) || {}).url || targetUrl;
+  const url720 = (qList.find((q) => q.quality.includes("720")) || {}).url || targetUrl;
+  const url480 = (qList.find((q) => q.quality.includes("480")) || {}).url || targetUrl;
+
+  const name1080 = generateCleanDownloadName(item, "1080p FHD", activeEpisode);
+  const name720 = generateCleanDownloadName(item, "720p HD", activeEpisode);
+  const name480 = generateCleanDownloadName(item, "480p SD", activeEpisode);
+
+  // Wire Download Buttons
+  const btn1080 = document.getElementById("downloadDirect1080Btn");
+  const btn720 = document.getElementById("downloadDirect720Btn");
+  const btn480 = document.getElementById("downloadDirect480Btn");
+  const copy1080 = document.getElementById("copyLink1080Btn");
+  const copy720 = document.getElementById("copyLink720Btn");
+  const copy480 = document.getElementById("copyLink480Btn");
+
+  if (btn1080) btn1080.onclick = () => triggerDirectDownload(url1080, name1080);
+  if (btn720) btn720.onclick = () => triggerDirectDownload(url720, name720);
+  if (btn480) btn480.onclick = () => triggerDirectDownload(url480, name480);
+
+  if (copy1080) copy1080.onclick = () => copyDownloadLink(url1080, "1080p FHD");
+  if (copy720) copy720.onclick = () => copyDownloadLink(url720, "720p HD");
+  if (copy480) copy480.onclick = () => copyDownloadLink(url480, "480p SD");
+}
+
+function closeDownloadModal() {
+  const modal = document.getElementById("downloadModal");
+  if (modal) modal.style.display = "none";
+}
+
+function triggerDirectDownload(url, filename) {
+  if (!url) {
+    showToast("Download link unavailable for this title.");
+    return;
+  }
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  a.target = "_blank";
+  a.rel = "noopener noreferrer";
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => a.remove(), 100);
+  showToast(`Starting Download: ${filename}`);
+}
+
+function copyDownloadLink(url, label) {
+  if (!url) return;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => {
+      showToast(`Direct stream URL copied (${label})! Ready for IDM / FDM.`);
+    }).catch(() => {
+      copyDownloadFallback(url, label);
+    });
+  } else {
+    copyDownloadFallback(url, label);
+  }
+}
+
+function copyDownloadFallback(url, label) {
+  const ta = document.createElement("textarea");
+  ta.value = url;
+  document.body.appendChild(ta);
+  ta.select();
+  document.execCommand("copy");
+  ta.remove();
+  showToast(`Direct stream URL copied (${label})!`);
+}
+
+window.openDownloadModal = openDownloadModal;
+window.closeDownloadModal = closeDownloadModal;
 
 // ----------------------------------------------------------------------------
 // Watchlist & Personalization (LocalStorage Engine)
@@ -3447,11 +3614,38 @@ function setupEventListeners() {
 
   downloadBtn.addEventListener("click", () => {
     if (state.currentVideo) {
-      window.open(state.currentVideo.video_url, "_blank");
+      openDownloadModal(state.currentVideo, state.currentEpisodeIndex);
     } else if (state.currentChannel) {
-      window.open(state.currentChannel.stream_url, "_blank");
+      openDownloadModal(state.currentChannel);
     }
   });
+
+  // Wire Fix 6: Download Modal Controls
+  const closeDownloadModalBtn = document.getElementById("closeDownloadModalBtn");
+  const downloadModal = document.getElementById("downloadModal");
+  const downloadEpisodeSelect = document.getElementById("downloadEpisodeSelect");
+  const detailsDownloadBtn = document.getElementById("detailsDownloadBtn");
+
+  if (closeDownloadModalBtn) closeDownloadModalBtn.addEventListener("click", closeDownloadModal);
+  if (downloadModal) {
+    downloadModal.addEventListener("click", (e) => {
+      if (e.target === downloadModal) closeDownloadModal();
+    });
+  }
+  if (downloadEpisodeSelect) {
+    downloadEpisodeSelect.addEventListener("change", (e) => {
+      downloadCurrentEpisodeIndex = parseInt(e.target.value, 10);
+      updateDownloadResolutionLinks();
+    });
+  }
+  if (detailsDownloadBtn) {
+    detailsDownloadBtn.addEventListener("click", () => {
+      if (state.selectedDetailsItem) {
+        closeTitleDetailsModal();
+        openDownloadModal(state.selectedDetailsItem);
+      }
+    });
+  }
 
   submitCommentBtn.addEventListener("click", submitComment);
 

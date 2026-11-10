@@ -1093,6 +1093,10 @@
               <i class="fa-solid fa-bolt"></i>
               <span>Stream Direct</span>
             </button>
+            <button class="details-download-btn" id="detailsDownloadBtn" title="Download Named MP4">
+              <i class="fa-solid fa-download"></i>
+              <span>Download</span>
+            </button>
           </div>
         </div>
       </div>
@@ -1141,6 +1145,118 @@
               <p class="meta-val" style="color:var(--accent-cyan); font-weight:700;"><i class="fa-solid fa-shield-halved"></i> Ad-Free StreamGuard Verified</p>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Direct Named MP4 Download Manager Dialog (Fix 6: CineHD / MovieBoxHD Model) -->
+  <div class="modal-backdrop download-modal-backdrop" id="downloadModal" style="display:none;">
+    <div class="modal-card download-modal-card">
+      <div class="download-modal-header">
+        <div class="download-header-left">
+          <div class="download-icon-circle">
+            <i class="fa-solid fa-cloud-arrow-down"></i>
+          </div>
+          <div>
+            <h3 class="download-modal-title">Download Media</h3>
+            <p class="download-modal-sub">Direct Named MP4 Streams • High-Speed CDN Passthrough</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="closeDownloadModalBtn" title="Close (Esc)">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="download-modal-body">
+        <!-- Target Media Info Card -->
+        <div class="download-media-card">
+          <img src="" alt="Thumbnail" class="download-media-thumb" id="downloadMediaThumb">
+          <div class="download-media-info">
+            <h4 class="download-media-title" id="downloadMediaTitle">Title</h4>
+            <div class="download-media-badges">
+              <span class="badge-accent" id="downloadQualityBadge">1080p FHD</span>
+              <span class="badge-year" id="downloadYearBadge">2024</span>
+              <span class="badge-duration" id="downloadDurationBadge">2h 08m</span>
+              <span class="badge-audio" id="downloadAudioBadge"><i class="fa-solid fa-headphones"></i> Dual Audio</span>
+            </div>
+            <!-- Episode Selector (for Series & Anime) -->
+            <div class="download-episode-picker" id="downloadEpisodePicker" style="display:none;">
+              <label for="downloadEpisodeSelect"><i class="fa-solid fa-list-ol"></i> Select Episode:</label>
+              <select id="downloadEpisodeSelect" class="download-episode-select">
+                <!-- Dynamically populated episodes -->
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Download Resolutions Grid -->
+        <div class="download-resolutions-list">
+          <div class="download-res-item" id="downloadCard1080">
+            <div class="download-res-info">
+              <div class="download-res-tag fhd">1080p Full HD</div>
+              <div class="download-res-meta">
+                <span class="download-res-desc">Original High-Bitrate Cinema Stream • Clean Named MP4</span>
+                <span class="download-res-size" id="downloadSize1080">~1.85 GB</span>
+              </div>
+            </div>
+            <div class="download-res-actions">
+              <button class="download-action-btn primary" id="downloadDirect1080Btn">
+                <i class="fa-solid fa-download"></i>
+                <span>Download MP4</span>
+              </button>
+              <button class="download-action-btn secondary" id="copyLink1080Btn" title="Copy Direct Stream URL for IDM / FDM">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copy Link</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="download-res-item" id="downloadCard720">
+            <div class="download-res-info">
+              <div class="download-res-tag hd">720p HD</div>
+              <div class="download-res-meta">
+                <span class="download-res-desc">Balanced Crisp Quality • Fast Download Speed</span>
+                <span class="download-res-size" id="downloadSize720">~850 MB</span>
+              </div>
+            </div>
+            <div class="download-res-actions">
+              <button class="download-action-btn primary" id="downloadDirect720Btn">
+                <i class="fa-solid fa-download"></i>
+                <span>Download MP4</span>
+              </button>
+              <button class="download-action-btn secondary" id="copyLink720Btn" title="Copy Direct Stream URL for IDM / FDM">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copy Link</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="download-res-item" id="downloadCard480">
+            <div class="download-res-info">
+              <div class="download-res-tag sd">480p SD</div>
+              <div class="download-res-meta">
+                <span class="download-res-desc">Mobile Data Saver • Compact Storage</span>
+                <span class="download-res-size" id="downloadSize480">~420 MB</span>
+              </div>
+            </div>
+            <div class="download-res-actions">
+              <button class="download-action-btn primary" id="downloadDirect480Btn">
+                <i class="fa-solid fa-download"></i>
+                <span>Download MP4</span>
+              </button>
+              <button class="download-action-btn secondary" id="copyLink480Btn" title="Copy Direct Stream URL for IDM / FDM">
+                <i class="fa-regular fa-copy"></i>
+                <span>Copy Link</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- External Download Manager Help Tip -->
+        <div class="download-idm-tip">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Supports all external download managers including <strong>IDM, Free Download Manager, Aria2, and JDownloader</strong>. All files save with proper title names and zero ads.</span>
         </div>
       </div>
     </div>
